@@ -2,7 +2,7 @@ name: Daily changelog update
 
 on:
   schedule:
-    - cron: "30 21 * * *"   # 06:30 KST (UTC+9)
+    - cron: "20 20 * * *"   # 05:20 KST (20:20 UTC) — GitHub cron 지연(최대 ~1h+) 대비 버퍼, 7시 출근 전 도착 목표
   workflow_dispatch:          # 수동 실행 버튼
 
 permissions:
