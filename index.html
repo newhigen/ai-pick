@@ -1603,7 +1603,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>worktree.baseRef</code> setting (<code>fresh</code> | <code>head</code>) to choose whether <code>--worktree</code>, <code>EnterWorktree</code>, and agent-isolation worktrees branch from <code>origin/<default></code> or local <code>HEAD</code>. <strong>Note:</strong> the default <code>fresh</code> changes <code>EnterWorktree</code>'s base back to <code>origin/<default></code> (it has been local <code>HEAD</code> since 2.1.128) — set <code>worktree.baseRef: "head"</code> to keep unpushed commits in new worktrees</span>
+      <span class="e-desc">Added <code>worktree.baseRef</code> setting (<code>fresh</code> | <code>head</code>) to choose whether <code>--worktree</code>, <code>EnterWorktree</code>, and agent-isolation worktrees branch from <code>origin/&lt;default&gt;</code> or local <code>HEAD</code>. <strong>Note:</strong> the default <code>fresh</code> changes <code>EnterWorktree</code>'s base back to <code>origin/&lt;default&gt;</code> (it has been local <code>HEAD</code> since 2.1.128) — set <code>worktree.baseRef: "head"</code> to keep unpushed commits in new worktrees</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -1762,7 +1762,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>--plugin-url <url></code> flag to fetch a plugin <code>.zip</code> archive from a URL for the current session</span>
+      <span class="e-desc">Added <code>--plugin-url &lt;url&gt;</code> flag to fetch a plugin <code>.zip</code> archive from a URL for the current session</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -1882,7 +1882,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>EnterWorktree</code> now creates the new branch from local HEAD as documented, instead of <code>origin/<default-branch></code> — unpushed commits are no longer dropped</span>
+      <span class="e-desc"><code>EnterWorktree</code> now creates the new branch from local HEAD as documented, instead of <code>origin/&lt;default-branch&gt;</code> — unpushed commits are no longer dropped</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -2259,7 +2259,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>--agent <name></code> now honors the agent definition's <code>permissionMode</code> for built-in agents</span>
+      <span class="e-desc"><code>--agent &lt;name&gt;</code> now honors the agent definition's <code>permissionMode</code> for built-in agents</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -2712,7 +2712,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Running <code>cd <current-directory> && git …</code> no longer triggers a permission prompt when the <code>cd</code> is a no-op</span>
+      <span class="e-desc">Running <code>cd &lt;current-directory&gt; && git …</code> no longer triggers a permission prompt when the <code>cd</code> is a no-op</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -2825,7 +2825,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>/ultrareview</code> for running comprehensive code review in the cloud using parallel multi-agent analysis and critique — invoke with no arguments to review your current branch, or <code>/ultrareview <PR#></code> to fetch and review a specific GitHub PR</span>
+      <span class="e-desc">Added <code>/ultrareview</code> for running comprehensive code review in the cloud using parallel multi-agent analysis and critique — invoke with no arguments to review your current branch, or <code>/ultrareview &lt;PR#&gt;</code> to fetch and review a specific GitHub PR</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -2833,11 +2833,11 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Read-only bash commands with glob patterns (e.g. <code>ls *.ts</code>) and commands starting with <code>cd <project-dir> &&</code> no longer trigger a permission prompt</span>
+      <span class="e-desc">Read-only bash commands with glob patterns (e.g. <code>ls *.ts</code>) and commands starting with <code>cd &lt;project-dir&gt; &&</code> no longer trigger a permission prompt</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Suggest the closest matching subcommand when <code>claude <word></code> is invoked with a near-miss typo (e.g. <code>claude udpate</code> → "Did you mean <code>claude update</code>?")</span>
+      <span class="e-desc">Suggest the closest matching subcommand when <code>claude &lt;word&gt;</code> is invoked with a near-miss typo (e.g. <code>claude udpate</code> → "Did you mean <code>claude update</code>?")</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -3153,7 +3153,7 @@
             <div class="coll-item"><span class="coll-item-desc">Improved <code>/doctor</code> layout with status icons; press <code>f</code> to have Claude fix reported issues</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved <code>/config</code> labels and descriptions for clarity</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved skill description handling: raised the listing cap from 250 to 1,536 characters and added a startup warning when descriptions are truncated</span></div>
-            <div class="coll-item"><span class="coll-item-desc">Improved <code>WebFetch</code> to strip <code><style></code> and <code><script></code> contents from fetched pages so CSS-heavy pages no longer exhaust the content budget before reaching actual text</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>WebFetch</code> to strip <code>&lt;style&gt;</code> and <code>&lt;script&gt;</code> contents from fetched pages so CSS-heavy pages no longer exhaust the content budget before reaching actual text</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved stale agent worktree cleanup to remove worktrees whose PR was squash-merged instead of keeping them indefinitely</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved MCP large-output truncation prompt to give format-specific recipes (e.g. <code>jq</code> for JSON, computed Read chunk sizes for text)</span></div>
           </div>
@@ -3230,7 +3230,7 @@
             <div class="coll-item"><span class="coll-item-desc">Improved tool-not-available errors to explain why and how to proceed when the model calls a tool that exists but isn't available in the current context</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved rate-limit retry messages to show which limit was hit and when it resets instead of an opaque seconds countdown</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved refusal error messages to include the API-provided explanation when available</span></div>
-            <div class="coll-item"><span class="coll-item-desc">Improved <code>claude -p --resume <name></code> to accept session titles set via <code>/rename</code> or <code>--name</code></span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>claude -p --resume &lt;name&gt;</code> to accept session titles set via <code>/rename</code> or <code>--name</code></span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved settings resilience: an unrecognized hook event name in <code>settings.json</code> no longer causes the entire file to be ignored</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved plugin hooks from plugins force-enabled by managed settings to run when <code>allowManagedHooksOnly</code> is set</span></div>
             <div class="coll-item"><span class="coll-item-desc">Improved <code>/plugin</code> and <code>claude plugin update</code> to show a warning when the marketplace could not be refreshed, instead of silently reporting a stale version</span></div>
@@ -4828,7 +4828,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>-n</code> / <code>--name <name></code> CLI flag to set a display name for the session at startup</span>
+      <span class="e-desc">Added <code>-n</code> / <code>--name &lt;name&gt;</code> CLI flag to set a display name for the session at startup</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -5127,7 +5127,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed CLAUDE.md HTML comments (<code><!-- ... --></code>) to be hidden from Claude when auto-injected. Comments remain visible when read with the Read tool</span>
+      <span class="e-desc">Changed CLAUDE.md HTML comments (<code>&lt;!-- ... --&gt;</code>) to be hidden from Claude when auto-injected. Comments remain visible when read with the Read tool</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -5515,7 +5515,7 @@
             <div class="coll-item"><span class="coll-item-desc">Fixed a memory leak where old message array versions accumulated in React Compiler <code>memoCache</code> over long sessions</span></div>
             <div class="coll-item"><span class="coll-item-desc">Fixed a memory leak where REPL render scopes accumulated over long sessions (~35MB over 1000 turns)</span></div>
             <div class="coll-item"><span class="coll-item-desc">Fixed a memory leak in interactive mode where hook events could accumulate unboundedly during long sessions</span></div>
-            <div class="coll-item"><span class="coll-item-desc">Fixed <code>cd <outside-dir> && <cmd></code> permission prompt to surface the chained command instead of only showing "Yes, allow reading from <dir>/"</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>cd &lt;outside-dir&gt; && &lt;cmd&gt;</code> permission prompt to surface the chained command instead of only showing "Yes, allow reading from &lt;dir&gt;/"</span></div>
             <div class="coll-item"><span class="coll-item-desc">Fixed UI frame drops on macOS when using MCP servers with OAuth (regression from 2.1.x)</span></div>
             <div class="coll-item"><span class="coll-item-desc">Fixed service key OAuth sessions (CCR containers) spamming <code>[ERROR]</code> logs with 403s from profile-scoped endpoints</span></div>
           </div>
@@ -7288,7 +7288,7 @@
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Updated "Help improve Claude" setting fetch to refresh OAuth and retry when it fails due to a stale OAuth token</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed task notification display to cap at 3 lines with overflow summary when multiple background tasks complete simultaneously</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed terminal title to "Claude Code" on startup for better window identification</span></div>
-    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed ability to @-mention MCP servers to enable/disable - use <code>/mcp enable <name></code> instead</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed ability to @-mention MCP servers to enable/disable - use <code>/mcp enable &lt;name&gt;</code> instead</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed usage indicator not updating after manual compact</span></div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -7447,7 +7447,7 @@
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for disabling specific agents using <code>Task(AgentName)</code> syntax in settings.json permissions or the <code>--disallowedTools</code> CLI flag</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added hooks support for skill and slash command frontmatter</span></div>
-    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added new Vim motions: <code>;</code> and <code>,</code> to repeat f/F/t/T motions, <code>y</code> operator for yank with <code>yy</code>/<code>Y</code>, <code>p</code>/<code>P</code> for paste, text objects (<code>iw</code>, <code>aw</code>, <code>iW</code>, <code>aW</code>, <code>i"</code>, <code>a"</code>, <code>i'</code>, <code>a'</code>, <code>i(</code>, <code>a(</code>, <code>i[</code>, <code>a[</code>, <code>i{</code>, <code>a{</code>), <code>>></code> and <code><<</code> for indent/dedent, and <code>J</code> to join lines</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added new Vim motions: <code>;</code> and <code>,</code> to repeat f/F/t/T motions, <code>y</code> operator for yank with <code>yy</code>/<code>Y</code>, <code>p</code>/<code>P</code> for paste, text objects (<code>iw</code>, <code>aw</code>, <code>iW</code>, <code>aW</code>, <code>i"</code>, <code>a"</code>, <code>i'</code>, <code>a'</code>, <code>i(</code>, <code>a(</code>, <code>i[</code>, <code>a[</code>, <code>i{</code>, <code>a{</code>), <code>&gt;&gt;</code> and <code>&lt;&lt;</code> for indent/dedent, and <code>J</code> to join lines</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>/plan</code> command shortcut to enable plan mode directly from the prompt</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added slash command autocomplete support when <code>/</code> appears anywhere in input, not just at the beginning</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>--tools</code> flag support in interactive mode to restrict which built-in tools Claude can use during interactive sessions</span></div>
@@ -7835,7 +7835,7 @@
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Made auto-compacting instant</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Agents and bash commands can run asynchronously and send messages to wake up the main agent</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">/stats now provides users with interesting CC stats, such as favorite model, usage graph, usage streak</span></div>
-    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added named session support: use <code>/rename</code> to name sessions, <code>/resume <name></code> in REPL or <code>claude --resume <name></code> from the terminal to resume them</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added named session support: use <code>/rename</code> to name sessions, <code>/resume &lt;name&gt;</code> in REPL or <code>claude --resume &lt;name&gt;</code> from the terminal to resume them</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for .claude/rules/`.  See https://code.claude.com/docs/en/memory for details.</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added image dimension metadata when images are resized, enabling accurate coordinate mappings for large images</span></div>
     <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Added copy-to-clipboard button on code blocks and bash tool inputs</span></div>
