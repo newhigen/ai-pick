@@ -104,6 +104,10 @@
     .pick-tip strong { color: var(--pick); }
     .pick-info:hover .pick-tip, .pick-info:focus .pick-tip { opacity: 1; visibility: visible; transform: translateY(0); }
     .pick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 7px; }
+    .pick-grid.hidden { display: none; }
+    .pick-tabs { display: inline-flex; gap: 2px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
+    .pick-tab { border: none; background: none; color: var(--muted); font-size: .74rem; font-weight: 700; padding: 2px 11px; border-radius: 6px; cursor: pointer; transition: all .12s; }
+    .pick-tab.active { background: var(--pick-bg); color: var(--pick); }
     .pick-card {
       background: var(--surface); border: 1px solid rgba(210,168,255,.15);
       border-radius: 7px; padding: 9px 11px; cursor: pointer; transition: border-color .12s;
@@ -374,7 +378,7 @@
   <div class="page-header">
     <div>
       <h1>Claude Code — 뭐가 바뀌었나</h1>
-      <p class="range"><strong>v2.1.22</strong> → <strong>v2.1.153</strong> &nbsp;·&nbsp; 2026년 1월 28일 – 5월 28일</p>
+      <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.153</strong> &nbsp;·&nbsp; 2025년 9월 29일 – 5월 28일</p>
     </div>
     <div class="header-right">
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
@@ -384,11 +388,14 @@
 
   <div class="pick-section">
     <div class="pick-header">
-      <span>🎯</span><h2>오늘 써볼 기능</h2>
-      <span>최근 릴리스에서 바로 써볼 수 있는 것들</span>
-      <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI (내부 변경 제외)<br>② 워크플로우에 실질적 영향이 큰 것<br>③ 사용 빈도가 높을 만한 것<br>④ 최신·주목도 우선 — 6개로 제한</span></span>
+      <span>🎯</span><h2>써볼 기능</h2>
+      <div class="pick-tabs">
+        <button class="pick-tab active" data-period="today" onclick="switchPick('today')">오늘</button>
+        <button class="pick-tab" data-period="past" onclick="switchPick('past')">이전</button>
+      </div>
+      <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI (내부 변경 제외)<br>② 워크플로우에 실질적 영향이 큰 것<br>③ 사용 빈도가 높을 만한 것<br>④ <strong>오늘</strong>=최근 6개 · <strong>이전</strong>=수집 시작(v2.0.0, 2025-09)부터 누적 주목 기능</span></span>
     </div>
-    <div class="pick-grid">
+    <div class="pick-grid" data-period="today">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="cmd">/goal</div>
         <h3>목표 기반 자율 실행</h3>
@@ -448,6 +455,87 @@
           <div class="pick-check"><strong>학습:</strong> OSC 패턴 어떻게 구성, 어떤 시점에 알림 트리거</div>
         </div>
         <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
+      </div>
+    <div class="pick-grid pick-past hidden" data-period="past">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-09-29">
+        <div class="cmd">/rewind</div>
+        <h3>대화·코드 되돌리기</h3>
+        <p>잘못된 방향이면 이전 체크포인트로 코드+대화를 한 번에 롤백.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 안전하게 실험 — 망쳐도 즉시 복구</div>
+          <div class="pick-check"><strong>학습:</strong> 어느 시점으로 되돌릴지 체크포인트 감각</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.0.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-16">
+        <div class="cmd">Skills</div>
+        <h3>재사용 스킬 시스템</h3>
+        <p>반복 작업을 SKILL.md로 정의 → 자동/수동 호출.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 같은 지시 반복 안 함 — 노하우를 코드화</div>
+          <div class="pick-check"><strong>학습:</strong> 어떤 작업이 스킬화 가치 있는지</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.0.20</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-05">
+        <div class="cmd">background agent</div>
+        <h3>백그라운드 에이전트</h3>
+        <p>에이전트가 백그라운드에서 도는 동안 다른 작업 진행.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 긴 작업 기다리지 않고 병행</div>
+          <div class="pick-check"><strong>학습:</strong> 어떤 작업을 백그라운드로 돌릴지</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.0.60</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-16">
+        <div class="cmd">AskUserQuestion</div>
+        <h3>선택지로 질문받기</h3>
+        <p>Claude이 모호할 때 객관식으로 물어봄 → 빠른 결정.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 긴 설명 없이 클릭으로 방향 지정</div>
+          <div class="pick-check"><strong>학습:</strong> 어떤 상황에 질문이 뜨는지</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.0.21</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
+        <div class="cmd">/plan</div>
+        <h3>플랜 모드 단축</h3>
+        <p>/plan으로 프롬프트에서 바로 계획 모드 진입.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 큰 변경 전 계획 먼저 — 실수 방지</div>
+          <div class="pick-check"><strong>학습:</strong> 계획 모드가 효과적인 작업 유형</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
+        <div class="cmd">skill hot-reload</div>
+        <h3>스킬 자동 리로드</h3>
+        <p>~/.claude/skills 수정 시 재시작 없이 즉시 반영.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 스킬 개발 반복이 빨라짐</div>
+          <div class="pick-check"><strong>학습:</strong> 수정→테스트 사이클 단축</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
+        <div class="cmd">Ctrl+O thinking</div>
+        <h3>thinking 실시간 보기</h3>
+        <p>Ctrl+O 트랜스크립트에서 thinking 블록 실시간 표시.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> Claude 추론 과정 관찰 — 디버깅·신뢰</div>
+          <div class="pick-check"><strong>학습:</strong> 어디서 추론이 길어지는지</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
+        <div class="cmd">/teleport</div>
+        <h3>웹 세션 가져오기</h3>
+        <p>claude.ai 웹 세션을 터미널로 이어받기.</p>
+        <div class="pick-meta">
+          <div class="pick-why"><strong>왜?</strong> 기기 간 작업 연속성</div>
+          <div class="pick-check"><strong>학습:</strong> 웹↔터미널 전환 흐름</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
       </div>
     </div>
   </div>
@@ -6835,6 +6923,1867 @@
     </div>
   </div>
 
+  <!-- ── v2.1.21 ── -->
+  <div class="version-block" id="v2.1.21" data-types="feature improve fix" data-date="2026-01-28">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.21</span><span class="ver-date">1월 28일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×5</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for full-width (zenkaku) number input from Japanese IME in option selection prompts</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added automatic Python virtual environment activation, ensuring <code>python</code> and <code>pip</code> commands use the correct interpreter (configurable via <code>claudeCode.usePythonEnvironment</code> setting)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed message action buttons having incorrect background colors</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">5</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved read/search progress indicators to show "Reading…" while in progress and "Read" when complete</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved Claude to prefer file operation tools (Read, Edit, Write) over bash equivalents (cat, sed, awk)</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">shell completion cache files being truncated on exit</span>
+          <span class="chip">API errors when resuming sessions that were interrupted…</span>
+          <span class="chip">auto-compact triggering too early on models with large…</span>
+          <span class="chip">task IDs potentially being reused after deletion</span>
+          <span class="chip">file search not working in VS Code extension…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.20 ── -->
+  <div class="version-block" id="v2.1.20" data-types="feature improve fix" data-date="2026-01-27">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.20</span><span class="ver-date">1월 27일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×12</span><span class="pill improve">개선 ×4</span><span class="pill fix">Fix ×12</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added arrow key history navigation in vim normal mode when cursor cannot move further</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added external editor shortcut (Ctrl+G) to the help menu for better discoverability</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added PR review status indicator to the prompt footer, showing the current branch's PR state (approved, changes requested, pending, or draft) as a colored dot with a clickable link</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for loading <code>CLAUDE.md</code> files from additional directories specified via <code>--add-dir</code> flag (requires setting <code>CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1</code>)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added ability to delete tasks via the <code>TaskUpdate</code> tool</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed collapsed read/search groups to show present tense ("Reading", "Searching for") while in progress, and past tense ("Read", "Searched for") when complete</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed <code>ToolSearch</code> results to appear as a brief notification instead of inline in the conversation</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed the <code>/commit-push-pr</code> skill to automatically post PR URLs to Slack channels when configured via MCP tools</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed the <code>/copy</code> command to be available to all users</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed background agents to prompt for tool permissions before launching</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed permission rules like <code>Bash(*)</code> to be accepted and treated as equivalent to <code>Bash</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed config backups to be timestamped and rotated (keeping 5 most recent) to prevent data loss</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">4</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">12</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved <code>/sandbox</code> command UI to show dependency status with installation instructions when dependencies are missing</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved thinking status text with a subtle shimmer animation</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved task list to dynamically adjust visible items based on terminal height</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved fork conversation hint to show how to resume the original session</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">session compaction issues that could cause resume to…</span>
+          <span class="chip">agents sometimes ignoring user messages sent while actively…</span>
+          <span class="chip">wide character (emoji, CJK) rendering artifacts where trailing…</span>
+          <span class="chip">JSON parsing errors when MCP tool responses contain…</span>
+          <span class="chip">up/down arrow keys in multi-line and wrapped text…</span>
+          <span class="chip">draft prompt being lost when pressing UP arrow…</span>
+          <span class="chip">ghost text flickering when typing slash commands mid-input</span>
+          <span class="chip">marketplace source removal not properly deleting settings</span>
+          <span class="chip">duplicate output in some commands like /context</span>
+          <span class="chip">task list sometimes showing outside the main conversation…</span>
+          <span class="chip">syntax highlighting for diffs occurring within multiline constructs…</span>
+          <span class="chip">crashes when cancelling tool use</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.19 ── -->
+  <div class="version-block" id="v2.1.19" data-types="feature fix" data-date="2026-01-23">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.19</span><span class="ver-date">1월 23일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×8</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added env var <code>CLAUDE_CODE_ENABLE_TASKS</code>, set to <code>false</code> to keep the old system temporarily</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added shorthand <code>$0</code>, <code>$1</code>, etc. for accessing individual arguments in custom commands</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed skills without additional permissions or hooks to be allowed without requiring approval</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed indexed argument syntax from <code>$ARGUMENTS.0</code> to <code>$ARGUMENTS[0]</code> (bracket syntax)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[SDK] Added replay of <code>queued_command</code> attachment messages as <code>SDKUserMessageReplay</code> events when <code>replayUserMessages</code> is enabled</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Enabled session forking and rewind functionality for all users</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">8</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">crashes on processors without AVX instruction support</span>
+          <span class="chip">dangling Claude Code processes when terminal is closed…</span>
+          <span class="chip">/rename and /tag not updating the correct session…</span>
+          <span class="chip">resuming sessions by custom title not working when…</span>
+          <span class="chip">pasted text content being lost when using prompt…</span>
+          <span class="chip">agent list displaying &quot;Sonnet (default)&quot; instead of &quot;Inherit…</span>
+          <span class="chip">backgrounded hook commands not returning early, potentially causing…</span>
+          <span class="chip">file write preview omitting empty lines</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.18 ── -->
+  <div class="version-block" id="v2.1.18" data-types="feature" data-date="2026-01-22">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.18</span><span class="ver-date">1월 22일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added customizable keyboard shortcuts. Configure keybindings per context, create chord sequences, and personalize your workflow. Run <code>/keybindings</code> to get started. Learn more at https://code.claude.com/docs/en/keybindings</span></div>
+  </div>
+
+  <!-- ── v2.1.17 ── -->
+  <div class="version-block" id="v2.1.17" data-types="fix" data-date="2026-01-22">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.17</span><span class="ver-date">1월 22일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">crashes on processors without AVX instruction support</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.16 ── -->
+  <div class="version-block" id="v2.1.16" data-types="feature fix" data-date="2026-01-22">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.16</span><span class="ver-date">1월 22일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill fix">Fix ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added new task management system, including new capabilities like dependency tracking</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added native plugin management support</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added ability for OAuth users to browse and resume remote Claude sessions from the Sessions dialog</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[IDE] Fixed a race condition on Windows where the Claude Code sidebar view container would not appear on start</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">3</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">out-of-memory crashes when resuming sessions with heavy subagent…</span>
+          <span class="chip">an issue where the &quot;context remaining&quot; warning was…</span>
+          <span class="chip">session titles on the resume screen not respecting…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.15 ── -->
+  <div class="version-block" id="v2.1.15" data-types="feature improve fix" data-date="2026-01-21">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.15</span><span class="ver-date">1월 21일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added deprecation notification for npm installations - run <code>claude install</code> or see https://docs.anthropic.com/en/docs/claude-code/getting-started for more options</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved UI rendering performance with React Compiler</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">&quot;Context left until auto-compact&quot; warning not disappearing after…</span>
+          <span class="chip">MCP stdio server timeout not killing child process,…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.14 ── -->
+  <div class="version-block" id="v2.1.14" data-types="feature improve security fix" data-date="2026-01-20">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.14</span><span class="ver-date">1월 20일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill improve">개선 ×1</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×10</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added history-based autocomplete in bash mode (<code>!</code>) - type a partial command and press Tab to complete from your bash command history</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added search to installed plugins list - type to filter by name or description</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for pinning plugins to specific git commit SHAs, allowing marketplace entries to install exact versions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added <code>/usage</code> command to display current plan usage</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">10</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved backspace to delete pasted text as a single token instead of one character at a time</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed memory leak in long-running sessions where stream resources were not cleaned up after shell commands completed</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a regression where the context window blocking limit…</span>
+          <span class="chip">memory issues that could cause crashes when running…</span>
+          <span class="chip">@ symbol incorrectly triggering file autocomplete suggestions in…</span>
+          <span class="chip">@-mention menu folder click behavior to navigate into…</span>
+          <span class="chip">/feedback command generating invalid GitHub issue URLs when…</span>
+          <span class="chip">/context command to show the same token count…</span>
+          <span class="chip">an issue where /config, /context, /model, and /todos…</span>
+          <span class="chip">slash command autocomplete selecting wrong command when typing…</span>
+          <span class="chip">inconsistent back navigation in plugin marketplace when only…</span>
+          <span class="chip">iTerm2 progress bar not clearing properly on exit,…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.12 ── -->
+  <div class="version-block" id="v2.1.12" data-types="fix" data-date="2026-01-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.12</span><span class="ver-date">1월 17일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">message rendering bug</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.11 ── -->
+  <div class="version-block" id="v2.1.11" data-types="fix" data-date="2026-01-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.11</span><span class="ver-date">1월 17일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">excessive MCP connection requests for HTTP/SSE transports</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.10 ── -->
+  <div class="version-block" id="v2.1.10" data-types="feature improve fix" data-date="2026-01-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.10</span><span class="ver-date">1월 17일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added new <code>Setup</code> hook event that can be triggered via <code>--init</code>, <code>--init-only</code>, or <code>--maintenance</code> CLI flags for repository setup and maintenance operations</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added keyboard shortcut 'c' to copy OAuth URL when browser doesn't open automatically during login</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added install count display to plugin listings</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added trust warning when installing plugins</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved startup to capture keystrokes typed before the REPL is fully ready</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved file suggestions to show as removable attachments instead of inserting text when accepted</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a crash when running bash commands containing heredocs…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.9 ── -->
+  <div class="version-block" id="v2.1.9" data-types="feature fix" data-date="2026-01-15">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.9</span><span class="ver-date">1월 15일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>auto:N</code> syntax for configuring the MCP tool search auto-enable threshold, where N is the context window percentage (0-100)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>plansDirectory</code> setting to customize where plan files are stored</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added external editor support (Ctrl+G) in AskUserQuestion "Other" input field</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added session URL attribution to commits and PRs created from web sessions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for <code>PreToolUse</code> hooks to return <code>additionalContext</code> to the model</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>${CLAUDE_SESSION_ID}</code> string substitution for skills to access the current session ID</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">3</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">long sessions with parallel tool calls failing with…</span>
+          <span class="chip">MCP server reconnection hanging when cached connection promise…</span>
+          <span class="chip">Ctrl+Z suspend not working in terminals using Kitty…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.7 ── -->
+  <div class="version-block" id="v2.1.7" data-types="feature improve security fix" data-date="2026-01-13">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.7</span><span class="ver-date">1월 13일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill improve">개선 ×1</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×7</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>showTurnDuration</code> setting to hide turn duration messages (e.g., "Cooked for 1m 6s")</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added ability to provide feedback when accepting permission prompts</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added inline display of agent's final response in task notifications, making it easier to see results without reading the full transcript file</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Enabled MCP tool search auto mode by default for all users. When MCP tool descriptions exceed 10% of the context window, they are automatically deferred and discovered via the MCPSearch tool instead of being loaded upfront. This reduces context usage for users with many MCP tools configured. Users can disable this by adding <code>MCPSearch</code> to <code>disallowedTools</code> in their settings.</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed OAuth and API Console URLs from console.anthropic.com to platform.claude.com</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed <code>claudeProcessWrapper</code> setting passing the wrapper path instead of the Claude binary path</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">7</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved typing responsiveness by reducing memory allocation overhead in terminal rendering</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed security vulnerability where wildcard permission rules could match compound commands containing shell operators</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">false &quot;file modified&quot; errors on Windows when cloud…</span>
+          <span class="chip">orphaned tool_result errors when sibling tools fail during…</span>
+          <span class="chip">context window blocking limit being calculated using the…</span>
+          <span class="chip">spinner briefly flashing when running local slash commands…</span>
+          <span class="chip">terminal title animation jitter by using fixed-width braille…</span>
+          <span class="chip">plugins with git submodules not being fully initialized…</span>
+          <span class="chip">bash commands failing on Windows when temp directory…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.6 ── -->
+  <div class="version-block" id="v2.1.6" data-types="feature improve security fix" data-date="2026-01-13">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.6</span><span class="ver-date">1월 13일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×11</span><span class="pill improve">개선 ×3</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×10</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added search functionality to <code>/config</code> command for quickly filtering settings</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Updates section to <code>/doctor</code> showing auto-update channel and available npm versions (stable/latest)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added date range filtering to <code>/stats</code> command - press <code>r</code> to cycle between Last 7 days, Last 30 days, and All time</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added automatic discovery of skills from nested <code>.claude/skills</code> directories when working with files in subdirectories</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>context_window.used_percentage</code> and <code>context_window.remaining_percentage</code> fields to status line input for easier context window display</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added an error display when the editor fails during Ctrl+G</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Updated "Help improve Claude" setting fetch to refresh OAuth and retry when it fails due to a stale OAuth token</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed task notification display to cap at 3 lines with overflow summary when multiple background tasks complete simultaneously</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed terminal title to "Claude Code" on startup for better window identification</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed ability to @-mention MCP servers to enable/disable - use <code>/mcp enable <name></code> instead</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed usage indicator not updating after manual compact</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">3</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">10</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved the external CLAUDE.md imports approval dialog to show which files are being imported and from where</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved the <code>/tasks</code> dialog to go directly to task details when there's only one background task running</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved @ autocomplete with icons for different suggestion types and single-line formatting</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed permission bypass via shell line continuation that could allow blocked commands to execute</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">false &quot;File has been unexpectedly modified&quot; errors when…</span>
+          <span class="chip">text styling (bold, colors) getting progressively misaligned in…</span>
+          <span class="chip">feedback panel closing unexpectedly when typing &#x27;n&#x27; in…</span>
+          <span class="chip">rate limit warning appearing at low usage after…</span>
+          <span class="chip">rate limit options menu incorrectly auto-opening when resuming…</span>
+          <span class="chip">numpad keys outputting escape sequences instead of characters…</span>
+          <span class="chip">Option+Return not inserting newlines in Kitty keyboard protocol…</span>
+          <span class="chip">corrupted config backup files accumulating in the home…</span>
+          <span class="chip">mcp list and mcp get commands leaving orphaned…</span>
+          <span class="chip">visual artifacts in ink2 mode when nodes become…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.5 ── -->
+  <div class="version-block" id="v2.1.5" data-types="feature" data-date="2026-01-11">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.5</span><span class="ver-date">1월 11일 일</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>CLAUDE_CODE_TMPDIR</code> environment variable to override the temp directory used for internal temp files, useful for environments with custom temp directory requirements</span></div>
+  </div>
+
+  <!-- ── v2.1.4 ── -->
+  <div class="version-block" id="v2.1.4" data-types="feature security" data-date="2026-01-10">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.4</span><span class="ver-date">1월 10일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill security">보안 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>CLAUDE_CODE_DISABLE_BACKGROUND_TASKS</code> environment variable to disable all background task functionality including auto-backgrounding and the Ctrl+B shortcut</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed "Help improve Claude" setting fetch to refresh OAuth and retry when it fails due to a stale OAuth token</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.3 ── -->
+  <div class="version-block" id="v2.1.3" data-types="feature improve fix" data-date="2026-01-09">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.3</span><span class="ver-date">1월 9일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Merged slash commands and skills, simplifying the mental model with no change in behavior</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added release channel (<code>stable</code> or <code>latest</code>) toggle to <code>/config</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added detection and warnings for unreachable permission rules, with warnings in <code>/doctor</code> and after saving rules that include the source of each rule and actionable fix guidance</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed tool hook execution timeout from 60 seconds to 10 minutes</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added clickable destination selector for permission requests, allowing you to choose where settings are saved (this project, all projects, shared with team, or session only)</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">6</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved terminal rendering stability by preventing uncontrolled writes from corrupting cursor state</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved slash command suggestion readability by truncating long descriptions to 2 lines</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">plan files persisting across /clear commands, now ensuring…</span>
+          <span class="chip">false skill duplicate detection on filesystems with large…</span>
+          <span class="chip">mismatch between background task count in status bar…</span>
+          <span class="chip">sub-agents using the wrong model during conversation compaction</span>
+          <span class="chip">web search in sub-agents using incorrect model</span>
+          <span class="chip">trust dialog acceptance when running from the home…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.2 ── -->
+  <div class="version-block" id="v2.1.2" data-types="feature improve security fix" data-date="2026-01-08">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.2</span><span class="ver-date">1월 8일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×12</span><span class="pill improve">개선 ×3</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added source path metadata to images dragged onto the terminal, helping Claude understand where images originated</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added clickable hyperlinks for file paths in tool output in terminals that support OSC 8 (like iTerm)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for Windows Package Manager (winget) installations with automatic detection and update instructions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Shift+Tab keyboard shortcut in plan mode to quickly select "auto-accept edits" option</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>FORCE_AUTOUPDATE_PLUGINS</code> environment variable to allow plugin autoupdate even when the main auto-updater is disabled</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>agent_type</code> to SessionStart hook input, populated if <code>--agent</code> is specified</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed large bash command outputs to be saved to disk instead of truncated, allowing Claude to read the full content</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed large tool outputs to be persisted to disk instead of truncated, providing full output access via file references</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed <code>/plugins</code> installed tab to unify plugins and MCPs with scope-based grouping</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Deprecated Windows managed settings path <code>C:\ProgramData\ClaudeCode\managed-settings.json</code> - administrators should migrate to <code>C:\Program Files\ClaudeCode\managed-settings.json</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[SDK] Changed minimum zod peer dependency to ^4.0.0</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed usage display not updating after manual compact</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">3</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">6</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved Option-as-Meta hint on macOS to show terminal-specific instructions for native CSIu terminals like iTerm2, Kitty, and WezTerm</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved error message when pasting images over SSH to suggest using <code>scp</code> instead of the unhelpful clipboard shortcut hint</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved permission explainer to not flag routine dev workflows (git fetch/rebase, npm install, tests, PRs) as medium risk</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed a memory leak where tree-sitter parse trees were not being freed, causing WASM memory to grow unbounded over long sessions</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a command injection vulnerability in bash command processing…</span>
+          <span class="chip">binary files (images, PDFs, etc.) being accidentally included…</span>
+          <span class="chip">updates incorrectly claiming another installation is in progress</span>
+          <span class="chip">crash when socket files exist in watched directories…</span>
+          <span class="chip">remote session URL and teleport being broken when…</span>
+          <span class="chip">MCP tool names being exposed in analytics events…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.0 ── -->
+  <div class="version-block" id="v2.1.0" data-types="feature improve security fix" data-date="2026-01-07">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.0</span><span class="ver-date">1월 7일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×38</span><span class="pill improve">개선 ×20</span><span class="pill security">보안 ×10</span><span class="pill fix">Fix ×41</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added automatic skill hot-reload - skills created or modified in <code>~/.claude/skills</code> or <code>.claude/skills</code> are now immediately available without restarting the session</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for running skills and slash commands in a forked sub-agent context using <code>context: fork</code> in skill frontmatter</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for <code>agent</code> field in skills to specify agent type for execution</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>language</code> setting to configure Claude's response language (e.g., language: "japanese")</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed Shift+Enter to work out of the box in iTerm2, WezTerm, Ghostty, and Kitty without modifying terminal configs</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>respectGitignore</code> support in <code>settings.json</code> for per-project control over @-mention file picker behavior</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>IS_DEMO</code> environment variable to hide email and organization from the UI, useful for streaming or recording sessions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added wildcard pattern matching for Bash tool permissions using <code>*</code> at any position in rules (e.g., <code>Bash(npm *)</code>, <code>Bash(* install)</code>, <code>Bash(git * main)</code>)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added unified Ctrl+B backgrounding for both bash commands and agents - pressing Ctrl+B now backgrounds all running foreground tasks simultaneously</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for MCP <code>list_changed</code> notifications, allowing MCP servers to dynamically update their available tools, prompts, and resources without requiring reconnection</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>/teleport</code> and <code>/remote-env</code> slash commands for claude.ai subscribers, allowing them to resume and configure remote sessions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for disabling specific agents using <code>Task(AgentName)</code> syntax in settings.json permissions or the <code>--disallowedTools</code> CLI flag</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added hooks support for skill and slash command frontmatter</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added new Vim motions: <code>;</code> and <code>,</code> to repeat f/F/t/T motions, <code>y</code> operator for yank with <code>yy</code>/<code>Y</code>, <code>p</code>/<code>P</code> for paste, text objects (<code>iw</code>, <code>aw</code>, <code>iW</code>, <code>aW</code>, <code>i"</code>, <code>a"</code>, <code>i'</code>, <code>a'</code>, <code>i(</code>, <code>a(</code>, <code>i[</code>, <code>a[</code>, <code>i{</code>, <code>a{</code>), <code>>></code> and <code><<</code> for indent/dedent, and <code>J</code> to join lines</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>/plan</code> command shortcut to enable plan mode directly from the prompt</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added slash command autocomplete support when <code>/</code> appears anywhere in input, not just at the beginning</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>--tools</code> flag support in interactive mode to restrict which built-in tools Claude can use during interactive sessions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS</code> environment variable to override the default file read token limit</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for <code>once: true</code> config for hooks</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for YAML-style lists in frontmatter <code>allowed-tools</code> field for cleaner skill declarations</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for prompt and agent hook types from plugins (previously only command hooks were supported)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Cmd+V support for image paste in iTerm2 (maps to Ctrl+V)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added left/right arrow key navigation for cycling through tabs in dialogs</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added real-time thinking block display in Ctrl+O transcript mode</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added filepath to full output in background bash task details dialog</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Skills as a separate category in the context visualization</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Multiple optimizations to improve startup performance</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Updated Atlassian MCP integration to use a more reliable default configuration (streamable HTTP)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed "Interrupted" message color from red to grey for a less alarming appearance</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed permission prompt when entering plan mode - users can now enter plan mode without approval</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed underline styling from image reference links</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[SDK] Changed minimum zod peer dependency to ^4.0.0</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added currently selected model name to the context menu</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added descriptive labels on auto-accept permission button (e.g., "Yes, allow npm for this project" instead of "Yes, and don't ask again")</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed paragraph breaks not rendering in markdown content</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Fixed scrolling in the extension inadvertently scrolling the parent iframe</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[Windows] Fixed issue with improper rendering</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">20</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">10</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">41</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Reduced permission prompts for complex bash commands</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved CLI help output to display options and subcommands in alphabetical order for easier navigation</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved terminal rendering performance when using native installer or Bun, especially for text with emoji, ANSI codes, and Unicode characters</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved performance when reading Jupyter notebooks with many cells</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved reliability for piped input like <code>cat refactor.md | claude</code></span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved reliability for AskQuestion tool</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved sed in-place edit commands to render as file edits with diff preview</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved Claude to automatically continue when response is cut off due to output token limit, instead of showing an error message</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved compaction reliability</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved subagents (Task tool) to continue working after permission denial, allowing them to try alternative approaches</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved skills to show progress while executing, displaying tool uses as they happen</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved skills from <code>/skills/</code> directories to be visible in the slash command menu by default (opt-out with <code>user-invocable: false</code> in frontmatter)</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved skill suggestions to prioritize recently and frequently used skills</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved spinner feedback when waiting for the first response token</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved token count display in spinner to include tokens from background agents</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved incremental output for async agents to give the main thread more control and visibility</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved permission prompt UX with Tab hint moved to footer, cleaner Yes/No input labels with contextual placeholders</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved the Claude in Chrome notification with shortened help text and persistent display until dismissed</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved macOS screenshot paste reliability with TIFF format support</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved <code>/stats</code> output</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed security issue where sensitive data (OAuth tokens, API keys, passwords) could be exposed in debug logs</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed PreToolUse hooks to allow <code>updatedInput</code> when returning <code>ask</code> permission decision, enabling hooks to act as middleware while still requesting user consent</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed OAuth token refresh not triggering when server reports token expired but local expiration check disagrees</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed a race condition where stale OAuth tokens could be read from the keychain cache during concurrent token refresh attempts</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed AWS Bedrock subagents not inheriting EU/APAC cross-region inference model configuration, causing 403 errors when IAM permissions are scoped to specific regions</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed files created by the Write tool using hardcoded 0o600 permissions instead of respecting the system umask</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed multi-line bash commands with backslash continuations being incorrectly split and flagged for permissions</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed duplicate Bash commands appearing in permission request option labels</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed cursor disappearing after dismissing permission dialogs</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed memory leak in git diff parsing where sliced strings retained large parent strings</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">files and skills not being properly discovered when…</span>
+          <span class="chip">pasted content being lost when replaying prompts from…</span>
+          <span class="chip">Esc key with queued prompts to only move…</span>
+          <span class="chip">command search to prioritize exact and prefix matches…</span>
+          <span class="chip">plugin path resolution for file-based marketplace sources</span>
+          <span class="chip">LSP tool being incorrectly enabled when no LSP…</span>
+          <span class="chip">background tasks failing with &quot;git repository not found&quot;…</span>
+          <span class="chip">Claude in Chrome support for WSL environments</span>
+          <span class="chip">Windows native installer silently failing when executable creation…</span>
+          <span class="chip">session persistence getting stuck after transient server errors…</span>
+          <span class="chip">session resume failures caused by orphaned tool results…</span>
+          <span class="chip">API context overflow when background tasks produce large…</span>
+          <span class="chip">a hang when reading FIFO files by skipping…</span>
+          <span class="chip">terminal keyboard mode not being reset on exit…</span>
+          <span class="chip">Alt+B and Alt+F (word navigation) not working in…</span>
+          <span class="chip">${CLAUDE_PLUGIN_ROOT} not being substituted in plugin allowed-tools frontmatter,…</span>
+          <span class="chip">commands with $() command substitution failing with parse…</span>
+          <span class="chip">bash command prefix extraction to correctly identify subcommands…</span>
+          <span class="chip">slash commands passed as CLI arguments (e.g., claude…</span>
+          <span class="chip">pressing Enter after Tab-completing a slash command selecting…</span>
+          <span class="chip">slash command argument hint flickering and inconsistent display…</span>
+          <span class="chip">Claude sometimes redundantly invoking the Skill tool when…</span>
+          <span class="chip">skill token estimates in /context to accurately reflect…</span>
+          <span class="chip">subagents sometimes not inheriting the parent&#x27;s model by…</span>
+          <span class="chip">model picker showing incorrect selection for Bedrock/Vertex users…</span>
+          <span class="chip">noisy output when background tasks complete - now…</span>
+          <span class="chip">background task completion notifications to appear proactively with…</span>
+          <span class="chip">forked slash commands showing &quot;AbortError&quot; instead of &quot;Interrupted&quot;…</span>
+          <span class="chip">/hooks menu selecting wrong hook type when scrolling…</span>
+          <span class="chip">images in queued prompts showing as &quot;[object Object]&quot;…</span>
+          <span class="chip">images being silently dropped when queueing messages while…</span>
+          <span class="chip">large pasted images failing with &quot;Image was too…</span>
+          <span class="chip">extra blank lines in multiline prompts containing CJK…</span>
+          <span class="chip">ultrathink keyword highlighting being applied to wrong characters…</span>
+          <span class="chip">collapsed &quot;Reading X files…&quot; indicator incorrectly switching to…</span>
+          <span class="chip">Bash read commands (like ls and cat) not…</span>
+          <span class="chip">spinner token counter to properly accumulate tokens from…</span>
+          <span class="chip">race condition where LSP tool could return &quot;no…</span>
+          <span class="chip">feedback submission hanging indefinitely when network requests timeout</span>
+          <span class="chip">search mode in plugin discovery and log selector…</span>
+          <span class="chip">hook success message showing trailing colon when hook…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.76 ── -->
+  <div class="version-block" id="v2.0.76" data-types="fix" data-date="2025-12-22">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.76</span><span class="ver-date">12월 22일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">issue with macOS code-sign warning when using Claude…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.75 ── -->
+  <div class="version-block" id="v2.0.75" data-types="feature" data-date="2025-12-20">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.75</span><span class="ver-date">12월 20일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Minor bugfixes</span></div>
+  </div>
+
+  <!-- ── v2.0.74 ── -->
+  <div class="version-block" id="v2.0.74" data-types="feature improve fix" data-date="2025-12-19">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.74</span><span class="ver-date">12월 19일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×7</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×5</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added LSP (Language Server Protocol) tool for code intelligence features like go-to-definition, find references, and hover documentation</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>/terminal-setup</code> support for Kitty, Alacritty, Zed, and Warp terminals</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added ctrl+t shortcut in <code>/theme</code> to toggle syntax highlighting on/off</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added syntax highlighting info to theme picker</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added guidance for macOS users when Alt shortcuts fail due to terminal configuration</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[Windows] Fixed issue with improper rendering</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added gift tag pictogram for year-end promotion message</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">5</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved <code>/context</code> command visualization with grouped skills and agents by source, slash commands, and sorted token count</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">skill allowed-tools not being applied to tools invoked…</span>
+          <span class="chip">Opus 4.5 tip incorrectly showing when user was…</span>
+          <span class="chip">a potential crash when syntax highlighting isn&#x27;t initialized…</span>
+          <span class="chip">visual bug in /plugins discover where list selection…</span>
+          <span class="chip">macOS keyboard shortcuts to display &#x27;opt&#x27; instead of…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.73 ── -->
+  <div class="version-block" id="v2.0.73" data-types="feature improve fix" data-date="2025-12-18">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.73</span><span class="ver-date">12월 18일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill improve">개선 ×3</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added clickable <code>[Image #N]</code> links that open attached images in the default viewer</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added alt-y yank-pop to cycle through kill ring history after ctrl-y yank</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added search filtering to the plugin discover screen (type to filter by name, description, or marketplace)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for custom session IDs when forking sessions with <code>--session-id</code> combined with <code>--resume</code> or <code>--continue</code> and <code>--fork-session</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">[VSCode] Added tab icon badges showing pending permissions (blue) and unread completions (orange)</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">3</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved <code>/theme</code> command to open theme picker directly</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved theme picker UI</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved search UX across resume session, permissions, and plugins screens with a unified SearchBox component</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">slow input history cycling and race condition that…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.72 ── -->
+  <div class="version-block" id="v2.0.72" data-types="feature improve fix" data-date="2025-12-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.72</span><span class="ver-date">12월 17일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill improve">개선 ×4</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Claude in Chrome (Beta) feature that works with the Chrome extension (https://claude.ai/chrome) to let you control your browser directly from Claude Code</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added scannable QR code to mobile app tip for quick app downloads</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added loading indicator when resuming conversations for better feedback</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changed thinking toggle from Tab to Alt+T to avoid accidental triggers</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">4</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Reduced terminal flickering</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved @ mention file suggestion speed (~3× faster in git repositories)</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved file suggestion performance in repos with <code>.ignore</code> or <code>.rgignore</code> files</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved settings validation errors to be more prominent</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">/context command not respecting custom system prompts in…</span>
+          <span class="chip">order of consecutive Ctrl+K lines when pasting with…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.71 ── -->
+  <div class="version-block" id="v2.0.71" data-types="feature security fix" data-date="2025-12-16">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.71</span><span class="ver-date">12월 16일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill security">보안 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added /config toggle to enable/disable prompt suggestions</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>/settings</code> as an alias for the <code>/config</code> command</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Bedrock: Environment variable <code>ANTHROPIC_BEDROCK_BASE_URL</code> is now respected for token counting and inference profile listing</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">New syntax highlighting engine for native build</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed MCP servers from <code>.mcp.json</code> not loading when using <code>--dangerously-skip-permissions</code></span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed permission rules incorrectly rejecting valid bash commands containing shell glob patterns (e.g., <code>ls *.txt</code>, <code>for f in *.png</code>)</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">@ file reference suggestions incorrectly triggering when cursor…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.70 ── -->
+  <div class="version-block" id="v2.0.70" data-types="feature improve fix" data-date="2025-12-15">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.70</span><span class="ver-date">12월 15일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×4</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Enter key to accept and submit prompt suggestions immediately (tab still accepts for editing)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added wildcard syntax <code>mcp__server__*</code> for MCP tool permissions to allow or deny all tools from a server</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added auto-update toggle for plugin marketplaces, allowing per-marketplace control over automatic updates</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>current_usage</code> field to status line input, enabling accurate context window percentage calculations</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed # shortcut for quick memory entry (tell Claude to edit your CLAUDE.md instead)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Improve UI for file creation permission dialog</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">4</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved memory usage by 3x for large conversations</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved resolution of stats screenshots copied to clipboard (Ctrl+S) for crisper images</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">input being cleared when processing queued commands while…</span>
+          <span class="chip">prompt suggestions replacing typed input when pressing Tab</span>
+          <span class="chip">diff view not updating when terminal is resized</span>
+          <span class="chip">Fix thinking mode toggle in /config not persisting…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.69 ── -->
+  <div class="version-block" id="v2.0.69" data-types="feature" data-date="2025-12-13">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.69</span><span class="ver-date">12월 13일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Minor bugfixes</span></div>
+  </div>
+
+  <!-- ── v2.0.68 ── -->
+  <div class="version-block" id="v2.0.68" data-types="feature improve fix" data-date="2025-12-12">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.68</span><span class="ver-date">12월 12일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×4</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Add support for enterprise managed settings. Contact your Anthropic account team to enable this feature.</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">4</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved plan mode exit UX: show simplified yes/no dialog when exiting with empty or missing plan instead of throwing an error</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">IME (Input Method Editor) support for languages like…</span>
+          <span class="chip">a bug where disallowed MCP tools were visible…</span>
+          <span class="chip">an issue where steering messages could be lost…</span>
+          <span class="chip">Option+Arrow word navigation treating entire CJK (Chinese, Japanese,…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.67 ── -->
+  <div class="version-block" id="v2.0.67" data-types="feature security fix" data-date="2025-12-11">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.67</span><span class="ver-date">12월 11일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill security">보안 ×2</span><span class="pill fix">Fix ×4</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Thinking mode is now enabled by default for Opus 4.5</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Thinking mode configuration has moved to /config</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added search functionality to <code>/permissions</code> command with <code>/</code> keyboard shortcut for filtering rules by tool name</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Show reason why autoupdater is disabled in <code>/doctor</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Windows: Fixed plugin MCP servers failing due to colons in log directory paths</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">4</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed scroll position resetting after deleting a permission rule in <code>/permissions</code></span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed <code>claude install --force</code> not bypassing stale lock files</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">false &quot;Another process is currently updating Claude&quot; error…</span>
+          <span class="chip">MCP servers from .mcp.json being stuck in pending…</span>
+          <span class="chip">word deletion (opt+delete) and word navigation (opt+arrow) not…</span>
+          <span class="chip">consecutive @~/ file references in CLAUDE.md being incorrectly…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.65 ── -->
+  <div class="version-block" id="v2.0.65" data-types="feature fix" data-date="2025-12-11">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.65</span><span class="ver-date">12월 11일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added ability to switch models while writing a prompt using alt+p (linux, windows), option+p (macos).</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added context window information to status line input</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>fileSuggestion</code> setting for custom <code>@</code> file search commands</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>CLAUDE_CODE_SHELL</code> environment variable to override automatic shell detection (useful when login shell differs from actual working shell)</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">prompt not being saved to history when aborting…</span>
+          <span class="chip">Read tool image handling to identify format from…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.64 ── -->
+  <div class="version-block" id="v2.0.64" data-types="feature improve fix" data-date="2025-12-10">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.64</span><span class="ver-date">12월 10일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×11</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Made auto-compacting instant</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Agents and bash commands can run asynchronously and send messages to wake up the main agent</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">/stats now provides users with interesting CC stats, such as favorite model, usage graph, usage streak</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added named session support: use <code>/rename</code> to name sessions, <code>/resume <name></code> in REPL or <code>claude --resume <name></code> from the terminal to resume them</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for .claude/rules/`.  See https://code.claude.com/docs/en/memory for details.</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added image dimension metadata when images are resized, enabling accurate coordinate mappings for large images</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Added copy-to-clipboard button on code blocks and bash tool inputs</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Fixed extension not working on Windows ARM64 by falling back to x64 binary via emulation</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Bedrock: Improve efficiency of token counting</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Bedrock: Add support for <code>aws login</code> AWS Management Console credentials</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Unshipped AgentOutputTool and BashOutputTool, in favor of a new unified TaskOutputTool</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved <code>/resume</code> screen with grouped forked sessions and keyboard shortcuts for preview (P) and rename (R)</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">auto-loading .env when using native installer</span>
+          <span class="chip">--system-prompt being ignored when using --continue or --resume…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.62 ── -->
+  <div class="version-block" id="v2.0.62" data-types="feature fix" data-date="2025-12-09">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.62</span><span class="ver-date">12월 9일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span><span class="pill fix">Fix ×5</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added "(Recommended)" indicator for multiple-choice questions, with the recommended option moved to the top of the list</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>attribution</code> setting to customize commit and PR bylines (deprecates <code>includeCoAuthoredBy</code>)</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">5</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">duplicate slash commands appearing when ~/.claude is symlinked…</span>
+          <span class="chip">slash command selection not working when multiple commands…</span>
+          <span class="chip">an issue where skill files inside symlinked skill…</span>
+          <span class="chip">running versions getting removed because lock file incorrectly…</span>
+          <span class="chip">IDE diff tab not closing when rejecting file…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.61 ── -->
+  <div class="version-block" id="v2.0.61" data-types="feature" data-date="2025-12-07">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.61</span><span class="ver-date">12월 7일 일</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Reverted VSCode support for multiple terminal clients due to responsiveness issues.</span></div>
+  </div>
+
+  <!-- ── v2.0.60 ── -->
+  <div class="version-block" id="v2.0.60" data-types="feature" data-date="2025-12-05">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.60</span><span class="ver-date">12월 5일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added background agent support. Agents run in the background while you work</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added --disable-slash-commands CLI flag to disable all slash commands</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added model name to "Co-Authored-By" commit messages</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Enabled "/mcp enable [server-name]" or "/mcp disable [server-name]" to quickly toggle all servers</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Updated Fetch to skip summarization for pre-approved websites</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Added support for multiple terminal clients connecting to the IDE server simultaneously</span></div>
+  </div>
+
+  <!-- ── v2.0.59 ── -->
+  <div class="version-block" id="v2.0.59" data-types="feature" data-date="2025-12-04">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.59</span><span class="ver-date">12월 4일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added --agent CLI flag to override the agent setting for the current session</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>agent</code> setting to configure main thread with a specific agent's system prompt, tool restrictions, and model</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VS Code: Fixed .claude.json config file being read from incorrect location</span></div>
+  </div>
+
+  <!-- ── v2.0.58 ── -->
+  <div class="version-block" id="v2.0.58" data-types="feature fix" data-date="2025-12-03">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.58</span><span class="ver-date">12월 3일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Pro users now have access to Opus 4.5 as part of their subscription!</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Windows: Managed settings now prefer <code>C:\Program Files\ClaudeCode</code> if it exists. Support for <code>C:\ProgramData\ClaudeCode</code> will be removed in a future version.</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">timer duration showing &quot;11m 60s&quot; instead of &quot;12m…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.57 ── -->
+  <div class="version-block" id="v2.0.57" data-types="feature improve" data-date="2025-12-03">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.57</span><span class="ver-date">12월 3일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added feedback input when rejecting plans, allowing users to tell Claude what to change</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">VSCode: Added streaming message support for real-time response display</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.56 ── -->
+  <div class="version-block" id="v2.0.56" data-types="feature" data-date="2025-12-01">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.56</span><span class="ver-date">12월 1일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added setting to enable/disable terminal progress bar (OSC 9;4)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode Extension: Added support for VS Code's secondary sidebar (VS Code 1.97+), allowing Claude Code to be displayed in the right sidebar while keeping the file explorer on the left. Requires setting sidebar as Preferred Location in the config.</span></div>
+  </div>
+
+  <!-- ── v2.0.55 ── -->
+  <div class="version-block" id="v2.0.55" data-types="improve fix" data-date="2025-11-26">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.55</span><span class="ver-date">11월 26일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved AskUserQuestion tool to auto-submit single-select questions on the last question, eliminating the extra review screen for simple question flows</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved fuzzy matching for <code>@</code> file suggestions with faster, more accurate results</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">proxy DNS resolution being forced on by default.…</span>
+          <span class="chip">keyboard navigation becoming unresponsive when holding down arrow…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.54 ── -->
+  <div class="version-block" id="v2.0.54" data-types="feature fix" data-date="2025-11-25">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.54</span><span class="ver-date">11월 25일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Hooks: Enable PermissionRequest hooks to process 'always allow' suggestions and apply permission updates</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Fix issue with excessive iTerm notifications</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.52 ── -->
+  <div class="version-block" id="v2.0.52" data-types="feature fix" data-date="2025-11-24">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.52</span><span class="ver-date">11월 24일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill fix">Fix ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Permit some uses of <code>$!</code> in bash commands</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">3</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">duplicate message display when starting Claude with a…</span>
+          <span class="chip">/usage command progress bars to fill up as…</span>
+          <span class="chip">image pasting not working on Linux systems running…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.51 ── -->
+  <div class="version-block" id="v2.0.51" data-types="feature fix" data-date="2025-11-24">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.51</span><span class="ver-date">11월 24일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×7</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Opus 4.5! https://www.anthropic.com/news/claude-opus-4-5</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Introducing Claude Code for Desktop: https://claude.com/download</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">To give you room to try out our new model, we've updated usage limits for Claude Code users. See the Claude Opus 4.5 blog for full details</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Pro users can now purchase extra usage for access to Opus 4.5 in Claude Code</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plan Mode now builds more precise plans and executes more thoroughly</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Usage limit notifications now easier to understand</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Switched <code>/usage</code> back to "% used"</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">handling of thinking errors</span>
+          <span class="chip">performance regression</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.50 ── -->
+  <div class="version-block" id="v2.0.50" data-types="feature improve fix" data-date="2025-11-21">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.50</span><span class="ver-date">11월 21일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Silenced a noisy but harmless error during upgrades</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved ultrathink text display</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved clarity of 5-hour session limit warning message</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">bug preventing calling MCP tools that have nested…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.49 ── -->
+  <div class="version-block" id="v2.0.49" data-types="feature improve security" data-date="2025-11-21">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.49</span><span class="ver-date">11월 21일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span><span class="pill security">보안 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added readline-style ctrl-y for pasting deleted text</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved clarity of usage limit warning message</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed handling of subagent permissions</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.47 ── -->
+  <div class="version-block" id="v2.0.47" data-types="improve fix" data-date="2025-11-19">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.47</span><span class="ver-date">11월 19일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill improve">개선 ×2</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved error messages and validation for <code>claude --teleport</code></span></div>
+          <div class="coll-item"><span class="coll-item-desc">Improved error handling in <code>/usage</code></span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">race condition with history entry not getting logged…</span>
+          <span class="chip">Vertex AI configuration not being applied from settings.json</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.46 ── -->
+  <div class="version-block" id="v2.0.46" data-types="fix" data-date="2025-11-19">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.46</span><span class="ver-date">11월 19일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">image files being reported with incorrect media type…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.45 ── -->
+  <div class="version-block" id="v2.0.45" data-types="feature" data-date="2025-11-18">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.45</span><span class="ver-date">11월 18일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for Microsoft Foundry! See https://code.claude.com/docs/en/azure-ai-foundry</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>PermissionRequest</code> hook to automatically approve or deny tool permission requests with custom logic</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Send background tasks to Claude Code on the web by starting a message with <code>&</code></span></div>
+  </div>
+
+  <!-- ── v2.0.43 ── -->
+  <div class="version-block" id="v2.0.43" data-types="feature fix" data-date="2025-11-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.43</span><span class="ver-date">11월 17일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill fix">Fix ×4</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>permissionMode</code> field for custom agents</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>tool_use_id</code> field to <code>PreToolUseHookInput</code> and <code>PostToolUseHookInput</code> types</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added skills frontmatter field to declare skills to auto-load for subagents</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added the <code>SubagentStart</code> hook event</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">4</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">nested CLAUDE.md files not loading when @-mentioning files</span>
+          <span class="chip">duplicate rendering of some messages in the UI</span>
+          <span class="chip">some visual flickers</span>
+          <span class="chip">NotebookEdit tool inserting cells at incorrect positions when…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.42 ── -->
+  <div class="version-block" id="v2.0.42" data-types="feature" data-date="2025-11-14">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.42</span><span class="ver-date">11월 14일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>agent_id</code> and <code>agent_transcript_path</code> fields to <code>SubagentStop</code> hooks.</span></div>
+  </div>
+
+  <!-- ── v2.0.41 ── -->
+  <div class="version-block" id="v2.0.41" data-types="feature fix" data-date="2025-11-14">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.41</span><span class="ver-date">11월 14일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>model</code> parameter to prompt-based stop hooks, allowing users to specify a custom model for hook evaluation</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">ctrl-r history search landing on a slash command no longer cancels the search</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">SDK: Support custom timeouts for hooks</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Allow more safe git commands to run without approval</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plugins: Added support for sharing and installing output styles</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Teleporting a session from web will automatically set the upstream branch</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">6</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">slash commands from user settings being loaded twice,…</span>
+          <span class="chip">incorrect labeling of user settings vs project settings…</span>
+          <span class="chip">crash when plugin command hooks timeout during execution</span>
+          <span class="chip">Fixed: Bedrock users no longer see duplicate Opus…</span>
+          <span class="chip">broken security documentation links in trust dialogs and…</span>
+          <span class="chip">issue where pressing ESC to close the diff…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.37 ── -->
+  <div class="version-block" id="v2.0.37" data-types="feature fix" data-date="2025-11-10">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.37</span><span class="ver-date">11월 10일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Hooks: Added matcher values for Notification hook events</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Output Styles: Added <code>keep-coding-instructions</code> option to frontmatter</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">how idleness is computed for notifications</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.36 ── -->
+  <div class="version-block" id="v2.0.36" data-types="fix" data-date="2025-11-07">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.36</span><span class="ver-date">11월 7일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×3</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">3</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Fixed: DISABLE_AUTOUPDATER environment variable now properly disables package…</span>
+          <span class="chip">queued messages being incorrectly executed as bash commands</span>
+          <span class="chip">input being lost when typing while a queued…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.35 ── -->
+  <div class="version-block" id="v2.0.35" data-types="feature improve fix" data-date="2025-11-06">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.35</span><span class="ver-date">11월 6일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Improve fuzzy search results when searching commands</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>CLAUDE_CODE_EXIT_AFTER_STOP_DELAY</code> environment variable to automatically exit SDK mode after a specified idle duration, useful for automated workflows and scripts</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Migrated <code>ignorePatterns</code> from project config to deny permissions in the localSettings.</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved VS Code extension to respect <code>chat.fontSize</code> and <code>chat.fontFamily</code> settings throughout the entire UI, and apply font changes immediately without requiring reload</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">menu navigation getting stuck on items with empty…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.34 ── -->
+  <div class="version-block" id="v2.0.34" data-types="feature improve security fix" data-date="2025-11-05">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.34</span><span class="ver-date">11월 5일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode Extension: Added setting to configure the initial permission mode for new conversations</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Improved file path suggestion performance with native Rust-based fuzzy finder</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed infinite token refresh loop that caused MCP servers with OAuth (e.g., Slack) to hang during connection</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">memory crash when reading or writing large files…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.33 ── -->
+  <div class="version-block" id="v2.0.33" data-types="feature fix" data-date="2025-11-04">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.33</span><span class="ver-date">11월 4일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Native binary installs now launch quicker.</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">claude doctor incorrectly detecting Homebrew vs npm-global installations…</span>
+          <span class="chip">claude mcp serve exposing tools with incompatible outputSchemas</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.32 ── -->
+  <div class="version-block" id="v2.0.32" data-types="feature fix" data-date="2025-11-03">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.32</span><span class="ver-date">11월 3일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Un-deprecate output styles based on community feedback</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>companyAnnouncements</code> setting for displaying announcements on startup</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">hook progress messages not updating correctly during PostToolUse…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.31 ── -->
+  <div class="version-block" id="v2.0.31" data-types="feature fix" data-date="2025-10-31">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.31</span><span class="ver-date">10월 31일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill fix">Fix ×3</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Windows: native installation uses shift+tab as shortcut for mode switching, instead of alt+m</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Vertex: add support for Web Search on supported models</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Adding the respectGitIgnore configuration to include .gitignored files in file searches (defaults to true)</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">3</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a bug with subagents and MCP servers related…</span>
+          <span class="chip">issue causing /compact to fail with prompt_too_long by…</span>
+          <span class="chip">plugin uninstall not removing plugins</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.30 ── -->
+  <div class="version-block" id="v2.0.30" data-types="feature security fix" data-date="2025-10-30">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.30</span><span class="ver-date">10월 30일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×9</span><span class="pill security">보안 ×2</span><span class="pill fix">Fix ×5</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added helpful hint to run <code>security unlock-keychain</code> when encountering API key errors on macOS with locked keychain</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>allowUnsandboxedCommands</code> sandbox setting to disable the dangerouslyDisableSandbox escape hatch at policy level</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added <code>disallowedTools</code> field to custom agent definitions for explicit tool blocking</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added prompt-based stop hooks</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Added respectGitIgnore configuration to include .gitignored files in file searches (defaults to true)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Enabled SSE MCP servers on native build</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Deprecated output styles. Review options in <code>/output-style</code> and use --system-prompt-file, --system-prompt, --append-system-prompt, CLAUDE.md, or plugins instead</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed support for custom ripgrep configuration, resolving an issue where Search returns no results and config discovery fails</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode: Restored selection indicator in input footer showing current file or code selection status</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">5</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed bug that saved session permissions to local settings</span></div>
+          <div class="coll-item"><span class="coll-item-desc">Fixed hooks and plugins not executing when using --dangerously-skip-permissions flag</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Explore agent creating unwanted .md investigation files during…</span>
+          <span class="chip">a bug where /context would sometimes fail with…</span>
+          <span class="chip">--mcp-config flag to correctly override file-based MCP configurations</span>
+          <span class="chip">MCP tools not being available to sub-agents</span>
+          <span class="chip">delay when navigating through typeahead suggestions with arrow…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.28 ── -->
+  <div class="version-block" id="v2.0.28" data-types="feature security" data-date="2025-10-27">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.28</span><span class="ver-date">10월 27일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×8</span><span class="pill security">보안 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plan mode: introduced new Plan subagent</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Subagents: claude can now choose to resume subagents</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Subagents: claude can dynamically choose the model used by its subagents</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">SDK: added --max-budget-usd flag</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Discovery of custom slash commands, subagents, and output styles no longer respects .gitignore</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Stop <code>/terminal-setup</code> from adding backslash to <code>Shift + Enter</code> in VS Code</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Add branch and tag support for git-based plugins and marketplaces using fragment syntax (e.g., <code>owner/repo#branch</code>)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Various other bug fixes</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fixed a bug where macOS permission prompts would show up upon initial launch when launching from home directory</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.27 ── -->
+  <div class="version-block" id="v2.0.27" data-types="feature fix" data-date="2025-10-24">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.27</span><span class="ver-date">10월 24일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">New UI for permission prompts</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added current branch filtering and search to session resume screen for easier navigation</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode Extension: Add config setting to include .gitignored files in file searches</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">VSCode Extension: Bug fixes for unrelated 'Warmup' conversations, and configuration/settings occasionally being reset to defaults</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">directory @-mention causing &quot;No assistant message found&quot; error</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.25 ── -->
+  <div class="version-block" id="v2.0.25" data-types="feature" data-date="2025-10-21">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.25</span><span class="ver-date">10월 21일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Removed legacy SDK entrypoint. Please migrate to @anthropic-ai/claude-agent-sdk for future SDK updates: https://platform.claude.com/docs/en/agent-sdk/migration-guide</span></div>
+  </div>
+
+  <!-- ── v2.0.24 ── -->
+  <div class="version-block" id="v2.0.24" data-types="feature fix" data-date="2025-10-20">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.24</span><span class="ver-date">10월 20일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Claude Code Web: Support for Web -> CLI teleport</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Sandbox: Releasing a sandbox mode for the BashTool on Linux & Mac</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Bedrock: Display awsAuthRefresh output when auth is required</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a bug where project-level skills were not loading…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.22 ── -->
+  <div class="version-block" id="v2.0.22" data-types="feature security fix" data-date="2025-10-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.22</span><span class="ver-date">10월 17일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span><span class="pill security">보안 ×1</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">IDE: Add toggle to enable/disable thinking.</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Add support for enterprise managed MCP allowlist and denylist</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fix bug causing duplicate permission prompts with parallel tool calls</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">content layout shift when scrolling through slash commands</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.21 ── -->
+  <div class="version-block" id="v2.0.21" data-types="feature fix" data-date="2025-10-16">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.21</span><span class="ver-date">10월 16일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×4</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Support MCP <code>structuredContent</code> field in tool responses</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added an interactive question tool</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Claude will now ask you questions more often in plan mode</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Haiku 4.5 as a model option for Pro users</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">an issue where queued commands don&#x27;t have access…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.20 ── -->
+  <div class="version-block" id="v2.0.20" data-types="feature" data-date="2025-10-16">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.20</span><span class="ver-date">10월 16일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added support for Claude Skills</span></div>
+  </div>
+
+  <!-- ── v2.0.19 ── -->
+  <div class="version-block" id="v2.0.19" data-types="feature fix" data-date="2025-10-15">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.19</span><span class="ver-date">10월 15일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Auto-background long-running bash commands instead of killing them. Customize with BASH_DEFAULT_TIMEOUT_MS</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">a bug where Haiku was unnecessarily called in…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.17 ── -->
+  <div class="version-block" id="v2.0.17" data-types="feature" data-date="2025-10-15">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.17</span><span class="ver-date">10월 15일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added Haiku 4.5 to model selector!</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Haiku 4.5 automatically uses Sonnet in plan mode, and Haiku for execution (i.e. SonnetPlan by default)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">3P (Bedrock and Vertex) are not automatically upgraded yet. Manual upgrading can be done through setting <code>ANTHROPIC_DEFAULT_HAIKU_MODEL</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Introducing the Explore subagent. Powered by Haiku it'll search through your codebase efficiently to save context!</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">OTEL: support HTTP_PROXY and HTTPS_PROXY</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc"><code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</code> now disables release notes fetching</span></div>
+  </div>
+
+  <!-- ── v2.0.15 ── -->
+  <div class="version-block" id="v2.0.15" data-types="fix" data-date="2025-10-14">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.15</span><span class="ver-date">10월 14일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">bug with resuming where previously created files needed…</span>
+          <span class="chip">bug with -p mode where @-mentioned files needed…</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.14 ── -->
+  <div class="version-block" id="v2.0.14" data-types="feature fix" data-date="2025-10-10">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.14</span><span class="ver-date">10월 10일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Improve permission checks for bash with inline env vars</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Reduce unnecessary logins</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Document --system-prompt</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Several improvements to rendering</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plugins UI polish</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Fix @-mentioning MCP servers to toggle them on/off</span>
+          <span class="chip">Fix ultrathink + thinking toggle</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.13 ── -->
+  <div class="version-block" id="v2.0.13" data-types="fix" data-date="2025-10-09">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.13</span><span class="ver-date">10월 9일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">/plugin not working on native build</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.12 ── -->
+  <div class="version-block" id="v2.0.12" data-types="feature" data-date="2025-10-09">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.12</span><span class="ver-date">10월 9일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×11</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc"><strong>Plugin System Released</strong>: Extend Claude Code with custom commands, agents, hooks, and MCP servers from marketplaces</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc"><code>/plugin install</code>, <code>/plugin enable/disable</code>, <code>/plugin marketplace</code> commands for plugin management</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Repository-level plugin configuration via <code>extraKnownMarketplaces</code> for team collaboration</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc"><code>/plugin validate</code> command for validating plugin structure and configuration</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plugin announcement blog post at https://www.anthropic.com/news/claude-code-plugins</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Plugin documentation available at https://code.claude.com/docs/en/plugins</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Comprehensive error messages and diagnostics via <code>/doctor</code> command</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Avoid flickering in <code>/model</code> selector</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Improvements to <code>/help</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Avoid mentioning hooks in <code>/resume</code> summaries</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Changes to the "verbose" setting in <code>/config</code> now persist across sessions</span></div>
+  </div>
+
+  <!-- ── v2.0.11 ── -->
+  <div class="version-block" id="v2.0.11" data-types="feature improve fix" data-date="2025-10-08">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.11</span><span class="ver-date">10월 8일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×1</span><span class="pill improve">개선 ×1</span><span class="pill fix">Fix ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">IDE: Fixed keyboard shortcuts and focus issues for smoother interaction</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">2</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Reduced system prompt size by 1.4k tokens</span></div>
+        </div></div>
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Opus fallback rate limit errors appearing incorrectly</span>
+          <span class="chip">/add-dir command selecting wrong default tab</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.10 ── -->
+  <div class="version-block" id="v2.0.10" data-types="feature" data-date="2025-10-07">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.10</span><span class="ver-date">10월 7일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Rewrote terminal renderer for buttery smooth UI</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Enable/disable MCP servers by @mentioning, or in /mcp</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Added tab completion for shell commands in bash mode</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">PreToolUse hooks can now modify tool inputs</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Press Ctrl-G to edit your prompt in your system's configured text editor</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Fixes for bash permission checks with environment variables in the command</span></div>
+  </div>
+
+  <!-- ── v2.0.9 ── -->
+  <div class="version-block" id="v2.0.9" data-types="fix" data-date="2025-10-06">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.9</span><span class="ver-date">10월 6일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix"><div class="chip-grid">
+          <span class="chip">Fix regression where bash backgrounding stopped working</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.8 ── -->
+  <div class="version-block" id="v2.0.8" data-types="feature" data-date="2025-10-04">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.8</span><span class="ver-date">10월 4일 토</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×5</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Update Bedrock default Sonnet model to <code>global.anthropic.claude-sonnet-4-5-20250929-v1:0</code></span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">IDE: Add drag-and-drop support for files and folders in chat</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">/context: Fix counting for thinking blocks</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Improve message rendering for users with light themes on dark terminals</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Remove deprecated .claude.json allowedTools, ignorePatterns, env, and todoFeatureEnabled config options (instead, configure these in your settings.json)</span></div>
+  </div>
+
+  <!-- ── v2.0.5 ── -->
+  <div class="version-block" id="v2.0.5" data-types="feature security" data-date="2025-10-02">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.5</span><span class="ver-date">10월 2일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill security">보안 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">IDE: Fix IME unintended message submission with Enter and Tab</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">IDE: Add "Open in Terminal" link in login screen</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">SDK: Added SDKUserMessageReplay.isReplay to prevent duplicate messages</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Fix unhandled OAuth expiration 401 API errors</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.0.1 ── -->
+  <div class="version-block" id="v2.0.1" data-types="feature" data-date="2025-09-30">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.1</span><span class="ver-date">9월 30일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×2</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Skip Sonnet 4.5 default model setting change for Bedrock and Vertex</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Various bug fixes and presentation improvements</span></div>
+  </div>
+
+  <!-- ── v2.0.0 ── -->
+  <div class="version-block" id="v2.0.0" data-types="feature improve" data-date="2025-09-29">
+    <div class="version-head">
+      <span class="ver-badge">v2.0.0</span><span class="ver-date">9월 29일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×9</span><span class="pill improve">개선 ×1</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">New native VS Code extension</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Fresh coat of paint throughout the whole app</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">/rewind a conversation to undo code changes</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">/usage command to see plan limits</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Tab to toggle thinking (sticky across sessions)</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Ctrl-R to search history</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Unshipped claude config command</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">SDK: The Claude Code SDK is now the Claude Agent SDK</span></div>
+    <div class="entry row-divider" data-type="feature"><span class="pill feature">기능</span><span class="e-desc">Add subagents dynamically with <code>--agents</code> flag</span></div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve"><div class="coll-rows">
+          <div class="coll-item"><span class="coll-item-desc">Hooks: Reduced PostToolUse 'tool_use' ids were found without 'tool_result' blocks errors</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script>
   // 기본은 라이트. 다크는 명시적 opt-in.
@@ -6998,9 +8947,22 @@
     // enterprise / IAM
     'WORKSPACE_ID':     '/iam#:~:text=WORKSPACE_ID',
     'API키 안전모드':    '/iam',
+    '/rewind': '/checkpointing',
+    'Skills': '/skills',
+    'skill hot-reload': '/skills',
+    'AskUserQuestion': '/common-workflows',
+    'background agent': '/agent-view',
+    '/plan': '/commands',
+    '/teleport': '/commands',
+    'Ctrl+O thinking': '/interactive-mode',
   };
 
   // 클릭 → 공식 docs로 새 탭 (요소 직접 전달)
+  function switchPick(period) {
+    document.querySelectorAll('.pick-tab').forEach(t => t.classList.toggle('active', t.dataset.period === period));
+    document.querySelectorAll('.pick-grid[data-period]').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
+  }
+
   function openDoc(el) {
     if (!el) return;
     const cmdEl = el.querySelector('.cmd, .cat-cmd');
