@@ -359,7 +359,7 @@
   <div class="page-header">
     <div>
       <h1>Claude Code — 뭐가 바뀌었나</h1>
-      <p class="range"><strong>v2.1.22</strong> → <strong>v2.1.152</strong> &nbsp;·&nbsp; 2026년 1월 28일 – 5월 27일</p>
+      <p class="range"><strong>v2.1.22</strong> → <strong>v2.1.153</strong> &nbsp;·&nbsp; 2026년 1월 28일 – 5월 28일</p>
     </div>
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
   </div>
@@ -656,6 +656,105 @@
     <button class="filter-btn" data-filter="improve">⚡ 개선</button>
     <button class="filter-btn" data-filter="fix">🐛 수정</button>
     <button class="filter-btn" data-filter="security">🔒 보안</button>
+  </div>
+
+  <!-- ── v2.1.153 ── -->
+  <div class="version-block" id="v2.1.153" data-types="feature security fix" data-date="2026-05-28">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.153</span><span class="ver-date">5월 28일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×13</span><span class="pill security">보안 ×2</span><span class="pill fix">Fix ×21</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>skipLfs</code> option to <code>github</code>/<code>git</code> plugin marketplace sources to skip Git LFS downloads during clone and update</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Claude Code now shows a one-time notice when your npm global install can't auto-update; <code>/doctor</code> lists the fixes</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Status line commands now receive <code>COLUMNS</code> and <code>LINES</code> environment variables so scripts can size output to the terminal width</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: autocomplete in the dispatch input now suggests native slash commands and bundled skills, not just project skills</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: PR column now shows <code>PR #N</code> for a single PR or <code>N PRs</code> for multiple</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude doctor</code> now shows the result of your last update attempt</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Combined the separate "needs authentication" startup notifications for MCP servers and connectors into a single message</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">macOS: background agents now appear as "Claude Code" in Privacy & Security and keep their permission grants across upgrades</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>--strict-mcp-config</code> no longer strips inline <code>mcpServers</code> from explicitly-passed agent definitions (<code>--agents</code> / SDK <code>agents</code>), and blocked subagent MCP servers now surface a visible warning</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/bg</code> while Claude is responding now continues the response in the background session instead of dropping it</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed Claude Code processes not shutting down cleanly when VS Code closed on Windows, causing false "unclean exit" reports and orphaned MCP servers</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/model</code> now saves your selection as the default for new sessions (matching the IDE). Press <code>s</code> in the picker to switch models for the current session only.</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">If you customized the <code>modelPicker:setAsDefault</code> keybinding, rename it to <code>modelPicker:thisSessionOnly</code> in keybindings.json (the <code>d</code> action was replaced by <code>s</code>)</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">21</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed a regression where a custom API gateway could receive the user's Anthropic OAuth credential instead of the gateway's own token</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed background sessions writing temp files to <code>$CLAUDE_JOB_DIR</code> triggering a "sensitive file" permission prompt</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">stateful MCP servers without the optional GET SSE…</span>
+            <span class="chip">subagent (Agent tool) frontmatter MCP servers ignoring --strict-mcp-config,…</span>
+            <span class="chip">Windows PowerShell installer reporting &quot;Installation complete!&quot; when installation…</span>
+            <span class="chip">claude update installing the latest version instead of…</span>
+            <span class="chip">excessive memory usage (multiple GB) when resuming a…</span>
+            <span class="chip">claude agents and claude --bg running on a…</span>
+            <span class="chip">a hang where the CLI could fail to…</span>
+            <span class="chip">malformed file:// links in Claude&#x27;s responses not being…</span>
+            <span class="chip">claude --help rendering unwrapped output on terminals narrower…</span>
+            <span class="chip">MCP tool progress notifications not rendering in the…</span>
+            <span class="chip">Agent tool with subagent_type: &#x27;claude&#x27; running in an…</span>
+            <span class="chip">/btw keyboard shortcuts becoming unresponsive in background sessions…</span>
+            <span class="chip">recovering a background agent whose working directory was…</span>
+            <span class="chip">EnterWorktree not being available immediately in background sessions…</span>
+            <span class="chip">cmd+k in iTerm2/Terminal.app not repainting attached background sessions</span>
+            <span class="chip">IME candidate window appearing at the bottom of…</span>
+            <span class="chip">background-color bleed when attaching to a background agent…</span>
+            <span class="chip">/copy and copy-on-select silently failing to update the…</span>
+            <span class="chip">opening claude agents with Remote Control enabled leaving…</span>
+            <span class="chip">/rename in background sessions not updating the session…</span>
+            <span class="chip">Windows update rollback: if a Windows update fails,…</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── v2.1.152 ── -->
