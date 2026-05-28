@@ -1,0 +1,95 @@
+name: Daily changelog update
+
+on:
+  schedule:
+    - cron: "30 21 * * *"   # 06:30 KST (UTC+9)
+  workflow_dispatch:          # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # ── 1단계: 버전 목록 자동 갱신 (토큰 0, 순수 스크립트) ──
+      - name: Update version list
+        id: update
+        run: python scripts/update_changelog.py
+
+      - name: Commit version list
+        if: steps.update.outputs.changed == 'true'
+        run: |
+          git config user.name "ai-pick-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "chore: ${{ steps.update.outputs.added_versions }} 자동 추가"
+          git push
+
+      # ── 2단계: 새 feature 있을 때만 Claude가 판단 (Pick·카테고리) ──
+      - name: Curate Pick & categories (Claude judgment)
+        if: steps.update.outputs.has_features == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_args: "--max-turns 30 --model claude-sonnet-4-6"
+          prompt: |
+            ai-pick 사이트(index.html)의 큐레이션 갱신 작업이다. 토큰 절약을 위해 꼭 필요한 편집만 하라.
+
+            ## 입력
+            `new-features.json` — 이번에 새로 추가된 Claude Code feature 목록 (version, date, text).
+
+            ## 할 일
+            index.html을 편집한다. 두 영역만 건드린다:
+
+            1. **🎯 오늘 써볼 기능 (Pick, .pick-grid)** — 카드 6개 고정.
+               new-features 중 "사용자가 당장 써볼 만한" 것이 있으면, 기존 6개 중 가장 오래되거나 덜 매력적인 카드와 교체.
+               정말 주목할 게 없으면 Pick은 그대로 둔다 (억지로 교체 금지).
+               카드 형식(기존과 동일):
+               <div class="pick-card" onclick="openDoc(this)" data-date="YYYY-MM-DD">
+                 <div class="cmd">명령어/기능명</div>
+                 <h3>짧은 제목</h3>
+                 <p>한 줄 설명.</p>
+                 <div class="pick-meta">
+                   <div class="pick-why"><strong>왜?</strong> 무엇을 더 잘/효과적으로 하는지 한 줄</div>
+                   <div class="pick-check"><strong>학습:</strong> 써보며 확인할 포인트 한 줄</div>
+                 </div>
+                 <div class="ver"><span class="vtag">v2.1.XXX</span><span class="dag"></span></div>
+               </div>
+
+            2. **🧰 용도별로 보기 (.cat-grid)** — 8개 카테고리.
+               각 새 feature를 적합한 카테고리 카드의 <ul class="cat-items">에 추가.
+               형식: <li class="cat-item" onclick="openDoc(this)"><span class="cat-cmd">명령어</span><span class="cat-desc">짧은 설명</span><span class="cat-ver">v2.1.XXX</span></li>
+               카테고리: 🚀 긴 작업 / 🤖 Subagent·멀티세션 / 📝 PR·리뷰 / 💰 비용·컨텍스트 / 🎨 일상 UI·네비 / 🧩 Plugin·MCP·Extend / 🪝 Hook·모니터링 / 🔒 모델·Enterprise·IAM
+               애매하면 가장 가까운 곳에. 정말 안 맞으면 생략 가능.
+
+            ## 규칙
+            - 한국어, 기존 톤 유지 (간결, ~함/~음). 영문 원문 직역 금지 — 핵심만 의역.
+            - `openDoc(this)` 클릭 핸들러 형식 그대로 유지.
+            - 새 명령이 docsMap(<script> 내부)에 없고 슬래시 명령이면 docsMap에도 추가 (경로 모르면 생략 → 폴백이 /commands 처리).
+            - 버전 블록(.version-block)은 절대 건드리지 마라 (스크립트가 이미 처리함).
+            - 커밋/푸시는 하지 마라. 워크플로가 처리한다.
+            - 편집할 게 없다고 판단되면 아무것도 바꾸지 말고 종료.
+
+      - name: Commit curation changes
+        if: steps.update.outputs.has_features == 'true'
+        run: |
+          git config user.name "ai-pick-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet index.html; then
+            git add index.html
+            git commit -m "chore: Pick·카테고리 큐레이션 갱신 (Claude)"
+            git push
+          else
+            echo "큐레이션 변경 없음"
+          fi
