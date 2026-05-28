@@ -110,6 +110,14 @@
     .pick-tabs { display: inline-flex; gap: 2px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
     .pick-tab { border: none; background: none; color: var(--muted); font-size: .74rem; font-weight: 700; padding: 2px 11px; border-radius: 6px; cursor: pointer; transition: all .12s; }
     .pick-tab.active { background: var(--pick-bg); color: var(--pick); }
+    .month-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 9px; }
+    .month-tab {
+      border: 1px solid var(--border); background: var(--surface2); color: var(--muted);
+      font-size: .72rem; padding: 2px 9px; border-radius: 14px; cursor: pointer; transition: all .12s;
+    }
+    .month-tab:hover { color: var(--text); border-color: var(--text); }
+    .month-tab.active { background: var(--pick-bg); color: var(--pick); border-color: var(--pick); font-weight: 700; }
+    .month-grid.hidden { display: none; }
     .pick-card {
       background: var(--surface); border: 1px solid rgba(210,168,255,.15);
       border-radius: 7px; padding: 9px 11px; cursor: pointer; transition: border-color .12s;
@@ -397,7 +405,7 @@
       </div>
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI (내부 변경 제외)<br>② 워크플로우에 실질적 영향이 큰 것<br>③ 사용 빈도가 높을 만한 것<br>④ <strong>오늘</strong>=최근 6개 · <strong>이전</strong>=수집 시작(v2.0.0, 2025-09)부터 누적 주목 기능</span></span>
     </div>
-    <div class="pick-grid" data-period="today">
+    <div class="pick-grid pick-view" data-period="today">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="cmd">/goal</div>
         <h3>목표 기반 자율 실행</h3>
@@ -459,86 +467,269 @@
         <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
       </div>
     </div>
-    <div class="pick-grid pick-past hidden" data-period="past">
-      <div class="pick-card" onclick="openDoc(this)" data-date="2025-09-29">
-        <div class="cmd">/rewind</div>
-        <h3>대화·코드 되돌리기</h3>
-        <p>잘못된 방향이면 이전 체크포인트로 코드+대화를 한 번에 롤백.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 안전하게 실험 — 망쳐도 즉시 복구</div>
-          <div class="pick-check"><strong>학습:</strong> 어느 시점으로 되돌릴지 체크포인트 감각</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.0.0</span><span class="dag"></span></div>
+    <div class="pick-past pick-view hidden" data-period="past">
+      <div class="month-tabs">
+        <button class="month-tab active" data-month="2026-05" onclick="switchMonth(this)">5월</button>
+        <button class="month-tab" data-month="2026-04" onclick="switchMonth(this)">4월</button>
+        <button class="month-tab" data-month="2026-03" onclick="switchMonth(this)">3월</button>
+        <button class="month-tab" data-month="2026-02" onclick="switchMonth(this)">2월</button>
+        <button class="month-tab" data-month="2026-01" onclick="switchMonth(this)">1월</button>
+        <button class="month-tab" data-month="2025-12" onclick="switchMonth(this)">12월</button>
+        <button class="month-tab" data-month="2025-11" onclick="switchMonth(this)">11월</button>
+        <button class="month-tab" data-month="2025-10" onclick="switchMonth(this)">10월</button>
+        <button class="month-tab" data-month="2025-09" onclick="switchMonth(this)">9월</button>
       </div>
+      <div class="pick-grid month-grid" data-month="2026-05">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-22">
+        <div class="cmd">/usage</div>
+        <h3>카테고리별 비용 분석</h3>
+        <p>skills·subagents·plugins·MCP별 토큰 비용</p>
+        <div class="ver"><span class="vtag">v2.1.149</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-22">
+        <div class="cmd">/diff</div>
+        <h3>키보드 스크롤</h3>
+        <p>화살표·j/k·Space로 diff 탐색</p>
+        <div class="ver"><span class="vtag">v2.1.149</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
+        <div class="cmd">/code-review</div>
+        <h3>코드 리뷰 + PR 코멘트</h3>
+        <p>effort 선택, --comment로 인라인 게시</p>
+        <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
+        <div class="cmd">Ctrl+T</div>
+        <h3>백그라운드 세션 고정</h3>
+        <p>유휴·업데이트 시에도 유지</p>
+        <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-19">
+        <div class="cmd">agents --json</div>
+        <h3>세션 스크립팅</h3>
+        <p>live 세션을 JSON으로 출력</p>
+        <div class="ver"><span class="vtag">v2.1.145</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2026-04">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-04-22">
+        <div class="cmd">vim visual mode</div>
+        <h3>vim 비주얼 모드</h3>
+        <p>v/V로 선택 + 오퍼레이터</p>
+        <div class="ver"><span class="vtag">v2.1.118</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-04-27">
+        <div class="cmd">/skills 검색</div>
+        <h3>스킬 필터</h3>
+        <p>타이핑으로 긴 스킬 목록 검색</p>
+        <div class="ver"><span class="vtag">v2.1.121</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-04-24">
+        <div class="cmd">ultrareview</div>
+        <h3>CI 클라우드 리뷰</h3>
+        <p>비대화형으로 ultrareview 실행</p>
+        <div class="ver"><span class="vtag">v2.1.120</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-04-27">
+        <div class="cmd">plugin prune</div>
+        <h3>고아 플러그인 정리</h3>
+        <p>자동설치된 의존성 제거</p>
+        <div class="ver"><span class="vtag">v2.1.121</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-04-23">
+        <div class="cmd">/config 영구저장</div>
+        <h3>설정 저장</h3>
+        <p>theme·editor 등 settings.json에</p>
+        <div class="ver"><span class="vtag">v2.1.119</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2026-03">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-03-26">
+        <div class="cmd">hook if 조건</div>
+        <h3>조건부 hook</h3>
+        <p>Bash(git *) 같은 규칙으로 필터</p>
+        <div class="ver"><span class="vtag">v2.1.85</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-03-31">
+        <div class="cmd">defer 권한</div>
+        <h3>권한 보류</h3>
+        <p>headless에서 도구 앞 일시정지</p>
+        <div class="ver"><span class="vtag">v2.1.89</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-03-31">
+        <div class="cmd">@subagent</div>
+        <h3>서브에이전트 멘션</h3>
+        <p>@로 이름 지은 서브에이전트 호출</p>
+        <div class="ver"><span class="vtag">v2.1.89</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-03-31">
+        <div class="cmd">PermissionDenied hook</div>
+        <h3>거부 후 재시도 hook</h3>
+        <p>분류기 거부 시 retry 가능</p>
+        <div class="ver"><span class="vtag">v2.1.89</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2026-02">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-02-28">
+        <div class="cmd">/batch</div>
+        <h3>대규모 병렬 변경</h3>
+        <p>코드베이스 분해 → worktree별 실행</p>
+        <div class="ver"><span class="vtag">v2.1.63</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-02-25">
+        <div class="cmd">/copy</div>
+        <h3>응답 복사</h3>
+        <p>코드블록 선택해 클립보드로</p>
+        <div class="ver"><span class="vtag">v2.1.59</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-02-28">
+        <div class="cmd">HTTP hooks</div>
+        <h3>HTTP 훅</h3>
+        <p>URL로 JSON POST·수신</p>
+        <div class="ver"><span class="vtag">v2.1.63</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-02-20">
+        <div class="cmd">isolation: worktree</div>
+        <h3>에이전트 격리</h3>
+        <p>에이전트가 worktree에서 실행</p>
+        <div class="ver"><span class="vtag">v2.1.50</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-02-23">
+        <div class="cmd">remote-control</div>
+        <h3>원격 제어</h3>
+        <p>외부 빌드에 로컬 환경 서빙</p>
+        <div class="ver"><span class="vtag">v2.1.51</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2026-01">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-22">
+        <div class="cmd">커스텀 키바인딩</div>
+        <h3>단축키 설정</h3>
+        <p>컨텍스트별·코드 시퀀스 지정</p>
+        <div class="ver"><span class="vtag">v2.1.18</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-30">
+        <div class="cmd">--from-pr</div>
+        <h3>PR 세션 재개</h3>
+        <p>GitHub PR 번호로 resume</p>
+        <div class="ver"><span class="vtag">v2.1.27</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-27">
+        <div class="cmd">PR review 표시</div>
+        <h3>PR 상태 푸터</h3>
+        <p>현재 브랜치 PR 상태 표시</p>
+        <div class="ver"><span class="vtag">v2.1.20</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-23">
+        <div class="cmd">$0 $1 인자</div>
+        <h3>커맨드 인자</h3>
+        <p>커스텀 명령에서 개별 인자 접근</p>
+        <div class="ver"><span class="vtag">v2.1.19</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-27">
+        <div class="cmd">--add-dir</div>
+        <h3>추가 디렉토리</h3>
+        <p>다른 디렉토리 CLAUDE.md 로드</p>
+        <div class="ver"><span class="vtag">v2.1.20</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2025-12">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-19">
+        <div class="cmd">LSP tool</div>
+        <h3>코드 인텔리전스</h3>
+        <p>go-to-definition 등 LSP 기능</p>
+        <div class="ver"><span class="vtag">v2.0.74</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-17">
+        <div class="cmd">Claude in Chrome</div>
+        <h3>크롬 확장</h3>
+        <p>브라우저 연동 (Beta)</p>
+        <div class="ver"><span class="vtag">v2.0.72</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-19">
+        <div class="cmd">/terminal-setup</div>
+        <h3>터미널 셋업 확장</h3>
+        <p>Kitty·Alacritty·Zed·Warp 지원</p>
+        <div class="ver"><span class="vtag">v2.0.74</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-18">
+        <div class="cmd">이미지 링크</div>
+        <h3>이미지 열기</h3>
+        <p>[Image #N] 클릭으로 뷰어</p>
+        <div class="ver"><span class="vtag">v2.0.73</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2025-11">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-11-24">
+        <div class="cmd">Opus 4.5</div>
+        <h3>새 모델</h3>
+        <p>Claude Opus 4.5 추가</p>
+        <div class="ver"><span class="vtag">v2.0.51</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-11-18">
+        <div class="cmd">Microsoft Foundry</div>
+        <h3>Foundry 지원</h3>
+        <p>Azure AI Foundry 연동</p>
+        <div class="ver"><span class="vtag">v2.0.45</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-11-18">
+        <div class="cmd">PermissionRequest hook</div>
+        <h3>권한 자동 결정</h3>
+        <p>도구 권한 자동 승인/거부</p>
+        <div class="ver"><span class="vtag">v2.0.45</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-11-17">
+        <div class="cmd">SubagentStart hook</div>
+        <h3>서브에이전트 시작 훅</h3>
+        <p>서브에이전트 시작 시 트리거</p>
+        <div class="ver"><span class="vtag">v2.0.43</span><span class="dag"></span></div>
+      </div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2025-10">
       <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-16">
         <div class="cmd">Skills</div>
-        <h3>재사용 스킬 시스템</h3>
-        <p>반복 작업을 SKILL.md로 정의 → 자동/수동 호출.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 같은 지시 반복 안 함 — 노하우를 코드화</div>
-          <div class="pick-check"><strong>학습:</strong> 어떤 작업이 스킬화 가치 있는지</div>
-        </div>
+        <h3>스킬 시스템</h3>
+        <p>재사용 가능한 Claude Skills</p>
         <div class="ver"><span class="vtag">v2.0.20</span><span class="dag"></span></div>
-      </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-05">
-        <div class="cmd">background agent</div>
-        <h3>백그라운드 에이전트</h3>
-        <p>에이전트가 백그라운드에서 도는 동안 다른 작업 진행.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 긴 작업 기다리지 않고 병행</div>
-          <div class="pick-check"><strong>학습:</strong> 어떤 작업을 백그라운드로 돌릴지</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.0.60</span><span class="dag"></span></div>
       </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-16">
         <div class="cmd">AskUserQuestion</div>
-        <h3>선택지로 질문받기</h3>
-        <p>Claude이 모호할 때 객관식으로 물어봄 → 빠른 결정.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 긴 설명 없이 클릭으로 방향 지정</div>
-          <div class="pick-check"><strong>학습:</strong> 어떤 상황에 질문이 뜨는지</div>
-        </div>
+        <h3>선택지 질문</h3>
+        <p>Claude이 객관식으로 물어봄</p>
         <div class="ver"><span class="vtag">v2.0.21</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
-        <div class="cmd">/plan</div>
-        <h3>플랜 모드 단축</h3>
-        <p>/plan으로 프롬프트에서 바로 계획 모드 진입.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 큰 변경 전 계획 먼저 — 실수 방지</div>
-          <div class="pick-check"><strong>학습:</strong> 계획 모드가 효과적인 작업 유형</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-15">
+        <div class="cmd">Haiku 4.5</div>
+        <h3>새 모델</h3>
+        <p>모델 선택기에 Haiku 4.5</p>
+        <div class="ver"><span class="vtag">v2.0.17</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
-        <div class="cmd">skill hot-reload</div>
-        <h3>스킬 자동 리로드</h3>
-        <p>~/.claude/skills 수정 시 재시작 없이 즉시 반영.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 스킬 개발 반복이 빨라짐</div>
-          <div class="pick-check"><strong>학습:</strong> 수정→테스트 사이클 단축</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-30">
+        <div class="cmd">sandbox 설정</div>
+        <h3>샌드박스 정책</h3>
+        <p>allowUnsandboxedCommands 등</p>
+        <div class="ver"><span class="vtag">v2.0.30</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
-        <div class="cmd">Ctrl+O thinking</div>
-        <h3>thinking 실시간 보기</h3>
-        <p>Ctrl+O 트랜스크립트에서 thinking 블록 실시간 표시.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> Claude 추론 과정 관찰 — 디버깅·신뢰</div>
-          <div class="pick-check"><strong>학습:</strong> 어디서 추론이 길어지는지</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-10-30">
+        <div class="cmd">prompt stop hooks</div>
+        <h3>프롬프트 stop 훅</h3>
+        <p>stop 시 프롬프트 기반 훅</p>
+        <div class="ver"><span class="vtag">v2.0.30</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-01-07">
-        <div class="cmd">/teleport</div>
-        <h3>웹 세션 가져오기</h3>
-        <p>claude.ai 웹 세션을 터미널로 이어받기.</p>
-        <div class="pick-meta">
-          <div class="pick-why"><strong>왜?</strong> 기기 간 작업 연속성</div>
-          <div class="pick-check"><strong>학습:</strong> 웹↔터미널 전환 흐름</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-grid month-grid hidden" data-month="2025-09">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-09-29">
+        <div class="cmd">/rewind</div>
+        <h3>코드 되돌리기</h3>
+        <p>대화+코드 한 번에 롤백</p>
+        <div class="ver"><span class="vtag">v2.0.0</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2025-09-29">
+        <div class="cmd">/usage</div>
+        <h3>사용량 보기</h3>
+        <p>플랜 한도 확인</p>
+        <div class="ver"><span class="vtag">v2.0.0</span><span class="dag"></span></div>
+      </div>
       </div>
     </div>
   </div>
@@ -8967,7 +9158,13 @@
   // 클릭 → 공식 docs로 새 탭 (요소 직접 전달)
   function switchPick(period) {
     document.querySelectorAll('.pick-tab').forEach(t => t.classList.toggle('active', t.dataset.period === period));
-    document.querySelectorAll('.pick-grid[data-period]').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
+    document.querySelectorAll('.pick-view[data-period]').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
+  }
+  function switchMonth(btn) {
+    const wrap = btn.closest('.pick-past');
+    const m = btn.dataset.month;
+    wrap.querySelectorAll('.month-tab').forEach(t => t.classList.toggle('active', t === btn));
+    wrap.querySelectorAll('.month-grid').forEach(g => g.classList.toggle('hidden', g.dataset.month !== m));
   }
 
   function openDoc(el) {
