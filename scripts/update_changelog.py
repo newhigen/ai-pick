@@ -60,6 +60,8 @@ def classify(line):
 
 
 def md_to_html(s):
+    # 꺾쇠/앰퍼샌드 먼저 escape: CLI 플레이스홀더 <name>·<url> 등이 phantom HTML 태그가 되어 페이지를 깨뜨리는 것 방지
+    s = s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
     s = re.sub(r'`([^`]+)`', r'<code>\1</code>', s)
     s = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', s)
     s = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', s)
