@@ -20,9 +20,22 @@ Claude Code changelog 큐레이션 — 매 릴리스에서 "오늘 써볼 만한
 - 버전 배지 클릭 → 공식 changelog 페이지의 해당 버전 앵커
 - 라이트 / 다크 모드 토글 (기본 라이트)
 
-## 업데이트 주기
+## 업데이트 자동화
 
-매 Claude Code 릴리스 후 수동 갱신. Claude Code 자체 스킬로 반자동화 — CHANGELOG.md fetch → 분류 → HTML 삽입.
+매일 06:30(KST) GitHub Actions가 자동 실행 (`.github/workflows/daily-update.yml`):
+
+1. **버전 목록** (`scripts/update_changelog.py`, 토큰 0) — CHANGELOG.md fetch → 새 버전 감지 → 분류(feature/improve/security/fix) → HTML 블록 생성·삽입 → 커밋
+2. **Pick·용도별 큐레이션** (새 feature 있을 때만) — Claude Code Action이 판단해서 🎯 Pick·🧰 카테고리 갱신
+
+대부분의 날은 1단계(무료)만 돌고, 주목할 새 기능이 나온 날만 Claude가 판단 작업을 한다.
+
+### 셋업 (1회)
+
+1. [Claude GitHub App](https://github.com/apps/claude)을 이 repo에 설치
+2. 터미널에서 `claude setup-token` (Pro/Max 구독) → OAuth 토큰 발급
+3. repo Settings → Secrets → `CLAUDE_CODE_OAUTH_TOKEN` 등록
+
+> API 키 대신 구독 토큰 사용 → 별도 과금 없음.
 
 ## 기술 스택
 
