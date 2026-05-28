@@ -12,7 +12,7 @@ index.html의 최신 추적 버전을 확인하고, 그보다 새로운 Claude C
 GitHub Actions에서 매일 실행. 변경 여부는 git diff로 판단.
 """
 import re, json, html as htmllib, urllib.request, sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 HTML_PATH = 'index.html'
 CHANGELOG_URL = 'https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md'
@@ -222,6 +222,12 @@ def main():
     html = re.sub(
         r'(– )\d+월\s*\d+일',
         rf'\g<1>{nd.month}월 {nd.day}일', html, count=1)
+
+    # 동기화 타임스탬프 갱신 (KST)
+    kst = timezone(timedelta(hours=9))
+    stamp = datetime.now(kst).strftime('%Y-%m-%d %H:%M')
+    html = re.sub(r'<!--SYNC-->.*?<!--/SYNC-->',
+                  f'<!--SYNC-->{stamp}<!--/SYNC-->', html)
 
     open(HTML_PATH, 'w', encoding='utf-8').write(html)
     added = ', '.join(f'v{v}' for v, _, _ in new)

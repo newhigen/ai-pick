@@ -68,6 +68,9 @@
       display: flex; align-items: baseline; justify-content: space-between;
       gap: 12px; margin-bottom: 16px;
     }
+    .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+    .sync-time { font-size: .68rem; color: var(--muted); white-space: nowrap; }
+    .sync-time .sync-stamp { font-family: 'Google Sans Code', ui-monospace, monospace; color: var(--text); opacity: .85; }
     .page-header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -.01em; }
     .page-header .range { color: var(--muted); font-size: .78rem; margin-top: 4px; }
     .page-header .range strong { color: var(--text); }
@@ -361,7 +364,10 @@
       <h1>Claude Code — 뭐가 바뀌었나</h1>
       <p class="range"><strong>v2.1.22</strong> → <strong>v2.1.153</strong> &nbsp;·&nbsp; 2026년 1월 28일 – 5월 28일</p>
     </div>
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
+      <span class="sync-time">🔄 업데이트 <span class="sync-stamp"><!--SYNC-->2026-05-28 23:02<!--/SYNC--></span> KST</span>
+    </div>
   </div>
 
   <div class="pick-section">
