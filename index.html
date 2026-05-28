@@ -48,6 +48,8 @@
 
     html { color-scheme: light; }
     html[data-theme="dark"] { color-scheme: dark; }
+    /* 테마 전환 순간엔 모든 transition 비활성 → 한 번에 즉시 전환 (hover 등은 이후 복원) */
+    html.theme-switching * { transition: none !important; }
     body {
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       background: var(--bg); color: var(--text); line-height: 1.55; font-size: 14px;
@@ -8793,15 +8795,19 @@
       document.documentElement.setAttribute('data-theme', 'dark');
   })();
   function toggleTheme() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const root = document.documentElement;
+    root.classList.add('theme-switching');           // 전환 동안 transition 끔
+    const isDark = root.getAttribute('data-theme') === 'dark';
     if (isDark) {
-      document.documentElement.removeAttribute('data-theme');
+      root.removeAttribute('data-theme');
       localStorage.setItem('cc-theme', 'light');
     } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      root.setAttribute('data-theme', 'dark');
       localStorage.setItem('cc-theme', 'dark');
     }
     document.getElementById('themeToggle').textContent = isDark ? '🌙 다크' : '☀️ 라이트';
+    // 다음 페인트 후 복원 (hover 애니메이션은 유지)
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
   }
 
   document.addEventListener('DOMContentLoaded', () => {
