@@ -370,7 +370,7 @@
       <span>최근 릴리스에서 바로 써볼 수 있는 것들</span>
     </div>
     <div class="pick-grid">
-      <div class="pick-card" onclick="scrollToVer('v2.1.141')" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="cmd">/goal</div>
         <h3>목표 기반 자율 실행</h3>
         <p>완료 조건 입력 → 여러 턴에 걸쳐 자율 진행. 경과·턴·토큰 오버레이.</p>
@@ -380,7 +380,7 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="scrollToVer('v2.1.141')" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="cmd">Agent View</div>
         <h3>모든 세션 한 화면에</h3>
         <p>실행 중·대기 중·완료 세션을 하나의 목록으로.</p>
@@ -390,7 +390,7 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="scrollToVer('v2.1.147')" data-date="2026-05-21">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
         <div class="cmd">/code-review</div>
         <h3>코드 리뷰 + PR 인라인 코멘트</h3>
         <p>구 /simplify. effort 선택, <code>--comment</code>로 GitHub PR 인라인 코멘트 게시.</p>
@@ -400,7 +400,7 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="scrollToVer('v2.1.149')" data-date="2026-05-22">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-22">
         <div class="cmd">/usage</div>
         <h3>카테고리별 비용 분석</h3>
         <p>skills·subagents·plugins·MCP별 토큰 비용.</p>
@@ -410,7 +410,7 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.149</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="scrollToVer('v2.1.147')" data-date="2026-05-21">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
         <div class="cmd">Ctrl+T</div>
         <h3>백그라운드 세션 고정</h3>
         <p>유휴·업데이트 시에도 고정 세션 유지.</p>
@@ -420,7 +420,7 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="scrollToVer('v2.1.141')" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="cmd">terminalSequence hook</div>
         <h3>터미널 없이 데스크톱 알림</h3>
         <p>stop hook에서 알림·창 제목·벨. 백그라운드 완료 감지.</p>
@@ -446,17 +446,17 @@
       <div class="cat-card">
         <div class="cat-card-head">🚀 긴 작업을 맡길 때</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/goal</span>
             <span class="cat-desc">완료 조건 후 자율 진행, 오버레이 표시</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.147')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">Ctrl+T</span>
             <span class="cat-desc">백그라운드 세션 고정 (유휴 시에도 유지)</span>
             <span class="cat-ver">v147</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">terminalSequence</span>
             <span class="cat-desc">stop hook으로 데스크톱 알림</span>
             <span class="cat-ver">v141</span>
@@ -467,42 +467,42 @@
       <div class="cat-card">
         <div class="cat-card-head">🤖 Subagent · 멀티 세션</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">Agent View</span>
             <span class="cat-desc">전체 세션 한 화면 (실행·대기·완료)</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.144')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/resume</span>
             <span class="cat-desc">bg 마크 세션도 목록에 표시</span>
             <span class="cat-ver">v144</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.145')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">agents --json</span>
             <span class="cat-desc">스크립팅용 세션 목록 출력</span>
             <span class="cat-ver">v145</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">agents --cwd</span>
             <span class="cat-desc">특정 디렉토리 범위 세션</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.142')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">agents flags</span>
             <span class="cat-desc">--model --effort --mcp-config 등 전달</span>
             <span class="cat-ver">v142</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.143')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">bgIsolation:"none"</span>
             <span class="cat-desc">bg 세션이 worktree 없이 직접 편집</span>
             <span class="cat-ver">v143</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.140')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">subagent_type 매칭</span>
             <span class="cat-desc">대소문자·구분자 무관 ("Code Reviewer" 매칭)</span>
             <span class="cat-ver">v140</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.144')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">bg 완료 알림</span>
             <span class="cat-desc">"Agent completed · 3h 2m 5s" 경과 시간</span>
             <span class="cat-ver">v144</span>
@@ -513,12 +513,12 @@
       <div class="cat-card">
         <div class="cat-card-head">📝 PR / 코드 리뷰</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.147')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/code-review</span>
             <span class="cat-desc">effort 선택 + GitHub PR 인라인 코멘트</span>
             <span class="cat-ver">v147</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.145')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">상태줄 GitHub</span>
             <span class="cat-desc">저장소·PR 정보를 status JSON에 포함</span>
             <span class="cat-ver">v145</span>
@@ -529,12 +529,12 @@
       <div class="cat-card">
         <div class="cat-card-head">💰 비용·토큰 추적</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.149')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/usage</span>
             <span class="cat-desc">skills·subagents·plugins·MCP별 비용 분석</span>
             <span class="cat-ver">v149</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.143')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">marketplace 비용</span>
             <span class="cat-desc">플러그인 설치 전 턴/호출당 토큰 예상</span>
             <span class="cat-ver">v143</span>
@@ -545,27 +545,27 @@
       <div class="cat-card">
         <div class="cat-card-head">🎨 일상 UI · 네비</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.149')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/diff 스크롤</span>
             <span class="cat-desc">화살표·j/k·Space·PgUp/PgDn</span>
             <span class="cat-ver">v149</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.139')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">트랜스크립트</span>
             <span class="cat-desc">? 도움말 · {/} 이동 · v 패널 토글</span>
             <span class="cat-ver">v139</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.139')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/scroll-speed</span>
             <span class="cat-desc">마우스 휠 속도 조절</span>
             <span class="cat-ver">v139</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.149')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">GFM 체크박스</span>
             <span class="cat-desc">마크다운 - [x] / - [ ] 렌더링</span>
             <span class="cat-ver">v149</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.147')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">prompt 중복 제거</span>
             <span class="cat-desc">연속 중복 입력 히스토리 자동 제거</span>
             <span class="cat-ver">v147</span>
@@ -576,22 +576,22 @@
       <div class="cat-card">
         <div class="cat-card-head">🧩 Plugin · MCP · Extend</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.145')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/plugin Discover</span>
             <span class="cat-desc">설치 전 commands·skills·MCP 미리보기</span>
             <span class="cat-ver">v145</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.143')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">의존성 강제</span>
             <span class="cat-desc">의존 플러그인 자동 활성화·비활성 거부</span>
             <span class="cat-ver">v143</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">PREFER_HTTPS</span>
             <span class="cat-desc">SSH 키 없는 환경 — HTTPS로 클론</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.139')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">CLAUDE_PROJECT_DIR</span>
             <span class="cat-desc">MCP stdio 서버에 프로젝트 경로 전달</span>
             <span class="cat-ver">v139</span>
@@ -602,17 +602,17 @@
       <div class="cat-card">
         <div class="cat-card-head">🪝 Hook · 모니터링</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.139')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">hook args</span>
             <span class="cat-desc">exec form (셸 없이 직접 실행)</span>
             <span class="cat-ver">v139</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">terminalSequence</span>
             <span class="cat-desc">알림·창 제목·벨 출력</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.145')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">OTEL agent_id</span>
             <span class="cat-desc">subagent spans 중첩 추적</span>
             <span class="cat-ver">v145</span>
@@ -623,22 +623,22 @@
       <div class="cat-card">
         <div class="cat-card-head">🔒 모델 · Enterprise · IAM</div>
         <ul class="cat-items">
-          <li class="cat-item" onclick="scrollToVer('v2.1.144')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/model</span>
             <span class="cat-desc">현재 세션만 모델 변경 (d로 기본 고정)</span>
             <span class="cat-ver">v144</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.142')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">Fast mode</span>
             <span class="cat-desc">Opus 4.6 → 4.7 기본</span>
             <span class="cat-ver">v142</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.141')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">WORKSPACE_ID</span>
             <span class="cat-desc">워크로드 ID 페더레이션</span>
             <span class="cat-ver">v141</span>
           </li>
-          <li class="cat-item" onclick="scrollToVer('v2.1.139')">
+          <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">API키 안전모드</span>
             <span class="cat-desc">Remote Control·/schedule·MCP 자동 비활성화</span>
             <span class="cat-ver">v139</span>
@@ -6882,19 +6882,19 @@
     'API키 안전모드':    '/iam',
   };
 
-  // 클릭 → 공식 docs로 새 탭 (구 scrollToVer)
-  function scrollToVer(_verId) {
-    const ev = window.event;
-    if (!ev) return;
-    const el = ev.target.closest('.pick-card, .cat-item');
+  // 클릭 → 공식 docs로 새 탭 (요소 직접 전달)
+  function openDoc(el) {
     if (!el) return;
     const cmdEl = el.querySelector('.cmd, .cat-cmd');
     if (!cmdEl) return;
     const q = cmdEl.textContent.trim();
     // 폴백: 슬래시 명령처럼 보이면 /commands, 아니면 /overview
     const path = docsMap[q] || (q.startsWith('/') ? '/commands' : '/overview');
-    window.open(`${DOCS_BASE}${path}`, '_blank', 'noopener,noreferrer');
+    const w = window.open(`${DOCS_BASE}${path}`, '_blank');
+    if (w) w.opener = null;
   }
+  // 구버전 호환 (혹시 남은 호출 대비)
+  function scrollToVer(){}
 
   function toggleColl(el) {
     el.classList.toggle('open');
