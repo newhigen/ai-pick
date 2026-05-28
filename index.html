@@ -388,11 +388,11 @@
   <div class="page-header">
     <div>
       <h1>Claude Code — 뭐가 바뀌었나</h1>
-      <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.153</strong> &nbsp;·&nbsp; 2025년 9월 29일 – 5월 28일</p>
+      <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.154</strong> &nbsp;·&nbsp; 2025년 9월 29일 – 5월 28일</p>
     </div>
     <div class="header-right">
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
-      <span class="sync-time">🔄 업데이트 <span class="sync-stamp"><!--SYNC-->2026-05-28 23:02<!--/SYNC--></span> KST</span>
+      <span class="sync-time">🔄 업데이트 <span class="sync-stamp"><!--SYNC-->2026-05-29 07:53<!--/SYNC--></span> KST</span>
     </div>
   </div>
 
@@ -957,6 +957,142 @@
     <button class="filter-btn" data-filter="improve">⚡ 개선</button>
     <button class="filter-btn" data-filter="fix">🐛 수정</button>
     <button class="filter-btn" data-filter="security">🔒 보안</button>
+  </div>
+
+  <!-- ── v2.1.154 ── -->
+  <div class="version-block" id="v2.1.154" data-types="feature improve security fix" data-date="2026-05-28">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.154</span><span class="ver-date">5월 28일 목</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×21</span><span class="pill improve">개선 ×2</span><span class="pill security">보안 ×3</span><span class="pill fix">Fix ×18</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Opus 4.8 is here! Now defaults to high effort · /effort xhigh for your hardest tasks</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Introducing dynamic workflows: ask Claude to create a workflow and it orchestrates work across tens to hundreds of agents in the background, so you can take on larger, more complex tasks. Run <code>/workflows</code> to view your runs</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Fast mode on Opus 4.8 is now available at a fraction of its previous cost: 2x the standard rate for 2.5x the speed</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">The lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Claude now reserves the multiple-choice question prompt for decisions it genuinely cannot make itself, instead of asking when it already has enough context to proceed</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/simplify</code> now runs a cleanup-only review (reuse, simplification, efficiency, altitude) and applies the fixes, instead of running the full <code>/code-review --fix</code> bug-hunting review</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Renamed the <code>/effort</code> slider labels from "Speed"/"Intelligence" to "Faster"/"Smarter" for clarity</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: type <code>! &lt;command&gt;</code> to run a shell command as a background session you can attach to and detach from. Also available as <code>claude --bg --exec '&lt;command&gt;'</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: <code>/logout</code> now signs you out instead of being sent to a background session</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>←←</code> to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Claude in Chrome: pick which connected browser to use via <code>/chrome</code> → "Select browser…", or in-chat when a browser action runs with multiple connected</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Plugins can now declare <code>defaultEnabled: false</code> in <code>plugin.json</code> or a marketplace entry; enable them with <code>/plugin</code> or <code>claude plugin enable</code>. Dependencies of enabled plugins are still enabled automatically</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">The <code>/plugin</code> Discover tab now pins plugins whose relevance signals match the current directory with a "suggested for this directory" annotation</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Stdio MCP server subprocesses now receive <code>CLAUDE_CODE_SESSION_ID</code> and <code>CLAUDECODE=1</code> in their environment</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude mcp list</code>/<code>get</code> now show unapproved <code>.mcp.json</code> servers as <code>⏸ Pending approval</code> instead of auto-approving and connecting when output is piped</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/remote-control</code> autocomplete now shows "Disconnect Remote Control" when Remote Control is already active</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added Claude Opus 4.8 support and 4.7 → 4.8 migration guidance to the <code>/claude-api</code> skill</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Deprecated <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> (will be removed on 06/01). To use fast mode on Opus 4.6, switch with <code>/model claude-opus-4-6[1m]</code> and then <code>/fast on</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Windows: Fixed update failures caused by <code>claude.exe</code> being in use showing a generic error instead of telling you to close other sessions and retry</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the stale "&amp; for background" hint from the shortcuts help panel</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Auto mode no longer requires the bypass-permissions setting to appear in the mode picker, and a dismissable notice on the new-session screen explains auto mode the first time it's active</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">3</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">18</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Streaming tool execution is now always enabled, including when telemetry is disabled or on Bedrock/Vertex/Foundry (previously behind a feature flag)</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved the auto-mode classifier's detection of data exfiltration, particularly bulk transfers of repository contents</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>$TMPDIR</code> resolving to different directories in sandboxed vs unsandboxed Bash commands within the same session</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed subagents in background sessions bypassing the worktree-isolation guard and writing to the shared checkout</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a single invalid <code>allowedMcpServers</code>/<code>deniedMcpServers</code> entry in managed settings discarding all managed-settings policy; the bad entry is now dropped with a <code>claude doctor</code> warning</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">rm -rf $HOME not being blocked as a…</span>
+            <span class="chip">unreadable highlighted-row text in claude agents when the…</span>
+            <span class="chip">background-agent completion notifications triggering premature &quot;out of context&quot;…</span>
+            <span class="chip">background-session classifier losing the user&#x27;s goal when a…</span>
+            <span class="chip">pinned background sessions respawning every minute after a…</span>
+            <span class="chip">background sessions stuck at &quot;blocked&quot;, &quot;running&quot;, or &quot;working&quot;…</span>
+            <span class="chip">orphaned claude --bg-pty-host processes spinning at 100% CPU…</span>
+            <span class="chip">number key shortcuts not working for options shown…</span>
+            <span class="chip">worktree.baseRef: &quot;head&quot; resolving to the main checkout&#x27;s HEAD…</span>
+            <span class="chip">a stray leading space on wrapped lines when…</span>
+            <span class="chip">intermittent terminal rendering corruption in VS Code by…</span>
+            <span class="chip">plan file names including [Image #N] / [Pasted…</span>
+            <span class="chip">a phantom expand/click affordance on colored tool output:…</span>
+            <span class="chip">API 400 errors on models that don&#x27;t support…</span>
+            <span class="chip">task panel below the prompt showing a stray…</span>
+            <span class="chip">/mcp tools list and tool detail rendering when…</span>
+            <span class="chip">/model picker not showing fast mode pricing on…</span>
+            <span class="chip">auto mode incorrectly blocking actions with &quot;could not…</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── v2.1.153 ── -->
