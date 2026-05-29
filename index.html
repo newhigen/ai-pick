@@ -9507,8 +9507,7 @@
     function relLabel(diff) {
       if (diff === 0) return '오늘';
       if (diff === 1) return '어제';
-      if (diff < 7)   return `${diff}일 전`;
-      if (diff < 30)  return `${Math.floor(diff / 7)}주 전`;
+      if (diff < 30)  return `${diff}일 전`;
       if (diff < 365) return `${Math.floor(diff / 30)}달 전`;
       return `${Math.floor(diff / 365)}년 전`;
     }
