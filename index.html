@@ -274,6 +274,9 @@
     .home-card:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
     .home-card .hc-title{font-size:.9rem;font-weight:700;color:var(--text)}
     .home-card .hc-desc{font-size:.78rem;color:var(--muted);line-height:1.45}
+    .conn-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+    .conn-item{display:block;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:.85rem;font-weight:600;color:var(--text);text-decoration:none;transition:border-color .12s,box-shadow .12s}
+    .conn-item:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm);color:var(--pick)}
     .home-note{padding:11px 14px;background:var(--surface2);border:1px dashed var(--border);border-radius:var(--radius);font-size:.8rem;color:var(--muted)}
     @media (max-width:760px){.home-cols{grid-template-columns:1fr}}
     /* ── News ── */
@@ -362,6 +365,7 @@
     <button class="top-tab active" data-view="home" onclick="switchView('home')" data-en="Today">오늘 써볼 기능</button>
     <button class="top-tab" data-view="cc" onclick="switchView('cc')" data-en="Claude Code">Claude Code</button>
     <button class="top-tab" data-view="codex" onclick="switchView('codex')" data-en="Codex">Codex</button>
+    <button class="top-tab" data-view="manus" onclick="switchView('manus')" data-en="Manus">Manus</button>
     <button class="top-tab" data-view="news" onclick="switchView('news')" data-en="News">뉴스</button>
   </div>
 
@@ -10645,10 +10649,73 @@
       </div>
   </div>
 
+  <div class="view hidden" data-view="manus">
+    <header class="news-hero">
+      <h1 data-en="Manus — <span class=&quot;accent&quot;>what to try</span>">Manus — <span class="accent">써볼 기능</span></h1>
+      <p data-en="AI agent platform. No CLI changelog — bigger feature launches and connectors.">AI 에이전트 플랫폼. CLI changelog는 없고, 큰 기능 출시와 커넥터 중심.</p>
+    </header>
+
+    <div class="news-sec-head"><h2 data-en="Worth trying">써볼 기능</h2><span class="sub" data-en="agent features">에이전트 기능</span></div>
+    <div class="feat-co">
+      <div class="news-grid">
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-max-release" target="_blank" rel="noopener noreferrer">
+          <h3>Manus 1.6 Max</h3>
+          <p data-en="Flagship agent + mobile app dev.">플래그십 에이전트 + 모바일 앱 개발.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/introducing-wide-research" target="_blank" rel="noopener noreferrer">
+          <h3>Wide Research</h3>
+          <p data-en="Massively parallel research across many agents.">대규모 병렬 리서치 — 수백 에이전트 동시 탐색.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-cloud-computer" target="_blank" rel="noopener noreferrer">
+          <h3>Cloud Computer</h3>
+          <p data-en="A dedicated machine in the cloud for agents.">클라우드 전용 머신에서 에이전트 실행.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-design-view" target="_blank" rel="noopener noreferrer">
+          <h3>Design View</h3>
+          <p data-en="An AI design workflow for visuals.">AI 디자인 워크플로로 시안 제작.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-browser-operator" target="_blank" rel="noopener noreferrer">
+          <h3>Browser Operator</h3>
+          <p data-en="Turn any browser into an AI browser.">어떤 브라우저든 AI 브라우저로 — 작업 자동화.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-meeting-minutes" target="_blank" rel="noopener noreferrer">
+          <h3>Meeting Minutes</h3>
+          <p data-en="Record in-person meetings, get AI summaries.">대면 회의 녹음 → AI 요약.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-schedules" target="_blank" rel="noopener noreferrer">
+          <h3>Scheduled Tasks 2.0</h3>
+          <p data-en="Time-based automation for recurring work.">반복 작업 시간 기반 자동화.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" href="https://manus.im/blog/manus-projects-self-updating" target="_blank" rel="noopener noreferrer">
+          <h3>Projects that learn</h3>
+          <p data-en="Turn conversations into project instructions.">유용한 대화를 프로젝트 지침으로.</p>
+          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="news-sec-head"><h2 data-en="Connectors &amp; guides">커넥터 · 가이드</h2><span class="sub" data-en="deep dives">deep dive</span></div>
+    <div class="conn-list">
+          <a class="conn-item" href="https://manus.im/blog/deep-dive-notion-connector" target="_blank" rel="noopener noreferrer">Notion</a>
+          <a class="conn-item" href="https://manus.im/blog/deep-dive-google-drive-connector" target="_blank" rel="noopener noreferrer">Google Drive</a>
+          <a class="conn-item" href="https://manus.im/blog/deep-dive-gmail-gcal-connector" target="_blank" rel="noopener noreferrer">Gmail & Calendar</a>
+          <a class="conn-item" href="https://manus.im/blog/deep-dive-similarweb-connector" target="_blank" rel="noopener noreferrer">SimilarWeb</a>
+          <a class="conn-item" href="https://manus.im/blog/manus-instagram-connector" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a class="conn-item" href="https://manus.im/blog/manus-meta-ads-manager-connector" target="_blank" rel="noopener noreferrer">Meta Ads Manager</a>
+    </div>
+  </div>
+
   <div class="view hidden" data-view="news">
     <header class="news-hero">
       <h1 data-en="News">뉴스</h1>
-      <p data-en="Funding, acquisitions, partnerships — plus Manus features.">펀딩·인수·파트너십 동향, 그리고 Manus 기능.</p>
+      <p data-en="Funding, acquisitions, partnerships across AI tools.">AI 도구 펀딩·인수·파트너십 동향.</p>
     </header>
 
     <div class="news-sec-head"><h2 data-en="Industry moves">동향</h2><span class="sub" data-en="funding · partnerships · benchmarks">펀딩 · 파트너십 · 벤치마크</span></div>
@@ -10683,32 +10750,6 @@
         <span class="src src-manus feed-src">Manus</span>
         <span class="feed-body"><span class="feed-title">Manus joins Meta</span> <span class="feed-desc" data-en="Joining Meta; services continue.">Meta 합류 — 서비스는 계속.</span></span>
       </a>
-    </div>
-
-    <div class="news-sec-head"><h2 data-en="Manus features">Manus 기능</h2><span class="sub" data-en="agent platform">에이전트 플랫폼</span></div>
-    <div class="feat-co">
-      <div class="news-grid">
-        <a class="news-card feat-card" href="https://manus.im/blog/manus-schedules" target="_blank" rel="noopener noreferrer">
-          <h3>Scheduled Tasks 2.0</h3>
-          <p data-en="Time-based automation for recurring work.">반복 작업 시간 기반 자동화.</p>
-          <div class="feat-foot"><span class="news-date" data-date="2026-05-18"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
-        </a>
-        <a class="news-card feat-card" href="https://manus.im/blog/manus-preferred-browser" target="_blank" rel="noopener noreferrer">
-          <h3>Preferred Browser</h3>
-          <p data-en="Use a custom browser for web tasks.">웹 작업에 커스텀 브라우저 연동.</p>
-          <div class="feat-foot"><span class="news-date" data-date="2026-05-12"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
-        </a>
-        <a class="news-card feat-card" href="https://manus.im/blog/manus-projects-self-updating" target="_blank" rel="noopener noreferrer">
-          <h3>Projects that learn</h3>
-          <p data-en="Turn conversations into project instructions.">유용한 대화를 프로젝트 지침으로.</p>
-          <div class="feat-foot"><span class="news-date" data-date="2026-05-06"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
-        </a>
-        <a class="news-card feat-card" href="https://manus.im/blog/deep-dive-notion-connector" target="_blank" rel="noopener noreferrer">
-          <h3>Connectors (Notion·Drive…)</h3>
-          <p data-en="Connect external apps to Manus.">외부 앱 연동 커넥터.</p>
-          <div class="feat-foot"><span></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
-        </a>
-      </div>
     </div>
   </div>
 </div>
