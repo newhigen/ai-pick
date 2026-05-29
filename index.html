@@ -84,11 +84,12 @@
     .sync-time{font-size:.73rem;color:var(--ink-3);display:flex;align-items:center;gap:6px;white-space:nowrap}
     .sync-time .live{width:6px;height:6px;border-radius:50%;background:var(--feature);box-shadow:0 0 0 3px var(--feature-bg)}
     .sync-time .sync-stamp{font-family:var(--mono)}
-    .theme-toggle{border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:8px;cursor:pointer;transition:.15s;white-space:nowrap;text-align:center}
-    #langToggle{min-width:62px}
-    #themeToggle{min-width:82px}
-    .sync-time{min-width:188px;justify-content:flex-end}
-    .theme-toggle:hover{border-color:var(--ink-3);color:var(--text)}
+    .theme-toggle{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 11px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:.76rem;font-weight:600;border-radius:9px;cursor:pointer;transition:background .15s,color .15s,border-color .15s;white-space:nowrap}
+    .theme-toggle:hover{background:var(--surface2);color:var(--text);border-color:var(--line-strong)}
+    .theme-toggle svg{display:block;width:15px;height:15px}
+    #langToggle{min-width:44px}
+    #themeToggle{width:34px;padding:0}
+    .sync-time{min-width:182px;justify-content:flex-end;margin-right:2px}
 
     /* ── Hero ── */
     .hero{padding:50px 0 28px}
@@ -249,7 +250,7 @@
   <div class="topbar-spacer"></div>
   <span class="sync-time"><span class="live"></span><span data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC-->2026-05-29 07:53<!--/SYNC--></span></span>
   <button class="theme-toggle" id="langToggle" onclick="toggleLang()">EN</button>
-  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️ 라이트</button>
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="테마 전환" aria-label="테마 전환"></button>
 </div></div>
 <div class="wrap">
 
@@ -9325,6 +9326,12 @@
     if (CUR_LANG === 'en') return open ? 'Collapse older versions ▴' : `Show ${n} older versions ▾`;
     return open ? '이전 버전 접기 ▴' : `이전 버전 ${n}개 더 보기 ▾`;
   }
+  const ICON_SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+  const ICON_MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  function setThemeIcon(){
+    const b=document.getElementById('themeToggle'); if(!b) return;
+    b.innerHTML = document.documentElement.getAttribute('data-theme')==='dark' ? ICON_MOON : ICON_SUN;
+  }
   function toggleTheme() {
     const root = document.documentElement;
     root.classList.add('theme-switching');           // 전환 동안 transition 끔
@@ -9336,7 +9343,7 @@
       root.setAttribute('data-theme', 'dark');
       localStorage.setItem('cc-theme', 'dark');
     }
-    document.getElementById('themeToggle').textContent = isDark ? (CUR_LANG==='en'?'🌙 Dark':'🌙 다크') : (CUR_LANG==='en'?'☀️ Light':'☀️ 라이트');
+    setThemeIcon();
     // 다음 페인트 후 복원 (hover 애니메이션은 유지)
     requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
   }
@@ -9344,7 +9351,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     if (CUR_LANG === 'en') {
       document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.getAttribute('data-en'); });
-      const lb = document.getElementById('langToggle'); if (lb) lb.textContent = '한국어';
+      const lb = document.getElementById('langToggle'); if (lb) lb.textContent = 'KO';
     }
 
     // ── 버전 목록 노출 5개 정규화 (자동 추가돼도 JS가 유지) ──
@@ -9362,8 +9369,7 @@
       }
     })();
 
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    document.getElementById('themeToggle').textContent = isDark ? (CUR_LANG==='en'?'☀️ Light':'☀️ 라이트') : (CUR_LANG==='en'?'🌙 Dark':'🌙 다크');
+    setThemeIcon();
 
     const today = new Date(); today.setHours(0,0,0,0);
 
