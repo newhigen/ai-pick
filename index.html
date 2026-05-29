@@ -77,9 +77,13 @@
     /* ── Top bar ── */
     .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border)}
     .topbar-inner{max-width:1120px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;gap:13px}
-    .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:1.02rem;letter-spacing:-.02em;color:var(--text)}
+    .brand{display:flex;align-items:center;gap:9px;color:var(--text);white-space:nowrap}
+    .brand .bmark{width:19px;height:19px;color:var(--pick);flex-shrink:0}
+    .brand .bstack{display:flex;flex-direction:column;line-height:1.12}
+    .brand .bname{font-weight:800;font-size:1.02rem;letter-spacing:-.025em}
+    @media (max-width:560px){.topbar-inner{padding:11px 16px;gap:9px}.sync-time{display:none}.top-tabs{flex-wrap:wrap}}
     .brand .bdot{width:9px;height:9px;border-radius:50%;background:var(--pick)}
-    .brand .bmono{font-family:var(--mono);color:var(--ink-3);font-weight:500;font-size:.76rem;letter-spacing:0}
+    .brand .bmono{font-family:var(--mono);color:var(--ink-3);font-weight:500;font-size:.68rem;letter-spacing:.01em}
     .topbar-spacer{flex:1}
     .sync-time{font-size:.73rem;color:var(--ink-3);display:flex;align-items:center;gap:6px;white-space:nowrap}
     .sync-time .live{width:6px;height:6px;border-radius:50%;background:var(--feature);box-shadow:0 0 0 3px var(--feature-bg)}
@@ -89,7 +93,7 @@
     .theme-toggle svg{display:block;width:15px;height:15px}
     #langToggle{min-width:44px}
     #themeToggle{width:34px;padding:0}
-    .sync-time{min-width:182px;justify-content:flex-end;margin-right:2px}
+    .sync-time{justify-content:flex-end;margin-right:2px}
 
     /* ── Hero ── */
     .hero{padding:50px 0 28px}
@@ -242,8 +246,10 @@
     .heat-3,.heat-4{}
 
     /* ── Top-level tabs ── */
-    .top-tabs{display:inline-flex;gap:4px;padding:4px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;margin:22px 0 0}
-    .top-tab{border:none;background:none;font-family:inherit;font-size:.86rem;font-weight:700;color:var(--muted);padding:7px 18px;border-radius:8px;cursor:pointer;transition:.15s;letter-spacing:-.01em}
+    .top-tabs{display:flex;gap:4px;padding:4px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;margin:22px 0 0;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none}
+    @media (min-width:561px){.top-tabs{width:fit-content}}
+    .top-tabs::-webkit-scrollbar{display:none}
+    .top-tab{border:none;background:none;font-family:inherit;font-size:.86rem;font-weight:700;color:var(--muted);padding:7px 18px;border-radius:8px;cursor:pointer;transition:.15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0}
     .top-tab:hover{color:var(--text)}
     .top-tab.active{background:var(--surface);color:var(--text);box-shadow:var(--shadow-sm)}
     .view.hidden{display:none}
@@ -381,7 +387,7 @@
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner">
-  <div class="brand"><span class="bdot"></span>what to try <span class="bmono">claude · codex · manus</span></div>
+  <div class="brand"><svg class="bmark" viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8z" fill="currentColor"/></svg><span class="bstack"><span class="bname">what to try</span><span class="bmono">claude · codex · manus</span></span></div>
   <div class="topbar-spacer"></div>
   <span class="sync-time"><span class="live"></span><span data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC-->2026-05-29 07:53<!--/SYNC--></span></span>
   <button class="theme-toggle" id="langToggle" onclick="toggleLang()">EN</button>
@@ -407,7 +413,7 @@
         <div class="home-group-head"><span class="src-dot src-anthropic"></span>Claude Code<a onclick="switchView('cc')" data-en="More →">더 보기 →</a></div>
         <div class="home-group-cols">
           <div class="home-subcol">
-            <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
+            <div class="home-sub" data-en="changelog">changelog</div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">/goal</div>
@@ -431,7 +437,7 @@
       </div>
           </div>
           <div class="home-subcol">
-            <div class="home-sub" data-en="Bigger · blog">큰 기능 · 블로그</div>
+            <div class="home-sub" data-en="blog">blog</div>
         <a class="home-card" href="https://claude.com/blog/claude-managed-agents" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Claude Managed Agents</span>
           <span class="hc-desc" data-en="Managed Agents — 10x to production.">관리형 에이전트 — 프로덕션 10배.</span>
@@ -455,7 +461,7 @@
         <div class="home-group-head"><span class="src-dot src-openai"></span>Codex<a onclick="switchView('codex')" data-en="More →">더 보기 →</a></div>
         <div class="home-group-cols">
           <div class="home-subcol">
-            <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
+            <div class="home-sub" data-en="changelog">changelog</div>
         <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
           <div class="pick-tier t2" title="주요 — 확실히 유용" data-en="Notable">★★☆</div>
           <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases</p>
@@ -472,7 +478,7 @@
           <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
         </a>          </div>
           <div class="home-subcol">
-            <div class="home-sub" data-en="Bigger · blog">큰 기능 · 블로그</div>
+            <div class="home-sub" data-en="blog">blog</div>
         <a class="home-card" href="https://openai.com/index/warp" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">GPT-5.5</span>
           <span class="hc-desc" data-en="Next-gen agentic model.">차세대 모델 — 에이전트 강화.</span>
