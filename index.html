@@ -248,7 +248,7 @@
 <div class="topbar"><div class="topbar-inner">
   <div class="brand"><span class="bdot"></span>ai·pick <span class="bmono">claude code</span></div>
   <div class="topbar-spacer"></div>
-  <span class="sync-time"><span class="live"></span><span data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC-->2026-05-29 07:53<!--/SYNC--></span></span>
+  <span class="sync-time"><span class="live"></span><span data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC-->2026-05-30 07:06<!--/SYNC--></span></span>
   <button class="theme-toggle" id="langToggle" onclick="toggleLang()">EN</button>
   <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="테마 전환" aria-label="테마 전환"></button>
 </div></div>
@@ -256,7 +256,7 @@
 
   <header class="hero">
     <h1 data-en="This week, <span class=&quot;accent&quot;>what to try</span>">이번 주, <span class="accent">뭘 써볼까</span></h1>
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.154</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="Sep 29, 2025 – May 28">2025년 9월 29일 – 5월 28일</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.157</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="Sep 29, 2025 – May 29">2025년 9월 29일 – 5월 29일</span></p>
     <div id="landmarkBanner"></div>
   </header>
 
@@ -1149,6 +1149,139 @@
     <button class="filter-btn" data-filter="improve" data-en="⚡ Improvements">⚡ 개선</button>
     <button class="filter-btn" data-filter="fix" data-en="🐛 Fixes">🐛 수정</button>
     <button class="filter-btn" data-filter="security" data-en="🔒 Security">🔒 보안</button>
+  </div>
+
+  <!-- ── v2.1.157 ── -->
+  <div class="version-block" id="v2.1.157" data-types="feature improve security fix" data-date="2026-05-29">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.157</span><span class="ver-date">5월 29일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×17</span><span class="pill improve">개선 ×1</span><span class="pill security">보안 ×2</span><span class="pill fix">Fix ×13</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Plugins in <code>.claude/skills</code> directories are now automatically loaded, no marketplace required</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>claude plugin init &lt;name&gt;</code> to scaffold a new plugin in <code>.claude/skills</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and plugins from known marketplaces</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: the <code>agent</code> field in <code>settings.json</code> is now honored for dispatched sessions, with <code>--agent &lt;name&gt;</code> to override it</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>EnterWorktree</code> can now switch between Claude-managed worktrees mid-session</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>tool_decision</code> telemetry events now include <code>tool_parameters</code> (bash commands, MCP/skill names) when <code>OTEL_LOG_TOOL_DETAILS=1</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Worktrees managed by Claude are now left unlocked when the agent finishes, so <code>git worktree remove</code>/<code>prune</code> can clean them up</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">WSL: fixed image paste (<code>alt+v</code> keybinding), screenshot paste on Windows 11, and added support for dragging images from Windows Explorer</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/terminal-setup</code> now disables GPU acceleration in VS Code/Cursor/Windsurf integrated terminals to prevent garbled-text rendering</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">The Feature of the Week credit-claim status now appears as a notification in the status area instead of a line above the prompt</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude agents</code>: slash-command autocomplete in the dispatch input now matches substrings</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the "bash commands will be sandboxed" startup banner — sandbox status still shows in <code>/status</code> and when a command is blocked</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the "/ide for …" startup hint toast</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[IDE] Fixed clicking Stop while a background subagent is running not actually stopping it</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed the fast mode indicator not appearing on Opus 4.8</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Pressing backspace right after a workflow trigger keyword now dismisses the workflow request (same as alt+w) instead of deleting a character</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a "Workflow keyword trigger" setting in /config to stop the word "workflow" in a prompt from triggering a dynamic workflow</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">1</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">2</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">13</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved performance of long and resumed conversations by eliminating redundant message-rendering recomputations</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed sandbox network permission prompts appearing in auto and bypass-permissions mode when using the desktop app, IDE extensions, or SDK</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>claude agents</code> completed sessions not retiring when an idle subagent was still parked or had leaked a backgrounded shell</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">unprocessable images (zero-byte, corrupt) attached via paste, MCP,…</span>
+            <span class="chip">claude agents pressing Esc not cancelling a slow…</span>
+            <span class="chip">background agent worktrees under .claude/worktrees/ being orphaned after…</span>
+            <span class="chip">background sessions re-attached after a sleep/wake not telling…</span>
+            <span class="chip">copy-on-select in claude agents not reaching the system…</span>
+            <span class="chip">--resume not reporting background subagents that were running…</span>
+            <span class="chip">--resume session picker leaving its contents on the…</span>
+            <span class="chip">--worktree and --worktree --tmux returning to the canonical…</span>
+            <span class="chip">/model picker showing an incorrect &quot;Newer version available&quot;…</span>
+            <span class="chip">literal markdown markers (backticks, asterisks) appearing in the…</span>
+            <span class="chip">terminal freezing after approving the managed-settings security dialog…</span>
+            <span class="chip">a rare duplicate line appearing in scrollback after…</span>
+            <span class="chip">right-click paste duplicating the clipboard in the VS…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.156 ── -->
+  <div class="version-block" id="v2.1.156" data-types="fix" data-date="2026-05-29">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.156</span><span class="ver-date">5월 29일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">an issue when using Opus 4.8 where thinking…</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── v2.1.154 ── -->
