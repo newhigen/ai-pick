@@ -124,6 +124,10 @@
     .period-tab:hover { color: var(--text); border-color: var(--text); }
     .period-tab.active { background: var(--pick-bg); color: var(--pick); border-color: var(--pick); }
     .period-grid.hidden { display: none; }
+    .more-versions { display: block; width: 100%; margin: 4px 0 10px; padding: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--muted); font-size: .8rem; font-weight: 600; cursor: pointer; transition: all .12s; }
+    .more-versions:hover { color: var(--text); border-color: var(--text); }
+    .older-wrap.hidden { display: none; }
+    .new-badge { display: inline-block; margin-left: 5px; font-size: .54rem; font-weight: 800; color: #fff; background: var(--feature); padding: 0 5px; border-radius: 8px; letter-spacing: .5px; vertical-align: middle; }
     .pick-card { position: relative; }
     .pick-tier { position: absolute; top: 7px; right: 9px; font-size: .66rem; letter-spacing: .5px; line-height: 1; color: #e3a008; }
     .pick-tier.t1 { opacity: .85; }
@@ -1735,6 +1739,8 @@
   </div>
 
   <!-- ── v2.1.148 ── -->
+  <button class="more-versions" onclick="toggleOlder()">이전 버전 172개 더 보기 ▾</button>
+  <div class="older-wrap hidden" id="olderWrap">
   <div class="version-block" id="v2.1.148" data-types="fix" data-date="2026-05-22">
     <div class="version-head">
       <span class="ver-badge">v2.1.148</span><span class="ver-date">5월 22일 금</span><span class="ver-ago"></span>
@@ -9454,6 +9460,7 @@
     </div>
   </div>
 
+  </div>
 </div>
 <script>
   // 기본은 라이트. 다크는 명시적 opt-in.
@@ -9513,6 +9520,15 @@
         el.textContent = relLabel(diff);
         el.title = card.dataset.date;
         applyHeat(el, diff);
+      }
+      // NEW 배지: 최근 7일 내 출시
+      if (diff <= 7) {
+        const cmd = card.querySelector('.cmd');
+        if (cmd && !card.querySelector('.new-badge')) {
+          const b = document.createElement('span');
+          b.className = 'new-badge'; b.textContent = 'NEW';
+          cmd.insertAdjacentElement('afterend', b);
+        }
       }
     });
 
@@ -9632,6 +9648,13 @@
   };
 
   // 클릭 → 공식 docs로 새 탭 (요소 직접 전달)
+  function toggleOlder() {
+    const w = document.getElementById('olderWrap');
+    const btn = document.querySelector('.more-versions');
+    const hidden = w.classList.toggle('hidden');
+    const n = w.querySelectorAll('.version-block').length;
+    btn.textContent = hidden ? `이전 버전 ${n}개 더 보기 ▾` : '이전 버전 접기 ▴';
+  }
   function switchPeriod(period) {
     document.querySelectorAll('.period-tab').forEach(t => t.classList.toggle('active', t.dataset.period === period));
     document.querySelectorAll('.period-grid').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
@@ -9701,6 +9724,12 @@
       btn.classList.add('active');
       const f = btn.dataset.filter;
       const map = { feature:['feature'], improve:['improve'], fix:['fix'], security:['security'] };
+      const _ow = document.getElementById('olderWrap');
+      const _mb = document.querySelector('.more-versions');
+      if (_ow) {
+        if (f === 'all') { _ow.classList.add('hidden'); if(_mb) _mb.textContent = `이전 버전 ${_ow.querySelectorAll('.version-block').length}개 더 보기 ▾`; }
+        else { _ow.classList.remove('hidden'); }
+      }
       const match = map[f] || [];
 
       document.querySelectorAll('.version-block').forEach(block => {
