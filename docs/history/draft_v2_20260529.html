@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ai·pick — 디자인 초안 v2</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500;600&display=swap">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#fbfbfa;--surface:#fff;--surface-2:#f6f6f5;--line:#ececeb;--line-strong:#e0e0de;
+    --ink:#1a1a18;--ink-2:#6b6b66;--ink-3:#9a9a94;
+    --accent:#6b4cff;--accent-soft:#f0edff;
+    --feature:#1a7f4b;--improve:#2563c9;--fix:#b4690e;--security:#c8453a;--land:#b8860b;
+    --land-soft:#fdf6e3;
+    --radius:14px;--radius-sm:9px;
+    --shadow-sm:0 1px 2px rgba(20,20,18,.04),0 1px 3px rgba(20,20,18,.05);
+    --shadow-md:0 2px 8px rgba(20,20,18,.05),0 8px 24px rgba(20,20,18,.06);
+    --sans:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
+    --mono:'Google Sans Code',ui-monospace,monospace;
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(251,251,250,.82);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+  .topbar-inner{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:14px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:1.02rem;letter-spacing:-.02em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .brand .mono{font-family:var(--mono);color:var(--ink-3);font-weight:500;font-size:.78rem;letter-spacing:0}
+  .topbar-spacer{flex:1}
+  .sync{font-size:.74rem;color:var(--ink-3);display:flex;align-items:center;gap:5px}
+  .sync .live{width:6px;height:6px;border-radius:50%;background:var(--feature);box-shadow:0 0 0 3px rgba(26,127,75,.12)}
+  .ghost-btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:8px;cursor:pointer;transition:.15s}
+  .ghost-btn:hover{border-color:var(--ink-3);color:var(--ink)}
+  .hero{padding:52px 0 30px}
+  .hero h1{font-size:2.1rem;font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:12px}
+  .hero h1 .accent{color:var(--accent)}
+  .hero p{font-size:1.02rem;color:var(--ink-2);max-width:540px;line-height:1.6}
+  .hero .meta{margin-top:18px;display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--ink-3)}
+  .ver-chip{font-family:var(--mono);font-size:.78rem;background:var(--surface);border:1px solid var(--line-strong);padding:2px 9px;border-radius:7px;color:var(--ink-2)}
+
+  /* 랜드마크 배너 */
+  .landmark{display:flex;align-items:center;gap:14px;margin-top:24px;padding:15px 18px;background:var(--land-soft);border:1px solid #ecdca6;border-radius:var(--radius)}
+  .landmark .flag{font-size:1.3rem}
+  .landmark .lm-body{flex:1}
+  .landmark .lm-k{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--land)}
+  .landmark .lm-t{font-size:1rem;font-weight:750;letter-spacing:-.015em;margin-top:1px}
+  .landmark .lm-d{font-size:.84rem;color:var(--ink-2);margin-top:2px}
+  .landmark .lm-v{font-family:var(--mono);font-size:.74rem;color:var(--land);flex-shrink:0}
+
+  .periods{display:flex;gap:4px;margin:34px 0 8px;padding:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;width:fit-content;overflow-x:auto}
+  .period{border:none;background:none;font-family:inherit;font-size:.82rem;font-weight:600;color:var(--ink-2);padding:6px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .period:hover{color:var(--ink)}
+  .period.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+
+  .section{margin-top:40px}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .section-head h2{font-size:1.15rem;font-weight:750;letter-spacing:-.02em}
+  .section-head .sub{font-size:.82rem;color:var(--ink-3)}
+  .section-head .info{margin-left:auto;font-size:.76rem;color:var(--ink-3);cursor:help}
+
+  .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:14px}
+  .pick{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:relative;cursor:pointer;transition:.18s ease;box-shadow:var(--shadow-sm)}
+  .pick:hover{border-color:var(--line-strong);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+  .pick-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+  .cmd{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--accent);background:var(--accent-soft);padding:3px 9px;border-radius:7px}
+  .rating{display:flex;gap:2px}
+  .rating .s{width:5px;height:5px;border-radius:50%;background:var(--line-strong)}
+  .rating .s.on{background:var(--accent)}
+  .pick h3{font-size:1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:6px;line-height:1.3}
+  .pick .desc{font-size:.86rem;color:var(--ink-2);line-height:1.55;margin-bottom:14px}
+  .pick .notes{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:7px}
+  .note{font-size:.79rem;line-height:1.5;color:var(--ink-2)}
+  .note .tag{font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;margin-right:6px}
+  .note.why .tag{color:var(--feature)}
+  .note.learn .tag{color:var(--improve)}
+  .pick-foot{margin-top:13px;display:flex;align-items:center;gap:8px}
+  .pick-foot .v{font-family:var(--mono);font-size:.72rem;color:var(--ink-3)}
+  .pick-foot .ago{font-size:.72rem;color:var(--ink-3);margin-left:auto}
+  .new{font-size:.62rem;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
+
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .cat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .cat-head{font-size:.9rem;font-weight:700;letter-spacing:-.01em;margin-bottom:11px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .cat-head .ic{width:26px;height:26px;border-radius:7px;background:var(--surface-2);display:grid;place-items:center;font-size:.85rem}
+  .cat-head .cnt{margin-left:auto;font-size:.72rem;color:var(--ink-3);font-weight:600}
+  .cat-items{list-style:none;display:flex;flex-direction:column}
+  .cat-item{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-top:1px solid var(--line);cursor:pointer;transition:.12s}
+  .cat-item:first-of-type{border-top:none}
+  .cat-item:hover{padding-left:4px}
+  .cat-item .ci-cmd{font-family:var(--mono);font-size:.74rem;color:var(--accent);flex-shrink:0;min-width:96px}
+  .cat-item .ci-desc{font-size:.81rem;color:var(--ink-2);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cat-item .ci-v{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);flex-shrink:0}
+  .cat-more{margin-top:9px;font-size:.76rem;color:var(--ink-3);cursor:pointer;font-weight:600}
+  .cat-more:hover{color:var(--accent)}
+
+  .log{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .release{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .release-head{display:flex;align-items:center;gap:11px;padding:13px 18px;border-bottom:1px solid var(--line)}
+  .release-head .rv{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--ink)}
+  .release-head .rd{font-size:.78rem;color:var(--ink-3)}
+  .release-head .counts{margin-left:auto;display:flex;gap:6px}
+  .pill{font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:20px}
+  .pill.feature{color:var(--feature);background:rgba(26,127,75,.09)}
+  .pill.improve{color:var(--improve);background:rgba(37,99,201,.09)}
+  .pill.fix{color:var(--fix);background:rgba(180,105,14,.1)}
+  .pill.security{color:var(--security);background:rgba(200,69,58,.09)}
+  .release-body{padding:8px 18px 14px}
+  .ritem{display:flex;gap:11px;align-items:baseline;padding:7px 0;font-size:.86rem;color:var(--ink-2);line-height:1.55}
+  .ritem .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px}
+  .ritem.feature .dot{background:var(--feature)}
+  .ritem.improve .dot{background:var(--improve)}
+  .ritem code{font-family:var(--mono);font-size:.82em;background:var(--surface-2);padding:1px 5px;border-radius:5px;color:var(--ink)}
+  /* 랜드마크 줄 강조 박스 */
+  .ritem.land{background:var(--land-soft);border:1px solid #ecdca6;border-radius:var(--radius-sm);padding:10px 12px;margin:4px 0;align-items:center}
+  .ritem.land .dot{display:none}
+  .ritem.land .lm-flag{font-size:1rem;margin-right:2px}
+  .ritem.land .lm-txt{color:var(--ink);font-weight:650}
+  .ritem.land .lm-badge{margin-left:auto;font-size:.62rem;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--land);padding:2px 7px;border-radius:6px;flex-shrink:0}
+
+  .more{width:100%;margin-top:12px;padding:11px;background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);color:var(--ink-2);font-size:.82rem;font-weight:600;font-family:inherit;cursor:pointer;transition:.15s}
+  .more:hover{border-color:var(--ink-3);color:var(--ink);background:var(--surface-2)}
+  .footer{margin:56px 0 40px;padding-top:24px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-3);display:flex;gap:14px;flex-wrap:wrap}
+  .footer a{color:var(--ink-2);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="brand"><span class="dot"></span>ai·pick <span class="mono">claude code</span></div>
+  <div class="topbar-spacer"></div>
+  <span class="sync"><span class="live"></span>업데이트 5월 29일 05:20</span>
+  <button class="ghost-btn">◑ 테마</button>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>이번 주, <span class="accent">뭘 써볼까</span></h1>
+    <p>Claude Code 변경사항을 매일 정리해, 지금 바로 써볼 만한 기능을 골라 둡니다.</p>
+    <div class="meta"><span class="ver-chip">v2.0.0</span> → <span class="ver-chip">v2.1.154</span><span>· 2025년 9월 29일부터 추적</span></div>
+
+    <!-- 랜드마크 배너 -->
+    <div class="landmark">
+      <span class="flag">🚩</span>
+      <div class="lm-body">
+        <div class="lm-k">이번 달 랜드마크</div>
+        <div class="lm-t">Claude Opus 4.8 출시</div>
+        <div class="lm-d">새 플래그십 모델. <code style="font-family:var(--mono);font-size:.82em;background:var(--surface);padding:1px 5px;border-radius:4px">/model</code>에서 선택, Fast mode 기본값으로도 적용.</div>
+      </div>
+      <span class="lm-v">v2.1.154</span>
+    </div>
+  </header>
+
+  <div class="periods">
+    <button class="period active">최근</button><button class="period">5월</button><button class="period">4월</button><button class="period">3월</button><button class="period">2월</button><button class="period">1월</button><button class="period">12월</button><button class="period">11월</button><button class="period">10월</button><button class="period">9월</button>
+  </div>
+
+  <!-- 써볼 기능: 6개 + 더보기 -->
+  <section class="section">
+    <div class="section-head"><h2>써볼 기능</h2><span class="sub">효과성 높은 순</span><span class="info">●●● 핵심 · ●●○ 추천 · ●○○ 일반 ⓘ</span></div>
+    <div class="pick-grid">
+      <article class="pick"><div class="pick-top"><span class="cmd">/goal</span><span class="rating"><i class="s on"></i><i class="s on"></i><i class="s on"></i></span></div><h3>목표 기반 자율 실행</h3><p class="desc">완료 조건을 정하면 여러 턴에 걸쳐 스스로 진행. 경과·턴·토큰 오버레이.</p><div class="notes"><div class="note why"><span class="tag">왜</span>짧은 지시로 긴 작업 위임 — 끝났는지 안 봐도 됨</div><div class="note learn"><span class="tag">학습</span>어떤 완료 조건이 정확히 멈추는지</div></div><div class="pick-foot"><span class="v">v2.1.141</span><span class="ago">16일 전</span></div></article>
+      <article class="pick"><div class="pick-top"><span class="cmd">/code-review</span><span class="rating"><i class="s on"></i><i class="s on"></i><i class="s on"></i></span></div><h3>코드 리뷰 + PR 코멘트</h3><p class="desc">effort 수준을 골라 정확성 버그 리뷰. <code style="font-family:var(--mono);font-size:.82em">--comment</code>로 PR 인라인 게시.</p><div class="notes"><div class="note why"><span class="tag">왜</span>머지 전 자동 검토 — 수동 코멘트 X</div><div class="note learn"><span class="tag">학습</span>effort별 잡는 결함 vs 놓치는 것</div></div><div class="pick-foot"><span class="v">v2.1.147</span><span class="new">NEW</span><span class="ago">8일 전</span></div></article>
+      <article class="pick"><div class="pick-top"><span class="cmd">Agent View</span><span class="rating"><i class="s on"></i><i class="s on"></i><i class="s on"></i></span></div><h3>모든 세션 한 화면에</h3><p class="desc">실행 중·대기·완료 세션을 하나의 목록으로. 멀티태스킹 흐름이 달라짐.</p><div class="notes"><div class="note why"><span class="tag">왜</span>멀티 세션 추적 빠름 — 전환 비용 ↓</div><div class="note learn"><span class="tag">학습</span>어떤 작업이 병렬화 잘 되는지</div></div><div class="pick-foot"><span class="v">v2.1.141</span><span class="ago">16일 전</span></div></article>
+      <article class="pick"><div class="pick-top"><span class="cmd">/usage</span><span class="rating"><i class="s on"></i><i class="s on"></i><i class="s"></i></span></div><h3>카테고리별 비용 분석</h3><p class="desc">skills·subagents·plugins·MCP별 토큰 비용. 어디서 새는지 한눈에.</p><div class="notes"><div class="note why"><span class="tag">왜</span>토큰 새는 지점 정확히 — 최적화 근거</div><div class="note learn"><span class="tag">학습</span>가장 큰 소비 항목, 줄일 만한 MCP</div></div><div class="pick-foot"><span class="v">v2.1.149</span><span class="new">NEW</span><span class="ago">7일 전</span></div></article>
+      <article class="pick"><div class="pick-top"><span class="cmd">Ctrl+T</span><span class="rating"><i class="s on"></i><i class="s on"></i><i class="s"></i></span></div><h3>백그라운드 세션 고정</h3><p class="desc">유휴·업데이트 시에도 고정 세션 유지. 메모리 압박 시 비고정 먼저 정리.</p><div class="notes"><div class="note why"><span class="tag">왜</span>장기 작업 보존</div><div class="note learn"><span class="tag">학습</span>어떤 세션을 고정해야 효율적인지</div></div><div class="pick-foot"><span class="v">v2.1.147</span><span class="ago">8일 전</span></div></article>
+      <article class="pick"><div class="pick-top"><span class="cmd">terminalSeq</span><span class="rating"><i class="s on"></i><i class="s"></i><i class="s"></i></span></div><h3>터미널 없이 알림</h3><p class="desc">stop hook에서 데스크톱 알림·창 제목·벨. 백그라운드 완료 감지.</p><div class="notes"><div class="note why"><span class="tag">왜</span>폴링 없이 완료 즉시 인지</div><div class="note learn"><span class="tag">학습</span>OSC 패턴 구성, 알림 트리거 시점</div></div><div class="pick-foot"><span class="v">v2.1.141</span><span class="ago">16일 전</span></div></article>
+    </div>
+    <button class="more">써볼 기능 더 보기 (3개) →</button>
+  </section>
+
+  <!-- 용도별: 6 카테고리, 각 +더 -->
+  <section class="section">
+    <div class="section-head"><h2>용도별 보기</h2><span class="sub">“이럴 때 뭐 썼더라” 떠올릴 때</span></div>
+    <div class="cat-grid">
+      <div class="cat"><div class="cat-head"><span class="ic">🚀</span>긴 작업을 맡길 때<span class="cnt">5</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">/goal</span><span class="ci-desc">완료 조건 후 자율 진행</span><span class="ci-v">v141</span></li>
+        <li class="cat-item"><span class="ci-cmd">Ctrl+T</span><span class="ci-desc">백그라운드 세션 고정</span><span class="ci-v">v147</span></li>
+        <li class="cat-item"><span class="ci-cmd">terminalSeq</span><span class="ci-desc">완료 시 데스크톱 알림</span><span class="ci-v">v141</span></li>
+      </ul><div class="cat-more">+ 2개 더</div></div>
+      <div class="cat"><div class="cat-head"><span class="ic">🤖</span>여러 세션 동시에<span class="cnt">7</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">Agent View</span><span class="ci-desc">전체 세션 한 화면</span><span class="ci-v">v141</span></li>
+        <li class="cat-item"><span class="ci-cmd">/resume</span><span class="ci-desc">bg 세션도 목록에 표시</span><span class="ci-v">v144</span></li>
+        <li class="cat-item"><span class="ci-cmd">agents --json</span><span class="ci-desc">세션 스크립팅</span><span class="ci-v">v145</span></li>
+      </ul><div class="cat-more">+ 4개 더</div></div>
+      <div class="cat"><div class="cat-head"><span class="ic">📝</span>PR · 코드 리뷰<span class="cnt">3</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">/code-review</span><span class="ci-desc">리뷰 + 인라인 코멘트</span><span class="ci-v">v147</span></li>
+        <li class="cat-item"><span class="ci-cmd">/batch</span><span class="ci-desc">대규모 병렬 변경</span><span class="ci-v">v63</span></li>
+        <li class="cat-item"><span class="ci-cmd">상태줄 GitHub</span><span class="ci-desc">저장소·PR 정보 노출</span><span class="ci-v">v145</span></li>
+      </ul></div>
+      <div class="cat"><div class="cat-head"><span class="ic">💰</span>비용 · 컨텍스트<span class="cnt">4</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">/usage</span><span class="ci-desc">카테고리별 비용 분석</span><span class="ci-v">v149</span></li>
+        <li class="cat-item"><span class="ci-cmd">/context</span><span class="ci-desc">컨텍스트 사용 시각화</span><span class="ci-v">v89</span></li>
+        <li class="cat-item"><span class="ci-cmd">/compact</span><span class="ci-desc">대화 요약 압축</span><span class="ci-v">v20</span></li>
+      </ul><div class="cat-more">+ 1개 더</div></div>
+      <div class="cat"><div class="cat-head"><span class="ic">🎨</span>UI · 네비<span class="cnt">6</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">/diff</span><span class="ci-desc">키보드 스크롤 diff 뷰어</span><span class="ci-v">v149</span></li>
+        <li class="cat-item"><span class="ci-cmd">vim visual</span><span class="ci-desc">vim 비주얼 모드</span><span class="ci-v">v118</span></li>
+        <li class="cat-item"><span class="ci-cmd">/keybindings</span><span class="ci-desc">커스텀 단축키</span><span class="ci-v">v18</span></li>
+      </ul><div class="cat-more">+ 3개 더</div></div>
+      <div class="cat"><div class="cat-head"><span class="ic">🔒</span>모델 · Enterprise<span class="cnt">5</span></div><ul class="cat-items">
+        <li class="cat-item"><span class="ci-cmd">/model</span><span class="ci-desc">세션별 모델 선택</span><span class="ci-v">v144</span></li>
+        <li class="cat-item"><span class="ci-cmd">Opus 4.8</span><span class="ci-desc">새 플래그십 모델</span><span class="ci-v">v154</span></li>
+        <li class="cat-item"><span class="ci-cmd">/sandbox</span><span class="ci-desc">샌드박스 모드</span><span class="ci-v">v89</span></li>
+      </ul><div class="cat-more">+ 2개 더</div></div>
+    </div>
+  </section>
+
+  <!-- 패치노트: 5개 + 강조박스 + 더보기 -->
+  <section class="section">
+    <div class="section-head"><h2>전체 변경사항</h2><span class="sub">최신순 · 효과성 정렬</span></div>
+    <div class="log">
+      <div class="release"><div class="release-head"><span class="rv">v2.1.154</span><span class="rd">5월 28일 · 어제</span><span class="counts"><span class="pill feature">기능 2</span><span class="pill fix">수정 6</span></span></div><div class="release-body">
+        <div class="ritem land"><span class="lm-flag">🚩</span><span class="lm-txt">Claude Opus 4.8 출시 — 새 플래그십 모델</span><span class="lm-badge">랜드마크</span></div>
+        <div class="ritem feature"><span class="dot"></span>스킬·슬래시 명령에서 <code>disallowed-tools</code> frontmatter 지원</div>
+        <div class="ritem feature"><span class="dot"></span><code>/reload-skills</code>로 재시작 없이 스킬 재스캔</div>
+      </div></div>
+      <div class="release"><div class="release-head"><span class="rv">v2.1.153</span><span class="rd">5월 28일 · 어제</span><span class="counts"><span class="pill feature">기능 4</span><span class="pill security">보안 1</span><span class="pill fix">수정 3</span></span></div><div class="release-body">
+        <div class="ritem feature"><span class="dot"></span>상태줄 명령에 <code>COLUMNS</code>·<code>LINES</code> 환경변수 전달</div>
+        <div class="ritem improve"><span class="dot"></span><code>claude agents</code> 자동완성에 네이티브 명령·스킬 포함</div>
+      </div></div>
+      <div class="release"><div class="release-head"><span class="rv">v2.1.152</span><span class="rd">5월 27일 · 2일 전</span><span class="counts"><span class="pill feature">기능 16</span><span class="pill fix">수정 14</span></span></div><div class="release-body">
+        <div class="ritem feature"><span class="dot"></span><code>/code-review --fix</code>로 리뷰 결과 자동 적용</div>
+        <div class="ritem feature"><span class="dot"></span><code>MessageDisplay</code> hook — 메시지 표시 변형/숨김</div>
+      </div></div>
+    </div>
+    <button class="more">이전 버전 172개 더 보기 →</button>
+  </section>
+
+  <div class="footer"><a href="#">GitHub</a><a href="#">공식 changelog</a><span style="margin-left:auto">매일 05:20 자동 업데이트 · ai.sungd.uk</span></div>
+</div>
+</body>
+</html>

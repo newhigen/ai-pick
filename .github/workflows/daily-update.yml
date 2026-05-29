@@ -45,42 +45,43 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: "--max-turns 30 --model claude-sonnet-4-6"
           prompt: |
-            ai-pick 사이트(index.html)의 큐레이션 갱신 작업이다. 토큰 절약을 위해 꼭 필요한 편집만 하라.
+            ai-pick 사이트(index.html) 큐레이션 갱신. 토큰 절약 — 꼭 필요한 최소 편집만. 확신 없으면 아무것도 바꾸지 말 것.
 
             ## 입력
-            `new-features.json` — 이번에 새로 추가된 Claude Code feature 목록 (version, date, text).
+            `new-features.json` — 이번에 추가된 새 feature 목록 (version, date, text).
 
-            ## 할 일
-            index.html을 편집한다. 두 영역만 건드린다:
+            ## 구조 (반드시 이 selector 안에서만 편집)
+            - 써볼 기능 최근: `<div class="pick-grid period-grid" data-section="pick" data-period="recent">` (월별 data-period는 절대 건드리지 말 것)
+            - 용도별 최근: `<div class="cat-grid period-grid" data-section="cat" data-period="recent">`
 
-            1. **🎯 오늘 써볼 기능 (Pick, .pick-grid)** — 카드 6개 고정.
-               new-features 중 "사용자가 당장 써볼 만한" 것이 있으면, 기존 6개 중 가장 오래되거나 덜 매력적인 카드와 교체.
-               정말 주목할 게 없으면 Pick은 그대로 둔다 (억지로 교체 금지).
-               카드 형식(기존과 동일):
+            ## 할 일 (보수적으로)
+            1. **써볼 기능 (recent pick-grid)** — new-features 중 "정말 당장 써볼 만한" 것이 있을 때만 기존 카드 1개와 교체. 없으면 그대로 둠.
+               카드 형식 (효과성 ★ 등급 포함 — t3 핵심/t2 추천/t1 일반, 우상단):
                <div class="pick-card" onclick="openDoc(this)" data-date="YYYY-MM-DD">
-                 <div class="cmd">명령어/기능명</div>
+                 <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
+                 <div class="cmd">/명령</div>
                  <h3>짧은 제목</h3>
                  <p>한 줄 설명.</p>
                  <div class="pick-meta">
-                   <div class="pick-why"><strong>왜?</strong> 무엇을 더 잘/효과적으로 하는지 한 줄</div>
-                   <div class="pick-check"><strong>학습:</strong> 써보며 확인할 포인트 한 줄</div>
+                   <div class="pick-why"><strong>왜?</strong> 무엇을 더 잘/효과적으로</div>
+                   <div class="pick-check"><strong>학습:</strong> 써보며 확인할 포인트</div>
                  </div>
                  <div class="ver"><span class="vtag">v2.1.XXX</span><span class="dag"></span></div>
                </div>
+               등급 기준: t3(★★★)=새 모델/패러다임·핵심 워크플로우, t2(★★☆)=확실히 유용, t1(★☆☆)=소소한 편의. recent는 효과성 높은 순(t3→t1) 좌→우 정렬 유지.
+            2. **용도별 (recent cat-grid)** — 새 feature를 적합 카테고리 <ul class="cat-items">에 추가 (카테고리당 과밀 금지, 5개 내외):
+               <li class="cat-item" onclick="openDoc(this)"><span class="cat-cmd">명령</span><span class="cat-desc">짧은 설명</span><span class="cat-ver">v2.1.XXX</span></li>
+               카테고리: 🚀 긴 작업 / 🤖 Subagent·세션 / 📝 PR·리뷰 / 💰 비용·컨텍스트 / 🎨 UI·네비 / 🧩 Plugin·MCP·확장 / 🪝 Hook·모니터링 / 🔒 모델·Enterprise
 
-            2. **🧰 용도별로 보기 (.cat-grid)** — 8개 카테고리.
-               각 새 feature를 적합한 카테고리 카드의 <ul class="cat-items">에 추가.
-               형식: <li class="cat-item" onclick="openDoc(this)"><span class="cat-cmd">명령어</span><span class="cat-desc">짧은 설명</span><span class="cat-ver">v2.1.XXX</span></li>
-               카테고리: 🚀 긴 작업 / 🤖 Subagent·멀티세션 / 📝 PR·리뷰 / 💰 비용·컨텍스트 / 🎨 일상 UI·네비 / 🧩 Plugin·MCP·Extend / 🪝 Hook·모니터링 / 🔒 모델·Enterprise·IAM
-               애매하면 가장 가까운 곳에. 정말 안 맞으면 생략 가능.
+            ## 절대 금지
+            - 버전 블록(.version-block)·월별 그리드(data-period가 recent 아닌 것)·랜드마크는 건드리지 마라. 버전 목록은 스크립트가, 랜드마크는 페이지 JS가 자동 처리한다.
+            - 디자인/CSS 변경 금지. 마크업 형식 그대로.
+            - 커밋/푸시 금지 (워크플로가 처리).
 
             ## 규칙
-            - 한국어, 기존 톤 유지 (간결, ~함/~음). 영문 원문 직역 금지 — 핵심만 의역.
-            - `openDoc(this)` 클릭 핸들러 형식 그대로 유지.
-            - 새 명령이 docsMap(<script> 내부)에 없고 슬래시 명령이면 docsMap에도 추가 (경로 모르면 생략 → 폴백이 /commands 처리).
-            - 버전 블록(.version-block)은 절대 건드리지 마라 (스크립트가 이미 처리함).
-            - 커밋/푸시는 하지 마라. 워크플로가 처리한다.
-            - 편집할 게 없다고 판단되면 아무것도 바꾸지 말고 종료.
+            - 한국어, 간결한 톤(~함/~음). 영문 직역 금지 — 핵심만 의역.
+            - 새 슬래시 명령은 docsMap(<script> 내부)에 경로 추가 (모르면 생략 → /commands 폴백).
+            - 편집할 게 없으면 아무것도 바꾸지 말고 종료.
 
       - name: Commit curation changes
         if: steps.update.outputs.has_features == 'true'
