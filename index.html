@@ -266,6 +266,22 @@
     /* 홈: 오늘 써볼 기능 */
     .home-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
     .home-col{display:flex;flex-direction:column;gap:12px}
+    .home-groups{display:grid;grid-template-columns:6fr 4fr;gap:30px;margin-top:8px;align-items:start}
+    .home-group{min-width:0}
+    .home-group-head{display:flex;align-items:center;gap:9px;font-size:1.08rem;font-weight:800;letter-spacing:-.02em;color:var(--text);padding-bottom:9px;border-bottom:1px solid var(--border)}
+    .home-group-head .src-dot{width:11px;height:11px;border-radius:50%}
+    .home-group-head a{margin-left:auto;font-size:.76rem;font-weight:650;color:var(--pick);text-decoration:none;cursor:pointer}
+    .home-group-cols{display:grid;grid-template-columns:6fr 4fr;gap:14px;margin-top:13px}
+    .home-subcol{display:flex;flex-direction:column;gap:9px;min-width:0}
+    .home-subcol .pick-card{padding:12px 13px;box-shadow:none}
+    .home-subcol .pick-card:hover{box-shadow:var(--shadow-sm)}
+    .home-subcol .pick-card h3{font-size:.86rem;margin-bottom:3px;line-height:1.3}
+    .home-subcol .pick-card p,.home-subcol .pick-card .pick-lead{font-size:.78rem;margin-bottom:7px;line-height:1.45}
+    .home-subcol .pick-card .pick-tier{top:11px;right:12px}
+    .home-subcol .pick-card .cmd{margin-bottom:8px}
+    .home-subcol .home-card{padding:11px 13px}
+    @media (max-width:980px){.home-groups{grid-template-columns:1fr;gap:26px}}
+    @media (max-width:680px){.home-group-cols{grid-template-columns:1fr}}
     .home-sub{font-size:.7rem;font-weight:750;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin:8px 0 -2px}
     .home-col .pick-card{padding:13px 15px;box-shadow:none}
     .home-col .pick-card:hover{box-shadow:var(--shadow-sm)}
@@ -384,12 +400,14 @@
   <div class="view" data-view="home">
     <header class="hero">
       <h1 data-en="<span class=&quot;accent&quot;>What to try</span> today">오늘 <span class="accent">써볼 기능</span></h1>
-      <p data-en="New from Claude Code &amp; Codex changelogs, plus bigger features worth a few days.">Claude Code·Codex의 새 기능, 그리고 며칠에 걸쳐 써볼 큰 기능까지.</p>
+      <p data-en="New from changelogs, plus bigger features worth a few days. Claude Code emphasized.">changelog 새 기능과 며칠에 걸쳐 써볼 큰 기능. Claude Code 비중을 크게.</p>
     </header>
-    <div class="home-cols">
-      <div class="home-col">
-        <div class="home-col-head"><span class="src-dot src-anthropic"></span>Claude Code<a onclick="switchView('cc')" data-en="More →">더 보기 →</a></div>
-        <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
+    <div class="home-groups">
+      <div class="home-group">
+        <div class="home-group-head"><span class="src-dot src-anthropic"></span>Claude Code<a onclick="switchView('cc')" data-en="More →">더 보기 →</a></div>
+        <div class="home-group-cols">
+          <div class="home-subcol">
+            <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">/goal</div>
@@ -411,14 +429,16 @@
         <p data-en="Formerly /simplify. Pick effort; <code>--comment</code> posts inline comments on a GitHub PR.">구 /simplify. effort 선택, <code>--comment</code>로 GitHub PR 인라인 코멘트 게시.</p>
         <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
       </div>
-        <div class="home-sub" data-en="Bigger features · blog">큰 기능 · 블로그</div>
+          </div>
+          <div class="home-subcol">
+            <div class="home-sub" data-en="Bigger · blog">큰 기능 · 블로그</div>
         <a class="home-card" href="https://claude.com/blog/claude-managed-agents" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Claude Managed Agents</span>
-          <span class="hc-desc" data-en="Managed Agents — 10x faster to production.">관리형 에이전트 — 프로덕션 10배 빠르게.</span>
+          <span class="hc-desc" data-en="Managed Agents — 10x to production.">관리형 에이전트 — 프로덕션 10배.</span>
         </a>
         <a class="home-card" href="https://claude.com/blog/claude-managed-agents-memory" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Managed Agents + 메모리</span>
-          <span class="hc-desc" data-en="Built-in memory for Managed Agents.">에이전트에 메모리 내장.</span>
+          <span class="hc-desc" data-en="Built-in memory for agents.">에이전트에 메모리 내장.</span>
         </a>
         <a class="home-card" href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Dynamic workflows</span>
@@ -426,44 +446,51 @@
         </a>
         <a class="home-card" href="https://claude.com/blog/claude-code-desktop-redesign" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Claude Code desktop 개편</span>
-          <span class="hc-desc" data-en="Desktop redesigned for parallel agents.">병렬 에이전트용 데스크톱 재설계.</span>
+          <span class="hc-desc" data-en="Desktop for parallel agents.">병렬 에이전트용 데스크톱 재설계.</span>
         </a>
+          </div>
+        </div>
       </div>
-      <div class="home-col">
-        <div class="home-col-head"><span class="src-dot src-openai"></span>Codex<a onclick="switchView('codex')" data-en="More →">더 보기 →</a></div>
-        <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
-      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t2" title="주요 — 확실히 유용" data-en="Notable">★★☆</div>
-        <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases</p>
-        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
-      </a>
-      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t1" title="일반 — 소소" data-en="Minor">★☆☆</div>
-        <div class="cmd">/status</div><p class="pick-lead">shows remote connection details and server version when the TUI is connected over a remote transport</p>
-        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
-      </a>
-      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t2" title="주요 — 확실히 유용" data-en="Notable">★★☆</div>
-        <p class="pick-lead">Vim mode gained text-object editing, improved word/line-end behavior, and a configurable interrupt-turn binding</p>
-        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
-      </a>
-        <div class="home-sub" data-en="Bigger features · blog">큰 기능 · 블로그</div>
+      <div class="home-group">
+        <div class="home-group-head"><span class="src-dot src-openai"></span>Codex<a onclick="switchView('codex')" data-en="More →">더 보기 →</a></div>
+        <div class="home-group-cols">
+          <div class="home-subcol">
+            <div class="home-sub" data-en="New · changelog">새 기능 · changelog</div>
+        <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용" data-en="Notable">★★☆</div>
+          <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases</p>
+          <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+        </a>
+        <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t1" title="일반 — 소소" data-en="Minor">★☆☆</div>
+          <div class="cmd">/status</div><p class="pick-lead">shows remote connection details and server version when the TUI is connected over a remote transport</p>
+          <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+        </a>
+        <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용" data-en="Notable">★★☆</div>
+          <p class="pick-lead">Vim mode gained text-object editing, improved word/line-end behavior, and a configurable interrupt-turn binding</p>
+          <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+        </a>          </div>
+          <div class="home-subcol">
+            <div class="home-sub" data-en="Bigger · blog">큰 기능 · 블로그</div>
         <a class="home-card" href="https://openai.com/index/warp" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">GPT-5.5</span>
-          <span class="hc-desc" data-en="Next-gen model for agentic workflows.">차세대 모델 — 에이전트 워크플로 강화.</span>
+          <span class="hc-desc" data-en="Next-gen agentic model.">차세대 모델 — 에이전트 강화.</span>
         </a>
         <a class="home-card" href="https://openai.com/index/work-with-codex-from-anywhere" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Work with Codex from anywhere</span>
-          <span class="hc-desc" data-en="Use Codex on mobile and web.">모바일·웹에서 Codex 사용.</span>
+          <span class="hc-desc" data-en="Codex on mobile and web.">모바일·웹에서 Codex.</span>
         </a>
         <a class="home-card" href="https://openai.com/index/building-codex-windows-sandbox" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Codex on Windows</span>
-          <span class="hc-desc" data-en="Codex now runs on Windows.">Windows 샌드박스 지원.</span>
+          <span class="hc-desc" data-en="Codex on Windows.">Windows 샌드박스 지원.</span>
         </a>
         <a class="home-card" href="https://openai.com/index/personal-finance-chatgpt" target="_blank" rel="noopener noreferrer">
           <span class="hc-title">Personal finance in ChatGPT</span>
-          <span class="hc-desc" data-en="A new personal finance experience.">ChatGPT 개인 재무 경험.</span>
+          <span class="hc-desc" data-en="Personal finance in ChatGPT.">ChatGPT 개인 재무.</span>
         </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
