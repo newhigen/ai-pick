@@ -84,7 +84,10 @@
     .sync-time{font-size:.73rem;color:var(--ink-3);display:flex;align-items:center;gap:6px;white-space:nowrap}
     .sync-time .live{width:6px;height:6px;border-radius:50%;background:var(--feature);box-shadow:0 0 0 3px var(--feature-bg)}
     .sync-time .sync-stamp{font-family:var(--mono)}
-    .theme-toggle{border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:8px;cursor:pointer;transition:.15s;white-space:nowrap}
+    .theme-toggle{border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:8px;cursor:pointer;transition:.15s;white-space:nowrap;text-align:center}
+    #langToggle{min-width:62px}
+    #themeToggle{min-width:82px}
+    .sync-time{min-width:188px;justify-content:flex-end}
     .theme-toggle:hover{border-color:var(--ink-3);color:var(--text)}
 
     /* ── Hero ── */
@@ -252,7 +255,7 @@
 
   <header class="hero">
     <h1 data-en="This week, <span class=&quot;accent&quot;>what to try</span>">이번 주, <span class="accent">뭘 써볼까</span></h1>
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.154</strong> &nbsp;·&nbsp; 2025년 9월 29일 – 5월 28일</p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.154</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="Sep 29, 2025 – May 28">2025년 9월 29일 – 5월 28일</span></p>
     <div id="landmarkBanner"></div>
   </header>
 
@@ -540,7 +543,7 @@
       <div class="pick-card" onclick="openDoc(this)" data-date="2025-12-19">
         <div class="pick-tier t1" title="일반 — 소소한 편의">★☆☆</div>
         <div class="cmd">/terminal-setup</div>
-        <h3 data-en="More terminal setup">터미널 셋업 확장</h3>
+        <h3 data-en="More terminals supported">터미널 셋업 확장</h3>
         <p data-en="Kitty, Alacritty, Zed, Warp support">Kitty·Alacritty·Zed·Warp 지원</p>
         <div class="ver"><span class="vtag">v2.0.74</span><span class="dag"></span></div>
       </div>

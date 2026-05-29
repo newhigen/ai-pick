@@ -224,6 +224,11 @@ def main():
     html = re.sub(
         r'(– )\d+월\s*\d+일',
         rf'\g<1>{nd.month}월 {nd.day}일', html, count=1)
+    # 영어 날짜(range-dates data-en)도 갱신: 시작 Sep 29, 2025 고정, 끝만 변동
+    EN_MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    html = re.sub(
+        r'(class="range-dates" data-en=")[^"]*(")',
+        rf'\g<1>Sep 29, 2025 – {EN_MON[nd.month-1]} {nd.day}\g<2>', html, count=1)
 
     # 동기화 타임스탬프 갱신 (KST)
     kst = timezone(timedelta(hours=9))
