@@ -48,13 +48,13 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: "--max-turns 30 --model claude-sonnet-4-6"
           prompt: |
-            ai-pick 사이트(index.html) 큐레이션 갱신. 토큰 절약 — 꼭 필요한 최소 편집만. 확신 없으면 아무것도 바꾸지 말 것.
+            Agent Edge 사이트(index.html, repo: ai-pick) 큐레이션 갱신. 토큰 절약 — 꼭 필요한 최소 편집만. 확신 없으면 아무것도 바꾸지 말 것.
 
             ## 입력
             `new-features.json` — 이번에 추가된 새 feature 목록 (version, date, text).
 
             ## 구조 (반드시 이 selector 안에서만 편집)
-            - 써볼 기능 최근: `<div class="pick-grid period-grid" data-section="pick" data-period="recent">` (월별 data-period는 절대 건드리지 말 것)
+            - 써볼 기능 최근(CC 탭 data-view="cc" 안): `<div class="pick-grid period-grid" data-section="pick" data-period="recent">` (월별 data-period는 절대 건드리지 말 것)
             - 용도별 최근: `<div class="cat-grid period-grid" data-section="cat" data-period="recent">`
 
             ## 할 일 (보수적으로)
@@ -87,6 +87,7 @@ jobs:
 
             ## 절대 금지
             - 버전 블록(.version-block)·월별 그리드(data-period가 recent 아닌 것)·랜드마크는 건드리지 마라. 버전 목록은 스크립트가, 랜드마크는 페이지 JS가 자동 처리한다.
+            - **편집은 오직 CC 탭(data-view="cc")에만.** Codex 탭(data-view="codex", 그리드 data-section="codex-pick")·Manus 탭은 자동화 대상이 아니니 절대 건드리지 마라.
             - 디자인/CSS 변경 금지. 마크업 형식 그대로.
             - 커밋/푸시 금지 (워크플로가 처리).
 
