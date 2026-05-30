@@ -10888,6 +10888,7 @@
     document.querySelectorAll('.top-tab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
     document.querySelectorAll('.view').forEach(el => el.classList.toggle('hidden', el.dataset.view !== v));
     window.scrollTo(0,0);
+    try{localStorage.setItem('cc-view',v)}catch(e){}
   }
   function moreLabel(n, open){
     if (CUR_LANG === 'en') return open ? 'Collapse older versions ▴' : `Show ${n} older versions ▾`;
@@ -10916,6 +10917,8 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    try{const _sv=localStorage.getItem('cc-view'); if(_sv) switchView(_sv);}catch(e){}
+    (function(){const cut=Date.now()-28*864e5;document.querySelectorAll('[data-view="home"] .pick-card, [data-view="home"] .home-card').forEach(c=>{const el=c.matches('[data-date]')?c:c.querySelector('[data-date]');const d=el&&el.getAttribute('data-date');if(d&&new Date(d).getTime()<cut)c.style.display='none';});})();
     if (CUR_LANG === 'en') {
       document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.getAttribute('data-en'); });
       const lb = document.getElementById('langToggle'); if (lb) lb.textContent = 'KO';
