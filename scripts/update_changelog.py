@@ -232,9 +232,12 @@ def main():
 
     # 동기화 타임스탬프 갱신 (KST)
     kst = timezone(timedelta(hours=9))
-    stamp = datetime.now(kst).strftime('%Y-%m-%d %H:%M')
+    now = datetime.now(kst)
+    stamp = (f'<span class="s-y">{now:%Y}-</span>'
+             f'<span class="s-md">{now:%m-%d}</span>'
+             f'<span class="s-t"> {now:%H:%M}</span>')
     html = re.sub(r'<!--SYNC-->.*?<!--/SYNC-->',
-                  f'<!--SYNC-->{stamp}<!--/SYNC-->', html)
+                  f'<!--SYNC-->{stamp}<!--/SYNC-->', html, flags=re.S)
 
     open(HTML_PATH, 'w', encoding='utf-8').write(html)
     added = ', '.join(f'v{v}' for v, _, _ in new)
