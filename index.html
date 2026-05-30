@@ -144,7 +144,7 @@
     .pick-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:.18s ease;box-shadow:var(--shadow-sm)}
     .pick-card:hover{border-color:var(--line-strong);box-shadow:var(--shadow-md);transform:translateY(-2px)}
     .pick-card .cmd{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--pick);background:var(--pick-bg);padding:3px 9px;border-radius:7px;display:inline-block;margin-bottom:12px}
-    .pick-tier{position:absolute;top:16px;right:16px;font-size:.66rem;letter-spacing:.5px;line-height:1;color:var(--land)}
+    .pick-tier{position:absolute;top:auto;bottom:13px;right:14px;font-size:.66rem;letter-spacing:.5px;line-height:1;color:var(--land)}
     .pick-tier + .pick-lead{margin-top:24px}
     .pick-tier.t1{opacity:.8}
     .pick-card h3{font-size:1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:6px;line-height:1.3;color:var(--text)}
@@ -154,9 +154,9 @@
     .pick-why strong,.pick-check strong{font-weight:700;font-size:.74rem;margin-right:5px}
     .pick-why strong{color:var(--feature)}
     .pick-check strong{color:var(--improve)}
-    .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3)}
+    .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
     .pick-card .ver .vtag{font-family:var(--mono)}
-    .pick-card .ver .dag{margin-left:auto;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
+    .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
     .new-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
 
     /* ── Use-case cards ── */
@@ -311,6 +311,14 @@
     .side-feat:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
     .sf-title{font-size:.83rem;font-weight:700;color:var(--text);line-height:1.3}
     .sf-desc{font-size:.74rem;color:var(--muted);line-height:1.4}
+    .sf-meta{display:flex;align-items:center;gap:7px;margin-top:4px}
+    .sf-star{font-size:.6rem;color:var(--land);letter-spacing:.3px;flex-shrink:0}
+    .sf-meta .news-date{font-family:var(--mono);font-size:.63rem;color:var(--ink-3)}
+    .clk-badge{position:absolute;top:12px;right:12px;width:13px;height:13px;color:var(--ink-3);opacity:.5;pointer-events:none}
+    .clk-badge svg{width:13px;height:13px;display:block}
+    .clk-prv{color:var(--pick);opacity:.7}
+    
+    a:hover > .clk-badge,div:hover > .clk-badge{opacity:.95}
     .side-read{font-size:.8rem;color:var(--text);text-decoration:none;line-height:1.4;padding:2px 0;border-bottom:1px solid transparent}
     .side-read:hover{color:var(--pick)}
     .side-more{font-size:.74rem;font-weight:650;color:var(--pick);text-decoration:none;margin-top:2px}
@@ -329,20 +337,20 @@
     .home-subcol .pick-card:hover{box-shadow:var(--shadow-sm)}
     .home-subcol .pick-card h3{font-size:.86rem;margin-bottom:3px;line-height:1.3}
     .home-subcol .pick-card p,.home-subcol .pick-card .pick-lead{font-size:.78rem;margin-bottom:7px;line-height:1.45}
-    .home-subcol .pick-card .pick-tier{top:11px;right:12px}
+    .home-subcol .pick-card .pick-tier{bottom:11px;right:13px}
     .home-subcol .pick-card .cmd{margin-bottom:8px}
     .home-subcol .home-card{padding:11px 13px}
     @media (max-width:980px){.home-groups{grid-template-columns:1fr;gap:26px}}
     @media (max-width:680px){.home-group-cols{grid-template-columns:1fr}}
-    .home-card .pick-tier{top:12px;right:13px}
-    .home-card .hc-date{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);margin-top:5px}
+    .home-card .pick-tier{bottom:12px;right:14px}
+    .home-card .hc-date{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);margin-top:5px;padding-right:40px}
     .home-card .hc-title{padding-right:34px}
     .home-sub{font-size:.7rem;font-weight:750;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin:8px 0 -2px}
     .home-col .pick-card{padding:13px 15px;box-shadow:none}
     .home-col .pick-card:hover{box-shadow:var(--shadow-sm)}
     .home-col .pick-card h3{font-size:.9rem;margin-bottom:4px}
     .home-col .pick-card p,.home-col .pick-card .pick-lead{font-size:.81rem;margin-bottom:8px;line-height:1.5}
-    .home-col .pick-card .pick-tier{top:12px;right:13px}
+    .home-col .pick-card .pick-tier{bottom:12px;right:13px}
     .home-col .pick-card .cmd{margin-bottom:9px}
     .home-col-head{display:flex;align-items:center;gap:9px;font-size:1.1rem;font-weight:800;letter-spacing:-.02em;color:var(--text);padding-bottom:6px}
     .home-col-head .src-dot{width:11px;height:11px;border-radius:50%}
@@ -372,7 +380,7 @@
     .news-tier{margin-left:auto;font-size:.66rem;letter-spacing:.5px;color:var(--land)}
     .news-tier.t1{opacity:.8}
     .feat-card{position:relative}
-    .feat-card .pick-tier{top:13px;right:13px}
+    .feat-card .pick-tier{bottom:13px;right:14px}
     .feed-ago{font-family:var(--mono);font-size:.66rem;color:var(--ink-3);flex-shrink:0;min-width:48px}
     .feed-tier{margin-left:8px;font-size:.64rem;letter-spacing:.5px;color:var(--land);flex-shrink:0;align-self:center}
     .feed-tier.t1{opacity:.8}
@@ -392,7 +400,8 @@
     .feat-card{padding:16px 17px}
     .feat-card h3{margin-bottom:6px}
     .feat-card p{margin-bottom:0}
-    .feat-foot{margin-top:13px;display:flex;align-items:center;gap:8px}
+    .feat-foot{margin-top:13px;display:flex;align-items:center;gap:8px;padding-right:40px}
+    .feat-card .news-arrow{display:none}
     .feat-foot .news-date{font-family:var(--mono);font-size:.67rem;color:var(--ink-3)}
     .feat-foot .news-arrow{margin:0 0 0 auto}
     .news-feed{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface);box-shadow:var(--shadow-sm)}
@@ -11256,6 +11265,41 @@
       }
     });
 
+    document.querySelectorAll('.side-feat[href]').forEach(el => {
+      const a=ANALYSIS[el.href]; if(!a || el.querySelector('.sf-meta')) return;
+      const sp=document.createElement('span'); sp.className='sf-meta';
+      sp.innerHTML='<span class="sf-star" title="'+(a.ttko||'')+'">'+a.tier+'</span><span class="news-date" data-date="'+a.date+'"></span>';
+      el.appendChild(sp);
+    });
+    (function sortBlogs(){
+      const key=el=>(ANALYSIS[el.href]&&ANALYSIS[el.href].date)||'';
+      document.querySelectorAll('.tool-side .side-sec').forEach(sec=>{
+        const f=[...sec.querySelectorAll('.side-feat[href]')]; if(f.length<2) return;
+        f.sort((a,b)=>key(b).localeCompare(key(a))); f.forEach(x=>sec.appendChild(x));
+      });
+      document.querySelectorAll('.home-subcol').forEach(col=>{
+        const c=[...col.querySelectorAll('.home-card[href]')]; if(c.length<2) return;
+        c.sort((a,b)=>key(b).localeCompare(key(a))); c.forEach(x=>col.appendChild(x));
+      });
+      document.querySelectorAll('[data-view="manus"] .news-grid').forEach(g=>{
+        const c=[...g.querySelectorAll('.feat-card[href]')]; if(c.length<2) return;
+        c.sort((a,b)=>key(b).localeCompare(key(a))); c.forEach(x=>g.appendChild(x));
+      });
+    })();
+    (function markCards(){
+      const EXT="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7M9 7h8v8'/></svg>";
+      const PRV="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.2-3.2'/></svg>";
+      document.querySelectorAll('.pick-card,.home-card,.side-feat,.feat-card').forEach(el=>{
+        if(el.querySelector(':scope > .clk-badge')) return;
+        const oc=el.getAttribute('onclick')||'';
+        const modal=oc.includes('openSheet') && ANALYSIS[el.href];
+        const b=document.createElement('span');
+        b.className='clk-badge '+(modal?'clk-prv':'clk-ext');
+        b.innerHTML=modal?PRV:EXT;
+        b.setAttribute('title', modal?'클릭 시 분석 미리보기':'클릭 시 원문으로 이동');
+        el.appendChild(b);
+      });
+    })();
     document.querySelectorAll('.news-date[data-date]').forEach(el => {
       const diff = daysDiff(el.dataset.date);
       el.textContent = absLabel(el.dataset.date);
