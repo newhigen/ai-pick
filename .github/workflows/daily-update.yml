@@ -38,6 +38,9 @@ jobs:
           git push
 
       # ── 2단계: 새 feature 있을 때만 Claude가 판단 (Pick·카테고리) ──
+      - name: Detect new blog posts
+        run: python scripts/collect_blog.py || echo '[]' > new_blog.json
+
       - name: Curate Pick & categories (Claude judgment)
         if: steps.update.outputs.has_features == 'true'
         uses: anthropics/claude-code-action@v1
@@ -87,10 +90,22 @@ jobs:
             - 디자인/CSS 변경 금지. 마크업 형식 그대로.
             - 커밋/푸시 금지 (워크플로가 처리).
 
+            ## 새 blog 글 분석 (new_blog.json — 있을 때만)
+            new_blog.json 목록 중 **당장 써볼 제품 기능·출시만** 선별(고객사례·"How X uses"·보안가이드·채용·법률 글은 제외):
+            - `const ANALYSIS={` 바로 뒤에 항목 추가. 형식은 같은 회사 기존 항목을 복사해 값만 교체 — co, ico(같은 회사 ico SVG 그대로 복붙), tier, date, lead_ko/lead_en, scn_ko/scn_en, prin_ko/prin_en, ctx_ko/ctx_en, src. scn=효과성 시나리오, prin=원리(어떻게·왜), ctx=맥락(트렌드·기존기술 접목). 과장·추측 금지, 근거 있는 톤.
+            - 구조가 뚜렷하면 diagram(dg-node/dg-arr 형식) 포함. 해당 회사 사이드바 side-sec "blog" 또는 Manus 탭에 카드 1개 추가.
+            - 제품 기능이 아니거나 확신 없으면 추가하지 말 것. ANALYSIS의 JSON 형식을 절대 깨지 말 것.
+
             ## 규칙
             - 한국어, 간결한 톤(~함/~음). 영문 직역 금지 — 핵심만 의역.
             - 새 슬래시 명령은 docsMap(<script> 내부)에 경로 추가 (모르면 생략 → /commands 폴백).
             - 편집할 게 없으면 아무것도 바꾸지 말고 종료.
+
+      - name: Verify JS integrity (revert if broken)
+        if: steps.update.outputs.has_features == 'true'
+        run: |
+          node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');const i=s.lastIndexOf('<script>'),j=s.lastIndexOf('</script>');fs.writeFileSync('/tmp/c.js',s.slice(i+8,j))"
+          if ! node --check /tmp/c.js; then echo '::error::JS broken by curation — reverting index.html'; git checkout index.html; fi
 
       - name: Commit curation changes
         if: steps.update.outputs.has_features == 'true'
