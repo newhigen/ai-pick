@@ -219,7 +219,7 @@ def main():
     nd = datetime.strptime(newest_date, '%Y-%m-%d')
     html = re.sub(
         r'(<p class="range"><strong>v[\d.]+</strong> → <strong>)v[\d.]+(</strong>)',
-        rf'\g<1>v{newest_ver}\g<2>', html)
+        rf'\g<1>v{newest_ver}\g<2>', html, count=1)
     # 날짜 범위 끝 (… – M월 D일) 형태 갱신: 마지막 "– N월 N일" 부분 교체
     html = re.sub(
         r'(– )\d+월\s*\d+일',
