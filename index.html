@@ -425,7 +425,8 @@
     .feed-body{flex:1;min-width:0}
     .feed-title{font-size:.86rem;font-weight:650;color:var(--text)}
     .feed-desc{font-size:.79rem;color:var(--muted)}
-    @media (max-width:620px){.feed-item{flex-wrap:wrap;align-items:center;gap:3px 8px;padding:12px 15px}.feed-src{order:1}.feed-date{order:2;min-width:0}.feed-ago{display:none}.feed-tier{order:3;margin-left:auto;align-self:center}.feed-body{order:4;flex-basis:100%;margin-top:2px}.feed-title{display:block;line-height:1.35}.feed-desc{display:block;margin-top:2px}}
+    .feed-item .clk-badge{position:static;align-self:center;margin-left:6px;opacity:.4;flex-shrink:0}
+    @media (max-width:620px){.feed-item{flex-wrap:wrap;align-items:center;gap:3px 8px;padding:12px 15px}.feed-src{order:1}.feed-date{order:2;min-width:0}.feed-ago{display:none}.feed-tier{order:3;margin-left:auto;align-self:center}.feed-body{order:5;flex-basis:100%;margin-top:2px}.feed-item .clk-badge{order:4}.feed-title{display:block;line-height:1.35}.feed-desc{display:block;margin-top:2px}}
     .news-sec-head{display:flex;align-items:baseline;gap:10px;margin:30px 0 15px}
     .news-sec-head h2{font-size:1.12rem;font-weight:750;letter-spacing:-.02em}
     .news-sec-head .sub{font-size:.8rem;color:var(--ink-3)}
@@ -11530,7 +11531,7 @@
     (function markCards(){
       const EXT="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7M9 7h8v8'/></svg>";
       const PRV="<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><path d='M20 20l-3.2-3.2'/></svg>";
-      document.querySelectorAll('.pick-card,.home-card,.side-feat,.feat-card').forEach(el=>{
+      document.querySelectorAll('.pick-card,.home-card,.side-feat,.feat-card,.feed-item').forEach(el=>{
         if(el.querySelector(':scope > .clk-badge')) return;
         const oc=el.getAttribute('onclick')||'';
         const modal=oc.includes('openSheet') && ANALYSIS[el.href];
