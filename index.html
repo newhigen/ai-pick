@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20fill%3D%27%236b4cff%27%20d%3D%27M12%202l1.8%207.2L21%2011l-7.2%201.8L12%2020l-1.8-7.2L3%2011l7.2-1.8z%27/%3E%3C/svg%3E">
-  <title>what to try</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%3E%3Cpath%20d%3D%27M6%208%20L11.5%2012%20L6%2016%27%20fill%3D%27none%27%20stroke%3D%27%236b4cff%27%20stroke-width%3D%272.6%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%2F%3E%3Crect%20x%3D%2712.5%27%20y%3D%2714%27%20width%3D%276.5%27%20height%3D%272.4%27%20rx%3D%271.2%27%20fill%3D%27%236b4cff%27%2F%3E%3C%2Fsvg%3E">
+  <title>Agent Edge</title>
   <meta name="description" content="Claude Code · Codex · Manus의 새 기능 중 오늘 써볼 만한 것을 골라주는 트래커 — changelog · 블로그 · 뉴스. ai.sungd.uk" />
   <meta name="google-site-verification" content="VLi2Q2MCHzrYvm80ry_lSLF1AueEC0iJDzkSxVWIqY8" />
   <!-- Google tag (gtag.js) -->
@@ -106,16 +106,19 @@
 
     /* ── Landmark banner ── */
     #landmarkBanner{display:none}
-    #landmarkBanner.show{display:flex;align-items:center;gap:14px;margin-top:22px;padding:15px 18px;background:var(--land-soft);border:1px solid var(--land-line);border-radius:var(--radius)}
-    .lm-flag{font-size:1.3rem;flex-shrink:0}
-    .lm-body{flex:1;min-width:0}
-    .lm-k{font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--land)}
-    .lm-t{font-size:1rem;font-weight:750;letter-spacing:-.015em;margin-top:1px;color:var(--text)}
-    .lm-d{font-size:.84rem;color:var(--muted);margin-top:2px}
-    .lm-v{font-family:var(--mono);font-size:.74rem;color:var(--land);flex-shrink:0;cursor:pointer}
+    #landmarkBanner.show{display:flex;align-items:center;gap:9px;margin-top:18px;padding:9px 14px;background:var(--land-soft);border:1px solid var(--land-line);border-radius:var(--radius)}
+    .lm-flag{font-size:1rem;flex-shrink:0}
+
+    .lm-k{font-size:.58rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--land);padding:2px 6px;border-radius:5px;flex-shrink:0}
+    .lm-t{font-size:.88rem;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+    .lm-d{font-size:.76rem;color:var(--muted);margin-left:auto;flex-shrink:0;font-family:var(--mono)}
+
 
     /* ── Period segmented control ── */
-    .period-bar{display:flex;gap:4px;margin:34px 0 8px;padding:4px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;width:fit-content;max-width:100%;overflow-x:auto}
+    .period-bar{display:flex;align-items:center;gap:8px;margin:14px 0 10px}
+    .period-label{display:inline;font-size:.8rem;color:var(--muted)}
+    .period-sel{font-family:inherit;font-size:.83rem;font-weight:600;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 12px;cursor:pointer}
+    .period-sel:hover{border-color:var(--line-strong)}
     .period-label{display:none}
     .period-tab{border:none;background:none;font-family:inherit;font-size:.82rem;font-weight:600;color:var(--muted);padding:6px 14px;border-radius:8px;cursor:pointer;white-space:nowrap;transition:.15s}
     .period-tab:hover{color:var(--text)}
@@ -123,20 +126,24 @@
 
     /* ── Section ── */
     .pick-section,.cat-section{margin-top:38px}
+    .hero + .pick-section{margin-top:0}
     .range-note{font-size:.75rem;color:var(--ink-3);margin-top:4px}
     .pick-sub{font-size:.78rem;color:var(--ink-3);margin-left:auto}
     .pick-lead{font-size:.86rem;color:var(--text);line-height:1.55;margin-bottom:0}
-    .pick-header,.cat-header{display:flex;align-items:baseline;gap:12px;margin-bottom:17px}
+    .pick-header,.cat-header{display:flex;align-items:center;gap:12px;margin-bottom:17px}
     .pick-header h2,.cat-header h2{font-size:1.18rem;font-weight:750;letter-spacing:-.02em;color:var(--text)}
     .pick-header>span:first-child,.cat-header>span:first-child{display:none} /* 이모지 숨김(텍스트만) */
     .cat-sub{font-size:.82rem;color:var(--ink-3)}
     .cat-header .arrow{display:none}
     .cat-header{cursor:default}
-    .pick-info,.pick-sort{margin-left:auto;font-size:.75rem;color:var(--ink-3);cursor:help;position:relative;outline:none}
+    .pick-info,.pick-sort{font-size:.75rem;color:var(--ink-3);cursor:help;position:relative;outline:none}
     .pick-tip,.sort-tip{position:absolute;top:150%;right:0;z-index:30;width:300px;max-width:78vw;padding:11px 13px;background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-sm);font-size:.74rem;color:var(--text)!important;line-height:1.6;font-weight:400;box-shadow:var(--shadow-md);opacity:0;visibility:hidden;transform:translateY(-3px);transition:opacity .15s,transform .15s;pointer-events:none;text-align:left}
     .pick-tip strong,.sort-tip strong{color:var(--pick)}
     .pick-info:hover .pick-tip,.pick-info:focus .pick-tip,.pick-sort:hover .sort-tip,.pick-sort:focus .sort-tip{opacity:1;visibility:visible;transform:translateY(0)}
 
+    .period-wrap{margin-left:auto;display:inline-flex;align-items:center;gap:7px}
+    .period-wrap .period-label{display:inline;font-size:.74rem;color:var(--ink-3)}
+    @media (max-width:560px){.period-wrap .period-label{display:none}}
     /* ── Pick cards ── */
     .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:14px}
     .pick-grid.hidden,.period-grid.hidden{display:none}
@@ -156,6 +163,7 @@
     .pick-check strong{color:var(--improve)}
     .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
     .pick-card .ver .vtag{font-family:var(--mono)}
+    [data-view="codex"] .pick-card .ver{padding-right:0}
     .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
     .new-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
 
@@ -296,7 +304,8 @@
     .sh-sec p b{color:var(--text);font-weight:600}
     .sh-foot{padding:14px 22px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;bottom:0;background:var(--surface)}
     .sh-foot .src{font-size:.74rem;color:var(--ink-3);font-family:var(--mono)}
-    .sh-foot .btn{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:700;color:#fff;background:var(--pick);padding:9px 16px;border-radius:10px;text-decoration:none}
+    .sh-foot .sh-link{display:inline-flex;align-items:center;gap:5px;font-size:.82rem;font-weight:600;color:var(--pick);text-decoration:none;transition:opacity .12s}
+    .sh-foot .sh-link:hover{opacity:.65}
     @media (max-width:560px){
       .sheet-ov{align-items:flex-end;padding:0}
       .sheet{max-width:100%;max-height:92vh;border-radius:18px 18px 0 0;transform:translateY(100%)}
@@ -310,9 +319,9 @@
     .side-co .src-dot{width:10px;height:10px;border-radius:50%}
     .side-sec{display:flex;flex-direction:column;gap:8px}
     .side-sec h3{font-size:.74rem;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
-    .side-feat{display:flex;flex-direction:column;gap:2px;padding:9px 11px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;transition:border-color .12s,box-shadow .12s}
+    .side-feat{position:relative;display:flex;flex-direction:column;gap:2px;padding:9px 11px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;transition:border-color .12s,box-shadow .12s}
     .side-feat:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
-    .sf-title{font-size:.83rem;font-weight:700;color:var(--text);line-height:1.3}
+    .sf-title{font-size:.83rem;font-weight:700;color:var(--text);line-height:1.3;padding-right:16px}
     .sf-desc{font-size:.74rem;color:var(--muted);line-height:1.4}
     .sf-meta{display:flex;align-items:center;gap:7px;margin-top:4px}
     .sf-star{font-size:.6rem;color:var(--land);letter-spacing:.3px;flex-shrink:0}
@@ -451,7 +460,7 @@
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner">
-  <div class="brand"><svg class="bmark" viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8z" fill="currentColor"/></svg><span class="bstack"><span class="bname">what to try</span><span class="bmono">claude · codex · manus</span></span></div>
+  <div class="brand"><svg class="bmark" viewBox="0 0 24 24"><path d="M6 8 L11.5 12 L6 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="12.5" y="14" width="6.5" height="2.4" rx="1.2" fill="currentColor"/></svg><span class="bstack"><span class="bname">Agent Edge</span><span class="bmono">claude · codex · manus</span></span></div>
     <div class="top-tabs">
     <button class="top-tab active" data-view="home" onclick="switchView('home')" aria-label="오늘 써볼 기능"><svg class='tab-ico' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='M12 2l1.8 7.2L21 11l-7.2 1.8L12 20l-1.8-7.2L3 11l7.2-1.8z'/></svg><span class="tlabel" data-en="Today">오늘 써볼 기능</span></button>
     <span class="tab-div" aria-hidden="true"></span>
@@ -593,23 +602,22 @@
     <div id="landmarkBanner"></div>
   </header>
 
-    <div class="period-bar">
-        <span class="period-label">기간:</span>
-        <button class="period-tab active" data-period="recent" onclick="switchPeriod('recent')" data-en="Recent">최근</button>
-        <button class="period-tab" data-period="2026-05" onclick="switchPeriod('2026-05')" data-en="May">5월</button>
-        <button class="period-tab" data-period="2026-04" onclick="switchPeriod('2026-04')" data-en="Apr">4월</button>
-        <button class="period-tab" data-period="2026-03" onclick="switchPeriod('2026-03')" data-en="Mar">3월</button>
-        <button class="period-tab" data-period="2026-02" onclick="switchPeriod('2026-02')" data-en="Feb">2월</button>
-        <button class="period-tab" data-period="2026-01" onclick="switchPeriod('2026-01')" data-en="Jan">1월</button>
-        <button class="period-tab" data-period="2025-12" onclick="switchPeriod('2025-12')" data-en="Dec">12월</button>
-        <button class="period-tab" data-period="2025-11" onclick="switchPeriod('2025-11')" data-en="Nov">11월</button>
-        <button class="period-tab" data-period="2025-10" onclick="switchPeriod('2025-10')" data-en="Oct">10월</button>
-        <button class="period-tab" data-period="2025-09" onclick="switchPeriod('2025-09')" data-en="Sep">9월</button>
-    </div>
 
   <div class="pick-section">
     <div class="pick-header">
       <span>🎯</span><h2 data-en="Worth Trying">써볼 기능</h2>
+      <span class="period-wrap"><span class="period-label" data-en="Period">기간</span><select class="period-sel" onchange="switchPeriod(this.value, this)" aria-label="기간 선택">
+        <option value="recent" data-en="Recent">최근</option>
+        <option value="2026-05" data-en="May">5월</option>
+        <option value="2026-04" data-en="Apr">4월</option>
+        <option value="2026-03" data-en="Mar">3월</option>
+        <option value="2026-02" data-en="Feb">2월</option>
+        <option value="2026-01" data-en="Jan">1월</option>
+        <option value="2025-12" data-en="Dec">12월</option>
+        <option value="2025-11" data-en="Nov">11월</option>
+        <option value="2025-10" data-en="Oct">10월</option>
+        <option value="2025-09" data-en="Sep">9월</option>
+      </select></span>
       <span class="pick-sort" tabindex="0"><span data-en="By impact ⇅">효과성순 ⇅</span><span class="sort-tip"><strong>좌→우 = 효과성 높은 순</strong><br>★★★ 핵심 — 워크플로우를 크게 바꿈<br>★★☆ 추천 — 확실히 유용<br>★☆☆ 일반 — 소소한 편의<br>기준: 임팩트 × 사용 빈도 × 도입 난이도</span></span>
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
@@ -9824,24 +9832,198 @@
 
   <div class="pick-section">
     <div class="pick-header">
-      <span>🎯</span><h2 data-en="Latest features">최신 새 기능</h2>
-      <span class="pick-sub" data-en="from the newest release">최신 릴리즈 기준</span>
+      <span>🎯</span><h2 data-en="Worth Trying">써볼 기능</h2>
+      <span class="period-wrap"><span class="period-label" data-en="Period">기간</span>
+      <select class="period-sel" onchange="switchPeriod(this.value, this)" aria-label="기간 선택">
+        <option value="recent" data-en="Recent">최근</option>
+        <option value="2026-05" data-en="May">5월</option>
+        <option value="2026-04" data-en="Apr">4월</option>
+        <option value="2026-03" data-en="Mar">3월</option>
+        <option value="2026-02" data-en="Feb">2월</option>
+        <option value="2026-01" data-en="Jan">1월</option>
+        <option value="2025-12" data-en="Dec">12월</option>
+      </select></span>
     </div>
-    <div class="pick-grid">
+    <div class="pick-grid period-grid" data-section="pick" data-period="recent">
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
-        <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases</p>
+        <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases.</p>
         <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
       </a>
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t1" title="일반 — 소소한 편의">★☆☆</div>
         <div class="cmd">/status</div><p class="pick-lead">shows remote connection details and server version when the TUI is connected over a remote transport</p>
         <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
       </a>
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
-        <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
-        <p class="pick-lead">Vim mode gained text-object editing, improved word/line-end behavior, and a configurable interrupt-turn binding</p>
+        <div class="cmd">/permissions</div><p class="pick-lead">now understands named permission profiles and displays configured custom profiles</p>
         <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Vim mode gained text-object editing, improved word/line-end behavior, and a configurable interrupt-turn binding.</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Packaged Codex builds can discover and use the bundled patched zsh helper across supported macOS and Linux targets.</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">The Python SDK now exposes friendly <code>Sandbox</code> presets for thread and turn APIs</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">codex doctor</div><p class="pick-lead">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases.</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/status</div><p class="pick-lead">shows remote connection details and server version when the TUI is connected over a remote transport</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/permissions</div><p class="pick-lead">now understands named permission profiles and displays configured custom profiles</p>
+        <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.133.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">codex remote-control</div><p class="pick-lead">now runs like a foreground command, waits for readiness, reports machine status, and keeps explicit daemon-style <code>start</code>/<code>stop</code> commands</p>
+        <div class="ver"><span class="vtag">v0.133.0</span><span class="news-date" data-date="2026-05-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.132.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">codex exec resume</div><p class="pick-lead">now accepts <code>--output-schema</code>, so resumed automations can keep session context while still enforcing structured JSON output</p>
+        <div class="ver"><span class="vtag">v0.132.0</span><span class="news-date" data-date="2026-05-20"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.131.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">@</div><p class="pick-lead">mentions now search files, directories, plugins, and skills in one picker, backed by app-server plugin metadata.</p>
+        <div class="ver"><span class="vtag">v0.131.0</span><span class="news-date" data-date="2026-05-18"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-04">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.125.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">codex exec --json</div><p class="pick-lead">now reports reasoning-token usage for programmatic consumers</p>
+        <div class="ver"><span class="vtag">v0.125.0</span><span class="news-date" data-date="2026-04-24"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.119.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/resume</div><p class="pick-lead">can now jump directly to a session by ID or name from the TUI</p>
+        <div class="ver"><span class="vtag">v0.119.0</span><span class="news-date" data-date="2026-04-10"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.128.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Added persisted <code>/goal</code> workflows with app-server APIs, model tools, runtime continuation, and TUI controls for create, pause, resume, and clear.</p>
+        <div class="ver"><span class="vtag">v0.128.0</span><span class="news-date" data-date="2026-04-30"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.128.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Added <code>codex update</code>, configurable TUI keymaps, plan-mode nudges, action-required terminal titles, and active-turn <code>/statusline</code> and <code>/title</code> edits.</p>
+        <div class="ver"><span class="vtag">v0.128.0</span><span class="news-date" data-date="2026-04-30"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.128.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Expanded permission profiles with built-in defaults, sandbox CLI profile selection, cwd controls, and active-profile metadata for clients.</p>
+        <div class="ver"><span class="vtag">v0.128.0</span><span class="news-date" data-date="2026-04-30"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.128.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Improved plugin workflows with marketplace installation, remote bundle caching, remote uninstall, plugin-bundled hooks, hook enablement state, and external-agent config import.</p>
+        <div class="ver"><span class="vtag">v0.128.0</span><span class="news-date" data-date="2026-04-30"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-03">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.118.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">codex exec</div><p class="pick-lead">now supports the prompt-plus-stdin workflow, so you can pipe input and still pass a separate prompt on the command line</p>
+        <div class="ver"><span class="vtag">v0.118.0</span><span class="news-date" data-date="2026-03-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.115.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">js_repl</div><p class="pick-lead">now exposes <code>codex.cwd</code> and <code>codex.homeDir</code>, and saved <code>codex.tool(...)</code> / <code>codex.emitImage(...)</code> references keep working across cells.</p>
+        <div class="ver"><span class="vtag">v0.115.0</span><span class="news-date" data-date="2026-03-16"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.111.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">js_repl</div><p class="pick-lead">can now dynamically import local <code>.js</code> and <code>.mjs</code> files, making it easier to reuse workspace scripts from the REPL</p>
+        <div class="ver"><span class="vtag">v0.111.0</span><span class="news-date" data-date="2026-03-05"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.118.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Windows sandbox runs can now enforce proxy-only networking with OS-level egress rules, instead of relying on environment variables alone</p>
+        <div class="ver"><span class="vtag">v0.118.0</span><span class="news-date" data-date="2026-03-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.118.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">App-server clients can now start ChatGPT sign-in with a device code flow, which helps when browser callback login is unreliable or unavailable</p>
+        <div class="ver"><span class="vtag">v0.118.0</span><span class="news-date" data-date="2026-03-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.118.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Custom model providers can now fetch and refresh short-lived bearer tokens dynamically, instead of being limited to static credentials from config or environment variables.</p>
+        <div class="ver"><span class="vtag">v0.118.0</span><span class="news-date" data-date="2026-03-31"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-02">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.95.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/plan</div><p class="pick-lead">now accepts inline prompt arguments and pasted images, and slash-command editing/highlighting in the TUI is more polished</p>
+        <div class="ver"><span class="vtag">v0.95.0</span><span class="news-date" data-date="2026-02-04"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.106.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Added a direct install script for macOS and Linux and publish it as a GitHub release asset, using the existing platform payload (including <code>codex</code> and <code>rg</code>)</p>
+        <div class="ver"><span class="vtag">v0.106.0</span><span class="news-date" data-date="2026-02-26"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.106.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Expanded the app-server v2 thread API with experimental thread-scoped realtime endpoints/notifications and a <code>thread/unsubscribe</code> flow to unload live threads without archiving them</p>
+        <div class="ver"><span class="vtag">v0.106.0</span><span class="news-date" data-date="2026-02-26"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.106.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Promoted <code>js_repl</code> to <code>/experimental</code>, added startup compatibility checks with user-visible warnings, and lowered the validated minimum Node version to <code>22.22.0</code></p>
+        <div class="ver"><span class="vtag">v0.106.0</span><span class="news-date" data-date="2026-02-26"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.106.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Enabled <code>request_user_input</code> in Default collaboration mode (not just Plan mode)</p>
+        <div class="ver"><span class="vtag">v0.106.0</span><span class="news-date" data-date="2026-02-26"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.106.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Made <code>5.3-codex</code> visible in the CLI model list for API users</p>
+        <div class="ver"><span class="vtag">v0.106.0</span><span class="news-date" data-date="2026-02-26"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-01">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.85.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/models</div><p class="pick-lead">metadata now includes upgrade migration markdown so clients can display richer guidance when suggesting model upgrades</p>
+        <div class="ver"><span class="vtag">v0.85.0</span><span class="news-date" data-date="2026-01-15"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.93.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Added an optional SOCKS5 proxy listener with policy enforcement and config gating</p>
+        <div class="ver"><span class="vtag">v0.93.0</span><span class="news-date" data-date="2026-01-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.93.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Plan mode now streams proposed plans into a dedicated TUI view, plus a feature-gated <code>/plan</code> shortcut for quick mode switching.</p>
+        <div class="ver"><span class="vtag">v0.93.0</span><span class="news-date" data-date="2026-01-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.93.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Added <code>/apps</code> to browse connectors in TUI and <code>$</code> insertion for app prompts</p>
+        <div class="ver"><span class="vtag">v0.93.0</span><span class="news-date" data-date="2026-01-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.93.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">App-server can now run in external auth mode, accepting ChatGPT auth tokens from a host app and requesting refreshes when needed</p>
+        <div class="ver"><span class="vtag">v0.93.0</span><span class="news-date" data-date="2026-01-31"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.93.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Smart approvals are now enabled by default, with explicit approval prompts for MCP tool calls.</p>
+        <div class="ver"><span class="vtag">v0.93.0</span><span class="news-date" data-date="2026-01-31"></span></div>
+      </a>
+    </div>
+    <div class="pick-grid period-grid hidden" data-section="pick" data-period="2025-12">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">TUI2: Normalize mouse wheel + trackpad scrolling across terminals; add <code>tui.scroll_*</code> config settings (PR #8357)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Add <code>allowed_sandbox_modes</code> to <code>requirements.toml</code> to constrain permitted sandbox modes (PR #8298)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">MCP: OAuth login for streamable HTTP MCP servers no longer requires the <code>rmcp_client</code> feature flag (PR #8087)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Improve fuzzy file search display/consistency by centralizing file-name derivation in <code>codex-file-search</code> (PR #8334)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Update bundled model metadata (<code>models.json</code>) (PR #8168)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.77.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead">Fix <code>/undo</code> interacting destructively with git staging / ghost commits (PR #8303)</p>
+        <div class="ver"><span class="vtag">v0.77.0</span><span class="news-date" data-date="2025-12-21"></span></div>
       </a>
     </div>
   </div>
@@ -11084,7 +11266,7 @@
         <div class="sh-sec"><div class="sh-sec-h"><span class="tag" id="shT2">원리</span><span id="shH2">어떻게 · 왜 효과적</span></div><p id="shPrin"></p></div>
         <div class="sh-sec"><div class="sh-sec-h"><span class="tag" id="shT3">맥락</span><span id="shH3">왜 지금 · 트렌드</span></div><p id="shCtx"></p></div>
       </div>
-      <div class="sh-foot"><span class="src" id="shSrc"></span><a class="btn" id="shLink" href="#" target="_blank" rel="noopener noreferrer">원문 보기 →</a></div>
+      <div class="sh-foot"><span class="src" id="shSrc"></span><a class="sh-link" id="shLink" href="#" target="_blank" rel="noopener noreferrer">원문 보기 ↗</a></div>
     </div>
   </div>
 </div>
@@ -11121,7 +11303,7 @@
     document.getElementById('shH3').textContent=en?'Why now · trend':'왜 지금 · 트렌드';
     document.getElementById('shSrc').textContent=a.src;
     document.getElementById('shLink').href=el.href;
-    document.getElementById('shLink').textContent=en?'Read original →':'원문 보기 →';
+    document.getElementById('shLink').textContent=en?'Read original ↗':'원문 보기 ↗';
     document.getElementById('sheetOv').classList.add('open');
     document.body.style.overflow='hidden';
     return false;
@@ -11396,10 +11578,9 @@
         title=title.split(/(?:[!.]\s)|·|—| - /)[0].slice(0,56).trim();
         b.className='show';
         b.innerHTML='<span class="lm-flag">🚩</span>'
-          +'<div class="lm-body"><div class="lm-k">'+(CUR_LANG==='en'?'Recent landmark':'최근 랜드마크')+'</div>'
-          +'<div class="lm-t">'+title+'</div>'
-          +'<div class="lm-d">'+relLabel(diff)+' · v'+latest.ver+'</div></div>'
-          +'<span class="lm-v" title="'+latest.date+'">v'+latest.ver+'</span>';
+          +'<span class="lm-k">'+(CUR_LANG==='en'?'Recent':'최근')+'</span>'
+          +'<span class="lm-t">'+title+'</span>'
+          +'<span class="lm-d">'+relLabel(diff)+' · v'+latest.ver+'</span>';
       }
     })();
   });
@@ -11486,9 +11667,9 @@
     const n = w.querySelectorAll('[data-view="cc"] .version-block').length;
     btn.textContent = moreLabel(n, !hidden);
   }
-  function switchPeriod(period) {
-    document.querySelectorAll('.period-tab').forEach(t => t.classList.toggle('active', t.dataset.period === period));
-    document.querySelectorAll('.period-grid').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
+  function switchPeriod(period, el) {
+    const root = el ? el.closest('.view') : document;
+    root.querySelectorAll('.period-grid').forEach(g => g.classList.toggle('hidden', g.dataset.period !== period));
   }
   function switchPick(period) {
     document.querySelectorAll('.pick-tab').forEach(t => t.classList.toggle('active', t.dataset.period === period));
