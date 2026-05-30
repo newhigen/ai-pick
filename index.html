@@ -249,8 +249,8 @@
     .heat-3,.heat-4{}
 
     /* ── Top-level tabs ── */
-    .top-tabs{display:flex;gap:4px;padding:4px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;margin:22px 0 0;min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:none}
-    @media (min-width:561px){.top-tabs{width:fit-content}}
+    .top-tabs{display:flex;gap:4px;padding:4px;background:var(--surface2);border:1px solid var(--border);border-radius:11px;margin:22px 0 0;width:fit-content;max-width:100%;overflow-x:auto;scrollbar-width:none}
+
     .top-tabs::-webkit-scrollbar{display:none}
     .top-tab{display:inline-flex;align-items:center;gap:7px;border:none;background:none;font-family:inherit;font-size:.86rem;font-weight:700;color:var(--muted);padding:7px 15px;border-radius:8px;cursor:pointer;transition:.15s;letter-spacing:-.01em;white-space:nowrap;flex-shrink:0}
     .tab-ico{width:15px;height:15px;flex-shrink:0}
@@ -11010,42 +11010,49 @@
         <span class="feed-ago" data-date="2026-05-28"></span>
         <span class="src src-anthropic feed-src">Anthropic</span>
         <span class="feed-body"><span class="feed-title">Series H: $65B at $965B valuation</span> <span class="feed-desc" data-en="$65B raised at $965B valuation.">$965B 밸류로 $65B 조달.</span></span>
-        <span class="feed-tier t3" title="핵심 — 크게 유용">★★★</span>
+        <span class="feed-tier t3" title="핵심">★★★</span>
+      </a>
+      <a class="feed-item" href="https://openai.com/index/mufg" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="May 28">5월 28일</span>
+        <span class="feed-ago" data-date="2026-05-28"></span>
+        <span class="src src-openai feed-src">OpenAI</span>
+        <span class="feed-body"><span class="feed-title">MUFG goes AI-native with OpenAI</span> <span class="feed-desc" data-en="Japan’s largest bank partners with OpenAI.">일본 최대 은행 MUFG의 AI 전환 파트너십.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
+      </a>
+      <a class="feed-item" href="https://openai.com/index/cisco" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="May 27">5월 27일</span>
+        <span class="feed-ago" data-date="2026-05-27"></span>
+        <span class="src src-openai feed-src">OpenAI</span>
+        <span class="feed-body"><span class="feed-title">Cisco × OpenAI for enterprise</span> <span class="feed-desc" data-en="Enterprise engineering partnership.">Cisco·OpenAI 엔터프라이즈 엔지니어링 협력.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
       </a>
       <a class="feed-item" href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="May 22">5월 22일</span>
         <span class="feed-ago" data-date="2026-05-22"></span>
         <span class="src src-openai feed-src">OpenAI</span>
-        <span class="feed-body"><span class="feed-title">Named a Leader in agentic coding (Gartner)</span> <span class="feed-desc" data-en="Gartner names OpenAI a Leader in coding agents.">Gartner, 엔터프라이즈 코딩 에이전트 리더로 선정.</span></span>
-        <span class="feed-tier t2" title="주요 — 확실히 유용">★★☆</span>
-      </a>
-      <a class="feed-item" href="https://openai.com/index/ramp" target="_blank" rel="noopener noreferrer">
-        <span class="feed-date" data-en="May 20">5월 20일</span>
-        <span class="feed-ago" data-date="2026-05-20"></span>
-        <span class="src src-openai feed-src">OpenAI</span>
-        <span class="feed-body"><span class="feed-title">Ramp accelerates code review with Codex</span> <span class="feed-desc" data-en="A Codex code-review case study.">Codex 코드 리뷰 가속 사례.</span></span>
-        <span class="feed-tier t1" title="일반 — 소소한 편의">★☆☆</span>
+        <span class="feed-body"><span class="feed-title">Named a Leader in agentic coding (Gartner)</span> <span class="feed-desc" data-en="Gartner names OpenAI a Leader.">Gartner, 엔터프라이즈 코딩 에이전트 리더 선정.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
       </a>
       <a class="feed-item" href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="May 18">5월 18일</span>
         <span class="feed-ago" data-date="2026-05-18"></span>
         <span class="src src-openai feed-src">OpenAI</span>
         <span class="feed-body"><span class="feed-title">OpenAI + Dell bring Codex to enterprise</span> <span class="feed-desc" data-en="Codex to hybrid/on-prem via Dell.">Codex 엔터프라이즈 파트너십.</span></span>
-        <span class="feed-tier t2" title="주요 — 확실히 유용">★★☆</span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
       </a>
       <a class="feed-item" href="https://www.anthropic.com/news/anthropic-acquires-stainless" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="May 15">5월 15일</span>
         <span class="feed-ago" data-date="2026-05-15"></span>
         <span class="src src-anthropic feed-src">Anthropic</span>
         <span class="feed-body"><span class="feed-title">Anthropic acquires Stainless</span> <span class="feed-desc" data-en="Acquired the SDK-generation company.">SDK 자동 생성 회사 인수.</span></span>
-        <span class="feed-tier t2" title="주요 — 확실히 유용">★★☆</span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
       </a>
       <a class="feed-item" href="https://manus.im/blog/manus-joins-meta-for-next-era-of-innovation" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="Dec 29, 2025">2025년 12월 29일</span>
         <span class="feed-ago" data-date="2025-12-29"></span>
         <span class="src src-manus feed-src">Manus</span>
-        <span class="feed-body"><span class="feed-title">Manus joins Meta</span> <span class="feed-desc" data-en="Joining Meta; services continue.">Meta 합류 — 서비스는 계속.</span></span>
-        <span class="feed-tier t3" title="핵심 — 크게 유용">★★★</span>
+        <span class="feed-body"><span class="feed-title">Manus joins Meta</span> <span class="feed-desc" data-en="Joined Meta; services continue.">Meta 합류 — 이후 서비스는 계속.</span></span>
+        <span class="feed-tier t3" title="핵심">★★★</span>
       </a>
     </div>
   </div>
