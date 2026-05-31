@@ -220,15 +220,10 @@ def main():
     html = re.sub(
         r'(<p class="range"><strong>v[\d.]+</strong> → <strong>)v[\d.]+(</strong>)',
         rf'\g<1>v{newest_ver}\g<2>', html, count=1)
-    # 날짜 범위 끝 (… – M월 D일) 형태 갱신: 마지막 "– N월 N일" 부분 교체
-    html = re.sub(
-        r'(– )\d+월\s*\d+일',
-        rf'\g<1>{nd.month}월 {nd.day}일', html, count=1)
-    # 영어 날짜(range-dates data-en)도 갱신: 시작 Sep 29, 2025 고정, 끝만 변동
-    EN_MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    html = re.sub(
-        r'(class="range-dates" data-en=")[^"]*(")',
-        rf'\g<1>Sep 29, 2025 – {EN_MON[nd.month-1]} {nd.day}\g<2>', html, count=1)
+    # 날짜 범위 갱신: 시작 2025.9.29 고정, 끝=최신(연도 포함). text·data-en 동일 포맷
+    rng = f"2025.9.29 – {nd.year}.{nd.month}.{nd.day}"
+    html = re.sub(r'(class="range-dates" data-en=")[^"]*(")', rf'\g<1>{rng}\g<2>', html, count=1)
+    html = re.sub(r'(<span class="range-dates"[^>]*>)[^<]*(</span>)', rf'\g<1>{rng}\g<2>', html, count=1)
 
     # 동기화 타임스탬프 갱신 (KST)
     kst = timezone(timedelta(hours=9))
