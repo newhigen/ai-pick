@@ -77,7 +77,8 @@
     .wrap{max-width:1120px;margin:0 auto;padding:0 28px 64px}
 
     /* ── Top bar ── */
-    .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--border);transition:transform .25s ease;will-change:transform}
+    .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid transparent;transition:transform .25s ease,border-color .2s ease;will-change:transform}
+    .topbar.scrolled{border-bottom-color:var(--border)}
     .topbar-inner{max-width:1120px;margin:0 auto;padding:10px 28px;display:flex;align-items:center;gap:13px}
     .brand{display:flex;align-items:center;gap:9px;color:var(--text);white-space:nowrap}
     .brand .bmark{width:19px;height:19px;color:var(--pick);flex-shrink:0}
@@ -11405,6 +11406,7 @@
     window.addEventListener('scroll',()=>{
       const y=window.scrollY, tb=document.querySelector('.topbar'); if(!tb) return;
       tb.style.transform=(y>_ly && y>150)?'translateY(-100%)':'translateY(0)';
+      tb.classList.toggle('scrolled', y>4);
       _ly=y<=0?0:y;
     },{passive:true});
   })();
