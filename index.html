@@ -621,8 +621,8 @@
         <option value="2025-10" data-en="Oct">10월</option>
         <option value="2025-09" data-en="Sep">9월</option>
       </select></span>
-      <span class="pick-sort" tabindex="0"><span data-en="By impact ⇅">효과성순 ⇅</span><span class="sort-tip"><strong>좌→우 = 효과성 높은 순</strong><br>★★★ 핵심 — 워크플로우를 크게 바꿈<br>★★☆ 추천 — 확실히 유용<br>★☆☆ 일반 — 소소한 편의<br>기준: 임팩트 × 사용 빈도 × 도입 난이도</span></span>
-      <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
+      <span class="pick-sort" tabindex="0"><span data-en="By impact ⇅">효과성순 ⇅</span><span class="sort-tip" data-en="<strong>Left→right = higher impact</strong><br>★★★ Core — changes your workflow<br>★★☆ Recommended — clearly useful<br>★☆☆ Minor — small convenience<br>Criteria: impact × frequency × ease of adoption"><strong>좌→우 = 효과성 높은 순</strong><br>★★★ 핵심 — 워크플로우를 크게 바꿈<br>★★☆ 추천 — 확실히 유용<br>★☆☆ 일반 — 소소한 편의<br>기준: 임팩트 × 사용 빈도 × 도입 난이도</span></span>
+      <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
@@ -1047,12 +1047,12 @@
             <span class="cat-ver">v143</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">subagent_type 매칭</span>
+            <span class="cat-cmd" data-en="subagent_type match">subagent_type 매칭</span>
             <span class="cat-desc" data-en="Case/separator-insensitive (&quot;Code Reviewer&quot; matches)">대소문자·구분자 무관 ("Code Reviewer" 매칭)</span>
             <span class="cat-ver">v140</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">bg 완료 알림</span>
+            <span class="cat-cmd" data-en="bg done alert">bg 완료 알림</span>
             <span class="cat-desc" data-en="&quot;Agent completed · 3h 2m 5s&quot; elapsed time">"Agent completed · 3h 2m 5s" 경과 시간</span>
             <span class="cat-ver">v144</span>
           </li>
@@ -1068,7 +1068,7 @@
             <span class="cat-ver">v147</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">상태줄 GitHub</span>
+            <span class="cat-cmd" data-en="Statusline GitHub">상태줄 GitHub</span>
             <span class="cat-desc" data-en="Repo/PR info in statusline JSON">저장소·PR 정보를 status JSON에 포함</span>
             <span class="cat-ver">v145</span>
           </li>
@@ -1084,7 +1084,7 @@
             <span class="cat-ver">v149</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">marketplace 비용</span>
+            <span class="cat-cmd" data-en="marketplace cost">marketplace 비용</span>
             <span class="cat-desc" data-en="Estimated tokens per turn/call before install">플러그인 설치 전 턴/호출당 토큰 예상</span>
             <span class="cat-ver">v143</span>
           </li>
@@ -1095,12 +1095,12 @@
         <div class="cat-card-head" data-en="🎨 Everyday UI · nav">🎨 일상 UI · 네비</div>
         <ul class="cat-items">
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">/diff 스크롤</span>
+            <span class="cat-cmd" data-en="/diff scroll">/diff 스크롤</span>
             <span class="cat-desc" data-en="Arrows, j/k, Space, PgUp/PgDn">화살표·j/k·Space·PgUp/PgDn</span>
             <span class="cat-ver">v149</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">트랜스크립트</span>
+            <span class="cat-cmd" data-en="Transcript">트랜스크립트</span>
             <span class="cat-desc" data-en="? help · {/} navigate · v toggle panel">? 도움말 · {/} 이동 · v 패널 토글</span>
             <span class="cat-ver">v139</span>
           </li>
@@ -1110,12 +1110,12 @@
             <span class="cat-ver">v139</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">GFM 체크박스</span>
+            <span class="cat-cmd" data-en="GFM checkbox">GFM 체크박스</span>
             <span class="cat-desc" data-en="Render markdown - [x] / - [ ]">마크다운 - [x] / - [ ] 렌더링</span>
             <span class="cat-ver">v149</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">prompt 중복 제거</span>
+            <span class="cat-cmd" data-en="prompt dedup">prompt 중복 제거</span>
             <span class="cat-desc" data-en="Auto-dedupe consecutive history entries">연속 중복 입력 히스토리 자동 제거</span>
             <span class="cat-ver">v147</span>
           </li>
@@ -1131,7 +1131,7 @@
             <span class="cat-ver">v145</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">의존성 강제</span>
+            <span class="cat-cmd" data-en="dependency enforce">의존성 강제</span>
             <span class="cat-desc" data-en="Auto-enable deps; refuse disable">의존 플러그인 자동 활성화·비활성 거부</span>
             <span class="cat-ver">v143</span>
           </li>
@@ -1188,7 +1188,7 @@
             <span class="cat-ver">v141</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">API키 안전모드</span>
+            <span class="cat-cmd" data-en="API-key safe mode">API키 안전모드</span>
             <span class="cat-desc" data-en="Auto-disable Remote Control/schedule/MCP">Remote Control·/schedule·MCP 자동 비활성화</span>
             <span class="cat-ver">v139</span>
           </li>
@@ -9820,7 +9820,7 @@
             <span class="sf-desc" data-en="Managed Agents — to production 10x faster.">관리형 에이전트 — 프로덕션 10배 빠르게.</span>
           </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/claude-managed-agents-memory" target="_blank" rel="noopener noreferrer">
-            <span class="sf-title">Managed Agents + 메모리</span>
+            <span class="sf-title" data-en="Managed Agents + Memory">Managed Agents + 메모리</span>
             <span class="sf-desc" data-en="Built-in memory for Managed Agents.">에이전트에 메모리 내장.</span>
           </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/introducing-dynamic-workflows-in-claude-code" target="_blank" rel="noopener noreferrer">
@@ -9828,7 +9828,7 @@
             <span class="sf-desc" data-en="Orchestrate hundreds of agents in Claude Code.">Claude Code에서 수백 에이전트 오케스트레이션.</span>
           </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/claude-code-desktop-redesign" target="_blank" rel="noopener noreferrer">
-            <span class="sf-title">Claude Code desktop 개편</span>
+            <span class="sf-title" data-en="Claude Code desktop redesign">Claude Code desktop 개편</span>
             <span class="sf-desc" data-en="Desktop redesigned for parallel agents.">병렬 에이전트용 데스크톱 재설계.</span>
           </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/connectors-for-everyday-life" target="_blank" rel="noopener noreferrer">
@@ -9838,10 +9838,10 @@
         </div>
         <div class="side-sec">
           <h3 data-en="reads">읽을거리</h3>
-          <a class="side-read" href="https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start" target="_blank" rel="noopener noreferrer">대규모 코드베이스에서의 Claude Code</a>
-          <a class="side-read" href="https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude" target="_blank" rel="noopener noreferrer">Computer·browser use 베스트 프랙티스</a>
-          <a class="side-read" href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html" target="_blank" rel="noopener noreferrer">HTML의 비합리적 효용</a>
-          <a class="side-read" href="https://claude.com/blog/claude-builds-visuals" target="_blank" rel="noopener noreferrer">Claude가 만드는 비주얼</a>
+          <a class="side-read" data-en="Claude Code in large codebases" href="https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start" target="_blank" rel="noopener noreferrer">대규모 코드베이스에서의 Claude Code</a>
+          <a class="side-read" data-en="Best practices for computer and browser use" href="https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude" target="_blank" rel="noopener noreferrer">Computer·browser use 베스트 프랙티스</a>
+          <a class="side-read" data-en="The unreasonable effectiveness of HTML" href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html" target="_blank" rel="noopener noreferrer">HTML의 비합리적 효용</a>
+          <a class="side-read" data-en="Visuals Claude builds" href="https://claude.com/blog/claude-builds-visuals" target="_blank" rel="noopener noreferrer">Claude가 만드는 비주얼</a>
           <a class="side-more" href="https://claude.com/blog" target="_blank" rel="noopener noreferrer" data-en="More →">더 보기 →</a>
         </div>
         </aside>
@@ -11139,8 +11139,8 @@
         </div>
         <div class="side-sec">
           <h3 data-en="reads">읽을거리</h3>
-          <a class="side-read" href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener noreferrer">Gartner 코딩 에이전트 리더 선정</a>
-          <a class="side-read" href="https://openai.com/index/ramp" target="_blank" rel="noopener noreferrer">Ramp의 Codex 코드리뷰 사례</a>
+          <a class="side-read" data-en="Named a Leader in agentic coding (Gartner)" href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener noreferrer">Gartner 코딩 에이전트 리더 선정</a>
+          <a class="side-read" data-en="How Ramp uses Codex for code review" href="https://openai.com/index/ramp" target="_blank" rel="noopener noreferrer">Ramp의 Codex 코드리뷰 사례</a>
           <a class="side-read" href="https://openai.com/index/openai-frontier-governance-framework" target="_blank" rel="noopener noreferrer">Frontier Governance Framework</a>
           <a class="side-more" href="https://openai.com/news" target="_blank" rel="noopener noreferrer" data-en="More →">더 보기 →</a>
         </div>
