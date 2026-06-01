@@ -1,5 +1,16 @@
 # ai-pick
 
+
+Claude Code 릴리스마다 '지금 써볼 만한 변화'를 골라주는 changelog 큐레이션.
+
+🔗 **라이브 데모 · 케이스 스터디** → https://tech.sungd.uk/projects/claude-code-tracking
+
+## 이렇게 쓴다
+
+1. 릴리스별 분류(기능·수정·실험)로 훑는다
+2. Pick에서 당장 써볼 것만 본다
+3. 카테고리 뷰로 주제별로 모아본다
+
 Claude Code changelog 큐레이션 — 매 릴리스에서 "오늘 써볼 만한 것"을 골라준다.
 
 **Live**: [ai.sungd.uk](https://ai.sungd.uk)
