@@ -5,11 +5,14 @@ def fetch(u):
     try: return subprocess.run(['curl','-sL','--max-time','15','-A','Mozilla/5.0',u],capture_output=True,text=True,timeout=20).stdout
     except Exception: return ''
 html=open('index.html',encoding='utf-8').read()
-known=set(re.findall(r'https://(?:claude\.com/blog|openai\.com/index|manus\.im/blog)/[a-z0-9-]+', html))
+known=set(re.findall(r'https://(?:claude\.com/blog|(?:www\.)?anthropic\.com/news|openai\.com/index|manus\.im/blog)/[a-z0-9-]+', html))
 cand=[]
 # Claude blog
 for href in set(re.findall(r'href="(/blog/[a-z0-9-]+)"', fetch('https://claude.com/blog'))):
     if href!='/blog': cand.append('https://claude.com'+href)
+# Anthropic news (모델 출시·제품 발표가 /blog 아닌 /news에 올라옴 — Fable 5 등 누락 방지)
+for slug in set(re.findall(r'/news/([a-z0-9-]+)', fetch('https://www.anthropic.com/news'))):
+    cand.append('https://www.anthropic.com/news/'+slug)
 # Manus blog (제품 글만)
 for slug in set(re.findall(r'/blog/([a-z0-9-]+)', fetch('https://manus.im/blog'))):
     if re.match(r'(manus-|introducing-|deep-dive-)',slug) and 'best-' not in slug and slug not in ('manus-is-hiring',):
