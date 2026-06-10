@@ -625,6 +625,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-09">
+        <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
+        <div class="cmd">Fable 5</div>
+        <h3 data-en="Claude Fable 5 (public Mythos-class)">Claude Fable 5 (공개 Mythos급)</h3>
+        <p data-en="Launched today (Jun 9). Mythos-class made safe for general use — SOTA on most benchmarks. High-risk topics fall back to Opus 4.8 (&lt;5% of sessions). Pro/Max/Team/Enterprise, then credit-based after Jun 23.">오늘(6/9) 출시. 일반 사용 안전화한 Mythos급 — 대부분 벤치 SOTA. 고위험 주제는 Opus 4.8로 폴백(세션 &lt;5%). Pro/Max/Team/Ent, 6/23 이후 크레딧제.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Strongest public model yet — a leap on hard tasks, SWE, research"><strong>왜?</strong> 현재 가장 강한 공개 모델 — 난제·SWE·연구 품질 도약</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Felt gain vs Opus 4.8; fallback frequency; cost after Jun 23"><strong>학습:</strong> Opus 4.8 대비 체감, 폴백 발동 빈도, 6/23 이후 비용</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.170</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">ultracode</div>
@@ -679,17 +690,6 @@
           <div class="pick-check" data-en="<strong>Learn:</strong> Cache-preservation limits; multi-repo flow"><strong>학습:</strong> 캐시 보존 한계, 멀티 레포 작업 흐름</div>
         </div>
         <div class="ver"><span class="vtag">v2.1.169</span><span class="dag"></span></div>
-      </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
-        <div class="pick-tier t1" title="일반 — 소소한 편의">★☆☆</div>
-        <div class="cmd">/simplify</div>
-        <h3 data-en="Cleanup-only review + auto-apply">정리 전용 리뷰 + 자동 적용</h3>
-        <p data-en="Reviews reuse, simplification, efficiency, and altitude only and applies the fixes (use /code-review for bugs).">reuse·단순화·효율·altitude 정리만 보고 고쳐줌 (버그 탐지는 <code>/code-review</code>).</p>
-        <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Strip cruft without changing behavior"><strong>왜?</strong> 동작 그대로 두고 코드 군더더기만 제거</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Which cleanups are safe to auto-apply"><strong>학습:</strong> 어떤 정리를 자동 적용해도 안전한지</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
@@ -1212,6 +1212,11 @@
       <div class="cat-card">
         <div class="cat-card-head" data-en="🔒 Models · Enterprise · IAM">🔒 모델 · Enterprise · IAM</div>
         <ul class="cat-items">
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">Fable 5</span>
+            <span class="cat-desc" data-en="Public Mythos-class model; falls back to Opus 4.8 on high-risk">공개 Mythos급 모델, 고위험 주제는 Opus 4.8 폴백</span>
+            <span class="cat-ver">v170</span>
+          </li>
           <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/model</span>
             <span class="cat-desc" data-en="Change model for this session (d sets default)">현재 세션만 모델 변경 (d로 기본 고정)</span>
@@ -12319,6 +12324,7 @@
 
     // v2.1.150~170 신규
     'ultracode':            '/common-workflows',
+    'Fable 5':              '/overview',
     '/cd':                  '/commands#:~:text=%2Fcd',
     '/simplify':            '/commands#:~:text=%2Fsimplify',
     '/plugin list':         '/plugins',
