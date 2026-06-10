@@ -2,6 +2,12 @@
 
 ai-pick (Agent Edge) 변천사. 최신이 맨 위.
 
+## 2026-06-10 — 자동화 전 탭 확대 (Codex·Manus·뉴스) + stage-2 수리
+
+- **무엇**: 그동안 Claude Code 한 탭만 자동 갱신되고 Codex·Manus·뉴스는 ~2-3주 방치였음. ① stage-2 큐레이션이 `claude-code-action@v1`(PR 모드라 워킹트리 미편집)으로 **한 번도 커밋 안 되던 버그를 헤드리스 `claude -p`로 교체**해 수리. ② `update_codex.py` 신규 — openai/codex GitHub Releases(stable만)로 Codex 버전 블록 자동 삽입. ③ `collect_blog.py`에 anthropic.com/news·openai.com 추가. ④ `curate_prompt.md`를 CC·Codex·Manus·뉴스 4탭 커버로 확장.
+- **왜**: "Claude Code만 잘 되고 나머지는 죽어있다"는 문제. 큐레이션 파이프라인이 PR 모드 액션이라 워킹트리를 안 고쳐 매번 noop(이력상 큐레이션 커밋 0건)이었고, Codex/Manus/뉴스는 수집 소스 자체가 없었음.
+- **핵심 결정·교훈**: Codex는 changelog형이라 **결정적 스크립트**로 버전 블록 생성(LLM 불필요), 써볼·Manus·뉴스 배치만 stage-2 LLM이 "기존 항목 복사→값 교체" 전략으로. 모델 출시 발표(Fable 5)를 컷오프 이후라 "가짜"로 오판했던 사고 → **추측 금지, WebSearch 검증** 룰을 프롬프트에 못박음.
+
 ## 2026-05-30 — Agent Edge 리브랜딩 + 5탭 IA 개편
 
 - **무엇**: 단일 Claude Code 중심에서 **5탭 IA(홈·Claude Code·Codex·Manus·뉴스)**로 확장. 이름을 **Agent Edge**로 확정하고 마크를 `>_` 터미널 프롬프트(`>`=전진/edge), 액센트를 보라(`--pick #6b4cff`)로 통일. blog·Manus 항목에 분석 모달(효과성·원리·맥락) + 개념 다이어그램(병렬·양방향·순환·비교) 추가.
