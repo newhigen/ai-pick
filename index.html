@@ -162,10 +162,11 @@
     .pick-why strong,.pick-check strong{font-weight:700;font-size:.74rem;margin-right:5px}
     .pick-why strong{color:var(--feature)}
     .pick-check strong{color:var(--improve)}
-    /* 호버 가능 기기(데스크톱): 왜·학습 메타는 접어두고 호버 시 펼침 → 카드 컴팩트. 터치 기기는 항상 노출 */
+    /* 호버 가능 기기(데스크톱): 왜·학습은 카드 위로 뜨는 호버창(팝오버) — 카드 높이 고정, 레이아웃 안 밀림. 터치 기기는 인라인 항상 노출 */
     @media (hover:hover){
-      .pick-grid .pick-card .pick-meta{max-height:0;opacity:0;overflow:hidden;padding-top:0;border-top-color:transparent;transition:max-height .22s ease,opacity .16s ease,padding-top .22s ease}
-      .pick-grid .pick-card:hover .pick-meta,.pick-grid .pick-card:focus-within .pick-meta{max-height:240px;opacity:1;padding-top:12px;border-top-color:var(--border)}
+      .pick-grid .pick-card .pick-meta{position:absolute;left:-1px;right:-1px;top:calc(100% - 8px);z-index:30;background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:13px 15px;margin-top:0;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .14s ease,transform .14s ease,visibility .14s;pointer-events:none}
+      .pick-grid .pick-card:hover .pick-meta,.pick-grid .pick-card:focus-within .pick-meta{opacity:1;visibility:visible;transform:translateY(0)}
+      .pick-grid .pick-card:hover{z-index:31}
     }
     .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
     .pick-card .ver .vtag{font-family:var(--mono)}
