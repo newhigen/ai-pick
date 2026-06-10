@@ -23,12 +23,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      # ── 1단계: 버전 목록 자동 갱신 (토큰 0, 순수 스크립트) ──
-      - name: Update version list
+      # ── 1단계(a): Claude Code 버전 목록 (토큰 0, 순수 스크립트) ──
+      - name: Update Claude Code version list
         id: update
         run: python scripts/update_changelog.py
 
-      - name: Commit version list
+      - name: Commit CC version list
         if: steps.update.outputs.changed == 'true'
         run: |
           git config user.name "ai-pick-bot"
@@ -37,43 +37,63 @@ jobs:
           git commit -m "chore: ${{ steps.update.outputs.added_versions }} 자동 추가"
           git push
 
-      # ── 2단계: 새 feature 있을 때만 Claude가 판단 (Pick·카테고리) ──
-      - name: Detect new blog posts
+      # ── 1단계(b): Codex 버전 목록 (토큰 0, openai/codex GitHub releases) ──
+      - name: Update Codex version list
+        id: codex
+        run: python scripts/update_codex.py
+
+      - name: Commit Codex version list
+        if: steps.codex.outputs.cx_changed == 'true'
+        run: |
+          git config user.name "ai-pick-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "chore(codex): ${{ steps.codex.outputs.cx_added_versions }} 자동 추가"
+          git push
+
+      # ── blog/news 수집 (Anthropic·OpenAI·Manus) ──
+      - name: Detect new blog/news posts
+        id: blog
         run: python scripts/collect_blog.py || echo '[]' > new_blog.json
 
-      # ── stage-2: 헤드리스 claude -p 가 워킹트리 index.html을 직접 Edit ──
+      # ── 큐레이션 실행 조건: CC feature OR Codex feature OR 새 blog/news ──
+      - name: Decide curation
+        id: gate
+        run: echo "go=${{ steps.update.outputs.has_features == 'true' || steps.codex.outputs.cx_has_features == 'true' || steps.blog.outputs.has_blog == 'true' }}" >> "$GITHUB_OUTPUT"
+
+      # ── stage-2: 헤드리스 claude -p 가 워킹트리 index.html을 직접 Edit (CC·Codex·Manus·뉴스) ──
       # (구 claude-code-action@v1 은 PR/브랜치 모드라 워킹트리를 안 고쳐 매번 noop → 헤드리스로 교체)
       - name: Install Claude Code CLI
-        if: steps.update.outputs.has_features == 'true'
+        if: steps.gate.outputs.go == 'true'
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: Curate Pick & categories (headless claude -p)
-        if: steps.update.outputs.has_features == 'true'
+      - name: Curate (headless claude -p)
+        if: steps.gate.outputs.go == 'true'
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           claude -p "$(cat scripts/curate_prompt.md)" \
             --model claude-sonnet-4-6 \
-            --max-turns 60 \
+            --max-turns 80 \
             --permission-mode acceptEdits \
             --allowedTools "Read,Edit,Glob,Grep" \
             --output-format json \
           || echo "::warning::curation step returned non-zero — JS verify/commit steps will gate the result"
 
       - name: Verify JS integrity (revert if broken)
-        if: steps.update.outputs.has_features == 'true'
+        if: steps.gate.outputs.go == 'true'
         run: |
           node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');const i=s.lastIndexOf('<script>'),j=s.lastIndexOf('</script>');fs.writeFileSync('/tmp/c.js',s.slice(i+8,j))"
           if ! node --check /tmp/c.js; then echo '::error::JS broken by curation — reverting index.html'; git checkout index.html; fi
 
       - name: Commit curation changes
-        if: steps.update.outputs.has_features == 'true'
+        if: steps.gate.outputs.go == 'true'
         run: |
           git config user.name "ai-pick-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet index.html; then
             git add index.html
-            git commit -m "chore: Pick·카테고리 큐레이션 갱신 (Claude)"
+            git commit -m "chore: 큐레이션 갱신 — 써볼·용도별·Codex·Manus·뉴스 (Claude)"
             git push
           else
             echo "큐레이션 변경 없음"

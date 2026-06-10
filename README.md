@@ -33,12 +33,15 @@ Claude Code changelog 큐레이션 — 매 릴리스에서 "오늘 써볼 만한
 
 ## 업데이트 자동화
 
-매일 06:30(KST) GitHub Actions가 자동 실행 (`.github/workflows/daily-update.yml`):
+매일 05:20(KST) GitHub Actions가 자동 실행 (`.github/workflows/daily-update.yml`). 4개 탭 전부를 다룬다:
 
-1. **버전 목록** (`scripts/update_changelog.py`, 토큰 0) — CHANGELOG.md fetch → 새 버전 감지 → 분류(feature/improve/security/fix) → HTML 블록 생성·삽입 → 커밋
-2. **Pick·용도별 큐레이션** (새 feature 있을 때만) — Claude Code Action이 판단해서 🎯 Pick·🧰 카테고리 갱신
+1. **버전 목록** (토큰 0, 순수 스크립트)
+   - `scripts/update_changelog.py` — Claude Code CHANGELOG.md → 새 버전 감지·분류·삽입
+   - `scripts/update_codex.py` — openai/codex GitHub Releases(stable만, alpha 제외) → Codex 버전 블록 삽입
+2. **수집** — `scripts/collect_blog.py` 가 Anthropic·OpenAI·Manus blog/news 신규 글을 `new_blog.json` 으로
+3. **큐레이션** (새 feature·새 글 있을 때만) — 헤드리스 `claude -p` (`scripts/curate_prompt.md`)가 워킹트리 `index.html`을 직접 편집: 🎯 써볼·🧰 용도별(CC·Codex) · Manus 카드 · 뉴스 피드 · Blog 사이드바 갱신
 
-대부분의 날은 1단계(무료)만 돌고, 주목할 새 기능이 나온 날만 Claude가 판단 작업을 한다.
+대부분의 날은 1·2단계(무료)만 돌고, 주목할 변화가 있는 날만 3단계(Claude 판단)가 돈다. 편집 후 JS 무결성 체크에 실패하면 자동 revert.
 
 ### 셋업 (1회)
 
