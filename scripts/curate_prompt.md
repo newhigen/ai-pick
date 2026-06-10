@@ -46,7 +46,7 @@ data-en 안의 큰따옴표는 `&quot;` 로 이스케이프. 패치노트(`.vers
 - 버전 블록(`.version-block`)·월별 그리드(data-period가 recent 아닌 것)·랜드마크는 건드리지 마라. 버전 목록은 스크립트가, 랜드마크는 페이지 JS가 자동 처리한다.
 - **편집은 오직 CC 탭(`data-view="cc"`)에만.** Codex 탭(`data-view="codex"`, 그리드 `data-section="codex-pick"`)·Manus 탭은 자동화 대상이 아니니 절대 건드리지 마라.
 - 디자인/CSS 변경 금지. 마크업 형식 그대로.
-- **가짜·테스트로 의심되는 changelog 엔트리는 픽하지 마라** (실존하지 않는 모델명·과장된 홍보문구 등). 의심되면 건너뛴다.
+- **명백한 플레이스홀더·테스트 엔트리만 건너뛴다** ("Bug fixes and reliability improvements", "Internal infrastructure improvements", lorem 등). 과장돼 보이는 홍보문구(새 모델 출시 등)는 가짜가 아니라 실제 메이저 발표일 수 있으니 **임의로 빼지 말 것** — 새 모델/플래그십 출시는 오히려 최우선 t3 픽 후보다. 자신 없으면 검증된 사실만 적어 보수적으로 픽에 넣어라.
 
 ## 새 blog 글 분석 (new_blog.json — 있을 때만)
 new_blog.json 목록 중 **당장 써볼 제품 기능·출시만** 선별(고객사례·"How X uses"·보안가이드·채용·법률 글은 제외):
