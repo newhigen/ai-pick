@@ -625,71 +625,71 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
-        <div class="cmd">/goal</div>
-        <h3 data-en="Goal-based autonomous run">목표 기반 자율 실행</h3>
-        <p data-en="Set a completion condition; runs autonomously across turns. Elapsed/turns/tokens overlay.">완료 조건 입력 → 여러 턴에 걸쳐 자율 진행. 경과·턴·토큰 오버레이.</p>
+        <div class="cmd">ultracode</div>
+        <h3 data-en="Dynamic workflows (tens–hundreds of agents)">동적 워크플로 (수십~수백 에이전트)</h3>
+        <p data-en="Ask Claude to create a workflow; it orchestrates tens–hundreds of agents in the background. Trigger keyword: ultracode.">"워크플로 만들어줘" → 백그라운드서 수십~수백 에이전트로 작업 오케스트레이션. 트리거 키워드 <code>ultracode</code>.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Delegate long work with a short prompt — no babysitting"><strong>왜?</strong> 짧은 지시로 긴 작업 위임 — "끝났는지" 직접 안 봐도 됨</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Which conditions stop cleanly; turn/token runaway patterns"><strong>학습:</strong> 어떤 완료 조건이 정확히 멈추는지, 턴/토큰 폭주 패턴</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Decompose work one context can't hold — parallel fan-out"><strong>왜?</strong> 한 컨텍스트로 안 되는 대규모(마이그레이션·전수감사)를 병렬 분해</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which tasks benefit from fan-out; where token cost explodes"><strong>학습:</strong> 어떤 작업이 fan-out 이득 보는지, 토큰 폭증 구간</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
-        <div class="cmd">Agent View</div>
-        <h3 data-en="All sessions in one view">모든 세션 한 화면에</h3>
-        <p data-en="Running, waiting, and finished sessions in one list.">실행 중·대기 중·완료 세션을 하나의 목록으로.</p>
+        <div class="cmd">/model</div>
+        <h3 data-en="Opus 4.8 is here">Opus 4.8 기본 탑재</h3>
+        <p data-en="Defaults to high effort; /effort xhigh for the hardest tasks. Fast mode now at a fraction of the previous cost.">기본 high effort, 최난도엔 <code>/effort xhigh</code>. fast mode도 저비용화.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Faster multi-session tracking — less context switching"><strong>왜?</strong> 멀티 세션 추적이 빠름 — 컨텍스트 전환 비용 ↓</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> What parallelizes well; concurrency limits"><strong>학습:</strong> 어떤 작업이 병렬화 잘 되는지, 동시 실행 한계</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Best current model — higher quality on hard reasoning"><strong>왜?</strong> 최신·최강 모델 — 난도 높은 추론 품질 ↑</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Felt gain vs 4.7; cost/speed per effort level"><strong>학습:</strong> 4.7 대비 체감 차이, effort 단계별 비용/속도</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
-        <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
-        <div class="cmd">/code-review</div>
-        <h3 data-en="Code review + PR inline comments">코드 리뷰 + PR 인라인 코멘트</h3>
-        <p data-en="Formerly /simplify. Pick effort; <code>--comment</code> posts inline comments on a GitHub PR.">구 /simplify. effort 선택, <code>--comment</code>로 GitHub PR 인라인 코멘트 게시.</p>
-        <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Auto review before merge — no manual review comments"><strong>왜?</strong> PR 머지 전 자동 검토 — 수동 리뷰 코멘트 작성 X</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> False-positive rate by effort; caught vs missed"><strong>학습:</strong> effort별 false positive 비율, 잡는 결함 vs 놓치는 것</div>
-        </div>
-        <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
-      </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-22">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-06">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
-        <div class="cmd">/usage</div>
-        <h3 data-en="Cost breakdown by category">카테고리별 비용 분석</h3>
-        <p data-en="Token cost by skills, subagents, plugins, and MCP server.">skills·subagents·plugins·MCP별 토큰 비용.</p>
+        <div class="cmd">fallbackModel</div>
+        <h3 data-en="Fallback models (up to 3)">폴백 모델 (최대 3개)</h3>
+        <p data-en="Tries up to three fallback models in order when the primary is overloaded or unavailable. Also --fallback-model.">기본 모델 과부하·불가 시 최대 3개를 순서대로 폴백. <code>--fallback-model</code> 로도.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Pinpoint token leaks — data to optimize cost"><strong>왜?</strong> 토큰 새는 지점 정확히 — 비용 최적화 근거 데이터</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Biggest consumers; MCP/skills worth trimming"><strong>학습:</strong> 가장 큰 소비 항목, 줄일 만한 MCP/skill 후보</div>
+          <div class="pick-why" data-en="<strong>Why</strong> No session stall on overload — auto-reroute"><strong>왜?</strong> 모델 오버로드로 세션 끊김 방지 — 자동 우회</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which model chain is stable; how often fallback fires"><strong>학습:</strong> 어떤 모델 조합이 안정적인지, 폴백 발동 빈도</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.149</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.166</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-08">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
-        <div class="cmd">Ctrl+T</div>
-        <h3 data-en="Pin background sessions">백그라운드 세션 고정</h3>
-        <p data-en="Pinned sessions survive idle and updates.">유휴·업데이트 시에도 고정 세션 유지.</p>
+        <div class="cmd">--safe-mode</div>
+        <h3 data-en="Start with all customizations off">커스터마이즈 전부 끄고 시작</h3>
+        <p data-en="Boots with CLAUDE.md, plugins, skills, hooks, and MCP all disabled (debugging). Also CLAUDE_CODE_SAFE_MODE.">CLAUDE.md·plugins·skills·hooks·MCP 모두 비활성으로 기동(디버그용). <code>CLAUDE_CODE_SAFE_MODE</code> 도.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Preserve long tasks — only unpinned are shed under pressure"><strong>왜?</strong> 장기 작업 보존 — 메모리 압박 시 비고정만 정리됨</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Which sessions to pin (long vs short)"><strong>학습:</strong> 어떤 세션을 고정해야 효율적인지 (장기 vs 단기 판단)</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Isolate whether your config is the problem — clean baseline"><strong>왜?</strong> 내 설정이 문제인지 격리 — 깨끗한 기준선</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Bisect which customization misbehaves"><strong>학습:</strong> 어떤 커스터마이즈가 말썽인지 이분 탐색</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.147</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.169</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-13">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-08">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/cd</div>
+        <h3 data-en="Move working dir (cache intact)">작업 디렉터리 이동 (캐시 유지)</h3>
+        <p data-en="Switch a session's working directory mid-session without breaking the prompt cache.">세션 도중 작업 폴더 변경 — 프롬프트 캐시 안 깨고.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Hop repos in one session — no restart, no cache loss"><strong>왜?</strong> 레포 옮겨가며 한 세션 유지 — 재시작·캐시 손실 X</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Cache-preservation limits; multi-repo flow"><strong>학습:</strong> 캐시 보존 한계, 멀티 레포 작업 흐름</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.169</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
         <div class="pick-tier t1" title="일반 — 소소한 편의">★☆☆</div>
-        <div class="cmd">terminalSequence hook</div>
-        <h3 data-en="Desktop alerts without a terminal">터미널 없이 데스크톱 알림</h3>
-        <p data-en="Notifications, window title, bell from a stop hook. Detect background completion.">stop hook에서 알림·창 제목·벨. 백그라운드 완료 감지.</p>
+        <div class="cmd">/simplify</div>
+        <h3 data-en="Cleanup-only review + auto-apply">정리 전용 리뷰 + 자동 적용</h3>
+        <p data-en="Reviews reuse, simplification, efficiency, and altitude only and applies the fixes (use /code-review for bugs).">reuse·단순화·효율·altitude 정리만 보고 고쳐줌 (버그 탐지는 <code>/code-review</code>).</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Know the moment it finishes — no polling"><strong>왜?</strong> 폴링 없이 완료 즉시 인지 — 다른 일 하다가 복귀</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> How to compose OSC sequences; when to trigger"><strong>학습:</strong> OSC 패턴 어떻게 구성, 어떤 시점에 알림 트리거</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Strip cruft without changing behavior"><strong>왜?</strong> 동작 그대로 두고 코드 군더더기만 제거</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which cleanups are safe to auto-apply"><strong>학습:</strong> 어떤 정리를 자동 적용해도 안전한지</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.141</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
@@ -1010,6 +1010,11 @@
             <span class="cat-desc" data-en="Desktop alert via stop hook">stop hook으로 데스크톱 알림</span>
             <span class="cat-ver">v141</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">ultracode</span>
+            <span class="cat-desc" data-en="Dynamic workflows: orchestrate tens–hundreds of agents in bg">동적 워크플로 — bg서 수십~수백 에이전트 오케스트레이션</span>
+            <span class="cat-ver">v154</span>
+          </li>
         </ul>
       </div>
 
@@ -1055,6 +1060,16 @@
             <span class="cat-cmd" data-en="bg done alert">bg 완료 알림</span>
             <span class="cat-desc" data-en="&quot;Agent completed · 3h 2m 5s&quot; elapsed time">"Agent completed · 3h 2m 5s" 경과 시간</span>
             <span class="cat-ver">v144</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/cd</span>
+            <span class="cat-desc" data-en="Move working dir mid-session without breaking prompt cache">세션 도중 작업 폴더 이동 — 프롬프트 캐시 유지</span>
+            <span class="cat-ver">v169</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="agents waitingFor">agents waitingFor</span>
+            <span class="cat-desc" data-en="--json shows what a waiting session is blocked on">--json에 대기 세션이 막힌 이유 표시</span>
+            <span class="cat-ver">v162</span>
           </li>
         </ul>
       </div>
@@ -1119,6 +1134,11 @@
             <span class="cat-desc" data-en="Auto-dedupe consecutive history entries">연속 중복 입력 히스토리 자동 제거</span>
             <span class="cat-ver">v147</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="slash click fills">슬래시 클릭=채움</span>
+            <span class="cat-desc" data-en="Clicking a slash command fills it in; Enter to run">슬래시 명령 클릭 시 입력에 채움, Enter로 실행</span>
+            <span class="cat-ver">v162</span>
+          </li>
         </ul>
       </div>
 
@@ -1145,6 +1165,16 @@
             <span class="cat-desc" data-en="Pass project dir to MCP stdio servers">MCP stdio 서버에 프로젝트 경로 전달</span>
             <span class="cat-ver">v139</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/plugin list</span>
+            <span class="cat-desc" data-en="List installed plugins; --enabled/--disabled filters">설치된 플러그인 목록, --enabled/--disabled 필터</span>
+            <span class="cat-ver">v163</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">.claude/skills</span>
+            <span class="cat-desc" data-en="Plugins here auto-load — no marketplace needed">여기 둔 플러그인 자동 로드 — 마켓플레이스 불필요</span>
+            <span class="cat-ver">v157</span>
+          </li>
         </ul>
       </div>
 
@@ -1165,6 +1195,16 @@
             <span class="cat-cmd">OTEL agent_id</span>
             <span class="cat-desc" data-en="Nested subagent span tracing">subagent spans 중첩 추적</span>
             <span class="cat-ver">v145</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="Stop additionalContext">Stop additionalContext</span>
+            <span class="cat-desc" data-en="Stop/SubagentStop hooks feed context back, keep turn going">Stop/SubagentStop hook이 컨텍스트 주입하고 턴 계속</span>
+            <span class="cat-ver">v163</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="post-session hook">post-session hook</span>
+            <span class="cat-desc" data-en="Self-hosted runner: snapshot uncommitted work before cleanup">self-hosted 러너: 정리 전 미커밋 작업 스냅샷</span>
+            <span class="cat-ver">v169</span>
           </li>
         </ul>
       </div>
@@ -1191,6 +1231,16 @@
             <span class="cat-cmd" data-en="API-key safe mode">API키 안전모드</span>
             <span class="cat-desc" data-en="Auto-disable Remote Control/schedule/MCP">Remote Control·/schedule·MCP 자동 비활성화</span>
             <span class="cat-ver">v139</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">fallbackModel</span>
+            <span class="cat-desc" data-en="Up to 3 fallbacks when primary is overloaded">기본 모델 과부하 시 최대 3개 폴백</span>
+            <span class="cat-ver">v166</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">--safe-mode</span>
+            <span class="cat-desc" data-en="Start with CLAUDE.md/plugins/skills/hooks/MCP disabled">CLAUDE.md·plugins·skills·hooks·MCP 끄고 기동</span>
+            <span class="cat-ver">v169</span>
           </li>
         </ul>
       </div>
@@ -12266,6 +12316,19 @@
     '/plan': '/commands',
     '/teleport': '/commands',
     'Ctrl+O thinking': '/interactive-mode',
+
+    // v2.1.150~170 신규
+    'ultracode':            '/common-workflows',
+    '/cd':                  '/commands#:~:text=%2Fcd',
+    '/simplify':            '/commands#:~:text=%2Fsimplify',
+    '/plugin list':         '/plugins',
+    '.claude/skills':       '/plugins',
+    'fallbackModel':        '/settings#:~:text=fallbackModel',
+    '--safe-mode':          '/cli-reference#:~:text=--safe-mode',
+    'agents waitingFor':    '/cli-reference',
+    'Stop additionalContext': '/hooks',
+    'post-session hook':    '/hooks',
+    '슬래시 클릭=채움':       '/commands',
   };
 
   // 클릭 → 공식 docs로 새 탭 (요소 직접 전달)
