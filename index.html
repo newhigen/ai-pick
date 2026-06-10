@@ -662,16 +662,16 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-28">
-        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
-        <div class="cmd">/model</div>
-        <h3 data-en="Opus 4.8 — default &amp; fallback model">Opus 4.8 — 기본·폴백 모델</h3>
-        <p data-en="Everyday default model; Fable 5's high-risk fallback target. Defaults to high effort; /effort xhigh for the hardest tasks.">일상 기본 모델 — Fable 5의 고위험 폴백 대상. 기본 high effort, 최난도엔 <code>/effort xhigh</code>.</p>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-10">
+        <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
+        <div class="cmd">agent() → agent()</div>
+        <h3 data-en="Sub-agents can now spawn sub-agents (up to 5 levels)">서브에이전트가 서브에이전트를 spawn (최대 5단계)</h3>
+        <p data-en="Each sub-agent can now spawn its own sub-agents — up to 5 levels deep. Enables recursive multi-level orchestration inside Workflow scripts.">서브에이전트가 자신의 서브에이전트를 spawn 가능 — 최대 5단계. Workflow 스크립트에서 다단계 재귀 오케스트레이션 구현 가능.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Balanced always-on model — the default even when Fable hits limits/credits"><strong>왜?</strong> 비용·가용성 균형 상시 모델 — Fable 한도·크레딧 전환 시에도 기본값</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Cost/speed per effort; which tasks Opus handles vs need Fable"><strong>학습:</strong> effort 단계별 비용/속도, Opus로 충분한 작업 vs Fable 필요 구분</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Multi-level agent trees unlock deeper task decomposition beyond flat fan-out"><strong>왜?</strong> 단순 fan-out을 넘어 계층형 에이전트 트리로 복잡한 작업 분해 가능</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Where recursive spawning adds value; nesting depth vs token cost trade-off"><strong>학습:</strong> 재귀 spawn이 가치 있는 작업 유형, 단계 깊이 vs 토큰 비용 트레이드오프</div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.172</span><span class="dag"></span></div>
       </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-06">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
@@ -1068,9 +1068,9 @@
             <span class="cat-ver">v143</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd" data-en="subagent_type match">subagent_type 매칭</span>
-            <span class="cat-desc" data-en="Case/separator-insensitive (&quot;Code Reviewer&quot; matches)">대소문자·구분자 무관 ("Code Reviewer" 매칭)</span>
-            <span class="cat-ver">v140</span>
+            <span class="cat-cmd" data-en="5-level sub-agents">5단계 중첩 서브에이전트</span>
+            <span class="cat-desc" data-en="Sub-agents can now spawn sub-agents — up to 5 levels deep">서브에이전트가 서브에이전트를 spawn — 최대 5단계 재귀</span>
+            <span class="cat-ver">v172</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd" data-en="bg done alert">bg 완료 알림</span>
@@ -1102,6 +1102,11 @@
             <span class="cat-cmd" data-en="Statusline GitHub">상태줄 GitHub</span>
             <span class="cat-desc" data-en="Repo/PR info in statusline JSON">저장소·PR 정보를 status JSON에 포함</span>
             <span class="cat-ver">v145</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/code-review ultra</span>
+            <span class="cat-desc" data-en="ultra option stays visible when not signed in — explains claude.ai account requirement">비로그인 시에도 ultra 옵션 표시 — claude.ai 계정 필요 안내</span>
+            <span class="cat-ver">v172</span>
           </li>
         </ul>
       </div>
@@ -1177,9 +1182,9 @@
             <span class="cat-ver">v141</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
-            <span class="cat-cmd">CLAUDE_PROJECT_DIR</span>
-            <span class="cat-desc" data-en="Pass project dir to MCP stdio servers">MCP stdio 서버에 프로젝트 경로 전달</span>
-            <span class="cat-ver">v139</span>
+            <span class="cat-cmd">/plugin 검색바</span>
+            <span class="cat-desc" data-en="Search bar when browsing marketplace plugins in /plugin">/plugin 마켓플레이스 탐색 시 플러그인 검색바 제공</span>
+            <span class="cat-ver">v172</span>
           </li>
           <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">/plugin list</span>
@@ -1221,6 +1226,11 @@
             <span class="cat-cmd" data-en="post-session hook">post-session hook</span>
             <span class="cat-desc" data-en="Self-hosted runner: snapshot uncommitted work before cleanup">self-hosted 러너: 정리 전 미커밋 작업 스냅샷</span>
             <span class="cat-ver">v169</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">model attr OTEL</span>
+            <span class="cat-desc" data-en="model attribute added to lines_of_code.count OTEL metric">lines_of_code.count OTEL 메트릭에 model 속성 추가</span>
+            <span class="cat-ver">v172</span>
           </li>
         </ul>
       </div>
@@ -10535,6 +10545,18 @@
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/observability-for-developers-building-connectors" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Connector Observability</span>
             <span class="sf-desc" data-en="Connector observability and in-app directory submission.">커넥터 관찰가능성·앱 내 디렉터리 등록.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/the-claude-cowork-product-guide" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Claude Cowork 가이드</span>
+            <span class="sf-desc" data-en="Product guide for Claude Cowork — Anthropic's shared AI workspace.">Claude Cowork 제품 가이드 — 공유 AI 워크스페이스.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/new-in-claude-managed-agents" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">New in Managed Agents</span>
+            <span class="sf-desc" data-en="Managed Agents: dreaming, outcomes, and multiagent orchestration.">Managed Agents — 드리밍·아웃컴·멀티에이전트 오케스트레이션.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/lessons-from-building-claude-code-how-we-use-skills" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Skills in Claude Code</span>
+            <span class="sf-desc" data-en="Lessons from building Claude Code: how Anthropic uses skills.">Claude Code 빌드 인사이트 — skills 활용법.</span>
           </a>
         </div>
         <div class="side-sec">
