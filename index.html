@@ -162,6 +162,11 @@
     .pick-why strong,.pick-check strong{font-weight:700;font-size:.74rem;margin-right:5px}
     .pick-why strong{color:var(--feature)}
     .pick-check strong{color:var(--improve)}
+    /* 호버 가능 기기(데스크톱): 왜·학습 메타는 접어두고 호버 시 펼침 → 카드 컴팩트. 터치 기기는 항상 노출 */
+    @media (hover:hover){
+      .pick-grid .pick-card .pick-meta{max-height:0;opacity:0;overflow:hidden;padding-top:0;border-top-color:transparent;transition:max-height .22s ease,opacity .16s ease,padding-top .22s ease}
+      .pick-grid .pick-card:hover .pick-meta,.pick-grid .pick-card:focus-within .pick-meta{max-height:240px;opacity:1;padding-top:12px;border-top-color:var(--border)}
+    }
     .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
     .pick-card .ver .vtag{font-family:var(--mono)}
     [data-view="codex"] .pick-card .ver{padding-right:0}
@@ -177,6 +182,11 @@
     .cat-item{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-top:1px solid var(--border);cursor:pointer;transition:.12s;overflow:hidden}
     .cat-item:first-child{border-top:none}
     .cat-item:hover{padding-left:4px}
+    .cat-item.cat-hidden{display:none}
+    .cat-more{margin-top:6px;align-self:flex-start;font-size:.74rem;font-weight:600;color:var(--ink-3);background:none;border:none;cursor:pointer;padding:3px 0;font-family:inherit;transition:.12s}
+    .cat-more:hover{color:var(--pick)}
+    .cat-expand-all{margin-left:auto;align-self:center;font-size:.78rem;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.12s}
+    .cat-expand-all:hover{border-color:var(--line-strong);color:var(--pick)}
     .cat-cmd{font-family:var(--mono);font-size:.74rem;color:var(--pick);flex-shrink:0;min-width:96px;white-space:nowrap}
     .cat-desc{font-size:.81rem;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .cat-ver{font-family:var(--mono);font-size:.68rem;color:var(--ink-3);flex-shrink:0}
@@ -458,6 +468,10 @@
       .wrap{padding:0 18px 48px}
       .hero h1{font-size:1.7rem}
       .pick-grid,.cat-grid{grid-template-columns:minmax(0,1fr)}
+      .cat-header{flex-wrap:wrap}
+      .cat-header h2{white-space:nowrap}
+      .cat-header .cat-sub{flex-basis:100%;order:3;margin-top:-2px}
+      .cat-expand-all{margin-left:auto}
     }
   </style>
 </head>
@@ -989,6 +1003,7 @@
     <div class="cat-header">
       <span>🧰</span><h2 data-en="By Use Case">용도별 보기</h2>
       <span class="cat-sub" data-en="For &quot;what did I use for this?&quot; moments · by period">"이럴 때 뭐 썼더라" 떠올릴 때 · 기간별</span>
+      <button class="cat-expand-all" type="button" hidden></button>
     </div>
     <div class="cat-grid period-grid" data-section="cat" data-period="recent">
 
@@ -12052,6 +12067,34 @@
       document.querySelectorAll('[data-en]').forEach(el => { el.innerHTML = el.getAttribute('data-en'); });
       const lb = document.getElementById('langToggle'); if (lb) lb.textContent = 'KO';
     }
+
+    // ── 용도별: 카테고리당 N개만 노출 + '더보기' + 헤더 '전체 펼치기/접기' ──
+    (function capCat(){
+      const N=4, en=CUR_LANG==='en';
+      const grid=document.querySelector('.cat-grid[data-section="cat"][data-period="recent"]');
+      if(!grid) return;
+      const capped=[];
+      grid.querySelectorAll('.cat-items').forEach(ul=>{
+        const items=[...ul.querySelectorAll(':scope > .cat-item')];
+        if(items.length<=N) return;
+        const extra=items.length-N;
+        items.slice(N).forEach(li=>li.classList.add('cat-hidden'));
+        const btn=document.createElement('button');
+        btn.type='button'; btn.className='cat-more';
+        const label=open=>{btn.textContent=open?(en?'− less':'접기'):(en?('+ '+extra+' more'):('+'+extra+' 더보기'));};
+        const set=open=>{items.slice(N).forEach(li=>li.classList.toggle('cat-hidden',!open)); label(open);};
+        label(false);
+        btn.addEventListener('click',e=>{e.stopPropagation(); set(ul.querySelector('.cat-item.cat-hidden')!=null);});
+        ul.after(btn);
+        capped.push({set, isOpen:()=>!ul.querySelector('.cat-item.cat-hidden')});
+      });
+      const all=document.querySelector('.cat-header .cat-expand-all');
+      if(!capped.length || !all) return;
+      const setAll=open=>{capped.forEach(c=>c.set(open)); all.textContent=open?(en?'Collapse all ▴':'전체 접기 ▴'):(en?'Expand all ▾':'전체 펼치기 ▾');};
+      setAll(false);
+      all.addEventListener('click',()=>setAll(capped.some(c=>!c.isOpen())));
+      all.hidden=false;
+    })();
 
     // ── 버전 목록 노출 5개 정규화 (자동 추가돼도 JS가 유지) ──
     (function normalizeExposed(){
