@@ -753,7 +753,7 @@
         <option value="2025-10" data-en="Oct">10월</option>
         <option value="2025-09" data-en="Sep">9월</option>
       </select></span>
-      <span class="pick-sort" tabindex="0"><span data-en="By impact ⇅">효과성순 ⇅</span><span class="sort-tip" data-en="<strong>Left→right = higher impact</strong><br>★★★ Core — changes your workflow<br>★★☆ Recommended — clearly useful<br>★☆☆ Minor — small convenience<br>Criteria: impact × frequency × ease of adoption"><strong>좌→우 = 효과성 높은 순</strong><br>★★★ 핵심 — 워크플로우를 크게 바꿈<br>★★☆ 추천 — 확실히 유용<br>★☆☆ 일반 — 소소한 편의<br>기준: 임팩트 × 사용 빈도 × 도입 난이도</span></span>
+      <span class="pick-sort" tabindex="0"><span data-en="By impact ⇅">효과성순 ⇅</span><span class="sort-tip" data-en="<strong>Top→bottom = higher impact</strong><br>Same impact → newest first<br>★★★ Core — changes your workflow<br>★★☆ Recommended — clearly useful<br>★☆☆ Minor — small convenience<br>Criteria: impact × frequency × ease of adoption"><strong>위→아래 = 효과성 높은 순</strong><br>같은 효과성은 최근순<br>★★★ 핵심 — 워크플로우를 크게 바꿈<br>★★☆ 추천 — 확실히 유용<br>★☆☆ 일반 — 소소한 편의<br>기준: 임팩트 × 사용 빈도 × 도입 난이도</span></span>
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
@@ -12737,6 +12737,17 @@
       document.querySelectorAll('[data-view="manus"] .news-grid').forEach(g=>{
         const c=[...g.querySelectorAll('.feat-card[href]')]; if(c.length<2) return;
         c.sort((a,b)=>key(b).localeCompare(key(a))); c.forEach(x=>g.appendChild(x));
+      });
+    })();
+    /* 픽 정렬 결정화: 효과성(tier) 내림차순 → 같은 효과성은 최근(date) 순. 수동 DOM 순서의 '뒤죽' 제거 */
+    (function sortPicks(){
+      const tier=el=>{const t=el.querySelector('.pick-tier');if(!t)return 0;const c=t.className;return c.indexOf('t3')>=0?3:c.indexOf('t2')>=0?2:c.indexOf('t1')>=0?1:0;};
+      const date=el=>el.getAttribute('data-date')||(el.querySelector('[data-date]')&&el.querySelector('[data-date]').getAttribute('data-date'))||'';
+      document.querySelectorAll('.pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]').forEach(g=>{
+        const cards=[...g.children].filter(c=>c.classList.contains('pick-card'));
+        if(cards.length<2)return;
+        cards.sort((a,b)=>{const ta=tier(a),tb=tier(b);if(tb!==ta)return tb-ta;return date(b).localeCompare(date(a));});
+        cards.forEach(c=>g.appendChild(c));
       });
     })();
     (function markCards(){
