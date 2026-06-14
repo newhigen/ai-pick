@@ -41,7 +41,7 @@
       /* 히트맵 (며칠 전 배지) */
       --heat-0-text:#c8453a; --heat-1-text:#b4690e; --heat-2-text:#9a7b0e; --heat-3-text:#8a8a40;
       --radius:14px; --radius-sm:9px;
-      --shadow-sm:0 1px 2px rgba(20,20,18,.04),0 1px 3px rgba(20,20,18,.05);
+      --shadow-sm:0 1px 2px rgba(20,20,18,.03);
       --shadow-md:0 2px 8px rgba(20,20,18,.05),0 8px 24px rgba(20,20,18,.06);
       --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
       --mono:'Google Sans Code',ui-monospace,'SF Mono',Menlo,monospace;
@@ -74,6 +74,7 @@
       transition:background-color .2s,color .2s;
     }
     code{font-family:var(--mono);font-size:.84em;background:var(--surface2);padding:1px 5px;border-radius:5px;color:var(--text)}
+    .vtag,.news-date,.sync-stamp,.bmono,.lm-d,.hero .range strong,.cmd{font-variant-numeric:tabular-nums}
     .wrap{max-width:1120px;margin:0 auto;padding:0 28px 64px}
 
     /* ── Top bar ── */
@@ -172,20 +173,21 @@
     .pick-card .ver .vtag{font-family:var(--mono)}
     [data-view="codex"] .pick-card .ver{padding-right:0}
     .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
-    /* 컴팩트 줄 리스트 모드 — 써볼(cc) 픽: 한 줄=한 픽 (tier·cmd·제목·설명·버전), 왜/학습은 호버 팝오버 유지 */
-    [data-view="cc"] .pick-grid[data-section="pick"]{display:block;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-sm)}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card{display:flex;align-items:center;gap:11px;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:10px 14px;transition:background .14s ease}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:hover{background:var(--surface2);transform:none;box-shadow:none}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:first-child{border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:last-child{border-bottom:0;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius)}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-tier{position:static;order:0;flex:none;min-width:30px;text-align:left;font-size:.6rem;margin:0}
-    [data-view="cc"] .pick-grid[data-section="pick"] .cmd{order:1;flex:none;margin:0}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card h3{order:2;flex:none;margin:0;font-size:.88rem;max-width:38%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card p{order:3;flex:1;min-width:0;margin:0;font-size:.82rem;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    [data-view="cc"] .pick-grid[data-section="pick"] .ver{order:4;flex:none;margin:0;padding-right:0}
+    /* ── 컴팩트 줄 리스트 (Geist/Linear clean) — 써볼·Codex 픽: 한 줄=한 픽, 플랫(헤어라인 주도), 왜/학습 호버 팝오버 ── */
+    .pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]{display:block;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:visible}
+    .pl-row{} /* marker */
+    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{display:flex;align-items:center;gap:12px;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:11px 16px;transition:background .13s ease}
+    .pick-grid[data-section="pick"] .pick-card:hover,.pick-grid[data-section="codex-pick"] .pick-card:hover{background:var(--surface2);transform:none;box-shadow:none;border-color:var(--border)}
+    .pick-grid[data-section="pick"] .pick-card:first-child,.pick-grid[data-section="codex-pick"] .pick-card:first-child{border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
+    .pick-grid[data-section="pick"] .pick-card:last-child,.pick-grid[data-section="codex-pick"] .pick-card:last-child{border-bottom:0;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius)}
+    .pick-grid[data-section="pick"] .pick-tier,.pick-grid[data-section="codex-pick"] .pick-tier{position:static;order:0;flex:none;min-width:28px;text-align:left;font-size:.58rem;letter-spacing:.5px;margin:0;color:var(--land)}
+    .pick-grid[data-section="pick"] .cmd,.pick-grid[data-section="codex-pick"] .cmd{order:1;flex:none;margin:0}
+    .pick-grid[data-section="pick"] .pick-card h3,.pick-grid[data-section="codex-pick"] .pick-card h3{order:2;flex:none;margin:0;font-size:.89rem;font-weight:650;max-width:40%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pick-grid[data-section="pick"] .pick-card p,.pick-grid[data-section="pick"] .pick-card .pick-lead,.pick-grid[data-section="codex-pick"] .pick-card p,.pick-grid[data-section="codex-pick"] .pick-card .pick-lead{order:3;flex:1;min-width:0;margin:0;font-size:.82rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pick-grid[data-section="pick"] .ver,.pick-grid[data-section="codex-pick"] .ver{order:4;flex:none;margin:0;padding-right:0;font-variant-numeric:tabular-nums}
     @media(max-width:560px){
-      [data-view="cc"] .pick-grid[data-section="pick"] .pick-card p{display:none}
-      [data-view="cc"] .pick-grid[data-section="pick"] .pick-card h3{max-width:none;flex:1}
+      .pick-grid[data-section="pick"] .pick-card p,.pick-grid[data-section="pick"] .pick-card .pick-lead,.pick-grid[data-section="codex-pick"] .pick-card p,.pick-grid[data-section="codex-pick"] .pick-card .pick-lead{display:none}
+      .pick-grid[data-section="pick"] .pick-card h3,.pick-grid[data-section="codex-pick"] .pick-card h3{max-width:none;flex:1}
     }
     .new-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
 
