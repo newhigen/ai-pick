@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ai-pick UX 가이드 — 큐레이션 트래커 디자인</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root{
+    --bg:#fbfbfa; --surface:#fff; --surface2:#f5f5f4; --border:#e7e5e4; --line-strong:#d6d3d1;
+    --text:#1c1917; --muted:#57534e; --faint:#a8a29e;
+    --accent:#6b4cff; --accent-bg:#efeaff; --accent-line:#d9cfff;
+    --good:#0f9d6b; --warn:#c2703f; --bad:#dc2626;
+    --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --radius:12px; --radius-sm:8px; --shadow-sm:0 1px 2px rgba(0,0,0,.05);
+    --maxw:920px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0c0c0d; --surface:#141415; --surface2:#1b1b1d; --border:#27272a; --line-strong:#3a3a3e;
+    --text:#f4f4f5; --muted:#a1a1aa; --faint:#6b6b72;
+    --accent:#a594ff; --accent-bg:#1e1838; --accent-line:#2f2756;
+    --good:#34d399; --warn:#fb923c; --bad:#f87171;
+    --shadow-sm:none;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum";}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px 96px}
+  header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .top-in{max-width:var(--maxw);margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px}
+  .mark{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:1rem;letter-spacing:-.02em}
+  .top h1{font-size:.95rem;font-weight:600;margin:0;letter-spacing:-.01em}
+  .top .sp{flex:1}
+  .tbtn{font:inherit;font-size:.78rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 11px;cursor:pointer}
+  .tbtn:hover{border-color:var(--line-strong);color:var(--text)}
+  .hero{padding:54px 0 30px}
+  .hero .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+  .hero h2{font-size:2rem;line-height:1.18;letter-spacing:-.025em;margin:.4em 0 .3em;font-weight:800}
+  .hero p{font-size:1.02rem;color:var(--muted);margin:0;max-width:62ch}
+  section{margin-top:48px}
+  h3.sec{font-size:1.28rem;letter-spacing:-.02em;margin:0 0 6px;font-weight:750}
+  .sec-sub{color:var(--muted);margin:0 0 20px;font-size:.94rem;max-width:68ch}
+  h4{font-size:.96rem;font-weight:700;letter-spacing:-.01em;margin:26px 0 8px}
+  p{margin:0 0 12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .card h5{margin:0 0 4px;font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px}
+  .card .src{font-family:var(--mono);font-size:.68rem;color:var(--faint);background:var(--surface2);border-radius:5px;padding:1px 6px}
+  .card p{font-size:.86rem;color:var(--muted);margin:0}
+  .card ul{margin:6px 0 0;padding-left:18px}
+  .card li{font-size:.85rem;color:var(--muted);margin:3px 0}
+  .lede{border-left:3px solid var(--accent);padding:2px 0 2px 14px;color:var(--text);font-weight:550;background:linear-gradient(90deg,var(--accent-bg),transparent);border-radius:0 8px 8px 0}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin:8px 0}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  th{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--faint);font-weight:650}
+  td code,.m{font-family:var(--mono);font-size:.82em;background:var(--surface2);padding:1px 5px;border-radius:4px;color:var(--text)}
+  .swatch{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid var(--line-strong);vertical-align:-1px;margin-right:5px}
+  .chk{list-style:none;padding:0;margin:0}
+  .chk li{padding:9px 0 9px 30px;position:relative;border-bottom:1px solid var(--border);font-size:.9rem}
+  .chk li:before{content:"";position:absolute;left:4px;top:13px;width:13px;height:13px;border:2px solid var(--accent);border-radius:4px}
+  .chk li.done:before{background:var(--accent);box-shadow:inset 0 0 0 2px var(--surface)}
+  .chk b{font-weight:650}
+  .chk .why{display:block;color:var(--muted);font-size:.82rem;margin-top:1px}
+  .pill{display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 8px;border-radius:999px;border:1px solid var(--accent-line);color:var(--accent);background:var(--accent-bg)}
+  .verdict{background:var(--surface);border:1px solid var(--accent-line);border-radius:var(--radius);padding:18px 20px}
+  .verdict h4{margin-top:0;color:var(--accent)}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  @media(max-width:680px){.ba{grid-template-columns:1fr}}
+  .demo{border:1px solid var(--border);border-radius:var(--radius-sm);padding:13px 14px;background:var(--surface)}
+  .demo .cmd{font-family:var(--mono);font-size:.74rem;color:var(--accent);background:var(--accent-bg);padding:2px 8px;border-radius:6px;display:inline-block}
+  .demo .t{font-weight:700;font-size:.92rem;margin:7px 0 3px}
+  .demo .d{font-size:.82rem;color:var(--muted);margin:0}
+  .demo .meta{font-family:var(--mono);font-size:.7rem;color:var(--faint);margin-top:8px;display:flex;gap:8px;align-items:center}
+  .demo.bad{opacity:.92}
+  .tag{font-size:.68rem;color:var(--faint)}
+  .refs{font-size:.8rem;color:var(--muted)}
+  .refs li{margin:5px 0}
+  .refs a{color:var(--accent);text-decoration:none}
+  .refs a:hover{text-decoration:underline}
+  footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--border);font-size:.78rem;color:var(--faint)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <span class="mark">&gt;_</span>
+    <h1>ai-pick UX 가이드</h1>
+    <span class="sp"></span>
+    <button class="tbtn" id="themeBtn" onclick="toggleTheme()">◑ 테마</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Curated dev-tool tracker · 디자인 레퍼런스</div>
+    <h2>스캔 가능한 큐레이션 트래커의 UI/UX</h2>
+    <p>ai-pick(Agent Edge)은 <b>"AI 코딩 도구의 changelog를 매일 큐레이트해 카드로 보여주는 트래커"</b>다. 이 아키타입의 정답 미학은 이미 업계에 정립돼 있다 — Raycast·Vercel(Geist)·Linear가 만든 <b>개발자 도구 미학</b>과, Product Hunt·TLDR가 다듬은 <b>스캔형 피드 카드</b>의 교집합. 아래는 그 레퍼런스를 분석해 ai-pick에 맞춘 토큰·규칙·체크리스트다.</p>
+  </div>
+
+  <!-- 1. ARCHETYPE -->
+  <section>
+    <h3 class="sec">1. 아키타입 — 무엇을 만드는가</h3>
+    <p class="sec-sub">두 장르의 교집합이다. 각 장르의 검증된 규칙을 빌려오되, 충돌하면 "스캔성 우선"으로 판정한다.</p>
+    <div class="grid2">
+      <div class="card">
+        <h5>🛠️ 개발자 도구 미학 <span class="src">Raycast·Geist</span></h5>
+        <p>뉴트럴 베이스 + 단일 액센트, 모노 숫자, 헤어라인 보더, 그림자 대신 surface 명도 사다리로 깊이. 절제가 곧 "엔지니어링 grade" 신호.</p>
+      </div>
+      <div class="card">
+        <h5>📰 스캔형 큐레이션 피드 <span class="src">Product Hunt·TLDR</span></h5>
+        <p>카드 = 한 입 크기 단위. 우선 항목만 노출하고 나머지는 펼침 뒤로. 제목은 즉시 훑기 가능, 본문은 짧게 자르고 "더 있다"는 신호.</p>
+      </div>
+    </div>
+    <p class="lede" style="margin-top:14px">판정 원칙: 정보 밀도와 절제가 충돌하면 <b>progressive disclosure</b>로 푼다 — 카드 면엔 "이게 뭔지"만, 디테일은 호버/모달 뒤로. 연구상 단계적 노출은 초기 완료를 30–50% 빠르게 한다.</p>
+  </section>
+
+  <!-- 2. REFERENCES -->
+  <section>
+    <h3 class="sec">2. 레퍼런스 분석 — 무엇을 빌려올까</h3>
+    <p class="sec-sub">각 제품에서 ai-pick에 이식할 핵심 한 가지씩.</p>
+    <div class="grid2">
+      <div class="card">
+        <h5>Raycast <span class="src">changelog + 마케팅</span></h5>
+        <ul>
+          <li><b>그림자 0</b> — 깊이는 surface 명도 4단(canvas→surface→elevated→card)으로만.</li>
+          <li><b>헤어라인 보더</b> 1px가 유일한 카드 엣지 처리.</li>
+          <li><b>액센트는 일러스트/카테고리에만</b>, chrome(버튼·링크)은 무채색 유지.</li>
+          <li>changelog는 <b>benefit-first</b> — "기능"이 아니라 "얻는 가치"로 표제.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h5>Vercel Geist <span class="src">design system</span></h5>
+        <ul>
+          <li><b>모노 숫자</b>(tabular)를 버전·메트릭·타임스탬프에 — "기술적"으로 읽힘.</li>
+          <li>뉴트럴 우선, 액센트(<span class="m">#0070f3</span>)는 <b>"구두점처럼"</b> 드물게.</li>
+          <li>다크 우선 설계, 라이트는 2순위.</li>
+          <li>여백을 아끼지 마라 — breathing room이 premium 신호.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h5>Linear <span class="src">2025 트렌드</span></h5>
+        <ul>
+          <li>색을 더 깎아냄 — 단색 + 극소수 강조색. 선택지를 최소로.</li>
+          <li>직선적·직접적 — 장식보다 명료한 위계.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h5>Product Hunt / TLDR <span class="src">큐레이션 피드</span></h5>
+        <ul>
+          <li>카드 그리드 = 다양 콘텐츠 정렬·강조의 기본기.</li>
+          <li>5분 안에 훑기 — 제목 스캔성 + 1–2문장 요약.</li>
+          <li>이미지 쓰면 <b>일정 종횡비</b> 고정해 그리드 리듬 유지.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. TOKENS -->
+  <section>
+    <h3 class="sec">3. 디자인 토큰 — ai-pick 튜닝</h3>
+    <p class="sec-sub">레퍼런스의 dark-only/blue를 ai-pick의 라이트·다크 + 보라 액센트(<span class="m">#6b4cff</span>)·Pretendard로 변환. <span class="pill">이 페이지가 이 토큰을 그대로 씀</span></p>
+
+    <h4>색 — 뉴트럴 베이스 + 단일 액센트</h4>
+    <table>
+      <tr><th>역할</th><th>Light</th><th>Dark</th><th>규칙</th></tr>
+      <tr><td>Canvas / Surface</td><td><span class="swatch" style="background:#fbfbfa"></span><span class="m">#fbfbfa</span> / <span class="m">#fff</span></td><td><span class="swatch" style="background:#0c0c0d"></span><span class="m">#0c0c0d</span> / <span class="m">#141415</span></td><td>명도 사다리로 깊이</td></tr>
+      <tr><td>Border 헤어라인</td><td><span class="swatch" style="background:#e7e5e4"></span><span class="m">#e7e5e4</span></td><td><span class="swatch" style="background:#27272a"></span><span class="m">#27272a</span></td><td>1px, 유일한 카드 엣지</td></tr>
+      <tr><td>Text → Muted → Faint</td><td><span class="m">#1c1917→#57534e→#a8a29e</span></td><td><span class="m">#f4f4f5→#a1a1aa→#6b6b72</span></td><td>3단 위계로 legibility</td></tr>
+      <tr><td>Accent</td><td><span class="swatch" style="background:#6b4cff"></span><span class="m">#6b4cff</span></td><td><span class="swatch" style="background:#a594ff"></span><span class="m">#a594ff</span></td><td>"구두점처럼" — tier·링크·cmd칩만</td></tr>
+    </table>
+
+    <div class="grid2" style="margin-top:18px">
+      <div class="card">
+        <h5>타이포 스케일</h5>
+        <table style="margin:0">
+          <tr><th>용도</th><th>크기</th><th>웨이트</th></tr>
+          <tr><td>섹션 헤드라인</td><td>20–28px</td><td>700–800</td></tr>
+          <tr><td>카드 제목</td><td>16px</td><td>700</td></tr>
+          <tr><td>본문/설명</td><td>13.5–14px</td><td>400</td></tr>
+          <tr><td>메타·캡션</td><td>11–12px</td><td>400</td></tr>
+          <tr><td><b>숫자·버전</b></td><td>mono</td><td>tnum</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h5>여백 · 라운드 · 깊이</h5>
+        <ul>
+          <li><b>8pt 리듬</b>: 4·8·12·16·24. 카드 패딩 14–18px(32px+ 금지).</li>
+          <li>라운드: 카드 <span class="m">12px</span>, 칩/뱃지 <span class="m">6–8px</span>, 펄 <span class="m">999px</span>.</li>
+          <li>깊이: 라이트=미세 그림자 1단까지, <b>다크=그림자 0</b>(surface 명도만).</li>
+          <li>섹션 리듬 넉넉히(48–96px), <b>카드 안은 타이트</b>(6–12px).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CARD ANATOMY + DENSITY (answers "더 줄일까") -->
+  <section>
+    <h3 class="sec">4. 카드 해부 · 밀도 — "더 줄일까?"의 답</h3>
+    <p class="sec-sub">써볼 카드의 각 요소가 자기 자리를 버는지 심사. 데스크톱에선 왜/학습이 이미 호버 팝오버(높이 0)라, 카드 면 = cmd + 제목 + 설명 + 메타.</p>
+
+    <div class="ba">
+      <div class="demo bad">
+        <div class="tag">✗ 과부하 (이전)</div>
+        <span class="cmd">Fable 5</span>
+        <div class="t">Claude Fable 5 (공개 Mythos급)</div>
+        <p class="d">오늘(6/9) 출시. 일반 사용 안전화한 Mythos급 — 대부분 벤치 SOTA. 고위험 주제는 Opus 4.8로 폴백(세션 &lt;5%). Pro/Max/Team/Ent, 6/23 이후 크레딧제.</p>
+        <div class="meta">v2.1.170 · 5일 전</div>
+      </div>
+      <div class="demo">
+        <div class="tag" style="color:var(--good)">✓ benefit-first 1줄 (지금)</div>
+        <span class="cmd">Fable 5</span>
+        <div class="t">Claude Fable 5 (공개 Mythos급)</div>
+        <p class="d">일반 사용까지 안전화한 Mythos급 공개 모델 — 대부분 벤치 SOTA.</p>
+        <div class="meta">v2.1.170 · 5일 전</div>
+      </div>
+    </div>
+    <p style="margin-top:12px">날짜·가격·폴백 같은 디테일은 카드 면에서 빼 <b>왜/학습 팝오버·클릭 모달</b>로. 날짜는 카드 우상단 heatmap이 이미 표시 → 본문 중복. cmd 칩 키워드를 설명 끝에 반복 금지.</p>
+
+    <div class="verdict" style="margin-top:18px">
+      <h4>판정: 더 줄일 수 있나?</h4>
+      <p style="font-size:.92rem">현재 카드는 <b>바닥 근처</b>다. 폰트·패딩을 더 깎으면 "이게 뭔지" 스캔성과 위계가 깨진다. 남은 건 <b>구조적</b> 레버 — 무작정 축소가 아니다:</p>
+      <ul style="font-size:.88rem;color:var(--muted);margin:6px 0 0;padding-left:18px">
+        <li><b>(권장) 메타 1줄 합치기</b> — tier ★ + 버전 + 며칠전을 한 baseline 행으로(현재 ver는 별도 행). 카드당 1줄 절감, 모노 숫자로 통일.</li>
+        <li><b>(선택) 다크에서 그림자 제거</b> → 헤어라인+surface만. 시각 노이즈↓, 더 촘촘해 보임(Raycast 방식).</li>
+        <li><b>(여유 시) 밀도 토글</b> — 편안/컴팩트. 줄이기 vs 읽기 취향을 사용자에게.</li>
+        <li><b>그리드</b> gap 14→12, <span class="m">minmax(264→240px)</span>로 한 행에 카드 더.</li>
+      </ul>
+      <p style="font-size:.88rem;margin:10px 0 0"><b>하지 말 것:</b> 본문 폰트 추가 축소, 제목 2줄→1줄 강제 말줄임(도구명이 잘림), tier 뱃지 제거(우선순위 신호 상실).</p>
+    </div>
+  </section>
+
+  <!-- 5. TRACKER UX -->
+  <section>
+    <h3 class="sec">5. 트래커 고유 UX — changelog를 픽으로</h3>
+    <p class="sec-sub">Raycast changelog 분석에서 추출한, "릴리즈 트래커"에 특화된 규칙.</p>
+    <div class="grid2">
+      <div class="card"><h5>① benefit-first 표제</h5><p>"기능 추가"가 아니라 "얻는 가치". <span class="m">"여러 턴 자율 실행"</span> &gt; <span class="m">"/goal 명령"</span>. 제목=가치, 명령어=칩.</p></div>
+      <div class="card"><h5>② 토픽 태그·카테고리</h5><p>용도별(🚀긴작업·📝리뷰·💰비용…) 필터로 발견성↑. Raycast가 못 한 부분 — ai-pick은 이미 "용도별" 탭으로 보유.</p></div>
+      <div class="card"><h5>③ 시간 그룹 · 신선도</h5><p>주/월 그룹 + <b>며칠전 heatmap</b>(최근=따뜻→오래=회색). 무엇이 새 것인지 즉시.</p></div>
+      <div class="card"><h5>④ 30초 스캔 흐름</h5><p>맥락→이름→(스샷/데모)→사용예→링크. 카드 면은 앞 2개, 나머지는 모달.</p></div>
+    </div>
+  </section>
+
+  <!-- 6. CHECKLIST -->
+  <section>
+    <h3 class="sec">6. ai-pick 적용 체크리스트</h3>
+    <p class="sec-sub">현재 사이트 기준. ✓=이미 충족, □=다음 레버.</p>
+    <ul class="chk">
+      <li class="done"><b>단일 액센트(보라) + 뉴트럴 베이스</b><span class="why">chrome 무채색, tier·cmd칩에만 액센트 — 충족</span></li>
+      <li class="done"><b>progressive disclosure</b><span class="why">왜/학습 = 데스크톱 호버 팝오버, 카드 높이 고정 — 충족</span></li>
+      <li class="done"><b>benefit-first 1줄 설명</b><span class="why">최근 컴팩트 작업서 적용 + curate_prompt에 ≤90자 규칙 — 충족</span></li>
+      <li class="done"><b>며칠전 heatmap 신선도</b><span class="why">상대시간 warm→cool 색 — 충족</span></li>
+      <li><b>메타 1줄 합치기</b><span class="why">tier ★ + 버전 + 날짜를 한 baseline 행으로 → 카드당 1줄 절감</span></li>
+      <li><b>모노 숫자(tnum) 일관 적용</b><span class="why">버전·날짜·메트릭 전부 mono+tabular로</span></li>
+      <li><b>다크 그림자 제거</b><span class="why">헤어라인+surface 명도만으로 깊이(Raycast)</span></li>
+      <li><b>밀도 토글(편안/컴팩트)</b><span class="why">여유 시. 줄이기 vs 읽기 취향 위임</span></li>
+    </ul>
+  </section>
+
+  <!-- SOURCES -->
+  <section>
+    <h3 class="sec">출처</h3>
+    <ul class="refs">
+      <li><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/raycast/DESIGN.md" target="_blank" rel="noopener">Raycast DESIGN.md — VoltAgent/awesome-design-md</a> (surface 사다리·헤어라인·그림자 0·토큰)</li>
+      <li><a href="https://www.designsystems.one/design-systems/vercel-geist" target="_blank" rel="noopener">Geist (Vercel) Design System Breakdown — DesignSystems.one</a> (모노 숫자·뉴트럴 우선·액센트 절제)</li>
+      <li><a href="https://hi.ducalis.io/changelog/examples/raycast-changelog" target="_blank" rel="noopener">Raycast Changelog Review — Ducalis.io</a> (benefit-first·토픽 태그·30초 스캔)</li>
+      <li><a href="https://blog.logrocket.com/ux-design/linear-design/" target="_blank" rel="noopener">Linear design trend — LogRocket</a> (색 절제·직선적 미니멀)</li>
+      <li><a href="https://ixdf.org/literature/topics/progressive-disclosure" target="_blank" rel="noopener">Progressive Disclosure — IxDF</a> (단계적 노출 30–50% 빠른 완료)</li>
+      <li><a href="https://www.layoutscene.com/card-ui-design-patterns-guide-2026/" target="_blank" rel="noopener">Card UI Design Patterns 2026 — Layout Scene</a> · <a href="https://www.eleken.co/blog-posts/card-ui-examples-and-best-practices-for-product-owners" target="_blank" rel="noopener">Eleken</a> (카드 위계·말줄임·breathing room)</li>
+    </ul>
+  </section>
+
+  <footer>
+    ai-pick(Agent Edge) UX 가이드 · 큐레이션 트래커 디자인 레퍼런스 · 조사·분석 2026-06-14<br/>
+    DNA: polished-web-ui(뉴트럴 + 단일 액센트 · 8pt 리듬 · progressive disclosure). 토큰은 이 문서가 그대로 사용.
+  </footer>
+</div>
+
+<script>
+  (function(){
+    var t=localStorage.getItem("aipickux-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
+    document.documentElement.setAttribute("data-theme",t);
+  })();
+  function toggleTheme(){
+    var cur=document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark";
+    document.documentElement.setAttribute("data-theme",cur);
+    try{localStorage.setItem("aipickux-theme",cur)}catch(e){}
+  }
+</script>
+</body>
+</html>
