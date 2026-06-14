@@ -172,6 +172,21 @@
     .pick-card .ver .vtag{font-family:var(--mono)}
     [data-view="codex"] .pick-card .ver{padding-right:0}
     .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
+    /* 컴팩트 줄 리스트 모드 — 써볼(cc) 픽: 한 줄=한 픽 (tier·cmd·제목·설명·버전), 왜/학습은 호버 팝오버 유지 */
+    [data-view="cc"] .pick-grid[data-section="pick"]{display:block;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow-sm)}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card{display:flex;align-items:center;gap:11px;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:10px 14px;transition:background .14s ease}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:hover{background:var(--surface2);transform:none;box-shadow:none}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:first-child{border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card:last-child{border-bottom:0;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius)}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-tier{position:static;order:0;flex:none;min-width:30px;text-align:left;font-size:.6rem;margin:0}
+    [data-view="cc"] .pick-grid[data-section="pick"] .cmd{order:1;flex:none;margin:0}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card h3{order:2;flex:none;margin:0;font-size:.88rem;max-width:38%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    [data-view="cc"] .pick-grid[data-section="pick"] .pick-card p{order:3;flex:1;min-width:0;margin:0;font-size:.82rem;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    [data-view="cc"] .pick-grid[data-section="pick"] .ver{order:4;flex:none;margin:0;padding-right:0}
+    @media(max-width:560px){
+      [data-view="cc"] .pick-grid[data-section="pick"] .pick-card p{display:none}
+      [data-view="cc"] .pick-grid[data-section="pick"] .pick-card h3{max-width:none;flex:1}
+    }
     .new-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
 
     /* ── Use-case cards ── */
