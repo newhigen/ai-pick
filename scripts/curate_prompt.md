@@ -16,6 +16,7 @@ Agent Edge 사이트(`index.html`, repo: ai-pick) 큐레이션 갱신. 토큰 �
 
 ## 1) Claude Code 써볼·용도별 (new-features.json)
 - 써볼: `<div class="pick-grid period-grid" data-section="pick" data-period="recent">` 안. "정말 당장 써볼 만한" 게 있을 때만 **기존 카드 1~2개를 복사해 값 교체**(cmd·제목·설명·왜·학습·vtag·data-date·tier). 없으면 그대로.
+  - **설명(`<p>`)은 "이게 뭔지" 1줄(≤90자, 2줄 금지)** — 날짜·가격·폴백·세부 조건은 `<p>`에 넣지 말고 왜/학습 또는 클릭 모달로. 날짜는 `data-date`(heatmap)가 이미 표시. cmd 칩에 든 키워드를 설명 끝에 반복 금지.
 - 용도별: `<div class="cat-grid period-grid" data-section="cat" data-period="recent">` 안. 새 feature를 적합 카테고리 `<ul class="cat-items">`에 기존 `<li class="cat-item">` 복사해 추가(카테고리당 5개 내외, 과밀 금지).
 - 카테고리: 🚀 긴 작업 / 🤖 Subagent·세션 / 📝 PR·리뷰 / 💰 비용·컨텍스트 / 🎨 UI·네비 / 🧩 Plugin·MCP·확장 / 🪝 Hook·모니터링 / 🔒 모델·Enterprise
 - 새 슬래시 명령은 `docsMap`(`<script>` 내부)에 경로 추가(모르면 생략 → /commands 폴백).

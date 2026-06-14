@@ -149,14 +149,14 @@
     .pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(264px,1fr));gap:14px}
     .pick-grid.hidden,.period-grid.hidden{display:none}
     a.pick-card{text-decoration:none;color:inherit}
-    .pick-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:.18s ease;box-shadow:var(--shadow-sm)}
+    .pick-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;transition:.18s ease;box-shadow:var(--shadow-sm)}
     .pick-card:hover{border-color:var(--line-strong);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-    .pick-card .cmd{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--pick);background:var(--pick-bg);padding:3px 9px;border-radius:7px;display:inline-block;margin-bottom:12px}
+    .pick-card .cmd{font-family:var(--mono);font-size:.8rem;font-weight:500;color:var(--pick);background:var(--pick-bg);padding:3px 9px;border-radius:7px;display:inline-block;margin-bottom:8px}
     .pick-tier{position:absolute;top:auto;bottom:13px;right:14px;font-size:.66rem;letter-spacing:.5px;line-height:1;color:var(--land)}
     .pick-tier + .pick-lead{margin-top:24px}
     .pick-tier.t1{opacity:.8}
-    .pick-card h3{font-size:1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:6px;line-height:1.3;color:var(--text)}
-    .pick-card p{font-size:.86rem;color:var(--muted);line-height:1.55;margin-bottom:14px}
+    .pick-card h3{font-size:1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:4px;line-height:1.3;color:var(--text)}
+    .pick-card p{font-size:.86rem;color:var(--muted);line-height:1.45;margin-bottom:10px}
     .pick-meta{border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:7px}
     .pick-why,.pick-check{font-size:.79rem;line-height:1.5;color:var(--muted)}
     .pick-why strong,.pick-check strong{font-weight:700;font-size:.74rem;margin-right:5px}
@@ -168,7 +168,7 @@
       .pick-grid .pick-card:hover .pick-meta,.pick-grid .pick-card:focus-within .pick-meta{opacity:1;visibility:visible;transform:translateY(0)}
       .pick-grid .pick-card:hover{z-index:31}
     }
-    .pick-card .ver{margin-top:13px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
+    .pick-card .ver{margin-top:9px;display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--ink-3);padding-right:46px}
     .pick-card .ver .vtag{font-family:var(--mono)}
     [data-view="codex"] .pick-card .ver{padding-right:0}
     .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
@@ -644,7 +644,7 @@
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">Fable 5</div>
         <h3 data-en="Claude Fable 5 (public Mythos-class)">Claude Fable 5 (공개 Mythos급)</h3>
-        <p data-en="Launched today (Jun 9). Mythos-class made safe for general use — SOTA on most benchmarks. High-risk topics fall back to Opus 4.8 (&lt;5% of sessions). Pro/Max/Team/Enterprise, then credit-based after Jun 23.">오늘(6/9) 출시. 일반 사용 안전화한 Mythos급 — 대부분 벤치 SOTA. 고위험 주제는 Opus 4.8로 폴백(세션 &lt;5%). Pro/Max/Team/Ent, 6/23 이후 크레딧제.</p>
+        <p data-en="Mythos-class made safe for general use — SOTA on most benchmarks.">일반 사용까지 안전화한 Mythos급 공개 모델 — 대부분 벤치 SOTA.</p>
         <div class="pick-meta">
           <div class="pick-why" data-en="<strong>Why</strong> Strongest public model yet — a leap on hard tasks, SWE, research"><strong>왜?</strong> 현재 가장 강한 공개 모델 — 난제·SWE·연구 품질 도약</div>
           <div class="pick-check" data-en="<strong>Learn:</strong> Felt gain vs Opus 4.8; fallback frequency; cost after Jun 23"><strong>학습:</strong> Opus 4.8 대비 체감, 폴백 발동 빈도, 6/23 이후 비용</div>
@@ -655,7 +655,7 @@
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">ultracode</div>
         <h3 data-en="Dynamic workflows (tens–hundreds of agents)">동적 워크플로 (수십~수백 에이전트)</h3>
-        <p data-en="Ask Claude to create a workflow; it orchestrates tens–hundreds of agents in the background. Trigger keyword: ultracode.">"워크플로 만들어줘" → 백그라운드서 수십~수백 에이전트로 작업 오케스트레이션. 트리거 키워드 <code>ultracode</code>.</p>
+        <p data-en="Ask Claude to create a workflow; it orchestrates tens–hundreds of agents in the background.">"워크플로 만들어줘" → 백그라운드서 수십~수백 에이전트로 오케스트레이션.</p>
         <div class="pick-meta">
           <div class="pick-why" data-en="<strong>Why</strong> Decompose work one context can't hold — parallel fan-out"><strong>왜?</strong> 한 컨텍스트로 안 되는 대규모(마이그레이션·전수감사)를 병렬 분해</div>
           <div class="pick-check" data-en="<strong>Learn:</strong> Which tasks benefit from fan-out; where token cost explodes"><strong>학습:</strong> 어떤 작업이 fan-out 이득 보는지, 토큰 폭증 구간</div>
@@ -666,7 +666,7 @@
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">agent() → agent()</div>
         <h3 data-en="Sub-agents can now spawn sub-agents (up to 5 levels)">서브에이전트가 서브에이전트를 spawn (최대 5단계)</h3>
-        <p data-en="Each sub-agent can now spawn its own sub-agents — up to 5 levels deep. Enables recursive multi-level orchestration inside Workflow scripts.">서브에이전트가 자신의 서브에이전트를 spawn 가능 — 최대 5단계. Workflow 스크립트에서 다단계 재귀 오케스트레이션 구현 가능.</p>
+        <p data-en="Sub-agents can spawn their own sub-agents — up to 5 levels of recursive orchestration.">서브에이전트가 자신의 서브에이전트를 spawn — 최대 5단계 재귀 오케스트레이션.</p>
         <div class="pick-meta">
           <div class="pick-why" data-en="<strong>Why</strong> Multi-level agent trees unlock deeper task decomposition beyond flat fan-out"><strong>왜?</strong> 단순 fan-out을 넘어 계층형 에이전트 트리로 복잡한 작업 분해 가능</div>
           <div class="pick-check" data-en="<strong>Learn:</strong> Where recursive spawning adds value; nesting depth vs token cost trade-off"><strong>학습:</strong> 재귀 spawn이 가치 있는 작업 유형, 단계 깊이 vs 토큰 비용 트레이드오프</div>
