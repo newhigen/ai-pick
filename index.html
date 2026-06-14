@@ -491,6 +491,62 @@
       .cat-header .cat-sub{flex-basis:100%;order:3;margin-top:-2px}
       .cat-expand-all{margin-left:auto}
     }
+
+    /* ════════ REDESIGN: Geist/Linear mono-clean (monochrome + 단일 보라 액센트, 그림자 0, 타이트 라운드, mono 보이스) ════════ */
+    :root{
+      --bg:#fcfcfc; --surface:#ffffff; --surface2:#f4f4f2;
+      --border:#e9e9e6; --line-strong:#dcdcd8;
+      --text:#16160f; --muted:#6a6a63; --ink-3:#a2a29a;
+      /* 의미색 → 모노크롬(라벨 텍스트로 구분, 색으로 X) */
+      --feature:#52524c; --feature-bg:#efefec;
+      --improve:#52524c; --improve-bg:#efefec;
+      --fix:#52524c;     --fix-bg:#efefec;
+      --security:#52524c;--security-bg:#efefec;
+      --land:#a6a69e;
+      --heat-0-text:#16160f; --heat-1-text:#6a6a63; --heat-2-text:#9a9a92; --heat-3-text:#b6b6ae;
+      --radius:8px; --radius-sm:6px;
+      --shadow-sm:none;
+      --shadow-md:0 4px 16px rgba(20,20,18,.08),0 1px 2px rgba(20,20,18,.04);
+    }
+    [data-theme="dark"]{
+      --bg:#090909; --surface:#111110; --surface2:#191917;
+      --border:#242421; --line-strong:#33332e;
+      --text:#f0f0ec; --muted:#9d9d96; --ink-3:#62625c;
+      --feature:#9d9d96; --feature-bg:#1b1b18;
+      --improve:#9d9d96; --improve-bg:#1b1b18;
+      --fix:#9d9d96;     --fix-bg:#1b1b18;
+      --security:#9d9d96;--security-bg:#1b1b18;
+      --land:#76766f;
+      --heat-0-text:#f0f0ec; --heat-1-text:#9d9d96; --heat-2-text:#62625c; --heat-3-text:#4a4a45;
+      --shadow-sm:none;
+      --shadow-md:0 4px 20px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3);
+    }
+
+    /* mono 보이스 — 브랜드·버전·탭·기간·메타 (Latin) */
+    .brand .bname{font-family:var(--mono);font-weight:700;letter-spacing:-.045em;font-size:.96rem}
+    .brand .bmono{letter-spacing:.02em;text-transform:lowercase}
+    .top-tab{font-weight:600;letter-spacing:-.02em}
+    .period-tab,.period-sel,.pick-sub,.cat-sub{font-family:var(--mono);letter-spacing:-.02em}
+    .hero h1{letter-spacing:-.05em;font-weight:800}
+    .pick-header h2,.cat-header h2{letter-spacing:-.03em;font-weight:750}
+
+    /* flat — 그림자 제거, 보더 주도, 타이트 라운드 */
+    .top-tab.active{box-shadow:none;background:var(--surface2);border:1px solid var(--border)}
+    .period-tab.active{box-shadow:none;background:var(--surface2);border:1px solid var(--border)}
+    .topbar.scrolled{border-bottom-color:var(--border)}
+
+    /* cmd 칩 → 중성 mono(보라 노이즈 제거, 액센트는 링크/hero/tier만) */
+    .pick-card .cmd{color:var(--text);background:var(--surface2);border:1px solid var(--border);font-weight:600;border-radius:6px}
+    .pick-grid[data-section="pick"] .pick-card:hover .cmd,.pick-grid[data-section="codex-pick"] .pick-card:hover .cmd{border-color:var(--line-strong)}
+
+    /* NEW 배지 → 모노 아웃라인 */
+    .new-badge{color:var(--muted)!important;background:transparent!important;border:1px solid var(--line-strong);font-family:var(--mono);font-weight:600;letter-spacing:.02em;border-radius:5px}
+
+    /* 리스트 더 Linear하게 — 행 여유, 보더 주도 */
+    .pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]{box-shadow:none}
+    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{padding:12px 16px}
+    .pick-grid[data-section="pick"] .pick-tier,.pick-grid[data-section="codex-pick"] .pick-tier{color:var(--land);font-size:.55rem}
+    .pick-grid[data-section="pick"] .ver,.pick-grid[data-section="codex-pick"] .ver{color:var(--ink-3)}
   </style>
 </head>
 <body>
