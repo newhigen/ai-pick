@@ -361,7 +361,8 @@
     .side-sec h3{font-size:.74rem;font-weight:750;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
     .side-feat{position:relative;display:flex;flex-flow:row wrap;align-items:baseline;column-gap:8px;row-gap:1px;padding:7px 24px 7px 11px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;transition:border-color .12s,box-shadow .12s}
     .side-feat:hover{border-color:var(--line-strong);box-shadow:var(--shadow-sm)}
-    .side-feat .clk-badge{top:8px;right:9px;transform:none}
+    .side-feat .clk-badge{top:50%;right:10px;transform:translateY(-50%);opacity:0;transition:opacity .12s}
+    .side-feat:hover .clk-badge{opacity:.7}
     .sf-title{order:1;flex:0 1 auto;font-size:.82rem;font-weight:650;color:var(--text);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80%;padding-right:0}
     .sf-meta{order:2;margin-left:auto;margin-top:0;display:flex;align-items:baseline;gap:6px;flex:none}
     .sf-desc{order:3;flex:1 1 100%;font-size:.74rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
