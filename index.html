@@ -23,48 +23,45 @@
     html{scrollbar-gutter:stable}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
+    /* ───── 단일 토큰 시스템 — 다크 기본 + 라이트 토글 (Geist/Vercel clean) ───── */
     :root{
-      /* ── 뉴트럴 베이스 (라이트, 기본) ── */
-      --bg:#fbfbfa; --surface:#ffffff; --surface2:#f6f6f5;
-      --border:#ececeb; --line-strong:#e0e0de;
-      --text:#1a1a18; --muted:#6b6b66; --ink-3:#9a9a94;
-      /* ── 단일 액센트 ── */
-      --pick:#6b4cff; --pick-bg:#f0edff;
-      /* ── 의미색 (텍스트/소량 면적만) ── */
-      --feature:#1a7f4b; --feature-bg:rgba(26,127,75,.09);
-      --improve:#2563c9; --improve-bg:rgba(37,99,201,.09);
-      --fix:#b4690e;     --fix-bg:rgba(180,105,14,.10);
-      --security:#c8453a;--security-bg:rgba(200,69,58,.09);
-      --land:#b8860b; --land-soft:#fdf6e3; --land-line:#ecdca6;
-      --hover:rgba(0,0,0,.025);
-      --row-border:#ececeb; --row-border-soft:#f3f3f2;
-      /* 히트맵 (며칠 전 배지) */
-      --heat-0-text:#c8453a; --heat-1-text:#b4690e; --heat-2-text:#9a7b0e; --heat-3-text:#8a8a40;
-      --radius:14px; --radius-sm:9px;
-      --shadow-sm:0 1px 2px rgba(20,20,18,.03);
-      --shadow-md:0 2px 8px rgba(20,20,18,.05),0 8px 24px rgba(20,20,18,.06);
-      --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
-      --mono:'Google Sans Code',ui-monospace,'SF Mono',Menlo,monospace;
-    }
-    [data-theme="dark"]{
-      --bg:#0f0f0e; --surface:#191917; --surface2:#222220;
-      --border:#2a2a27; --line-strong:#373734;
-      --text:#ededeb; --muted:#a0a09b; --ink-3:#6e6e69;
-      --pick:#9d86ff; --pick-bg:#241f3d;
+      --bg:#0a0a0b; --surface:#111113; --surface2:#191920; --surface3:#202028;
+      --border:#242428; --line-strong:#33333a;
+      --text:#ededee; --muted:#9a9aa4; --ink-3:#62626c;
+      --pick:#8b6dff; --pick-bg:rgba(139,109,255,.14);
       --feature:#3fb87a; --feature-bg:rgba(63,184,122,.13);
       --improve:#5b9bf0; --improve-bg:rgba(91,155,240,.13);
       --fix:#d99a4e;     --fix-bg:rgba(217,154,78,.13);
       --security:#e07a6f;--security-bg:rgba(224,122,111,.13);
-      --land:#d4af5a; --land-soft:#241f0e; --land-line:#4a3f1a;
+      --land:#c2a24e; --land-soft:rgba(194,162,78,.13); --land-line:color-mix(in srgb,#c2a24e 40%,transparent);
       --hover:rgba(255,255,255,.03);
-      --row-border:#26262333; --row-border-soft:#22222033;
-      --heat-0-text:#e07a6f; --heat-1-text:#d99a4e; --heat-2-text:#d4c05a; --heat-3-text:#b0b060;
-      --shadow-sm:0 1px 2px rgba(0,0,0,.2);
-      --shadow-md:0 2px 8px rgba(0,0,0,.24),0 8px 24px rgba(0,0,0,.3);
+      --row-border:#242428; --row-border-soft:#1c1c22;
+      --heat-0-text:#e07a6f; --heat-1-text:#d99a4e; --heat-2-text:#c2a24e; --heat-3-text:#8a8a70;
+      --radius:10px; --radius-sm:7px; --radius-xs:5px;
+      --shadow-sm:none;
+      --shadow-md:0 4px 20px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3);
+      --sans:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+      --mono:'Google Sans Code',ui-monospace,'SF Mono',Menlo,monospace;
+    }
+    html[data-theme="light"]{
+      --bg:#fbfbfa; --surface:#ffffff; --surface2:#f6f6f4; --surface3:#efefec;
+      --border:#e9e9e6; --line-strong:#dcdcd6;
+      --text:#16161a; --muted:#5f5f67; --ink-3:#9c9ca4;
+      --pick:#6b4cff; --pick-bg:#f0edff;
+      --feature:#1a7f4b; --feature-bg:rgba(26,127,75,.09);
+      --improve:#2563c9; --improve-bg:rgba(37,99,201,.08);
+      --fix:#b4690e;     --fix-bg:rgba(180,105,14,.10);
+      --security:#c8453a;--security-bg:rgba(200,69,58,.09);
+      --land:#a07c1f; --land-soft:#faf3df; --land-line:#ecdca6;
+      --hover:rgba(0,0,0,.025);
+      --row-border:#ececeb; --row-border-soft:#f3f3f2;
+      --heat-0-text:#c8453a; --heat-1-text:#b4690e; --heat-2-text:#9a7b0e; --heat-3-text:#8a8a40;
+      --shadow-sm:0 1px 2px rgba(20,20,18,.04);
+      --shadow-md:0 4px 16px rgba(20,20,18,.08),0 1px 2px rgba(20,20,18,.04);
     }
 
-    html{color-scheme:light}
-    html[data-theme="dark"]{color-scheme:dark}
+    html{color-scheme:dark}
+    html[data-theme="light"]{color-scheme:light}
     html.theme-switching *{transition:none !important}
 
     body{
@@ -173,34 +170,33 @@
     .pick-card .ver .vtag{font-family:var(--mono)}
     [data-view="codex"] .pick-card .ver{padding-right:0}
     .pick-card .ver .dag{margin-left:0;background:var(--surface2);border:1px solid var(--border);padding:0 6px;border-radius:5px;font-size:.68rem;line-height:1.5}
-    /* ── 컴팩트 줄 리스트 (Geist/Linear clean) — 써볼·Codex 픽: 한 줄=한 픽, 플랫(헤어라인 주도), 왜/학습 호버 팝오버 ── */
+    /* ── 픽 줄 리스트 (canonical, info-first, 단일 정의) — 써볼·Codex ── */
     .pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]{display:block;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:visible}
-    .pl-row{} /* marker */
-    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{display:flex;align-items:center;gap:12px;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:11px 16px;transition:background .13s ease}
-    .pick-grid[data-section="pick"] .pick-card:hover,.pick-grid[data-section="codex-pick"] .pick-card:hover{background:var(--surface2);transform:none;box-shadow:none;border-color:var(--border)}
-    .pick-grid[data-section="pick"] .pick-card:first-child,.pick-grid[data-section="codex-pick"] .pick-card:first-child{border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
-    .pick-grid[data-section="pick"] .pick-card:last-child,.pick-grid[data-section="codex-pick"] .pick-card:last-child{border-bottom:0;border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius)}
-    .pick-grid[data-section="pick"] .pick-tier,.pick-grid[data-section="codex-pick"] .pick-tier{position:static;order:0;flex:none;min-width:28px;text-align:left;font-size:.58rem;letter-spacing:.5px;margin:0;color:var(--land)}
-    .pick-grid[data-section="pick"] .cmd,.pick-grid[data-section="codex-pick"] .cmd{order:1;flex:none;margin:0}
-    .pick-grid[data-section="pick"] .pick-card h3,.pick-grid[data-section="codex-pick"] .pick-card h3{order:2;flex:none;margin:0;font-size:.89rem;font-weight:650;max-width:40%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .pick-grid[data-section="pick"] .pick-card p,.pick-grid[data-section="pick"] .pick-card .pick-lead,.pick-grid[data-section="codex-pick"] .pick-card p,.pick-grid[data-section="codex-pick"] .pick-card .pick-lead{order:3;flex:1;min-width:0;margin:0;font-size:.82rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .pick-grid[data-section="pick"] .ver,.pick-grid[data-section="codex-pick"] .ver{order:4;flex:none;margin:0;padding-right:0;font-variant-numeric:tabular-nums}
-    /* 터치 기기(hover 없음): 인라인 왜/학습 숨김 — 탭하면 openDoc 모달로 상세 */
-    @media (hover:none){
-      .pick-grid[data-section="pick"] .pick-card .pick-meta{display:none}
-    }
+    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:9px;row-gap:2px;border:0;border-bottom:1px solid var(--border);border-radius:0;box-shadow:none;padding:11px 30px 11px 16px;cursor:pointer;position:relative;transition:background .12s}
+    .pick-grid[data-section="pick"] .pick-card:hover,.pick-grid[data-section="codex-pick"] .pick-card:hover{background:var(--surface2);transform:none;box-shadow:none}
+    .pick-grid[data-section="pick"] .pick-card:last-child,.pick-grid[data-section="codex-pick"] .pick-card:last-child{border-bottom:0}
+    /* 효과성 = 그룹 헤더(JS 삽입). 행 tier 글리프는 숨김 */
+    .pick-grid[data-section="pick"] .pick-tier,.pick-grid[data-section="codex-pick"] .pick-tier{display:none}
+    .pick-grouphead{font-family:var(--mono);font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);padding:7px 16px 4px;background:var(--surface2);border-bottom:1px solid var(--border)}
+    .pick-grouphead:first-child{border-top-left-radius:var(--radius);border-top-right-radius:var(--radius)}
+    /* cc: 제목 리드 + cmd 태그 + 우측 며칠전 + 2줄째 요약 */
+    .pick-grid[data-section="pick"] .pick-card h3{order:1;flex:0 1 auto;margin:0;font-size:.9rem;font-weight:650;letter-spacing:-.01em}
+    .pick-grid[data-section="pick"] .cmd{order:2;flex:none;margin:0;font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:1px 7px;border-radius:var(--radius-xs)}
+    .pick-grid[data-section="pick"] .ver{order:3;flex:none;margin:0 0 0 auto;padding:0;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+    .pick-grid[data-section="pick"] .ver .vtag{display:none}
+    .pick-grid[data-section="pick"] .pick-card p{display:block;order:4;flex:1 1 100%;margin:1px 0 0 0;font-size:.8rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    /* codex: pick-lead가 본문 → cmd + lead(flex) + 며칠전 한 줄 */
+    .pick-grid[data-section="codex-pick"] .cmd{order:1;flex:none;margin:0;font-family:var(--mono);font-size:.7rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:1px 7px;border-radius:var(--radius-xs)}
+    .pick-grid[data-section="codex-pick"] .pick-card .pick-lead{order:2;flex:1;min-width:0;margin:0;font-size:.84rem;color:var(--text);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pick-grid[data-section="codex-pick"] .ver{order:3;flex:none;margin:0 0 0 auto;padding:0;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+    .pick-grid[data-section="codex-pick"] .ver .vtag{display:none}
+    .pick-grid[data-section="pick"] .clk-badge,.pick-grid[data-section="codex-pick"] .clk-badge{top:50%;transform:translateY(-50%);right:13px}
+    @media (hover:none){.pick-grid[data-section="pick"] .pick-card .pick-meta{display:none}}
     @media(max-width:560px){
-      .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{flex-wrap:wrap;align-items:flex-start;gap:5px 9px;padding:11px 14px}
-      /* cc: 부가 설명만 숨기고 제목 유지(전체폭), 버전 우측 */
-      .pick-grid[data-section="pick"] .pick-card p{display:none}
-      .pick-grid[data-section="pick"] .pick-card h3{max-width:none;flex:1 1 auto;white-space:normal;font-size:.86rem}
-      .pick-grid[data-section="pick"] .ver{margin-left:auto}
-      /* codex: lead가 본문 → 첫줄 cmd+버전, 아래 lead 2줄 */
-      .pick-grid[data-section="codex-pick"] .cmd{order:1}
-      .pick-grid[data-section="codex-pick"] .ver{order:2;margin-left:auto}
-      .pick-grid[data-section="codex-pick"] .pick-card .pick-lead{order:3;flex:1 1 100%;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:.8rem}
+      .pick-grid[data-section="pick"] .pick-card p{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+      .pick-grid[data-section="codex-pick"] .pick-card .pick-lead{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     }
-    .new-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;color:#fff;background:var(--feature);padding:1px 6px;border-radius:6px}
+    .new-badge{font-size:.58rem;font-weight:600;letter-spacing:.02em;color:var(--muted);background:transparent;border:1px solid var(--line-strong);font-family:var(--mono);padding:1px 6px;border-radius:var(--radius-xs)}
 
     /* ── Use-case cards ── */
     .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
@@ -503,97 +499,20 @@
       .cat-expand-all{margin-left:auto}
     }
 
-    /* ════════ REDESIGN: Geist/Linear mono-clean (monochrome + 단일 보라 액센트, 그림자 0, 타이트 라운드, mono 보이스) ════════ */
-    :root{
-      --bg:#fcfcfc; --surface:#ffffff; --surface2:#f4f4f2;
-      --border:#e9e9e6; --line-strong:#dcdcd8;
-      --text:#16160f; --muted:#6a6a63; --ink-3:#a2a29a;
-      /* 의미색 → 모노크롬(라벨 텍스트로 구분, 색으로 X) */
-      --feature:#52524c; --feature-bg:#efefec;
-      --improve:#52524c; --improve-bg:#efefec;
-      --fix:#52524c;     --fix-bg:#efefec;
-      --security:#52524c;--security-bg:#efefec;
-      --land:#a6a69e;
-      --heat-0-text:#16160f; --heat-1-text:#6a6a63; --heat-2-text:#9a9a92; --heat-3-text:#b6b6ae;
-      --radius:8px; --radius-sm:6px;
-      --shadow-sm:none;
-      --shadow-md:0 4px 16px rgba(20,20,18,.08),0 1px 2px rgba(20,20,18,.04);
-    }
-    [data-theme="dark"]{
-      --bg:#090909; --surface:#111110; --surface2:#191917;
-      --border:#242421; --line-strong:#33332e;
-      --text:#f0f0ec; --muted:#9d9d96; --ink-3:#62625c;
-      --feature:#9d9d96; --feature-bg:#1b1b18;
-      --improve:#9d9d96; --improve-bg:#1b1b18;
-      --fix:#9d9d96;     --fix-bg:#1b1b18;
-      --security:#9d9d96;--security-bg:#1b1b18;
-      --land:#76766f;
-      --heat-0-text:#f0f0ec; --heat-1-text:#9d9d96; --heat-2-text:#62625c; --heat-3-text:#4a4a45;
-      --shadow-sm:none;
-      --shadow-md:0 4px 20px rgba(0,0,0,.5),0 1px 2px rgba(0,0,0,.3);
-    }
-
-    /* mono 보이스 — 브랜드·버전·탭·기간·메타 (Latin) */
+    /* ── POLISH: mono 보이스 · flat · landmark halt · 밀도 ── */
     .brand .bname{font-family:var(--mono);font-weight:700;letter-spacing:-.045em;font-size:.96rem}
     .brand .bmono{letter-spacing:.02em;text-transform:lowercase}
     .top-tab{font-weight:600;letter-spacing:-.02em}
+    .top-tab.active{box-shadow:none}
     .period-tab,.period-sel,.pick-sub,.cat-sub{font-family:var(--mono);letter-spacing:-.02em}
-    .hero h1{letter-spacing:-.05em;font-weight:800}
-    .pick-header h2,.cat-header h2{letter-spacing:-.03em;font-weight:750}
-
-    /* flat — 그림자 제거, 보더 주도, 타이트 라운드 */
-    .top-tab.active{box-shadow:none;background:var(--surface2);border:1px solid var(--border)}
-    .period-tab.active{box-shadow:none;background:var(--surface2);border:1px solid var(--border)}
-    .topbar.scrolled{border-bottom-color:var(--border)}
-
-    /* cmd 칩 → 중성 mono(보라 노이즈 제거, 액센트는 링크/hero/tier만) */
-    .pick-card .cmd{color:var(--text);background:var(--surface2);border:1px solid var(--border);font-weight:600;border-radius:6px}
-    .pick-grid[data-section="pick"] .pick-card:hover .cmd,.pick-grid[data-section="codex-pick"] .pick-card:hover .cmd{border-color:var(--line-strong)}
-
-    /* NEW 배지 → 모노 아웃라인 */
-    .new-badge{color:var(--muted)!important;background:transparent!important;border:1px solid var(--line-strong);font-family:var(--mono);font-weight:600;letter-spacing:.02em;border-radius:5px}
-
-    /* 리스트 더 Linear하게 — 행 여유, 보더 주도 */
-    .pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]{box-shadow:none}
-    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{padding:12px 16px}
-    .pick-grid[data-section="pick"] .pick-tier,.pick-grid[data-section="codex-pick"] .pick-tier{color:var(--land);font-size:.55rem}
-    .pick-grid[data-section="pick"] .ver,.pick-grid[data-section="codex-pick"] .ver{color:var(--ink-3)}
-
-    /* 픽 행 = 필수 정보 + 컬럼 정렬: [tier] [cmd 고정폭] [제목] ──── [며칠전]. 설명·버전·NEW는 면에서 제거(호버/탭으로) */
-    .pick-grid[data-section="pick"] .pick-card{gap:13px;padding:10px 16px}
-    .pick-grid[data-section="pick"] .pick-tier{min-width:30px;font-size:.54rem;letter-spacing:0;white-space:nowrap;color:var(--land)}
-    .pick-grid[data-section="pick"] .cmd{width:118px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .pick-grid[data-section="pick"] .pick-card h3{flex:1;max-width:none;font-size:.88rem;font-weight:600}
-    .pick-grid[data-section="pick"] .pick-card p{display:none}
-    .pick-grid[data-section="pick"] .new-badge{display:none}
-    .pick-grid[data-section="pick"] .ver{flex:none;margin-left:0}
-    .pick-grid[data-section="pick"] .ver .vtag{display:none}
-
-    /* codex: cmd 고정폭(있을 때) + lead(본문) + 며칠전. 버전은 면에서 제거 */
-    .pick-grid[data-section="codex-pick"] .pick-card{gap:13px;padding:10px 16px}
-    .pick-grid[data-section="codex-pick"] .cmd{width:118px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .pick-grid[data-section="codex-pick"] .pick-card .pick-lead{flex:1;font-size:.85rem;font-weight:500;color:var(--text)}
-    .pick-grid[data-section="codex-pick"] .ver .vtag{display:none}
-
-    /* 모바일: cmd 고정폭 해제(자연폭), tier 좁게 */
-    @media(max-width:560px){
-      .pick-grid[data-section="pick"] .cmd,.pick-grid[data-section="codex-pick"] .cmd{width:auto}
-      .pick-grid[data-section="pick"] .pick-tier{min-width:24px}
-    }
-
-    /* ════ info-first: 제목 리드 + 한 줄 요약 복원, tier demote, cmd 제목 뒤 작은 태그 ════ */
-    .pick-grid[data-section="pick"] .pick-card{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:9px;row-gap:2px;padding:11px 16px}
-    .pick-grid[data-section="pick"] .pick-tier{order:0;flex:none;width:24px;min-width:24px;font-size:.5rem;letter-spacing:0;color:var(--land);align-self:baseline}
-    .pick-grid[data-section="pick"] .pick-card h3{order:1;flex:0 1 auto;width:auto;max-width:none;white-space:normal;overflow:visible;font-size:.9rem;font-weight:650}
-    .pick-grid[data-section="pick"] .cmd{order:2;flex:none;width:auto;font-size:.7rem;padding:1px 7px;font-weight:500;color:var(--muted)}
-    .pick-grid[data-section="pick"] .ver{order:3;flex:none;margin-left:auto;align-self:baseline}
-    .pick-grid[data-section="pick"] .pick-card p{display:block;order:4;flex:1 1 100%;margin:1px 0 0 33px;font-size:.8rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    @media(max-width:560px){
-      .pick-grid[data-section="pick"] .pick-card p{display:block;margin-left:32px;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-    }
-    /* 우측 외부링크 화살표(.clk-badge) 자리 확보 — 며칠전 날짜와 겹침 방지 */
-    .pick-grid[data-section="pick"] .pick-card,.pick-grid[data-section="codex-pick"] .pick-card{padding-right:34px}
-    .pick-grid[data-section="pick"] .clk-badge,.pick-grid[data-section="codex-pick"] .clk-badge{top:50%;transform:translateY(-50%);right:13px}
+    .period-tab.active{box-shadow:none;background:var(--surface);border:1px solid var(--border)}
+    .hero h1{letter-spacing:-.045em}
+    .vtag,.ver-badge,.ver-date,.ver-ago{font-variant-numeric:tabular-nums}
+    /* landmark halt(중단·철회) 상태 — JS가 .halt 부여 시 적색 경고 */
+    #landmarkBanner.halt{background:var(--security-bg);border-color:color-mix(in srgb,var(--security) 40%,transparent)}
+    #landmarkBanner.halt .lm-k{background:var(--security)}
+    /* 밀도 — 섹션 간격 타이트 */
+    .pick-section,.cat-section{margin-top:24px}
   </style>
 </head>
 <body>
@@ -12508,10 +12427,10 @@
   </div>
 </div>
 <script>
-  // 기본은 라이트. 다크는 명시적 opt-in.
+  // 기본은 다크. 라이트는 명시적 opt-in.
   (function() {
-    if (localStorage.getItem('cc-theme') === 'dark')
-      document.documentElement.setAttribute('data-theme', 'dark');
+    if (localStorage.getItem('cc-theme') === 'light')
+      document.documentElement.setAttribute('data-theme', 'light');
   })();
 
   const CUR_LANG = localStorage.getItem('cc-lang') || 'ko';
@@ -12593,18 +12512,18 @@
   const ICON_MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   function setThemeIcon(){
     const b=document.getElementById('themeToggle'); if(!b) return;
-    b.innerHTML = document.documentElement.getAttribute('data-theme')==='dark' ? ICON_MOON : ICON_SUN;
+    b.innerHTML = document.documentElement.getAttribute('data-theme')==='light' ? ICON_SUN : ICON_MOON;
   }
   function toggleTheme() {
     const root = document.documentElement;
     root.classList.add('theme-switching');           // 전환 동안 transition 끔
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    if (isDark) {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if (isLight) {
       root.removeAttribute('data-theme');
-      localStorage.setItem('cc-theme', 'light');
-    } else {
-      root.setAttribute('data-theme', 'dark');
       localStorage.setItem('cc-theme', 'dark');
+    } else {
+      root.setAttribute('data-theme', 'light');
+      localStorage.setItem('cc-theme', 'light');
     }
     setThemeIcon();
     // 다음 페인트 후 복원 (hover 애니메이션은 유지)
@@ -12744,13 +12663,20 @@
     })();
     /* 픽 정렬 결정화: 효과성(tier) 내림차순 → 같은 효과성은 최근(date) 순. 수동 DOM 순서의 '뒤죽' 제거 */
     (function sortPicks(){
+      const TIERLBL={3:'핵심',2:'추천',1:'일반'};
       const tier=el=>{const t=el.querySelector('.pick-tier');if(!t)return 0;const c=t.className;return c.indexOf('t3')>=0?3:c.indexOf('t2')>=0?2:c.indexOf('t1')>=0?1:0;};
       const date=el=>el.getAttribute('data-date')||(el.querySelector('[data-date]')&&el.querySelector('[data-date]').getAttribute('data-date'))||'';
       document.querySelectorAll('.pick-grid[data-section="pick"],.pick-grid[data-section="codex-pick"]').forEach(g=>{
+        g.querySelectorAll(':scope > .pick-grouphead').forEach(h=>h.remove());
         const cards=[...g.children].filter(c=>c.classList.contains('pick-card'));
         if(cards.length<2)return;
         cards.sort((a,b)=>{const ta=tier(a),tb=tier(b);if(tb!==ta)return tb-ta;return date(b).localeCompare(date(a));});
         cards.forEach(c=>g.appendChild(c));
+        // 효과성 그룹 헤더: 써볼(pick) 섹션만, tier 보유 시. (codex-pick은 tier 없어 평면 최근순)
+        if(g.getAttribute('data-section')==='pick'){
+          let last=null;
+          cards.forEach(c=>{const t=tier(c);if(t&&t!==last){const h=document.createElement('div');h.className='pick-grouphead';h.textContent=TIERLBL[t];g.insertBefore(h,c);last=t;}});
+        }
       });
     })();
     (function markCards(){
