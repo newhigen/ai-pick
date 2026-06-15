@@ -12593,8 +12593,9 @@
         c.sort((a,b)=>key(b).localeCompare(key(a))); c.forEach(x=>col.appendChild(x));
       });
       document.querySelectorAll('[data-view="manus"] .news-grid').forEach(g=>{
-        const c=[...g.querySelectorAll('.feat-card[href]')]; if(c.length<2) return;
-        c.sort((a,b)=>key(b).localeCompare(key(a))); c.forEach(x=>g.appendChild(x));
+        const c=[...g.querySelectorAll(':scope > .feat-card')]; if(c.length<2) return;
+        const dt=el=>el.querySelector('[data-date]')?.getAttribute('data-date')||'';  // 카드의 data-date(전 카드 보유)로 최신순
+        c.sort((a,b)=>dt(b).localeCompare(dt(a))); c.forEach(x=>g.appendChild(x));
       });
     })();
     /* 픽 정렬 결정화: 효과성(tier) 내림차순 → 같은 효과성은 최근(date) 순. 수동 DOM 순서의 '뒤죽' 제거 */
