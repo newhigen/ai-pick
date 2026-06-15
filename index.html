@@ -518,14 +518,20 @@
     .tl-card p{font-size:.76rem;color:var(--muted);line-height:1.45}
     @media (max-width:760px){.timeline-grid{grid-template-columns:1fr}}
     @media (max-width:620px){
-      .wrap{padding:0 18px 48px}
-      .hero h1{font-size:1.7rem}
+      html{font-size:15px}              /* 모바일 전체 글씨 ~6% 축소(rem 일괄) */
+      .wrap{padding:0 16px 48px}
+      .hero h1{font-size:1.6rem}
       .pick-grid,.cat-grid{grid-template-columns:minmax(0,1fr)}
       .cat-header{flex-wrap:wrap}
       .cat-header h2{white-space:nowrap}
       .cat-header .cat-sub{flex-basis:100%;order:3;margin-top:-2px}
       .cat-expand-all{margin-left:auto}
+      /* 픽 설명 2줄까지(1줄 말줄임 → 덜 잘림) */
+      .pick-grid[data-section="pick"] .pick-card p,.pick-grid[data-section="codex-pick"] .pick-card .pick-lead{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+      /* 사이드바·카테고리 데스크폭 텍스트 줄바꿈 허용 */
+      .cat-desc{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     }
+    @media (max-width:400px){ html{font-size:14px} }
 
     /* ── POLISH: mono 보이스 · flat · landmark halt · 밀도 ── */
     .brand .bname{font-family:var(--mono);font-weight:700;letter-spacing:-.045em;font-size:.96rem}
