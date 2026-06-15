@@ -197,22 +197,22 @@
       .pick-grid[data-section="pick"] .pick-card p{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
       .pick-grid[data-section="codex-pick"] .pick-card .pick-lead{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
     }
-    .new-badge{font-size:.58rem;font-weight:600;letter-spacing:.02em;color:var(--muted);background:transparent;border:1px solid var(--line-strong);font-family:var(--mono);padding:1px 6px;border-radius:var(--radius-xs)}
+    .new-badge{font-size:.58rem;font-weight:700;letter-spacing:.04em;color:var(--accent);background:var(--accent-bg);border:1px solid var(--accent-line);font-family:var(--mono);padding:1px 6px;border-radius:var(--radius-xs)}
 
     /* ── Use-case cards ── */
-    .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+    .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
     .tool-full{margin-top:24px}
     /* 효과성 별 글리프 전역 숨김 — 픽 리스트는 그룹헤더, 카드/뉴스는 순서로 (tier 클래스는 데이터용 유지) */
     .news-tier,.feed-tier,.home-card .pick-tier,.home-subcol .pick-card .pick-tier,.home-col .pick-card .pick-tier,.feat-card .pick-tier{display:none}
     .cat-grid.hidden{display:none}
-    .cat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow-sm)}
-    .cat-card-head{font-size:.9rem;font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--text);display:flex;align-items:center;gap:8px}
+    .cat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px;box-shadow:var(--shadow-sm)}
+    .cat-card-head{font-size:.86rem;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;color:var(--text);display:flex;align-items:center;gap:7px}
     .cat-items{list-style:none;display:flex;flex-direction:column}
-    .cat-item{display:flex;align-items:baseline;gap:9px;padding:7px 0;border-top:1px solid var(--border);cursor:pointer;transition:.12s;overflow:hidden}
+    .cat-item{display:flex;align-items:baseline;gap:9px;padding:4px 0;border-top:1px solid var(--border);cursor:pointer;transition:.12s;overflow:hidden}
     .cat-item:first-child{border-top:none}
     .cat-item:hover{padding-left:4px}
     .cat-item.cat-hidden{display:none}
-    .cat-more{margin-top:6px;align-self:flex-start;font-size:.74rem;font-weight:600;color:var(--ink-3);background:none;border:none;cursor:pointer;padding:3px 0;font-family:inherit;transition:.12s}
+    .cat-more{margin-top:4px;align-self:flex-start;font-size:.72rem;font-weight:600;color:var(--ink-3);background:none;border:none;cursor:pointer;padding:2px 0;font-family:inherit;transition:.12s}
     .cat-more:hover{color:var(--pick)}
     .cat-expand-all{margin-left:auto;align-self:center;font-size:.78rem;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:5px 12px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:.12s}
     .cat-expand-all:hover{border-color:var(--line-strong);color:var(--pick)}
@@ -354,7 +354,7 @@
     /* 도구 탭 2/3 + 1/3 레이아웃 */
     .tool-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:30px;align-items:start}
     .tool-main{min-width:0}
-    .tool-side{position:sticky;top:62px;display:flex;flex-direction:column;gap:24px;padding:24px 0 0 28px;border-left:1px solid var(--border)}
+    .tool-side{position:sticky;top:62px;display:flex;flex-direction:column;gap:20px;padding:0}
     .side-co{display:flex;align-items:center;gap:8px;font-size:1.02rem;font-weight:800;letter-spacing:-.02em;color:var(--text)}
     .side-co .src-dot{width:10px;height:10px;border-radius:50%}
     .side-sec{display:flex;flex-direction:column;gap:8px}
@@ -1139,14 +1139,6 @@
             <span class="sf-title" data-en="Claude Cowork best practices">Claude Cowork 시작 가이드</span>
             <span class="sf-desc" data-en="Best practices for getting started with Claude Cowork.">Claude Cowork 시작 모범 사례.</span>
           </a>
-        </div>
-        <div class="side-sec">
-          <h3 data-en="reads">읽을거리</h3>
-          <a class="side-read" data-en="Claude Code in large codebases" href="https://claude.com/blog/how-claude-code-works-in-large-codebases-best-practices-and-where-to-start" target="_blank" rel="noopener noreferrer">대규모 코드베이스에서의 Claude Code</a>
-          <a class="side-read" data-en="Best practices for computer and browser use" href="https://claude.com/blog/best-practices-for-computer-and-browser-use-with-claude" target="_blank" rel="noopener noreferrer">Computer·browser use 베스트 프랙티스</a>
-          <a class="side-read" data-en="The unreasonable effectiveness of HTML" href="https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html" target="_blank" rel="noopener noreferrer">HTML의 비합리적 효용</a>
-          <a class="side-read" data-en="Visuals Claude builds" href="https://claude.com/blog/claude-builds-visuals" target="_blank" rel="noopener noreferrer">Claude가 만드는 비주얼</a>
-          <a class="side-more" href="https://claude.com/blog" target="_blank" rel="noopener noreferrer" data-en="More →">더 보기 →</a>
         </div>
         </aside>
       </div>
@@ -12164,13 +12156,6 @@
             <span class="sf-desc" data-en="A new personal finance experience.">ChatGPT 개인 재무 경험.</span>
           </a>
         </div>
-        <div class="side-sec">
-          <h3 data-en="reads">읽을거리</h3>
-          <a class="side-read" data-en="Named a Leader in agentic coding (Gartner)" href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener noreferrer">Gartner 코딩 에이전트 리더 선정</a>
-          <a class="side-read" data-en="How Ramp uses Codex for code review" href="https://openai.com/index/ramp" target="_blank" rel="noopener noreferrer">Ramp의 Codex 코드리뷰 사례</a>
-          <a class="side-read" href="https://openai.com/index/openai-frontier-governance-framework" target="_blank" rel="noopener noreferrer">Frontier Governance Framework</a>
-          <a class="side-more" href="https://openai.com/news" target="_blank" rel="noopener noreferrer" data-en="More →">더 보기 →</a>
-        </div>
         </aside>
       </div>
   </div>
@@ -12551,7 +12536,7 @@
 
     // ── 용도별: 카테고리당 N개만 노출 + '더보기' + 헤더 '전체 펼치기/접기' ──
     (function capCat(){
-      const N=4, en=CUR_LANG==='en';
+      const N=3, en=CUR_LANG==='en';
       const grid=document.querySelector('.cat-grid[data-section="cat"][data-period="recent"]');
       if(!grid) return;
       const capped=[];
