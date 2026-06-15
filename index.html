@@ -1733,15 +1733,15 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Session titles are now generated in the language of your conversation (set the <code>language</code> setting to pin a specific language)</span>
+      <span class="e-desc" data-en="Session titles are now generated in the language of your conversation (set the <code>language</code> setting to pin a specific language)">세션 제목을 대화 언어로 자동 생성 (<code>language</code> 설정으로 특정 언어 고정)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>footerLinksRegexes</code> setting for regex-matched link badges in the footer row, configurable via user or managed settings</span>
+      <span class="e-desc" data-en="Added <code>footerLinksRegexes</code> setting for regex-matched link badges in the footer row, configurable via user or managed settings">푸터에 정규식 매칭 링크 배지를 다는 <code>footerLinksRegexes</code> 설정 추가 (사용자·관리 설정)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background sessions now show clearer guidance when a window left open across an auto-update can't submit a reply, and <code>claude daemon status</code> explains version-skew behavior</span>
+      <span class="e-desc" data-en="Background sessions now show clearer guidance when a window left open across an auto-update can't submit a reply, and <code>claude daemon status</code> explains version-skew behavior">백그라운드 세션이 자동 업데이트 중 답장 못 할 때 안내 명확화, <code>claude daemon status</code>가 버전 불일치 동작 설명</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1793,7 +1793,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>enforceAvailableModels</code> managed setting — when enabled, the <code>availableModels</code> allowlist also constrains the Default model (a Default that would resolve to a disallowed model now falls back to the first allowed model), and user or project settings can no longer widen a managed <code>availableModels</code> list</span>
+      <span class="e-desc" data-en="Added <code>enforceAvailableModels</code> managed setting — when enabled, the <code>availableModels</code> allowlist also constrains the Default model (a Default that would resolve to a disallowed model now falls back to the first allowed model), and user or project settings can no longer widen a managed <code>availableModels</code> list"><code>enforceAvailableModels</code> 관리 설정 추가 — 켜면 <code>availableModels</code> 허용목록이 Default 모델까지 제한(허용 안 된 모델로 풀리는 Default는 첫 허용 모델로 폴백), 사용자·프로젝트 설정으로 관리 목록을 넓힐 수 없음</span>
     </div>
   </div>
 
@@ -1805,11 +1805,11 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>wheelScrollAccelerationEnabled</code> setting to disable mouse-wheel scroll acceleration in fullscreen mode</span>
+      <span class="e-desc" data-en="Added <code>wheelScrollAccelerationEnabled</code> setting to disable mouse-wheel scroll acceleration in fullscreen mode">전체화면에서 마우스 휠 스크롤 가속을 끄는 <code>wheelScrollAccelerationEnabled</code> 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Added usage attribution to the Account &amp; usage dialog (<code>/usage</code>) showing cache misses, long context, subagents, and per-skill/agent/plugin/MCP breakdowns over the last 24h or 7d</span>
+      <span class="e-desc" data-en="[VSCode] Added usage attribution to the Account &amp; usage dialog (<code>/usage</code>) showing cache misses, long context, subagents, and per-skill/agent/plugin/MCP breakdowns over the last 24h or 7d">[VSCode] 계정·사용량 대화상자(<code>/usage</code>)에 사용량 출처 표시 — 캐시 미스·롱컨텍스트·서브에이전트, 스킬/에이전트/플러그인/MCP별 분해(최근 24h·7d)</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1874,39 +1874,39 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Sub-agents can now spawn their own sub-agents (up to 5 levels deep)</span>
+      <span class="e-desc" data-en="Sub-agents can now spawn their own sub-agents (up to 5 levels deep)">서브에이전트가 자신의 서브에이전트를 spawn 가능 (최대 5단계)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Amazon Bedrock now reads the AWS region from <code>~/.aws</code> config files when <code>AWS_REGION</code> isn't set, matching AWS SDK precedence; <code>/status</code> shows where the region came from</span>
+      <span class="e-desc" data-en="Amazon Bedrock now reads the AWS region from <code>~/.aws</code> config files when <code>AWS_REGION</code> isn't set, matching AWS SDK precedence; <code>/status</code> shows where the region came from">Amazon Bedrock이 <code>AWS_REGION</code> 미설정 시 <code>~/.aws</code> 설정에서 리전 읽음(AWS SDK 우선순위 일치), <code>/status</code>가 리전 출처 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a search bar when browsing a marketplace's plugins in <code>/plugin</code></span>
+      <span class="e-desc" data-en="Added a search bar when browsing a marketplace's plugins in <code>/plugin</code>"><code>/plugin</code>에서 마켓플레이스 플러그인 탐색 시 검색바 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>model</code> attribute to the <code>claude_code.lines_of_code.count</code> OTEL metric</span>
+      <span class="e-desc" data-en="Added <code>model</code> attribute to the <code>claude_code.lines_of_code.count</code> OTEL metric"><code>claude_code.lines_of_code.count</code> OTEL 메트릭에 <code>model</code> 속성 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Disable mouse tracking on Windows consoles that don't fully support it</span>
+      <span class="e-desc" data-en="Disable mouse tracking on Windows consoles that don't fully support it">완전 지원 안 되는 Windows 콘솔에서 마우스 추적 비활성화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/code-review</code> now keeps the <code>ultra</code> option visible when you're not signed in to claude.ai, with an explanation that the cloud review requires a claude.ai account</span>
+      <span class="e-desc" data-en="<code>/code-review</code> now keeps the <code>ultra</code> option visible when you're not signed in to claude.ai, with an explanation that the cloud review requires a claude.ai account"><code>/code-review</code>가 claude.ai 미로그인 시에도 <code>ultra</code> 옵션 노출(클라우드 리뷰엔 claude.ai 계정 필요 안내)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Shortened the Remote Control footer indicator to "/rc active" and hid it on narrow terminals</span>
+      <span class="e-desc" data-en="Shortened the Remote Control footer indicator to &quot;/rc active&quot; and hid it on narrow terminals">Remote Control 푸터 표시를 "/rc active"로 단축, 좁은 터미널선 숨김</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Stopped promoting <code>/loop</code> in remote sessions, where pending loops don't keep the container alive</span>
+      <span class="e-desc" data-en="Stopped promoting <code>/loop</code> in remote sessions, where pending loops don't keep the container alive">원격 세션에서 <code>/loop</code> 권유 중단(대기 루프가 컨테이너를 살려두지 못함)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Fixed PowerShell tool calls rendering as raw JSON instead of a proper command display and permission dialog, and stripped ANSI escape codes from displayed shell output</span>
+      <span class="e-desc" data-en="[VSCode] Fixed PowerShell tool calls rendering as raw JSON instead of a proper command display and permission dialog, and stripped ANSI escape codes from displayed shell output">[VSCode] PowerShell 툴 호출이 원시 JSON으로 뜨던 것 수정(정상 명령 표시·권한 대화상자), 셸 출력 ANSI 코드 제거</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1960,7 +1960,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Introducing Claude Fable 5: a Mythos-class model that we’ve made safe for general use. Fable’s capabilities exceed those of any model we’ve ever made generally available. Update to version 2.1.170 for access. https://www.anthropic.com/news/claude-fable-5-mythos-5</span>
+      <span class="e-desc" data-en="Introducing Claude Fable 5: a Mythos-class model that we’ve made safe for general use. Fable’s capabilities exceed those of any model we’ve ever made generally available. Update to version 2.1.170 for access. https://www.anthropic.com/news/claude-fable-5-mythos-5">Claude Fable 5 출시 — 일반 사용까지 안전화한 Mythos급 모델. 지금까지 일반 공개한 어떤 모델보다 뛰어남. v2.1.170으로 업데이트 시 사용. https://www.anthropic.com/news/claude-fable-5-mythos-5</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1984,51 +1984,51 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>--safe-mode</code> flag (and <code>CLAUDE_CODE_SAFE_MODE</code>) to start Claude Code with all customizations (CLAUDE.md, plugins, skills, hooks, MCP servers) disabled for troubleshooting</span>
+      <span class="e-desc" data-en="Added <code>--safe-mode</code> flag (and <code>CLAUDE_CODE_SAFE_MODE</code>) to start Claude Code with all customizations (CLAUDE.md, plugins, skills, hooks, MCP servers) disabled for troubleshooting"><code>--safe-mode</code> 플래그(및 <code>CLAUDE_CODE_SAFE_MODE</code>) 추가 — CLAUDE.md·플러그인·스킬·훅·MCP 전부 끄고 시작(문제 해결용)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>/cd</code> command to move a session to a new working directory without breaking the prompt cache mid-session</span>
+      <span class="e-desc" data-en="Added <code>/cd</code> command to move a session to a new working directory without breaking the prompt cache mid-session"><code>/cd</code> 명령 추가 — 세션 중 프롬프트 캐시 안 깨고 작업 디렉터리 이동</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a <code>disableBundledSkills</code> setting and <code>CLAUDE_CODE_DISABLE_BUNDLED_SKILLS</code> environment variable to hide bundled skills, workflows, and built-in slash commands from the model</span>
+      <span class="e-desc" data-en="Added a <code>disableBundledSkills</code> setting and <code>CLAUDE_CODE_DISABLE_BUNDLED_SKILLS</code> environment variable to hide bundled skills, workflows, and built-in slash commands from the model"><code>disableBundledSkills</code> 설정·<code>CLAUDE_CODE_DISABLE_BUNDLED_SKILLS</code> 환경변수 추가 — 번들 스킬·워크플로·내장 슬래시 명령을 모델에서 숨김</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/workflows</code> now opens immediately even while a turn is in progress</span>
+      <span class="e-desc" data-en="<code>/workflows</code> now opens immediately even while a turn is in progress">턴 진행 중에도 <code>/workflows</code> 즉시 열림</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Restored a default 5-minute idle timeout on Vertex/Foundry so a stalled stream aborts instead of hanging indefinitely; set <code>API_FORCE_IDLE_TIMEOUT=0</code> to opt out</span>
+      <span class="e-desc" data-en="Restored a default 5-minute idle timeout on Vertex/Foundry so a stalled stream aborts instead of hanging indefinitely; set <code>API_FORCE_IDLE_TIMEOUT=0</code> to opt out">Vertex/Foundry에 기본 5분 유휴 타임아웃 복구(멈춘 스트림이 무한 대기 대신 중단), <code>API_FORCE_IDLE_TIMEOUT=0</code>으로 해제</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Remote-managed settings with an invalid entry now apply their remaining valid policies and surface the validation error, instead of silently dropping the whole payload</span>
+      <span class="e-desc" data-en="Remote-managed settings with an invalid entry now apply their remaining valid policies and surface the validation error, instead of silently dropping the whole payload">원격 관리 설정에 잘못된 항목이 있어도 나머지 유효 정책 적용하고 검증 오류 표시(전체 폐기 안 함)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background sessions now preserve <code>--ide</code>, <code>--chrome</code>, <code>--bare</code>, <code>--remote-control</code>, and other flags across retire→wake, and respawn state validation was hardened</span>
+      <span class="e-desc" data-en="Background sessions now preserve <code>--ide</code>, <code>--chrome</code>, <code>--bare</code>, <code>--remote-control</code>, and other flags across retire→wake, and respawn state validation was hardened">백그라운드 세션이 retire→wake에서 <code>--ide</code>·<code>--chrome</code>·<code>--bare</code>·<code>--remote-control</code> 등 플래그 보존, respawn 상태 검증 강화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background sessions are now told that shared-checkout edits are blocked until they enter a worktree, avoiding a wasted rejected edit before <code>EnterWorktree</code></span>
+      <span class="e-desc" data-en="Background sessions are now told that shared-checkout edits are blocked until they enter a worktree, avoiding a wasted rejected edit before <code>EnterWorktree</code>">백그라운드 세션에 공유 체크아웃 편집은 worktree 진입 전 차단됨을 안내 → <code>EnterWorktree</code> 전 헛된 거부 편집 방지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The "CLAUDE.md is too long" warning threshold now scales with the model's context window</span>
+      <span class="e-desc" data-en="The &quot;CLAUDE.md is too long&quot; warning threshold now scales with the model's context window">"CLAUDE.md가 너무 김" 경고 임계값이 모델 컨텍스트 창에 맞춰 조정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Auto-updater on Windows now stops retrying within a session once <code>claude.exe</code> is held by another process</span>
+      <span class="e-desc" data-en="Auto-updater on Windows now stops retrying within a session once <code>claude.exe</code> is held by another process">Windows 자동 업데이터가 <code>claude.exe</code>를 다른 프로세스가 잡고 있으면 세션 내 재시도 중단</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Promo credit claims for Apple/Google-billed subscribers without a payment method now explain where to add one</span>
+      <span class="e-desc" data-en="Promo credit claims for Apple/Google-billed subscribers without a payment method now explain where to add one">결제수단 없는 Apple/Google 결제 구독자의 프로모 크레딧 청구 시 추가 방법 안내</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a tip suggesting <code>claude agents</code> when running multiple concurrent sessions</span>
+      <span class="e-desc" data-en="Added a tip suggesting <code>claude agents</code> when running multiple concurrent sessions">동시 세션 여러 개 실행 시 <code>claude agents</code> 권유 팁 추가</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2079,7 +2079,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Bug fixes and reliability improvements</span>
+      <span class="e-desc" data-en="Bug fixes and reliability improvements">버그 수정 및 안정성 개선</span>
     </div>
   </div>
 
@@ -2091,7 +2091,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Bug fixes and reliability improvements</span>
+      <span class="e-desc" data-en="Bug fixes and reliability improvements">버그 수정 및 안정성 개선</span>
     </div>
   </div>
 
@@ -2103,31 +2103,31 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>fallbackModel</code> setting to configure up to three fallback models tried in order when the primary model is overloaded or unavailable; <code>--fallback-model</code> now also applies to interactive sessions</span>
+      <span class="e-desc" data-en="Added <code>fallbackModel</code> setting to configure up to three fallback models tried in order when the primary model is overloaded or unavailable; <code>--fallback-model</code> now also applies to interactive sessions"><code>fallbackModel</code> 설정 추가 — 기본 모델 과부하·불가 시 최대 3개를 순서대로 폴백, <code>--fallback-model</code>도 대화형 세션에 적용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added glob pattern support in deny rule tool-name position (<code>"*"</code> denies all tools); allow rules reject non-MCP globs, and unknown tool names in deny rules warn at startup</span>
+      <span class="e-desc" data-en="Added glob pattern support in deny rule tool-name position (<code>&quot;*&quot;</code> denies all tools); allow rules reject non-MCP globs, and unknown tool names in deny rules warn at startup">deny 규칙 툴 이름에 glob 패턴 지원(<code>"*"</code>는 전체 차단), allow 규칙은 비-MCP glob 거부, deny의 미지 툴명은 시작 시 경고</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Hardened cross-session messaging: messages relayed via <code>SendMessage</code> from other Claude sessions no longer carry user authority — receivers refuse relayed permission requests, and auto mode blocks them</span>
+      <span class="e-desc" data-en="Hardened cross-session messaging: messages relayed via <code>SendMessage</code> from other Claude sessions no longer carry user authority — receivers refuse relayed permission requests, and auto mode blocks them">세션 간 메시징 강화 — 다른 Claude 세션이 <code>SendMessage</code>로 중계한 메시지는 사용자 권한 없음(수신측이 중계된 권한 요청 거부, auto 모드는 차단)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>MAX_THINKING_TOKENS=0</code>, <code>--thinking disabled</code>, and the per-model thinking toggle now disable thinking on models that think by default via the Claude API (3P providers unchanged)</span>
+      <span class="e-desc" data-en="<code>MAX_THINKING_TOKENS=0</code>, <code>--thinking disabled</code>, and the per-model thinking toggle now disable thinking on models that think by default via the Claude API (3P providers unchanged)"><code>MAX_THINKING_TOKENS=0</code>·<code>--thinking disabled</code>·모델별 thinking 토글이 Claude API 기본 thinking 모델의 thinking을 끔(3P 제공자는 동일)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude Code now retries a turn once on the fallback model when the API rejects an unexpected non-retryable error; auth, rate-limit, request-size, and transport errors still surface immediately</span>
+      <span class="e-desc" data-en="Claude Code now retries a turn once on the fallback model when the API rejects an unexpected non-retryable error; auth, rate-limit, request-size, and transport errors still surface immediately">API가 예기치 못한 비재시도 오류를 반환하면 폴백 모델로 턴 1회 재시도(인증·레이트리밋·요청크기·전송 오류는 즉시 표시)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude update</code> now announces the target version before downloading instead of going silent</span>
+      <span class="e-desc" data-en="<code>claude update</code> now announces the target version before downloading instead of going silent"><code>claude update</code>가 다운로드 전 대상 버전을 알림(조용히 진행하지 않음)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: typing a URL into the list now filters to the session whose first prompt contained it</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: typing a URL into the list now filters to the session whose first prompt contained it"><code>claude agents</code>: 목록에 URL 입력 시 첫 프롬프트에 그 URL이 있던 세션으로 필터</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2169,7 +2169,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Bug fixes and reliability improvements</span>
+      <span class="e-desc" data-en="Bug fixes and reliability improvements">버그 수정 및 안정성 개선</span>
     </div>
   </div>
 
@@ -2181,43 +2181,43 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>requiredMinimumVersion</code> and <code>requiredMaximumVersion</code> managed settings — Claude Code refuses to start if its version is outside the allowed range and directs the user to an approved version</span>
+      <span class="e-desc" data-en="Added <code>requiredMinimumVersion</code> and <code>requiredMaximumVersion</code> managed settings — Claude Code refuses to start if its version is outside the allowed range and directs the user to an approved version"><code>requiredMinimumVersion</code>·<code>requiredMaximumVersion</code> 관리 설정 추가 — 버전이 허용 범위 밖이면 시작 거부하고 승인 버전 안내</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>/plugin list</code> command to list installed plugins, with <code>--enabled</code>/<code>--disabled</code> filters</span>
+      <span class="e-desc" data-en="Added <code>/plugin list</code> command to list installed plugins, with <code>--enabled</code>/<code>--disabled</code> filters">설치된 플러그인을 나열하는 <code>/plugin list</code> 명령 추가(<code>--enabled</code>/<code>--disabled</code> 필터)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a "c to copy" shortcut to <code>/btw</code> that copies the raw markdown answer to the clipboard, preserving formatting when pasted elsewhere</span>
+      <span class="e-desc" data-en="Added a &quot;c to copy&quot; shortcut to <code>/btw</code> that copies the raw markdown answer to the clipboard, preserving formatting when pasted elsewhere"><code>/btw</code>에 "c로 복사" 단축키 추가 — 원시 마크다운 답을 클립보드에 복사(붙여넣기 시 서식 유지)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Hooks: Stop and SubagentStop hooks can now return <code>hookSpecificOutput.additionalContext</code> to give Claude feedback and keep the turn going without being labeled a hook error</span>
+      <span class="e-desc" data-en="Hooks: Stop and SubagentStop hooks can now return <code>hookSpecificOutput.additionalContext</code> to give Claude feedback and keep the turn going without being labeled a hook error">훅: Stop·SubagentStop 훅이 <code>hookSpecificOutput.additionalContext</code> 반환 가능 — 훅 오류로 처리되지 않고 Claude에 피드백 주며 턴 이어감</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Skills: added <code>\$</code> escape syntax to include a literal <code>$</code> before a digit in command bodies</span>
+      <span class="e-desc" data-en="Skills: added <code>\$</code> escape syntax to include a literal <code>$</code> before a digit in command bodies">스킬: 명령 본문에서 숫자 앞 리터럴 <code>$</code>를 넣는 <code>\$</code> 이스케이프 문법 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">stdio MCP servers now receive the same <code>CLAUDE_CODE_SESSION_ID</code> as hooks/Bash on <code>--resume</code></span>
+      <span class="e-desc" data-en="stdio MCP servers now receive the same <code>CLAUDE_CODE_SESSION_ID</code> as hooks/Bash on <code>--resume</code>">stdio MCP 서버가 <code>--resume</code> 시 훅/Bash와 동일한 <code>CLAUDE_CODE_SESSION_ID</code> 받음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background agent sessions now update to a new Claude Code version in the background, so opening a session after an update no longer waits on a cold restart</span>
+      <span class="e-desc" data-en="Background agent sessions now update to a new Claude Code version in the background, so opening a session after an update no longer waits on a cold restart">백그라운드 에이전트 세션이 새 버전으로 백그라운드 업데이트 → 업데이트 후 세션 열 때 콜드 재시작 대기 없음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Clearer descriptions for built-in commands and skills in the / menu</span>
+      <span class="e-desc" data-en="Clearer descriptions for built-in commands and skills in the / menu">/ 메뉴의 내장 명령·스킬 설명 명확화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The subscription-switch suggestion now shows in the startup announcement slot instead of a toast</span>
+      <span class="e-desc" data-en="The subscription-switch suggestion now shows in the startup announcement slot instead of a toast">구독 전환 제안을 토스트 대신 시작 안내 슬롯에 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code> dispatching from the state-grouped view now starts the session in the directory the agent view was opened from</span>
+      <span class="e-desc" data-en="<code>claude agents</code> dispatching from the state-grouped view now starts the session in the directory the agent view was opened from"><code>claude agents</code> 상태별 뷰에서 디스패치 시 에이전트 뷰를 연 디렉터리에서 세션 시작</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2257,51 +2257,51 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents --json</code> now includes <code>waitingFor</code> showing what a waiting session is blocked on (e.g. permission prompt)</span>
+      <span class="e-desc" data-en="<code>claude agents --json</code> now includes <code>waitingFor</code> showing what a waiting session is blocked on (e.g. permission prompt)"><code>claude agents --json</code>에 <code>waitingFor</code> 추가 — 대기 세션이 무엇에 막혔는지 표시(예: 권한 프롬프트)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>--tools</code>: explicitly listing Grep/Glob now provides the dedicated search tools on native builds with embedded search (previously these names were silently ignored)</span>
+      <span class="e-desc" data-en="<code>--tools</code>: explicitly listing Grep/Glob now provides the dedicated search tools on native builds with embedded search (previously these names were silently ignored)"><code>--tools</code>: Grep/Glob 명시 시 임베디드 검색 네이티브 빌드에서 전용 검색 툴 제공(이전엔 무시됨)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/effort</code> now confirms when your chosen level will persist as the default for new sessions</span>
+      <span class="e-desc" data-en="<code>/effort</code> now confirms when your chosen level will persist as the default for new sessions"><code>/effort</code>가 선택 레벨을 새 세션 기본값으로 유지할지 확인</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Clicking a slash command in the autocomplete menu now fills it into your prompt instead of running it immediately; press Enter to run</span>
+      <span class="e-desc" data-en="Clicking a slash command in the autocomplete menu now fills it into your prompt instead of running it immediately; press Enter to run">자동완성 메뉴에서 슬래시 명령 클릭 시 즉시 실행 대신 프롬프트에 채움(Enter로 실행)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Remote Control now shows as a persistent footer pill (with a link to the session) instead of a startup message</span>
+      <span class="e-desc" data-en="Remote Control now shows as a persistent footer pill (with a link to the session) instead of a startup message">Remote Control을 시작 메시지 대신 푸터 펄(세션 링크 포함)로 상시 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Renamed Windsurf to Devin Desktop in the <code>/ide</code> menu, <code>/terminal-setup</code>, and <code>/scroll-speed</code>, following the editor's rebrand</span>
+      <span class="e-desc" data-en="Renamed Windsurf to Devin Desktop in the <code>/ide</code> menu, <code>/terminal-setup</code>, and <code>/scroll-speed</code>, following the editor's rebrand"><code>/ide</code> 메뉴·<code>/terminal-setup</code>·<code>/scroll-speed</code>에서 Windsurf를 Devin Desktop으로 개명(에디터 리브랜드 반영)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Quieter startup: notices group by severity, and session info and announcements share a single line per launch</span>
+      <span class="e-desc" data-en="Quieter startup: notices group by severity, and session info and announcements share a single line per launch">조용한 시작 — 알림을 심각도별로 묶고, 세션 정보·공지를 실행당 한 줄로</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Startup warnings rewritten to be shorter and clearer, each with a concrete fix</span>
+      <span class="e-desc" data-en="Startup warnings rewritten to be shorter and clearer, each with a concrete fix">시작 경고를 더 짧고 명확하게 재작성(각각 구체적 해결책 포함)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Launch-prompt warnings (deep link/pre-filled prompt) now stay pinned below the input until you act instead of scrolling away</span>
+      <span class="e-desc" data-en="Launch-prompt warnings (deep link/pre-filled prompt) now stay pinned below the input until you act instead of scrolling away">실행 프롬프트 경고(딥링크/사전입력)가 사라지지 않고 입력창 아래 고정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Failed turns now show a compact warning line instead of a multi-line red error block</span>
+      <span class="e-desc" data-en="Failed turns now show a compact warning line instead of a multi-line red error block">실패한 턴을 여러 줄 빨간 오류 블록 대신 한 줄 경고로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background dispatch spawn failures now report the error class name when no errno is available</span>
+      <span class="e-desc" data-en="Background dispatch spawn failures now report the error class name when no errno is available">백그라운드 디스패치 spawn 실패 시 errno 없으면 오류 클래스명 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the "Claude in Chrome enabled" and "marketplace installed" startup messages; model auto-updates and the team-onboarding tip now show as quiet notices under the logo</span>
+      <span class="e-desc" data-en="Removed the &quot;Claude in Chrome enabled&quot; and &quot;marketplace installed&quot; startup messages; model auto-updates and the team-onboarding tip now show as quiet notices under the logo">"Claude in Chrome 활성화"·"마켓플레이스 설치" 시작 메시지 제거, 모델 자동업데이트·팀온보딩 팁은 로고 아래 조용한 알림으로</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2350,27 +2350,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>OTEL_RESOURCE_ATTRIBUTES</code> values are now included as labels on metric datapoints, so you can slice usage metrics by custom dimensions like team or repo</span>
+      <span class="e-desc" data-en="<code>OTEL_RESOURCE_ATTRIBUTES</code> values are now included as labels on metric datapoints, so you can slice usage metrics by custom dimensions like team or repo"><code>OTEL_RESOURCE_ATTRIBUTES</code> 값을 메트릭 데이터포인트 라벨로 포함 → 팀·repo 같은 커스텀 차원으로 사용량 분석</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code> rows now show <code>done/total</code> before the detail when work is fanned out; peek shows the longest-running item</span>
+      <span class="e-desc" data-en="<code>claude agents</code> rows now show <code>done/total</code> before the detail when work is fanned out; peek shows the longest-running item"><code>claude agents</code> 행이 fan-out 시 상세 앞에 <code>done/total</code> 표시, peek는 가장 오래 실행 항목 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/mcp</code> now collapses claude.ai connectors you've never signed in to behind a "Show unused connectors" row</span>
+      <span class="e-desc" data-en="<code>/mcp</code> now collapses claude.ai connectors you've never signed in to behind a &quot;Show unused connectors&quot; row"><code>/mcp</code>가 한 번도 로그인 안 한 claude.ai 커넥터를 "미사용 커넥터 표시" 행 뒤로 접음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Parallel tool calls: a failed Bash command no longer cancels other calls in the same batch — each tool returns its own result independently</span>
+      <span class="e-desc" data-en="Parallel tool calls: a failed Bash command no longer cancels other calls in the same batch — each tool returns its own result independently">병렬 툴 호출: 한 Bash 명령 실패가 같은 배치의 다른 호출을 취소하지 않음(각 툴이 독립적으로 결과 반환)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Fullscreen mode: clipboard now uses <code>wl-copy</code>/<code>xclip</code>/<code>xsel</code> on Linux when available, copies to both the clipboard and PRIMARY selection for middle-click paste, and the "hold {key} for native selection" hint now shows the correct key per terminal</span>
+      <span class="e-desc" data-en="Fullscreen mode: clipboard now uses <code>wl-copy</code>/<code>xclip</code>/<code>xsel</code> on Linux when available, copies to both the clipboard and PRIMARY selection for middle-click paste, and the &quot;hold {key} for native selection&quot; hint now shows the correct key per terminal">전체화면: Linux에서 클립보드가 <code>wl-copy</code>/<code>xclip</code>/<code>xsel</code> 사용(가능 시), 클립보드와 PRIMARY 선택 둘 다 복사(중클릭 붙여넣기), "네이티브 선택하려면 {key}" 힌트가 터미널별 올바른 키 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Added a tip suggesting disabling terminal GPU acceleration (or running <code>/terminal-setup</code>) to fix garbled glyphs</span>
+      <span class="e-desc" data-en="[VSCode] Added a tip suggesting disabling terminal GPU acceleration (or running <code>/terminal-setup</code>) to fix garbled glyphs">[VSCode] 깨진 글리프 수정 위해 터미널 GPU 가속 끄기(또는 <code>/terminal-setup</code>) 권유 팁 추가</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2419,27 +2419,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a prompt before writing to shell startup files (<code>.zshenv</code>, <code>.zlogin</code>, <code>.bash_login</code>) and <code>~/.config/git/</code>, which could otherwise lead to unintended command execution</span>
+      <span class="e-desc" data-en="Added a prompt before writing to shell startup files (<code>.zshenv</code>, <code>.zlogin</code>, <code>.bash_login</code>) and <code>~/.config/git/</code>, which could otherwise lead to unintended command execution">셸 시작 파일(<code>.zshenv</code>·<code>.zlogin</code>·<code>.bash_login</code>)과 <code>~/.config/git/</code> 쓰기 전 확인 프롬프트 추가(의도치 않은 명령 실행 방지)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>acceptEdits</code> mode now prompts before writing build-tool config files that grant code execution (<code>.npmrc</code>, <code>.yarnrc*</code>, <code>bunfig.toml</code>, <code>.bazelrc</code>, <code>.pre-commit-config.yaml</code>, <code>.devcontainer/</code>, etc.)</span>
+      <span class="e-desc" data-en="<code>acceptEdits</code> mode now prompts before writing build-tool config files that grant code execution (<code>.npmrc</code>, <code>.yarnrc*</code>, <code>bunfig.toml</code>, <code>.bazelrc</code>, <code>.pre-commit-config.yaml</code>, <code>.devcontainer/</code>, etc.)"><code>acceptEdits</code> 모드가 코드 실행 권한을 주는 빌드도구 설정파일(<code>.npmrc</code>·<code>.yarnrc*</code>·<code>bunfig.toml</code>·<code>.bazelrc</code>·<code>.pre-commit-config.yaml</code>·<code>.devcontainer/</code> 등) 쓰기 전 확인</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Edit no longer requires a separate Read after viewing a file with <code>grep</code>: single-file <code>grep</code>/<code>egrep</code>/<code>fgrep</code> commands now satisfy the read-before-edit check</span>
+      <span class="e-desc" data-en="Edit no longer requires a separate Read after viewing a file with <code>grep</code>: single-file <code>grep</code>/<code>egrep</code>/<code>fgrep</code> commands now satisfy the read-before-edit check"><code>grep</code>으로 파일 본 뒤 Edit에 별도 Read 불필요 — 단일 파일 <code>grep</code>/<code>egrep</code>/<code>fgrep</code>이 read-before-edit 충족</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code>; the environment variable is now a no-op</span>
+      <span class="e-desc" data-en="Removed <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code>; the environment variable is now a no-op"><code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> 제거(이제 no-op)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the JetBrains plugin install suggestion from startup</span>
+      <span class="e-desc" data-en="Removed the JetBrains plugin install suggestion from startup">시작 시 JetBrains 플러그인 설치 제안 제거</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Renamed the dynamic-workflow trigger keyword from <code>workflow</code> to <code>ultracode</code>. The word "workflow" no longer triggers a run; asking for one in your own words still works. The trigger keyword is highlighted in violet in the prompt input</span>
+      <span class="e-desc" data-en="Renamed the dynamic-workflow trigger keyword from <code>workflow</code> to <code>ultracode</code>. The word &quot;workflow&quot; no longer triggers a run; asking for one in your own words still works. The trigger keyword is highlighted in violet in the prompt input">동적 워크플로 트리거 키워드를 <code>workflow</code>에서 <code>ultracode</code>로 변경. "workflow"는 더 이상 트리거 안 함(자기 말로 요청하면 동작), 트리거 키워드는 입력창에서 보라색 강조</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2488,7 +2488,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Internal infrastructure improvements (no user-facing changes)</span>
+      <span class="e-desc" data-en="Internal infrastructure improvements (no user-facing changes)">내부 인프라 개선 (사용자 영향 없음)</span>
     </div>
   </div>
 
