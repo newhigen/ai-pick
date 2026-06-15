@@ -249,6 +249,11 @@
 
     /* feature entry rows */
     .entry{display:flex;gap:11px;align-items:baseline;padding:8px 18px;font-size:.86rem;color:var(--muted);line-height:1.55}
+    /* codex 패치노트: Fix 항목 기본 접기(기능=KO만 노출), 토글로 펼침 */
+    .version-block .entry.cx-fix-off{display:none}
+    .version-block.show-fix .entry.cx-fix-off{display:flex}
+    .cx-fixbtn{display:block;width:100%;text-align:left;font-family:var(--mono);font-size:.7rem;color:var(--ink-3);background:none;border:0;border-top:1px solid var(--border);cursor:pointer;padding:7px 18px}
+    .cx-fixbtn:hover{color:var(--accent)}
     .entry::before{content:"";width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px;background:var(--feature)}
     .entry[data-type="improve"]::before{background:var(--improve)}
     .entry .pill{display:none} /* 줄마다 pill 중복 제거, dot으로 대체 */
@@ -12636,6 +12641,18 @@
       });
     })();
     /* 홈 재구성: cc·codex 최근 그리드 상위 픽을 홈 줄리스트로 복제 */
+    (function codexFixCollapse(){
+      document.querySelectorAll('[data-view="codex"] .version-block').forEach(b=>{
+        const fixes=[...b.querySelectorAll(':scope > .entry[data-type="fix"]')];
+        if(!fixes.length) return;
+        fixes.forEach(f=>f.classList.add('cx-fix-off'));
+        const btn=document.createElement('button'); btn.type='button'; btn.className='cx-fixbtn';
+        const lbl=o=>{btn.textContent='Fix '+fixes.length+(o?' 접기 ▴':' 보기 ▾');};
+        lbl(false);
+        btn.addEventListener('click',()=>lbl(b.classList.toggle('show-fix')));
+        b.appendChild(btn);
+      });
+    })();
     (function buildHome(){
       const fill=(gridSel,hostSel)=>{
         const grid=document.querySelector(gridSel), host=document.querySelector(hostSel);
