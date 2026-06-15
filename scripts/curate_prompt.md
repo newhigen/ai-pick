@@ -28,6 +28,7 @@ Agent Edge 사이트(`index.html`, repo: ai-pick) 큐레이션 갱신. 토큰 �
 
 ## 3) Manus 카드 (new_blog.json 중 src=Manus, 제품 출시·기능만)
 - `<div class="view hidden" data-view="manus">` 안 `<div class="news-grid">`에 **기존 `<a class="news-card feat-card">` 복사해 값 교체**(href·tier·h3·p·data-date). 고객사례·채용·법률 글 제외.
+- **커넥터 글**(slug에 `connector` 포함, 예 `deep-dive-canva-connector`)은 카드 대신 **커넥터 가이드** `<div class="conn-list">`에 기존 `<a class="conn-item">` 복사해 추가(라벨=커넥터 이름, 예 "Canva"). 이미 있으면 생략.
 - 모달 분석을 주려면 `const ANALYSIS={` 바로 뒤에 그 회사 기존 항목 복사해 추가(co·ico SVG 그대로·tier·date·lead/scn/prin/ctx ko·en·src). 확신 없으면 ANALYSIS 생략하고 카드만 — 카드 href에 ANALYSIS 없으면 그냥 원문 링크로 열림(정상).
 
 ## 4) 뉴스 (new_blog.json 중 동향 = 펀딩·인수·파트너십·밸류·벤치마크)
