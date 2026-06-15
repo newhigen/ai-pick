@@ -12687,7 +12687,7 @@
           const feats=[...blogSec.querySelectorAll('.side-feat')];
           if(feats.length>CAP){
             feats.slice(CAP).forEach(f=>f.classList.add('sf-hidden'));
-            const HUB=srcCls==='src-openai'?'https://openai.com/news':'https://www.anthropic.com/news';
+            const HUB=srcCls==='src-openai'?'https://openai.com/news':'https://www.anthropic.com/engineering';
             const m=document.createElement('a'); m.className='side-more'; m.href=HUB; m.target='_blank'; m.rel='noopener noreferrer';
             m.textContent='blog 더 보기 →';
             blogSec.appendChild(m);
@@ -12817,14 +12817,33 @@
       });
       const b=document.getElementById('landmarkBanner');
       if(latest && b){
-        const diff=daysDiff(latest.date);
-        let title=latest.txt.replace(/^Added (support for )?/i,'');
-        title=title.split(/(?:[!.]\s)|:\s|·|—| - /)[0].slice(0,56).trim();
-        b.className='show';
-        b.innerHTML='<span class="lm-flag">🚩</span>'
-          +'<span class="lm-k">'+(CUR_LANG==='en'?'Recent':'최근')+'</span>'
-          +'<span class="lm-t">'+title+'</span>'
-          +'<span class="lm-d">'+relLabel(diff)+' · v'+latest.ver+'</span>';
+        const en=CUR_LANG==='en';
+        // halt 인지: landmark 모델이 뉴스에서 중단/철회로 잡히면 배너를 halt(중단)로
+        const mm=latest.txt.match(/(opus|sonnet|haiku|fable|mythos)\s*[\d.]+/i);
+        let halted=null;
+        if(mm){
+          const re=new RegExp(mm[0].replace(/\s+/g,'\\s*'),'i');
+          const SUS=/(suspend|withdraw|discontinu|deprecat|sunset|중단|철회|접근\s*차단)/i;
+          document.querySelectorAll('[data-view="news"] .feed-item').forEach(f=>{
+            const t=f.textContent||''; if(!halted && re.test(t) && SUS.test(t)) halted=f;
+          });
+        }
+        if(halted){
+          const hd=halted.querySelector('.feed-ago')?.dataset.date||latest.date;
+          b.className='show halt';
+          b.innerHTML='<span class="lm-flag">⛔</span>'
+            +'<span class="lm-k">'+(en?'HALTED':'중단')+'</span>'
+            +'<span class="lm-t">Claude '+mm[0]+(en?' — access suspended':' — 접근 중단')+'</span>'
+            +'<span class="lm-d">'+relLabel(daysDiff(hd))+'</span>';
+        } else {
+          let title=latest.txt.replace(/^Added (support for )?/i,'');
+          title=title.split(/(?:[!.]\s)|:\s|·|—| - /)[0].slice(0,56).trim();
+          b.className='show';
+          b.innerHTML='<span class="lm-flag">🚩</span>'
+            +'<span class="lm-k">'+(en?'Recent':'최근')+'</span>'
+            +'<span class="lm-t">'+title+'</span>'
+            +'<span class="lm-d">'+relLabel(daysDiff(latest.date))+' · v'+latest.ver+'</span>';
+        }
       }
     })();
   });
