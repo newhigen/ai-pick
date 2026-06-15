@@ -12646,7 +12646,9 @@
           else { a.style.cursor='pointer'; a.addEventListener('click',()=>c.click()); }
           const title=(c.querySelector('h3')||c.querySelector('.pick-lead'))?.textContent?.trim()||'';
           const cmd=c.querySelector('.cmd')?.textContent?.trim()||'';
-          const date=(c.querySelector('.ver .dag, .ver .news-date'))?.textContent?.trim()||'';
+          const dd=c.getAttribute('data-date')||c.querySelector('[data-date]')?.getAttribute('data-date')||'';
+          let date=(c.querySelector('.ver .dag, .ver .news-date'))?.textContent?.trim()||'';
+          if(!date && dd){ try{date=relLabel(daysDiff(dd));}catch(e){date=dd;} }
           if(cmd){const s=document.createElement('span');s.className='hp-c';s.textContent=cmd;a.appendChild(s);}
           const t=document.createElement('span');t.className='hp-t';t.textContent=title;a.appendChild(t);
           if(date){const d=document.createElement('span');d.className='hp-d';d.textContent=date;a.appendChild(d);}
