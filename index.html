@@ -366,6 +366,9 @@
     .sf-meta{order:2;margin-left:auto;margin-top:0;display:flex;align-items:baseline;gap:6px;flex:none}
     .sf-desc{order:3;flex:1 1 100%;font-size:.74rem;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .sf-star{display:none}
+    .sf-hidden{display:none}
+    .side-more{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:.7rem;color:var(--muted);background:none;border:0;padding:4px 2px;margin-top:1px;cursor:pointer;text-decoration:none}
+    .side-more:hover{color:var(--accent)}
     .sf-meta .news-date{font-family:var(--mono);font-size:.63rem;color:var(--ink-3)}
     .clk-badge{position:absolute;top:12px;right:12px;width:13px;height:13px;color:var(--ink-3);opacity:.5;pointer-events:none}
     .clk-badge svg{width:13px;height:13px;display:block}
@@ -12683,6 +12686,47 @@
         if(g.getAttribute('data-section')==='pick'){
           let last=null;
           cards.forEach(c=>{const t=tier(c);if(t&&t!==last){const h=document.createElement('div');h.className='pick-grouphead';h.textContent=TIERLBL[t];g.insertBefore(h,c);last=t;}});
+        }
+      });
+    })();
+    /* 사이드바 읽을거리: blog N개+더보기 cap + 업계뉴스 그룹(news 탭 회사별 상위 복제) */
+    (function buildReading(){
+      const NEWS=[...document.querySelectorAll('[data-view="news"] .news-feed .feed-item')];
+      const CAP=6;
+      document.querySelectorAll('.tool-side').forEach(side=>{
+        const co=(side.querySelector('.side-co')?.textContent||'').toLowerCase();
+        const srcCls=co.indexOf('openai')>=0?'src-openai':co.indexOf('anthropic')>=0?'src-anthropic':null;
+        // blog cap
+        const blogSec=[...side.querySelectorAll('.side-sec')].find(s=>/blog/i.test(s.querySelector('h3')?.textContent||''));
+        if(blogSec){
+          const feats=[...blogSec.querySelectorAll('.side-feat')];
+          if(feats.length>CAP){
+            feats.slice(CAP).forEach(f=>f.classList.add('sf-hidden'));
+            const m=document.createElement('button'); m.type='button'; m.className='side-more';
+            m.textContent='blog '+(feats.length-CAP)+'개 더 →';
+            m.onclick=()=>{blogSec.querySelectorAll('.sf-hidden').forEach(f=>f.classList.remove('sf-hidden'));m.remove();};
+            blogSec.appendChild(m);
+          }
+        }
+        // 업계 뉴스 그룹
+        if(srcCls){
+          const items=NEWS.filter(f=>f.querySelector('.'+srcCls)).slice(0,3);
+          if(items.length){
+            const sec=document.createElement('div'); sec.className='side-sec';
+            const h=document.createElement('h3'); h.textContent='업계 뉴스'; sec.appendChild(h);
+            items.forEach(f=>{
+              const a=document.createElement('a'); a.className='side-feat'; a.href=f.getAttribute('href'); a.target='_blank'; a.rel='noopener noreferrer';
+              const t=document.createElement('span'); t.className='sf-title'; t.textContent=(f.querySelector('.feed-title')?.textContent||'').trim();
+              const mt=document.createElement('span'); mt.className='sf-meta';
+              const d=document.createElement('span'); d.className='news-date'; d.textContent=(f.querySelector('.feed-date')?.textContent||'').trim();
+              mt.appendChild(d); a.appendChild(t); a.appendChild(mt);
+              const ds=document.createElement('span'); ds.className='sf-desc'; ds.textContent=(f.querySelector('.feed-desc')?.textContent||'').trim(); a.appendChild(ds);
+              sec.appendChild(a);
+            });
+            const more=document.createElement('a'); more.className='side-more'; more.href='#'; more.textContent='뉴스 전체 →';
+            more.onclick=(e)=>{e.preventDefault(); if(window.switchView)switchView('news');};
+            sec.appendChild(more); side.appendChild(sec);
+          }
         }
       });
     })();
