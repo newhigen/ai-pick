@@ -12687,9 +12687,9 @@
           const feats=[...blogSec.querySelectorAll('.side-feat')];
           if(feats.length>CAP){
             feats.slice(CAP).forEach(f=>f.classList.add('sf-hidden'));
-            const m=document.createElement('button'); m.type='button'; m.className='side-more';
-            m.textContent='blog '+(feats.length-CAP)+'개 더 →';
-            m.onclick=()=>{blogSec.querySelectorAll('.sf-hidden').forEach(f=>f.classList.remove('sf-hidden'));m.remove();};
+            const HUB=srcCls==='src-openai'?'https://openai.com/news':'https://www.anthropic.com/news';
+            const m=document.createElement('a'); m.className='side-more'; m.href=HUB; m.target='_blank'; m.rel='noopener noreferrer';
+            m.textContent='blog 더 보기 →';
             blogSec.appendChild(m);
           }
         }
