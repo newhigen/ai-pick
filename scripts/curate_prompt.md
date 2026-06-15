@@ -45,7 +45,14 @@ Agent Edge 사이트(`index.html`, repo: ai-pick) 큐레이션 갱신. 토큰 �
 - **랜드마크**: 중단된 게 현재 랜드마크 배너 대상이면, 페이지 JS가 자동 처리하므로 배너 마크업은 건드리지 말 것. (중단 표시용 `#landmarkBanner.halt` 상태 CSS는 이미 있음 — 랜드마크 감지 로직이 향후 활용.)
 - 확신 없으면(정말 회수인지 모호하면) 픽은 그대로 두고 뉴스만 추가.
 
+## 7) 패치노트 기능(feature) 번역 ★
+새로 추가된 버전 블록의 **기능(feature) 항목만** 한국어로. (개선·보안·수정은 영어 원문 그대로 — 탭에 접혀 부차적.)
+
+- 대상: `new-features.json`에 있는 각 version에 해당하는 `<div class="version-block" id="v{버전}">`(Codex는 `cx{버전}`) 안의 **`.entry[data-type="feature"] > .e-desc`** 만.
+- 방식: `e-desc` 텍스트를 한국어로 의역(핵심만, 간결), **영어 원문은 `data-en`으로 보존**. 예: `<span class="e-desc" data-en="Session titles are now generated in the language of your conversation">세션 제목을 대화 언어로 자동 생성</span>`. `<code>` 등 인라인 태그·구조는 유지.
+- improve/security/fix 항목(탭 안 `.coll-item` 등)·이미 번역된 항목·옛 버전은 건드리지 말 것. 새 버전의 feature만.
+
 ## 절대 금지
-- `.version-block`(패치노트)·월별 그리드(data-period가 recent 아닌 것)·랜드마크 배너·디자인/CSS는 건드리지 마라. 버전 블록은 스크립트가, 랜드마크는 페이지 JS가 자동 처리한다.
+- `.version-block`(패치노트)·월별 그리드(data-period가 recent 아닌 것)·랜드마크 배너·디자인/CSS는 건드리지 마라. 버전 블록은 스크립트가, 랜드마크는 페이지 JS가 자동 처리한다. **단 §7(새 버전 feature `e-desc` 한국어화)만 예외** — e-desc 텍스트만, 구조·클래스·data-type 불변.
 - **명백한 플레이스홀더·테스트 엔트리만 건너뛴다** ("Bug fixes and reliability improvements", "Internal infrastructure improvements" 등). 과장된 홍보문구(새 모델 출시 등)는 실제 메이저 발표일 수 있으니 임의로 빼지 말 것 — 새 모델/플래그십 출시는 최우선 t3 픽 후보다.
 - 각 영역의 기존 마크업 형식을 절대 깨지 말 것. ANALYSIS의 JS 객체 문법(따옴표·콤마)을 절대 깨지 말 것. 확신 없으면 그 항목은 건너뛴다.
