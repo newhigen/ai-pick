@@ -388,8 +388,8 @@
     @media (max-width:900px){.tool-layout{grid-template-columns:1fr}.tool-side{position:static;padding:8px 0 0;border-left:none}}
     /* 홈: 오늘 써볼 기능 */
     /* 홈 재구성: 툴별 상위 픽 줄리스트 2열 */
-    .home-2col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
-    @media(max-width:760px){.home-2col{grid-template-columns:1fr}}
+    .home-2col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:14px}
+    @media(max-width:760px){.home-2col{grid-template-columns:minmax(0,1fr)}}
     .home-tool-h{display:flex;align-items:center;gap:8px;font-size:1.04rem;font-weight:800;letter-spacing:-.02em;margin-bottom:9px;color:var(--text)}
     .home-tool-h .src-dot{width:10px;height:10px;border-radius:50%;flex:none}
     .home-tool-h a{margin-left:auto;font-family:var(--mono);font-size:.72rem;font-weight:600;color:var(--accent);text-decoration:none;cursor:pointer}
@@ -398,7 +398,7 @@
     .hp:last-child{border-bottom:0}
     .hp:hover{background:var(--surface2)}
     .hp .hp-c{flex:none;font-family:var(--mono);font-size:.68rem;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:var(--radius-xs);max-width:42%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .hp .hp-t{flex:0 1 auto;font-size:.86rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .hp .hp-t{flex:1 1 auto;min-width:0;font-size:.86rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .hp .hp-d{flex:none;margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--ink-3);font-variant-numeric:tabular-nums}
     .home-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:8px}
     .home-col{display:flex;flex-direction:column;gap:12px}
@@ -12658,6 +12658,21 @@
         btn.addEventListener('click',()=>lbl(b.classList.toggle('show-fix')));
         b.appendChild(btn);
       });
+    })();
+    /* codex 옛 버전 접기 (cc olderWrap처럼): 최근 N개만 노출, 나머지 토글 */
+    (function codexOlderCollapse(){
+      const N=6;
+      const blocks=[...document.querySelectorAll('[data-view="codex"] .version-block')];
+      if(blocks.length<=N) return;
+      const parent=blocks[0].parentNode;
+      const older=blocks.slice(N);
+      const wrap=document.createElement('div'); wrap.className='older-wrap hidden'; wrap.id='olderWrapCx';
+      older.forEach(b=>wrap.appendChild(b));
+      const btn=document.createElement('button'); btn.type='button'; btn.className='more-versions';
+      const lbl=o=>{btn.textContent=o?'접기 ▴':('이전 버전 '+older.length+'개 더 보기 ▾');};
+      lbl(false);
+      btn.addEventListener('click',()=>lbl(!wrap.classList.toggle('hidden')));
+      parent.appendChild(btn); parent.appendChild(wrap);
     })();
     (function buildHome(){
       const fill=(gridSel,hostSel)=>{
