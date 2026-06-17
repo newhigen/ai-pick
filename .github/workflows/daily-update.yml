@@ -67,6 +67,20 @@ jobs:
         if: steps.gate.outputs.go == 'true'
         run: npm install -g @anthropic-ai/claude-code
 
+      # ── 패치노트 기능(feature) 한국어화 — 전용 스텝(번들 curate가 버전 번역을 자주 누락해 분리) ──
+      - name: Translate feature notes (headless)
+        if: steps.update.outputs.has_features == 'true' || steps.codex.outputs.cx_has_features == 'true'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "$(cat scripts/translate_features.md)" \
+            --model claude-sonnet-4-6 \
+            --max-turns 60 \
+            --permission-mode acceptEdits \
+            --allowedTools "Read,Edit,Glob,Grep" \
+            --output-format json \
+          || echo "::warning::feature translation step returned non-zero"
+
       - name: Curate (headless claude -p)
         if: steps.gate.outputs.go == 'true'
         env:
