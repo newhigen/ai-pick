@@ -682,6 +682,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.169</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-17">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/config</div>
+        <h3 data-en="Set any setting inline from the prompt">프롬프트에서 바로 설정 변경</h3>
+        <p data-en="Override any setting inline: /config thinking=false — works in interactive, -p, and Remote Control.">프롬프트에서 직접 설정 오버라이드 — interactive·-p·Remote Control 모두 지원.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> No config file needed — per-session setting tweak in one line"><strong>왜?</strong> 설정 파일 열 필요 없이 세션마다 한 줄로 덮어쓰기 가능</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which keys are settable; /config thinking=false in -p mode"><strong>학습:</strong> 오버라이드 가능한 키 목록; -p 모드에서 <code>/config thinking=false</code> 활용</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.181</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -980,6 +991,14 @@
         <div class="side-co"><svg class="brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>Anthropic</div>
         <div class="side-sec">
           <h3 data-en="blog">blog</h3>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/workload-identity-federation" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Workload Identity Federation GA</span>
+            <span class="sf-desc" data-en="WIF now generally available on the Claude Platform.">Claude Platform에서 WIF 정식 출시.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/claude-design-stays-on-brand-for-daily-work" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Claude Design stays on brand</span>
+            <span class="sf-desc" data-en="Claude Design now preserves brand identity across daily tasks.">Claude Design이 일상 작업에서도 브랜드 일관성 유지.</span>
+          </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Claude Fable 5 &amp; Mythos 5</span>
             <span class="sf-desc" data-en="First public Mythos-class model, safe for general use.">공개 Mythos급 첫 모델 — 일반 사용 안전화.</span>
@@ -1258,6 +1277,11 @@
             <span class="cat-desc" data-en="Clicking a slash command fills it in; Enter to run">슬래시 명령 클릭 시 입력에 채움, Enter로 실행</span>
             <span class="cat-ver">v162</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/config key=value</span>
+            <span class="cat-desc" data-en="Override any setting inline from the prompt">프롬프트에서 바로 설정값 오버라이드</span>
+            <span class="cat-ver">v181</span>
+          </li>
         </ul>
       </div>
 
@@ -1329,6 +1353,11 @@
             <span class="cat-cmd">model attr OTEL</span>
             <span class="cat-desc" data-en="model attribute added to lines_of_code.count OTEL metric">lines_of_code.count OTEL 메트릭에 model 속성 추가</span>
             <span class="cat-ver">v172</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">CLAUDE_CLIENT_PRESENCE_FILE</span>
+            <span class="cat-desc" data-en="Point at a marker file to suppress mobile push while at the desk">마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제</span>
+            <span class="cat-ver">v181</span>
           </li>
         </ul>
       </div>
@@ -1682,23 +1711,23 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>/config key=value</code> syntax to set any setting from the prompt (e.g. <code>/config thinking=false</code>) — works in interactive, <code>-p</code>, and Remote Control</span>
+      <span class="e-desc" data-en="Added <code>/config key=value</code> syntax to set any setting from the prompt (e.g. <code>/config thinking=false</code>) — works in interactive, <code>-p</code>, and Remote Control">프롬프트에서 설정값을 바꾸는 <code>/config key=value</code> 문법 추가 (예: <code>/config thinking=false</code>) — 대화형·<code>-p</code>·Remote Control 모두 동작</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>sandbox.allowAppleEvents</code> opt-in setting that lets sandboxed commands send Apple Events on macOS</span>
+      <span class="e-desc" data-en="Added <code>sandbox.allowAppleEvents</code> opt-in setting that lets sandboxed commands send Apple Events on macOS">샌드박스 명령이 macOS에서 Apple Events를 보낼 수 있게 하는 <code>sandbox.allowAppleEvents</code> opt-in 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>CLAUDE_CLIENT_PRESENCE_FILE</code> environment variable: point it at a marker file to suppress mobile push notifications while you're at the machine</span>
+      <span class="e-desc" data-en="Added <code>CLAUDE_CLIENT_PRESENCE_FILE</code> environment variable: point it at a marker file to suppress mobile push notifications while you're at the machine"><code>CLAUDE_CLIENT_PRESENCE_FILE</code> 환경변수 추가 — 마커 파일을 지정하면 PC 앞에 있을 때 모바일 푸시 알림 억제</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Upgraded the bundled Bun runtime to 1.4</span>
+      <span class="e-desc" data-en="Upgraded the bundled Bun runtime to 1.4">번들 Bun 런타임을 1.4로 업그레이드</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed fullscreen mode URL opening to require Cmd+click (macOS) / Ctrl+click, matching native terminal behavior</span>
+      <span class="e-desc" data-en="Changed fullscreen mode URL opening to require Cmd+click (macOS) / Ctrl+click, matching native terminal behavior">전체화면 모드 URL 열기를 Cmd+클릭(macOS) / Ctrl+클릭 필요로 변경(네이티브 터미널 동작에 맞춤)</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2639,7 +2668,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code></span>
+      <span class="e-desc" data-en="Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8. Opt in by setting <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code>">Bedrock·Vertex·Foundry에서 Opus 4.7·Opus 4.8용 Auto 모드 지원. <code>CLAUDE_CODE_ENABLE_AUTO_MODE=1</code>으로 활성화</span>
     </div>
   </div>
 
@@ -12394,6 +12423,24 @@
           <p data-en="Run Manus agents directly from your Slack workspace.">Slack에서 Manus 에이전트 직접 실행.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-06-16"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-my-computer-desktop" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3>My Computer — 데스크톱 직접 조작</h3>
+          <p data-en="Manus agents can now control your desktop directly via My Computer.">Manus 에이전트가 내 데스크톱을 직접 조작.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-17"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-gpt-image-2" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3>GPT Image 2 on Manus Slides</h3>
+          <p data-en="GPT Image 2 integrated into Manus Slides for AI-generated visuals.">Manus Slides에 GPT Image 2 탑재 — AI 이미지 생성.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-17"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-make-a-copy-webdev" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t1" title="일반">★☆☆</div>
+          <h3>웹사이트 복사본 만들기</h3>
+          <p data-en="Clone Manus-built websites in one step.">Manus로 만든 웹사이트를 한 번에 복사.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-17"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
       </div>
     </div>
 
@@ -12420,6 +12467,20 @@
 
     <div class="news-sec-head"><h2 data-en="Industry moves">동향</h2><span class="sub" data-en="funding · partnerships · benchmarks">펀딩 · 파트너십 · 벤치마크</span></div>
     <div class="news-feed">
+      <a class="feed-item" href="https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Jun 17">6월 17일</span>
+        <span class="feed-ago" data-date="2026-06-17"></span>
+        <span class="src src-anthropic feed-src">Anthropic</span>
+        <span class="feed-body"><span class="feed-title">Anthropic opens Seoul office + Korea AI ecosystem partnerships</span> <span class="feed-desc" data-en="Anthropic opens Seoul office and announces partnerships across the Korean AI ecosystem.">Anthropic 서울 오피스 개설 + 한국 AI 생태계 파트너십 발표.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
+      </a>
+      <a class="feed-item" href="https://www.anthropic.com/news/anthropic-public-record" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Jun 17">6월 17일</span>
+        <span class="feed-ago" data-date="2026-06-17"></span>
+        <span class="src src-anthropic feed-src">Anthropic</span>
+        <span class="feed-body"><span class="feed-title">Results from first Anthropic Public Record</span> <span class="feed-desc" data-en="Anthropic publishes results from its first Public Record transparency initiative.">Anthropic 첫 번째 공공 기록(Public Record) 투명성 보고 결과 발표.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
+      </a>
       <a class="feed-item" href="https://www.anthropic.com/news/fable-mythos-access" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="Jun 12">6월 12일</span>
         <span class="feed-ago" data-date="2026-06-12"></span>
