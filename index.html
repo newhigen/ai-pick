@@ -1107,6 +1107,22 @@
             <span class="sf-title">Self-service data analytics with Claude</span>
             <span class="sf-desc" data-en="How Anthropic enables self-service data analytics with Claude.">Claude로 데이터 분석 셀프서비스화한 Anthropic 사례.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/steering-claude-code-skills-hooks-rules-subagents-and-more" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Steering Claude Code: skills, hooks &amp; subagents</span>
+            <span class="sf-desc" data-en="Skills, hooks, rules, and subagents in Claude Code — a deep guide.">Claude Code의 skills·hooks·rules·subagents 심층 가이드.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/enterprise-managed-auth" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">MCP 커넥터 인증 중앙 관리</span>
+            <span class="sf-desc" data-en="Centrally manage authorization for MCP connectors.">MCP 커넥터 인증을 중앙에서 일괄 관리.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/artifacts-in-claude-code" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Claude Code — Artifacts 지원</span>
+            <span class="sf-desc" data-en="Claude Code now supports artifacts.">Claude Code에서 아티팩트 생성 지원.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/meet-the-winners-of-our-claude-opus-4-8-build-day-hackathon" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Opus 4.8 Build Day 핵커톤 수상작</span>
+            <span class="sf-desc" data-en="Meet the winners of the Claude Opus 4.8 Build Day hackathon.">Claude Opus 4.8 Build Day 핵커톤 수상팀 소개.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -11014,6 +11030,14 @@
         <p class="pick-lead" data-en="The Python SDK now exposes friendly <code>Sandbox</code> presets for thread and turn APIs">Python SDK가 스레드·턴 API용 친숙한 <code>Sandbox</code> 프리셋 노출.</p>
         <div class="ver"><span class="vtag">v0.135.0</span><span class="news-date" data-date="2026-05-28"></span></div>
       </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.141.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="TUI input prompts can auto-resolve after inactivity, with a countdown that pauses on interaction.">TUI 입력 프롬프트가 비활성 시 자동 확정 — 카운트다운은 상호작용 시 일시정지.</p>
+        <div class="ver"><span class="vtag">v0.141.0</span><span class="news-date" data-date="2026-06-18"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.141.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="Executor plugins can activate their stdio MCP servers per thread; plugin discovery adds a created-by-me marketplace and auth-specific curated catalogs.">플러그인이 스레드별 stdio MCP 서버 활성화 가능 — &quot;내가 만든&quot; 마켓플레이스·인증별 카탈로그 추가.</p>
+        <div class="ver"><span class="vtag">v0.141.0</span><span class="news-date" data-date="2026-06-18"></span></div>
+      </a>
     </div>
     <div class="pick-grid period-grid hidden" data-section="codex-pick" data-period="2026-05">
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
@@ -11209,12 +11233,12 @@
         <span class="ver-badge">v0.141.0</span><span class="ver-date" data-en="Jun 18 Thu">6월 18일 목</span><span class="ver-ago"></span>
         <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
       </div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Remote executors now use authenticated, end-to-end encrypted Noise relay channels.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Cross-platform remote execution now preserves executor-native working directories and shells, including filesystem permission paths across app-server and exec-server boundaries.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Selected executor plugins can activate their stdio MCP servers per thread; plugin discovery also adds a created-by-me marketplace and auth-specific curated catalogs.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">App-server clients can list immediate child threads, correlate external-agent imports with detailed results, and read or redeem rate-limit reset credits.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Realtime clients can explicitly append speech, control how Codex responses enter conversations, and omit startup context.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">TUI input prompts can auto-resolve after inactivity, with a countdown that pauses on interaction.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Remote executors now use authenticated, end-to-end encrypted Noise relay channels.">원격 executor가 인증·E2E 암호화된 Noise 릴레이 채널 사용.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Cross-platform remote execution now preserves executor-native working directories and shells, including filesystem permission paths across app-server and exec-server boundaries.">크로스플랫폼 원격 실행이 executor 고유 작업 디렉터리·셸 보존 — app-server·exec-server 경계 파일시스템 권한 경로 포함.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Selected executor plugins can activate their stdio MCP servers per thread; plugin discovery also adds a created-by-me marketplace and auth-specific curated catalogs.">선택된 executor 플러그인이 스레드별 stdio MCP 서버 활성화 가능; 플러그인 발견에 내가 만든 마켓플레이스·auth별 큐레이션 카탈로그 추가.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="App-server clients can list immediate child threads, correlate external-agent imports with detailed results, and read or redeem rate-limit reset credits.">앱서버 클라이언트가 직계 자식 스레드 목록·외부 에이전트 가져오기와 상세 결과 연결·레이트리밋 리셋 크레딧 조회/사용 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Realtime clients can explicitly append speech, control how Codex responses enter conversations, and omit startup context.">Realtime 클라이언트가 음성 명시적 추가·Codex 응답의 대화 진입 방식 제어·시작 컨텍스트 생략 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="TUI input prompts can auto-resolve after inactivity, with a countdown that pauses on interaction.">TUI 입력 프롬프트가 비활성 후 자동 확인 — 상호작용 시 일시정지되는 카운트다운 포함.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Hook trust bypass now persists through <code>codex exec</code> thread start and resume, while blocking <code>PostToolUse</code> hooks correctly reject code-mode tool calls.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Plugin capabilities now route consistently by authentication mode, deduplicate conflicting App/MCP declarations, and preserve remote marketplace ordering.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Windows sandbox execution repairs stale credentials automatically and gives PowerShell commands more time before backgrounding.</span></div>
@@ -11548,11 +11572,11 @@
         <span class="ver-badge">v0.120.0</span><span class="ver-date" data-en="Apr 11 Sat">4월 11일 토</span><span class="ver-ago"></span>
         <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill fix">Fix ×6</span></div>
       </div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Realtime V2 can now stream background agent progress while work is still running and queue follow-up responses until the active response completes</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Hook activity in the TUI is easier to scan, with live running hooks shown separately and completed hook output kept only when useful</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Custom TUI status lines can include the renamed thread title</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Code-mode tool declarations now include MCP <code>outputSchema</code> details so structured tool results are typed more precisely</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">SessionStart hooks can distinguish sessions created by <code>/clear</code> from fresh startup or resume sessions</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Realtime V2 can now stream background agent progress while work is still running and queue follow-up responses until the active response completes">Realtime V2가 작업 실행 중 백그라운드 에이전트 진행상황 스트리밍, 활성 응답 완료 전까지 후속 응답을 큐에 대기.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Hook activity in the TUI is easier to scan, with live running hooks shown separately and completed hook output kept only when useful">TUI 훅 활동 파악 용이 — 실행 중 훅 별도 표시, 완료된 훅 출력은 유용할 때만 유지.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Custom TUI status lines can include the renamed thread title">커스텀 TUI 상태줄에 변경된 스레드 제목 포함 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Code-mode tool declarations now include MCP <code>outputSchema</code> details so structured tool results are typed more precisely">Code-mode 툴 선언에 MCP <code>outputSchema</code> 상세 포함 → 구조화된 툴 결과 타입 정확도↑.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="SessionStart hooks can distinguish sessions created by <code>/clear</code> from fresh startup or resume sessions">SessionStart 훅이 <code>/clear</code>로 만들어진 세션을 새 시작·재개 세션과 구별 가능.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed Windows elevated sandbox handling for split filesystem policies, including read-only carveouts under writable roots</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed sandbox permission handling for symlinked writable roots and carveouts, preventing failures in shell and <code>apply_patch</code> workflows</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed <code>codex --remote wss://...</code> panics by installing the Rustls crypto provider before TLS websocket connections</span></div>
@@ -12459,6 +12483,24 @@
           <p data-en="Clone Manus-built websites in one step.">Manus로 만든 웹사이트를 한 번에 복사.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-06-17"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-app-publishing" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3>앱 공유 · 테스트 → 스토어 출시</h3>
+          <p data-en="Share and test Manus-built apps, then publish to Google Play Store or App Store.">Manus 앱을 공유·테스트 후 Google Play·App Store 출시.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-18"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-advanced-seo" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3>Built-in SEO</h3>
+          <p data-en="Manus apps now rank on search engines with built-in SEO.">Manus 앱에 SEO 내장 — 검색엔진 노출 자동화.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-18"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-slides-nano-banana-pro" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t1" title="일반">★☆☆</div>
+          <h3>Manus Slides — Nano Banana Pro</h3>
+          <p data-en="Studio-quality presentation templates with Nano Banana Pro theme.">스튜디오급 프레젠테이션 템플릿 — Nano Banana Pro.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-18"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
       </div>
     </div>
 
@@ -12474,6 +12516,7 @@
           <a class="conn-item" href="https://manus.im/blog/deep-dive-airtable-connector" target="_blank" rel="noopener noreferrer">Airtable</a>
           <a class="conn-item" href="https://manus.im/blog/deep-dive-browser-operator-connector" target="_blank" rel="noopener noreferrer">Browser Operator</a>
           <a class="conn-item" href="https://manus.im/blog/manus-zoom" target="_blank" rel="noopener noreferrer">Zoom</a>
+          <a class="conn-item" href="https://manus.im/blog/manus-shopify-connector" target="_blank" rel="noopener noreferrer">Shopify</a>
     </div>
   </div>
 
@@ -12485,6 +12528,20 @@
 
     <div class="news-sec-head"><h2 data-en="Industry moves">동향</h2><span class="sub" data-en="funding · partnerships · benchmarks">펀딩 · 파트너십 · 벤치마크</span></div>
     <div class="news-feed">
+      <a class="feed-item" href="https://manus.im/blog/manus-100m-arr" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Jun 18">6월 18일</span>
+        <span class="feed-ago" data-date="2026-06-18"></span>
+        <span class="src src-manus feed-src">Manus</span>
+        <span class="feed-body"><span class="feed-title">Manus $100M ARR, $125M revenue run-rate</span> <span class="feed-desc" data-en="Manus hits $100M ARR and $125M revenue run-rate milestone.">Manus $100M ARR · $125M 매출 런레이트 달성.</span></span>
+        <span class="feed-tier t3" title="핵심">★★★</span>
+      </a>
+      <a class="feed-item" href="https://manus.im/blog/manus-microsoft-agent365" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Jun 18">6월 18일</span>
+        <span class="feed-ago" data-date="2026-06-18"></span>
+        <span class="src src-manus feed-src">Manus</span>
+        <span class="feed-body"><span class="feed-title">Manus × Microsoft Agent365</span> <span class="feed-desc" data-en="Manus collaborates with Microsoft Agent365 to unlock broader agent applications.">Manus·Microsoft Agent365 협업 — 에이전트 활용 범위 확장.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
+      </a>
       <a class="feed-item" href="https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="Jun 17">6월 17일</span>
         <span class="feed-ago" data-date="2026-06-17"></span>
