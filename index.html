@@ -715,6 +715,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.186</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-23">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">sandbox.credentials</div>
+        <h3 data-en="Block sandboxed commands from reading credentials">샌드박스 명령이 자격증명 파일 읽기 차단</h3>
+        <p data-en="sandbox.credentials setting prevents sandboxed tool calls from reading credential files and secret env vars.">.env·~/.aws/credentials 등 자격증명 파일을 샌드박스 도구로부터 보호하는 설정.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Prevent untrusted sandbox commands from leaking secrets"><strong>왜?</strong> 민감 파일이 샌드박스 명령에 노출되는 것을 차단 — 멀티에이전트 환경에서 특히 유용</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which files are blocked; how to configure per-project in settings.json"><strong>학습:</strong> 차단 대상 파일 범위; settings.json 프로젝트별 설정 방법</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.187</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1149,6 +1160,14 @@
             <span class="sf-title">Opus 4.8 Build Day 핵커톤 수상작</span>
             <span class="sf-desc" data-en="Meet the winners of the Claude Opus 4.8 Build Day hackathon.">Claude Opus 4.8 Build Day 핵커톤 수상팀 소개.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/agent-identity-access-model" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Agent Identity &amp; Access Model</span>
+            <span class="sf-desc" data-en="A new access model for autonomous, team-wide AI agents.">팀 전체 자율 AI 에이전트를 위한 새 아이덴티티·접근 모델.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Introducing Claude Tag</span>
+            <span class="sf-desc" data-en="Anthropic introduces Claude Tag — new product announcement.">Anthropic, Claude Tag 신규 제품 발표.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1339,6 +1358,11 @@
             <span class="cat-desc" data-en="List all available shorthand keys for /config key=value">모든 /config key=value 단축키 목록 표시</span>
             <span class="cat-ver">v183</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="fullscreen click">fullscreen 마우스 클릭</span>
+            <span class="cat-desc" data-en="Click to select in permission prompts, /model, /config menus in fullscreen">fullscreen에서 권한 프롬프트·/model·/config 등 메뉴 마우스 클릭 지원</span>
+            <span class="cat-ver">v187</span>
+          </li>
         </ul>
       </div>
 
@@ -1461,6 +1485,16 @@
             <span class="cat-cmd">--safe-mode</span>
             <span class="cat-desc" data-en="Start with CLAUDE.md/plugins/skills/hooks/MCP disabled">CLAUDE.md·plugins·skills·hooks·MCP 끄고 기동</span>
             <span class="cat-ver">v169</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">sandbox.credentials</span>
+            <span class="cat-desc" data-en="Block sandboxed commands from reading credential files and secret env vars">샌드박스 도구가 자격증명·시크릿 env 읽기 차단</span>
+            <span class="cat-ver">v187</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="org model policy">조직 모델 제한</span>
+            <span class="cat-desc" data-en="Org-configured model restrictions; blocked models show &quot;restricted&quot; message">조직 설정으로 허용 모델 제한 — 차단 선택 시 메시지 표시</span>
+            <span class="cat-ver">v187</span>
           </li>
         </ul>
       </div>
@@ -1773,19 +1807,19 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>sandbox.credentials</code> setting to block sandboxed commands from reading credential files and secret environment variables</span>
+      <span class="e-desc" data-en="Added <code>sandbox.credentials</code> setting to block sandboxed commands from reading credential files and secret environment variables">샌드박스 명령이 자격증명 파일·비밀 환경변수를 읽지 못하게 차단하는 <code>sandbox.credentials</code> 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added org-configured model restrictions to the model picker, <code>--model</code>, <code>/model</code>, and <code>ANTHROPIC_MODEL</code>, with a "restricted by your organization's settings" message when a restricted model is selected</span>
+      <span class="e-desc" data-en="Added org-configured model restrictions to the model picker, <code>--model</code>, <code>/model</code>, and <code>ANTHROPIC_MODEL</code>, with a &quot;restricted by your organization's settings&quot; message when a restricted model is selected">조직 설정 모델 제한을 모델 피커·<code>--model</code>·<code>/model</code>·<code>ANTHROPIC_MODEL</code>에 적용, 제한 모델 선택 시 "restricted by your organization's settings" 메시지 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added mouse click support to select menus (permission prompts, <code>/model</code>, <code>/config</code>, etc.) in fullscreen mode</span>
+      <span class="e-desc" data-en="Added mouse click support to select menus (permission prompts, <code>/model</code>, <code>/config</code>, etc.) in fullscreen mode">전체화면 모드의 선택 메뉴(권한 프롬프트·<code>/model</code>·<code>/config</code> 등)에서 마우스 클릭 지원 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Fixed extension becoming unresponsive when resuming a large session</span>
+      <span class="e-desc" data-en="[VSCode] Fixed extension becoming unresponsive when resuming a large session">[VSCode] 대용량 세션 재개 시 확장이 응답 불능이 되던 문제 수정</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -11308,6 +11342,18 @@
         <p class="pick-lead" data-en="Executor plugins can activate their stdio MCP servers per thread; plugin discovery adds a created-by-me marketplace and auth-specific curated catalogs.">플러그인이 스레드별 stdio MCP 서버 활성화 가능 — &quot;내가 만든&quot; 마켓플레이스·인증별 카탈로그 추가.</p>
         <div class="ver"><span class="vtag">v0.141.0</span><span class="news-date" data-date="2026-06-18"></span></div>
       </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/usage</div><p class="pick-lead" data-en="/usage can now show and redeem earned usage-limit reset credits with confirmation.">/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</p>
+        <div class="ver"><span class="vtag">v0.142.0</span><span class="news-date" data-date="2026-06-22"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="Configurable rollout token budgets track usage across agent threads, remind on remaining budget, and abort turns when exhausted.">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</p>
+        <div class="ver"><span class="vtag">v0.142.0</span><span class="news-date" data-date="2026-06-22"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="Indexed web-search mode: live searches permitted while direct page access is restricted to server-approved URLs.">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</p>
+        <div class="ver"><span class="vtag">v0.142.0</span><span class="news-date" data-date="2026-06-22"></span></div>
+      </a>
     </div>
     <div class="pick-grid period-grid hidden" data-section="codex-pick" data-period="2026-05">
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
@@ -11503,12 +11549,12 @@
         <span class="ver-badge">v0.142.0</span><span class="ver-date" data-en="Jun 22 Mon">6월 22일 월</span><span class="ver-ago"></span>
         <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
       </div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc"><code>/usage</code> can now show and redeem earned usage-limit reset credits, with confirmation, retry, and refreshed availability states.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc"><code>/plugins</code> now organizes remote plugins into OpenAI Curated, Workspace, and Shared with me sections, while eligible turns can recommend and install relevant plugins.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Configurable rollout token budgets track usage across agent threads, provide remaining-budget reminders, and abort turns when exhausted.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">App-server clients can configure multi-agent delegation as disabled, explicit-request-only, or proactive at the thread and turn level.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added an indexed web-search mode that permits live searches while restricting direct page access to server-approved URLs.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Codex can now receive scheduled UTC time reminders and query the current time directly, including through client-provided app-server clocks.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="<code>/usage</code> can now show and redeem earned usage-limit reset credits, with confirmation, retry, and refreshed availability states."><code>/usage</code>에서 적립된 사용량 한도 리셋 크레딧 확인·사용 가능 — 확인·재시도·갱신 상태 포함.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="<code>/plugins</code> now organizes remote plugins into OpenAI Curated, Workspace, and Shared with me sections, while eligible turns can recommend and install relevant plugins."><code>/plugins</code>가 원격 플러그인을 OpenAI Curated·Workspace·Shared with me 섹션으로 분류, 적합한 턴에서 관련 플러그인 추천·설치 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Configurable rollout token budgets track usage across agent threads, provide remaining-budget reminders, and abort turns when exhausted.">설정 가능한 롤아웃 토큰 예산이 에이전트 스레드 전반 사용량 추적, 잔여 예산 알림, 소진 시 턴 중단.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="App-server clients can configure multi-agent delegation as disabled, explicit-request-only, or proactive at the thread and turn level.">앱서버 클라이언트가 멀티에이전트 위임을 disabled·명시적 요청 전용·proactive로 스레드·턴 수준에서 설정 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Added an indexed web-search mode that permits live searches while restricting direct page access to server-approved URLs.">실시간 검색은 허용하되 직접 페이지 접근을 서버 승인 URL로 제한하는 인덱스 웹검색 모드 추가.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Codex can now receive scheduled UTC time reminders and query the current time directly, including through client-provided app-server clocks.">Codex가 예약된 UTC 시간 알림 수신·현재 시간 직접 조회 가능 — 클라이언트 제공 앱서버 시계 포함.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Restored reliable Linux TUI rendering after suspending with <code>Ctrl+Z</code> and resuming with <code>fg</code>.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Exec-server processes and stdio MCP sessions now survive transient disconnects, including signed-URL refresh and retry-safe stdin writes.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Remote environments now preserve executor-native paths, shells, <code>AGENTS.md</code> discovery, and sandbox behavior across operating systems.</span></div>
@@ -12842,6 +12888,18 @@
           <h3 data-en="Manus + Similarweb: Keywords, Referrals &amp; Pages">Manus × Similarweb: 키워드·레퍼럴·페이지 심층 분석</h3>
           <p data-en="Analyze competitor keywords, referrals, and pages via Similarweb in Manus.">Manus에서 Similarweb으로 경쟁사 키워드·레퍼럴·페이지 분석.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-06-22"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-recommended-connectors" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t1" title="일반">★☆☆</div>
+          <h3 data-en="Manus Now Recommends Connectors For You">커넥터 자동 추천</h3>
+          <p data-en="Manus now recommends relevant connectors during tasks.">작업 중 Manus가 적합한 커넥터를 자동으로 추천.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-23"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-google-drive-connector-update-cli" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Manus Unlocks Precise Actions Across Google Workspace">Google Workspace 정밀 조작 지원</h3>
+          <p data-en="Google Drive connector upgraded with precise CLI-level actions across Google Workspace.">Google Drive 커넥터 업그레이드 — Workspace 전반 정밀 작업 가능.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-06-23"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
       </div>
     </div>
