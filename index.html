@@ -726,6 +726,28 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.187</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-24">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/rewind</div>
+        <h3 data-en="Resume conversation from before /clear">/clear 이전으로 대화 복원</h3>
+        <p data-en="/rewind resumes a session from the state just before /clear was run.">/clear 실행 직전 상태로 대화를 복원해 재개.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Recover accidentally cleared sessions without losing context"><strong>왜?</strong> 실수로 /clear한 세션을 컨텍스트 손실 없이 복구</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> /rewind → /resume flow; recovery scope after clear"><strong>학습:</strong> /rewind → /resume 흐름; /clear 후 복원 가능 범위</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.191</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-25">
+        <div class="pick-tier t1" title="일반">★☆☆</div>
+        <div class="cmd">! [Tab]</div>
+        <h3 data-en="File path autocomplete in bash mode (!)">bash 모드(!) 파일 경로 자동완성</h3>
+        <p data-en="Tab-complete file paths when entering bash commands with !.">! 명령 입력 시 파일 경로를 탭으로 자동완성.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Faster, typo-free file references in bash mode"><strong>왜?</strong> bash 인라인 모드에서 경로 오타 없이 빠른 파일 지정</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Tab behavior after !; supported path patterns"><strong>학습:</strong> ! 이후 Tab 동작 범위; 지원 경로 패턴</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.193</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1264,6 +1286,11 @@
             <span class="cat-desc" data-en="--json shows what a waiting session is blocked on">--json에 대기 세션이 막힌 이유 표시</span>
             <span class="cat-ver">v162</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/rewind</span>
+            <span class="cat-desc" data-en="Resume session from before /clear was run">/clear 이전 시점으로 대화 복원 후 재개</span>
+            <span class="cat-ver">v191</span>
+          </li>
         </ul>
       </div>
 
@@ -1408,6 +1435,11 @@
             <span class="cat-desc" data-en="Authenticate MCP servers from CLI without opening /mcp; --no-browser for SSH">CLI에서 MCP 서버 인증 — /mcp 없이 가능, SSH는 --no-browser</span>
             <span class="cat-ver">v186</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="MCP auth startup notice">MCP 인증 시작 알림</span>
+            <span class="cat-desc" data-en="Startup notice when MCP servers need auth — links to /mcp">시작 시 인증 필요 MCP 서버 안내 — /mcp로 바로 이동</span>
+            <span class="cat-ver">v193</span>
+          </li>
         </ul>
       </div>
 
@@ -1448,6 +1480,11 @@
             <span class="cat-cmd">CLAUDE_CLIENT_PRESENCE_FILE</span>
             <span class="cat-desc" data-en="Point at a marker file to suppress mobile push while at the desk">마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제</span>
             <span class="cat-ver">v181</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">OTEL assistant_response</span>
+            <span class="cat-desc" data-en="claude_code.assistant_response log event; activate with OTEL_LOG_ASSISTANT_RESPONSES=1">모델 응답 텍스트 OTEL 로그 이벤트 — <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>로 활성화</span>
+            <span class="cat-ver">v193</span>
           </li>
         </ul>
       </div>
@@ -1811,27 +1848,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>autoMode.classifyAllShell</code> setting to route all Bash/PowerShell commands through the auto-mode classifier instead of only arbitrary-code-execution patterns</span>
+      <span class="e-desc" data-en="Added <code>autoMode.classifyAllShell</code> setting to route all Bash/PowerShell commands through the auto-mode classifier instead of only arbitrary-code-execution patterns">모든 Bash/PowerShell 명령을 임의 코드 실행 패턴뿐 아니라 auto-mode 분류기를 통해 라우팅하는 <code>autoMode.classifyAllShell</code> 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added auto-mode denial reasons to the transcript, the denial toast, and <code>/permissions</code> recent denials</span>
+      <span class="e-desc" data-en="Added auto-mode denial reasons to the transcript, the denial toast, and <code>/permissions</code> recent denials">트랜스크립트·거부 토스트·<code>/permissions</code> 최근 거부 내역에 auto-mode 거부 사유 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>claude_code.assistant_response</code> OpenTelemetry log event containing the model's response text. Redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>; when that var is unset it follows <code>OTEL_LOG_USER_PROMPTS</code>, so deployments that already log prompt content will start receiving response content on upgrade — set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to keep prompts-only.</span>
+      <span class="e-desc" data-en="Added <code>claude_code.assistant_response</code> OpenTelemetry log event containing the model's response text. Redacted unless <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code>; when that var is unset it follows <code>OTEL_LOG_USER_PROMPTS</code>, so deployments that already log prompt content will start receiving response content on upgrade — set <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> to keep prompts-only.">모델 응답 텍스트를 담은 <code>claude_code.assistant_response</code> OpenTelemetry 로그 이벤트 추가. <code>OTEL_LOG_ASSISTANT_RESPONSES=1</code> 없으면 redact; 미설정 시 <code>OTEL_LOG_USER_PROMPTS</code> 따름(프롬프트 로깅 환경은 업그레이드 후 응답도 수신됨) — 프롬프트만 유지하려면 <code>OTEL_LOG_ASSISTANT_RESPONSES=0</code> 설정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added live file path autocomplete to bash mode (<code>!</code>)</span>
+      <span class="e-desc" data-en="Added live file path autocomplete to bash mode (<code>!</code>)">bash 모드(<code>!</code>)에 실시간 파일 경로 자동완성 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a startup notice when MCP servers need authentication, pointing at <code>/mcp</code></span>
+      <span class="e-desc" data-en="Added a startup notice when MCP servers need authentication, pointing at <code>/mcp</code>">MCP 서버 인증 필요 시 <code>/mcp</code>를 안내하는 시작 알림 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added automatic memory-pressure reaping for idle background shell commands (disable with <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>)</span>
+      <span class="e-desc" data-en="Added automatic memory-pressure reaping for idle background shell commands (disable with <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>)">유휴 백그라운드 셸 명령의 메모리 압박 자동 수거 추가(비활성화: <code>CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1</code>)</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1868,7 +1905,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>/rewind</code> support for resuming a conversation from before <code>/clear</code> was run</span>
+      <span class="e-desc" data-en="Added <code>/rewind</code> support for resuming a conversation from before <code>/clear</code> was run"><code>/clear</code> 실행 전 시점으로 대화를 재개하는 <code>/rewind</code> 지원 추가</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
