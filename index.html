@@ -616,14 +616,25 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-09">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-30">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
-        <div class="cmd">Fable 5</div>
-        <h3 data-en="Claude Fable 5 (public Mythos-class)">Claude Fable 5 (공개 Mythos급)</h3>
-        <p data-en="Mythos-class made safe for general use — SOTA on most benchmarks.">일반 사용까지 안전화한 Mythos급 공개 모델 — 대부분 벤치 SOTA.</p>
+        <div class="cmd">Sonnet 5</div>
+        <h3 data-en="Claude Sonnet 5 — new default in Claude Code, 1M context">Claude Sonnet 5 — Claude Code 기본 모델, 1M 컨텍스트</h3>
+        <p data-en="New default model in Claude Code — native 1M-token context window.">Claude Code 기본 모델 교체 — 네이티브 1M 토큰 컨텍스트 탑재.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Strongest public model yet — a leap on hard tasks, SWE, research"><strong>왜?</strong> 현재 가장 강한 공개 모델 — 난제·SWE·연구 품질 도약</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Felt gain vs Opus 4.8; fallback frequency; cost after Jun 23"><strong>학습:</strong> Opus 4.8 대비 체감, 폴백 발동 빈도, 6/23 이후 비용</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Default as of Jun 30 — 1M context handles entire large codebases; promo pricing through Aug 31"><strong>왜?</strong> 6/30부터 CC 기본 모델 — 1M 컨텍스트로 대형 코드베이스 전체 처리, 8/31까지 프로모 요금</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Quality vs previous default; context usage; pricing after Aug 31 promo ($2/$10 per Mtok)"><strong>학습:</strong> 이전 기본 모델 대비 품질, 컨텍스트 활용 전략, 8/31 이후 요금 ($2/$10 per Mtok)</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.197</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-09">
+        <div class="pick-tier t1" title="일반">★☆☆</div>
+        <div class="cmd">Fable 5</div>
+        <h3 data-en="Claude Fable 5 — suspended (U.S. export control)">Claude Fable 5 — 접근 제한 (미국 수출통제)</h3>
+        <p data-en="Access suspended by U.S. government directive as of Jun 12.">미국 정부 지시로 6/12부터 접근 중단.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Suspended — use Sonnet 5 or Opus 4.8 instead"><strong>왜?</strong> 접근 차단 — 대신 Sonnet 5 또는 Opus 4.8 사용</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> See news feed for Anthropic statement on suspension"><strong>학습:</strong> 뉴스 피드의 Anthropic 공식 입장 참조</div>
         </div>
         <div class="ver"><span class="vtag">v2.1.170</span><span class="dag"></span></div>
       </div>
@@ -1202,6 +1213,18 @@
             <span class="sf-title">Claude apps gateway for Bedrock &amp; Google Cloud</span>
             <span class="sf-desc" data-en="New Claude apps gateway for Amazon Bedrock and Google Cloud.">Amazon Bedrock·Google Cloud용 Claude 앱 게이트웨이 출시.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Introducing Claude Sonnet 5</span>
+            <span class="sf-desc" data-en="Claude Sonnet 5 — now the default model in Claude Code with native 1M-token context.">Claude Sonnet 5 — Claude Code 기본 모델, 네이티브 1M 토큰 컨텍스트.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Claude Science: AI workbench for scientists</span>
+            <span class="sf-desc" data-en="Anthropic launches Claude Science — an AI workbench built for scientific research.">Anthropic, 과학 연구 특화 AI 워크벤치 Claude Science 공개.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/getting-started-with-loops" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Getting started with loops</span>
+            <span class="sf-desc" data-en="Official guide to /loop and recurring agent workflows in Claude.">Claude에서 /loop와 반복 에이전트 워크플로 시작 가이드.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1545,6 +1568,16 @@
             <span class="cat-desc" data-en="Org-configured model restrictions; blocked models show &quot;restricted&quot; message">조직 설정으로 허용 모델 제한 — 차단 선택 시 메시지 표시</span>
             <span class="cat-ver">v187</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">Sonnet 5</span>
+            <span class="cat-desc" data-en="New default model in Claude Code — native 1M-token context; promo pricing through Aug 31">Claude Code 기본 모델 — 1M 토큰 컨텍스트, 8/31까지 프로모 요금</span>
+            <span class="cat-ver">v197</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="org default model">조직 기본 모델</span>
+            <span class="cat-desc" data-en="Org admin sets default model in console; shows &quot;Org default&quot; or &quot;Role default&quot; in /model">조직 관리자가 콘솔에서 기본 모델 설정 — /model에서 'Org default'로 표시</span>
+            <span class="cat-ver">v196</span>
+          </li>
         </ul>
       </div>
 
@@ -1856,7 +1889,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Introducing Claude Sonnet 5: now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. Update to version 2.1.197 for access. https://www.anthropic.com/news/claude-sonnet-5</span>
+      <span class="e-desc" data-en="Introducing Claude Sonnet 5: now the default model in Claude Code, with a native 1M-token context window and promotional pricing of $2/$10 per Mtok through August 31. Update to version 2.1.197 for access. https://www.anthropic.com/news/claude-sonnet-5">Claude Sonnet 5 출시 — Claude Code의 기본 모델, 네이티브 1M 토큰 컨텍스트 윈도우, 8월 31일까지 $2/$10/Mtok 프로모션 가격. v2.1.197 업데이트 시 사용. https://www.anthropic.com/news/claude-sonnet-5</span>
     </div>
   </div>
 
@@ -1868,27 +1901,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added support for organization default models — admins set it in the org console; it shows as "Org default" (or "Role default") in <code>/model</code> when you haven't picked one yourself</span>
+      <span class="e-desc" data-en="Added support for organization default models — admins set it in the org console; it shows as &quot;Org default&quot; (or &quot;Role default&quot;) in <code>/model</code> when you haven't picked one yourself">조직 기본 모델 지원 추가 — 관리자가 org 콘솔에서 설정하며, 직접 선택하지 않으면 <code>/model</code>에 "Org default"(또는 "Role default")로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added readable default names for sessions at start, making them easier to identify and message</span>
+      <span class="e-desc" data-en="Added readable default names for sessions at start, making them easier to identify and message">세션 시작 시 읽기 쉬운 기본 이름 자동 부여(식별·메시지 전송 편의)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added clickable file attachments in chat — Cmd/Ctrl-click reveals the file in Finder/Explorer</span>
+      <span class="e-desc" data-en="Added clickable file attachments in chat — Cmd/Ctrl-click reveals the file in Finder/Explorer">채팅 파일 첨부 클릭 가능 — Cmd/Ctrl+클릭으로 Finder/Explorer에서 파일 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Security: <code>claude mcp list</code>/<code>get</code> no longer spawn <code>.mcp.json</code> servers that a repo self-approved via a committed <code>.claude/settings.json</code>; untrusted workspaces show <code>⏸ Pending approval</code></span>
+      <span class="e-desc" data-en="Security: <code>claude mcp list</code>/<code>get</code> no longer spawn <code>.mcp.json</code> servers that a repo self-approved via a committed <code>.claude/settings.json</code>; untrusted workspaces show <code>⏸ Pending approval</code>">보안: <code>claude mcp list</code>/<code>get</code>가 커밋된 <code>.claude/settings.json</code>으로 자체 승인된 <code>.mcp.json</code> 서버를 더 이상 spawn하지 않음 — 신뢰 안 된 워크스페이스는 <code>⏸ Pending approval</code> 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Remote Control is now disabled when <code>ANTHROPIC_BASE_URL</code> points at a non-Anthropic host, matching the existing behavior under <code>CLAUDE_CODE_USE_BEDROCK</code>/<code>_VERTEX</code>/<code>_FOUNDRY</code></span>
+      <span class="e-desc" data-en="Remote Control is now disabled when <code>ANTHROPIC_BASE_URL</code> points at a non-Anthropic host, matching the existing behavior under <code>CLAUDE_CODE_USE_BEDROCK</code>/<code>_VERTEX</code>/<code>_FOUNDRY</code>"><code>ANTHROPIC_BASE_URL</code>이 비Anthropic 호스트를 가리키면 Remote Control 비활성화 — <code>CLAUDE_CODE_USE_BEDROCK</code>/<code>_VERTEX</code>/<code>_FOUNDRY</code> 기존 동작과 일치</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed opening the agents view from a foreground session to require a single <code>←</code> press instead of two, matching the behavior in background sessions</span>
+      <span class="e-desc" data-en="Changed opening the agents view from a foreground session to require a single <code>←</code> press instead of two, matching the behavior in background sessions">포그라운드 세션에서 agents 뷰 열기를 두 번 대신 <code>←</code> 한 번으로 변경 — 백그라운드 세션 동작에 맞춤</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
