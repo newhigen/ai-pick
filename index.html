@@ -781,6 +781,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.198</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-02">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/skill-a /skill-b</div>
+        <h3 data-en="Stack up to 5 slash skills in one invocation">슬래시 스킬 최대 5개 겹쳐 쓰기</h3>
+        <p data-en="/skill-a /skill-b do XYZ loads all leading skills (up to 5) before execution.">/skill-a /skill-b task 형식으로 최대 5개 스킬을 순서대로 한 번에 로드.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Combine multiple skills in one invocation — no repeated calls"><strong>왜?</strong> 여러 스킬 조합이 필요한 작업을 한 줄로 — 재호출 불필요</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Skill load order; 5-skill cap; difference from single-skill invocation"><strong>학습:</strong> 스킬 로드 순서; 5개 상한; 단일 스킬 호출과의 차이</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.199</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1082,6 +1093,10 @@
           <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/redeploying-fable-5" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Redeploying Claude Fable 5</span>
             <span class="sf-desc" data-en="Fable 5 redeployed after U.S. export-control suspension.">수출통제 중단 후 Fable 5 재배포 — 접근 복구.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/fable-safeguards-jailbreak-framework" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Fable 5 cyber safeguards &amp; jailbreak framework</span>
+            <span class="sf-desc" data-en="Details on Fable 5's cyber safeguards and Anthropic's jailbreak testing framework.">Fable 5 사이버 보호 장치·탈옥 방어 프레임워크 상세 공개.</span>
           </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/building-effective-human-agent-teams" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Building effective human-agent teams</span>
@@ -1409,6 +1424,11 @@
             <span class="cat-desc" data-en="Cache miss + subagent + per-skill/agent/plugin/MCP usage for last 24h or 7d">캐시 미스·subagent·skill/MCP별 24h/7d 사용량 — VSCode</span>
             <span class="cat-ver">v174</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="429 auto-retry">429 자동 재시도</span>
+            <span class="cat-desc" data-en="Transient server rate-limit 429s retried with backoff — subscribers only">일시적 서버 429 에러를 backoff 재시도 자동 적용 — 구독자 한정</span>
+            <span class="cat-ver">v199</span>
+          </li>
         </ul>
       </div>
 
@@ -1505,6 +1525,11 @@
             <span class="cat-cmd" data-en="MCP auth startup notice">MCP 인증 시작 알림</span>
             <span class="cat-desc" data-en="Startup notice when MCP servers need auth — links to /mcp">시작 시 인증 필요 MCP 서버 안내 — /mcp로 바로 이동</span>
             <span class="cat-ver">v193</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/skill-a /skill-b</span>
+            <span class="cat-desc" data-en="Stack up to 5 slash skills in one invocation — all load before execution">슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행</span>
+            <span class="cat-ver">v199</span>
           </li>
         </ul>
       </div>
@@ -1929,11 +1954,11 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>AskUserQuestion</code> dialogs to no longer auto-continue by default; opt into an idle timeout via <code>/config</code></span>
+      <span class="e-desc" data-en="Changed <code>AskUserQuestion</code> dialogs to no longer auto-continue by default; opt into an idle timeout via <code>/config</code>"><code>AskUserQuestion</code> 대화상자가 기본적으로 자동 계속하지 않도록 변경; <code>/config</code>에서 유휴 타임아웃 opt-in</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed the "default" permission mode to "Manual" across the CLI, <code>--help</code>, VS Code, and JetBrains; <code>--permission-mode manual</code> and <code>"defaultMode": "manual"</code> are accepted alongside <code>default</code></span>
+      <span class="e-desc" data-en="Changed the &quot;default&quot; permission mode to &quot;Manual&quot; across the CLI, <code>--help</code>, VS Code, and JetBrains; <code>--permission-mode manual</code> and <code>&quot;defaultMode&quot;: &quot;manual&quot;</code> are accepted alongside <code>default</code>">CLI·<code>--help</code>·VS Code·JetBrains에서 "default" 권한 모드를 "Manual"로 변경; <code>default</code>와 함께 <code>--permission-mode manual</code>·<code>"defaultMode": "manual"</code> 허용</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -1981,19 +2006,19 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Stacked slash-skill invocations like <code>/skill-a /skill-b do XYZ</code> now load all leading skills (up to 5), not just the first</span>
+      <span class="e-desc" data-en="Stacked slash-skill invocations like <code>/skill-a /skill-b do XYZ</code> now load all leading skills (up to 5), not just the first"><code>/skill-a /skill-b do XYZ</code> 같은 슬래시 스킬 중첩 호출 시 첫 번째만이 아닌 앞쪽 스킬 전부(최대 5개) 로드</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Transient server rate-limit errors (429s unrelated to your usage limit) are now retried automatically with backoff for subscribers instead of failing the turn</span>
+      <span class="e-desc" data-en="Transient server rate-limit errors (429s unrelated to your usage limit) are now retried automatically with backoff for subscribers instead of failing the turn">사용량 한도와 무관한 일시적 서버 레이트 리밋 오류(429)가 구독자에게 자동 백오프 재시도 — 턴 실패 대신</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>CLAUDE_CODE_RETRY_WATCHDOG</code> now raises the default retry count for non-capacity transient errors to 300 and lifts the cap of 15 on <code>CLAUDE_CODE_MAX_RETRIES</code></span>
+      <span class="e-desc" data-en="<code>CLAUDE_CODE_RETRY_WATCHDOG</code> now raises the default retry count for non-capacity transient errors to 300 and lifts the cap of 15 on <code>CLAUDE_CODE_MAX_RETRIES</code>"><code>CLAUDE_CODE_RETRY_WATCHDOG</code>이 비용량 일시 오류의 기본 재시도 횟수를 300으로 올리고 <code>CLAUDE_CODE_MAX_RETRIES</code>의 15 상한 해제</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code> session rows now show pull-request links as bare <code>#N</code> without the redundant "PR" label</span>
+      <span class="e-desc" data-en="<code>claude agents</code> session rows now show pull-request links as bare <code>#N</code> without the redundant &quot;PR&quot; label"><code>claude agents</code> 세션 행의 풀 리퀘스트 링크가 불필요한 "PR" 레이블 없이 <code>#N</code>만 표시</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
