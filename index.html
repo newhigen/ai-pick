@@ -1313,6 +1313,10 @@
             <span class="sf-title">Thomson Reuters: AI for high-stakes professional work</span>
             <span class="sf-desc" data-en="How Thomson Reuters builds AI for high-stakes professional work at the frontier.">Thomson Reuters가 고위험 전문직 업무용 AI를 구축하는 방법.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/reflect-with-claude" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">A new way to reflect on how you use Claude</span>
+            <span class="sf-desc" data-en="Claude can now help you reflect on your own usage patterns.">Claude가 나의 사용 패턴을 돌아볼 수 있도록 돕는 새 기능.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -3892,71 +3896,71 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Plugins in <code>.claude/skills</code> directories are now automatically loaded, no marketplace required</span>
+      <span class="e-desc" data-en="Plugins in <code>.claude/skills</code> directories are now automatically loaded, no marketplace required"><code>.claude/skills</code> 디렉터리의 플러그인이 마켓플레이스 없이 자동 로드</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>claude plugin init &lt;name&gt;</code> to scaffold a new plugin in <code>.claude/skills</code></span>
+      <span class="e-desc" data-en="Added <code>claude plugin init &lt;name&gt;</code> to scaffold a new plugin in <code>.claude/skills</code>"><code>.claude/skills</code>에 새 플러그인 스캐폴딩하는 <code>claude plugin init &lt;name&gt;</code> 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and plugins from known marketplaces</span>
+      <span class="e-desc" data-en="Added autocomplete for <code>/plugin</code> arguments: subcommands, installed plugin names, and plugins from known marketplaces"><code>/plugin</code> 인수 자동완성 추가 — 서브커맨드·설치된 플러그인 이름·알려진 마켓플레이스 플러그인</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: the <code>agent</code> field in <code>settings.json</code> is now honored for dispatched sessions, with <code>--agent &lt;name&gt;</code> to override it</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: the <code>agent</code> field in <code>settings.json</code> is now honored for dispatched sessions, with <code>--agent &lt;name&gt;</code> to override it"><code>claude agents</code>: 디스패치된 세션에 <code>settings.json</code>의 <code>agent</code> 필드 적용, <code>--agent &lt;name&gt;</code>으로 재정의 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>EnterWorktree</code> can now switch between Claude-managed worktrees mid-session</span>
+      <span class="e-desc" data-en="<code>EnterWorktree</code> can now switch between Claude-managed worktrees mid-session"><code>EnterWorktree</code>가 세션 중 Claude 관리 worktree 간 전환 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>tool_decision</code> telemetry events now include <code>tool_parameters</code> (bash commands, MCP/skill names) when <code>OTEL_LOG_TOOL_DETAILS=1</code></span>
+      <span class="e-desc" data-en="<code>tool_decision</code> telemetry events now include <code>tool_parameters</code> (bash commands, MCP/skill names) when <code>OTEL_LOG_TOOL_DETAILS=1</code>"><code>OTEL_LOG_TOOL_DETAILS=1</code> 시 <code>tool_decision</code> 텔레메트리 이벤트에 <code>tool_parameters</code>(bash 명령·MCP/스킬 이름) 포함</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Worktrees managed by Claude are now left unlocked when the agent finishes, so <code>git worktree remove</code>/<code>prune</code> can clean them up</span>
+      <span class="e-desc" data-en="Worktrees managed by Claude are now left unlocked when the agent finishes, so <code>git worktree remove</code>/<code>prune</code> can clean them up">에이전트 완료 시 Claude 관리 worktree가 잠금 해제 상태로 유지 — <code>git worktree remove</code>/<code>prune</code>으로 정리 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">WSL: fixed image paste (<code>alt+v</code> keybinding), screenshot paste on Windows 11, and added support for dragging images from Windows Explorer</span>
+      <span class="e-desc" data-en="WSL: fixed image paste (<code>alt+v</code> keybinding), screenshot paste on Windows 11, and added support for dragging images from Windows Explorer">WSL: 이미지 붙여넣기(<code>alt+v</code> 단축키)·Windows 11 스크린샷 붙여넣기 수정, Windows 탐색기에서 이미지 드래그 지원 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/terminal-setup</code> now disables GPU acceleration in VS Code/Cursor/Windsurf integrated terminals to prevent garbled-text rendering</span>
+      <span class="e-desc" data-en="<code>/terminal-setup</code> now disables GPU acceleration in VS Code/Cursor/Windsurf integrated terminals to prevent garbled-text rendering"><code>/terminal-setup</code>이 VS Code/Cursor/Windsurf 통합 터미널에서 GPU 가속 비활성화 — 텍스트 깨짐 방지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The Feature of the Week credit-claim status now appears as a notification in the status area instead of a line above the prompt</span>
+      <span class="e-desc" data-en="The Feature of the Week credit-claim status now appears as a notification in the status area instead of a line above the prompt">이 주의 기능 크레딧 청구 상태가 프롬프트 위 줄 대신 상태 영역 알림으로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: slash-command autocomplete in the dispatch input now matches substrings</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: slash-command autocomplete in the dispatch input now matches substrings"><code>claude agents</code>: 디스패치 입력의 슬래시 명령 자동완성이 부분 문자열 매칭</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the "bash commands will be sandboxed" startup banner — sandbox status still shows in <code>/status</code> and when a command is blocked</span>
+      <span class="e-desc" data-en="Removed the &quot;bash commands will be sandboxed&quot; startup banner — sandbox status still shows in <code>/status</code> and when a command is blocked">"bash commands will be sandboxed" 시작 배너 제거 — 샌드박스 상태는 <code>/status</code>와 명령 차단 시 계속 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the "/ide for …" startup hint toast</span>
+      <span class="e-desc" data-en="Removed the &quot;/ide for …&quot; startup hint toast">"/ide for …" 시작 힌트 토스트 제거</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[IDE] Fixed clicking Stop while a background subagent is running not actually stopping it</span>
+      <span class="e-desc" data-en="[IDE] Fixed clicking Stop while a background subagent is running not actually stopping it">[IDE] 백그라운드 서브에이전트 실행 중 Stop 클릭해도 실제로 중단되지 않던 문제 수정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Fixed the fast mode indicator not appearing on Opus 4.8</span>
+      <span class="e-desc" data-en="[VSCode] Fixed the fast mode indicator not appearing on Opus 4.8">[VSCode] Opus 4.8에서 빠른 모드 표시기가 나타나지 않던 문제 수정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Pressing backspace right after a workflow trigger keyword now dismisses the workflow request (same as alt+w) instead of deleting a character</span>
+      <span class="e-desc" data-en="Pressing backspace right after a workflow trigger keyword now dismisses the workflow request (same as alt+w) instead of deleting a character">워크플로 트리거 키워드 직후 Backspace 누르면 문자 삭제 대신 워크플로 요청 취소(alt+w와 동일)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a "Workflow keyword trigger" setting in /config to stop the word "workflow" in a prompt from triggering a dynamic workflow</span>
+      <span class="e-desc" data-en="Added a &quot;Workflow keyword trigger&quot; setting in /config to stop the word &quot;workflow&quot; in a prompt from triggering a dynamic workflow">/config에 "Workflow keyword trigger" 설정 추가 — 프롬프트의 "workflow" 단어가 동적 워크플로를 트리거하지 않도록</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -4025,87 +4029,87 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Opus 4.8 is here! Now defaults to high effort · /effort xhigh for your hardest tasks</span>
+      <span class="e-desc" data-en="Opus 4.8 is here! Now defaults to high effort · /effort xhigh for your hardest tasks">Opus 4.8 출시! 기본값이 high effort — 가장 어려운 작업엔 /effort xhigh</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Introducing dynamic workflows: ask Claude to create a workflow and it orchestrates work across tens to hundreds of agents in the background, so you can take on larger, more complex tasks. Run <code>/workflows</code> to view your runs</span>
+      <span class="e-desc" data-en="Introducing dynamic workflows: ask Claude to create a workflow and it orchestrates work across tens to hundreds of agents in the background, so you can take on larger, more complex tasks. Run <code>/workflows</code> to view your runs">동적 워크플로 도입 — Claude에게 워크플로 생성 요청 시 수십~수백 개 에이전트를 백그라운드에서 조율. 더 크고 복잡한 작업 처리 가능. <code>/workflows</code>로 실행 현황 확인</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Fast mode on Opus 4.8 is now available at a fraction of its previous cost: 2x the standard rate for 2.5x the speed</span>
+      <span class="e-desc" data-en="Fast mode on Opus 4.8 is now available at a fraction of its previous cost: 2x the standard rate for 2.5x the speed">Opus 4.8 빠른 모드가 크게 저렴해짐 — 표준 요금의 2배 비용으로 2.5배 속도</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier</span>
+      <span class="e-desc" data-en="The lean system prompt is now the default for all models except Haiku, Sonnet, and Opus 4.7 and earlier">Haiku·Sonnet·Opus 4.7 이전을 제외한 모든 모델의 기본값이 린 시스템 프롬프트로 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude now reserves the multiple-choice question prompt for decisions it genuinely cannot make itself, instead of asking when it already has enough context to proceed</span>
+      <span class="e-desc" data-en="Claude now reserves the multiple-choice question prompt for decisions it genuinely cannot make itself, instead of asking when it already has enough context to proceed">Claude가 스스로 결정 불가한 경우에만 선택지 질문 사용 — 충분한 컨텍스트가 있을 때는 묻지 않음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/simplify</code> now runs a cleanup-only review (reuse, simplification, efficiency, altitude) and applies the fixes, instead of running the full <code>/code-review --fix</code> bug-hunting review</span>
+      <span class="e-desc" data-en="<code>/simplify</code> now runs a cleanup-only review (reuse, simplification, efficiency, altitude) and applies the fixes, instead of running the full <code>/code-review --fix</code> bug-hunting review"><code>/simplify</code>가 전체 버그 탐지 리뷰 대신 정리 전용 리뷰(재사용·단순화·효율·고도) 실행 후 수정 적용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Renamed the <code>/effort</code> slider labels from "Speed"/"Intelligence" to "Faster"/"Smarter" for clarity</span>
+      <span class="e-desc" data-en="Renamed the <code>/effort</code> slider labels from &quot;Speed&quot;/&quot;Intelligence&quot; to &quot;Faster&quot;/&quot;Smarter&quot; for clarity"><code>/effort</code> 슬라이더 레이블을 "Speed"/"Intelligence"에서 "Faster"/"Smarter"로 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: type <code>! &lt;command&gt;</code> to run a shell command as a background session you can attach to and detach from. Also available as <code>claude --bg --exec '&lt;command&gt;'</code></span>
+      <span class="e-desc" data-en="<code>claude agents</code>: type <code>! &lt;command&gt;</code> to run a shell command as a background session you can attach to and detach from. Also available as <code>claude --bg --exec '&lt;command&gt;'</code>"><code>claude agents</code>: <code>! &lt;command&gt;</code> 입력으로 셸 명령을 attach/detach 가능한 백그라운드 세션으로 실행. <code>claude --bg --exec '&lt;command&gt;'</code>로도 사용 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: <code>/logout</code> now signs you out instead of being sent to a background session</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: <code>/logout</code> now signs you out instead of being sent to a background session"><code>claude agents</code>: <code>/logout</code>이 백그라운드 세션으로 전달되지 않고 로그아웃 처리</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>←←</code> to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled</span>
+      <span class="e-desc" data-en="<code>←←</code> to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled">agents 뷰를 여는 <code>←←</code>가 Bedrock·Vertex·Foundry 및 텔레메트리 비활성화 상태에서도 동작</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude in Chrome: pick which connected browser to use via <code>/chrome</code> → "Select browser…", or in-chat when a browser action runs with multiple connected</span>
+      <span class="e-desc" data-en="Claude in Chrome: pick which connected browser to use via <code>/chrome</code> → &quot;Select browser…&quot;, or in-chat when a browser action runs with multiple connected">Chrome용 Claude: <code>/chrome</code> → "Select browser…"로 연결된 브라우저 선택, 또는 여러 브라우저 연결 시 채팅 중 선택</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Plugins can now declare <code>defaultEnabled: false</code> in <code>plugin.json</code> or a marketplace entry; enable them with <code>/plugin</code> or <code>claude plugin enable</code>. Dependencies of enabled plugins are still enabled automatically</span>
+      <span class="e-desc" data-en="Plugins can now declare <code>defaultEnabled: false</code> in <code>plugin.json</code> or a marketplace entry; enable them with <code>/plugin</code> or <code>claude plugin enable</code>. Dependencies of enabled plugins are still enabled automatically">플러그인이 <code>plugin.json</code>이나 마켓플레이스 항목에 <code>defaultEnabled: false</code> 선언 가능 — <code>/plugin</code> 또는 <code>claude plugin enable</code>로 활성화. 활성화된 플러그인의 의존성은 자동 활성화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The <code>/plugin</code> Discover tab now pins plugins whose relevance signals match the current directory with a "suggested for this directory" annotation</span>
+      <span class="e-desc" data-en="The <code>/plugin</code> Discover tab now pins plugins whose relevance signals match the current directory with a &quot;suggested for this directory&quot; annotation"><code>/plugin</code> Discover 탭이 현재 디렉터리와 연관성 높은 플러그인을 "suggested for this directory" 주석과 함께 고정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Stdio MCP server subprocesses now receive <code>CLAUDE_CODE_SESSION_ID</code> and <code>CLAUDECODE=1</code> in their environment</span>
+      <span class="e-desc" data-en="Stdio MCP server subprocesses now receive <code>CLAUDE_CODE_SESSION_ID</code> and <code>CLAUDECODE=1</code> in their environment">Stdio MCP 서버 서브프로세스가 환경에 <code>CLAUDE_CODE_SESSION_ID</code>·<code>CLAUDECODE=1</code> 수신</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude mcp list</code>/<code>get</code> now show unapproved <code>.mcp.json</code> servers as <code>⏸ Pending approval</code> instead of auto-approving and connecting when output is piped</span>
+      <span class="e-desc" data-en="<code>claude mcp list</code>/<code>get</code> now show unapproved <code>.mcp.json</code> servers as <code>⏸ Pending approval</code> instead of auto-approving and connecting when output is piped"><code>claude mcp list</code>/<code>get</code>가 파이프 출력 시 자동 승인·연결 대신 미승인 <code>.mcp.json</code> 서버를 <code>⏸ Pending approval</code>로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/remote-control</code> autocomplete now shows "Disconnect Remote Control" when Remote Control is already active</span>
+      <span class="e-desc" data-en="<code>/remote-control</code> autocomplete now shows &quot;Disconnect Remote Control&quot; when Remote Control is already active">Remote Control 활성화 시 <code>/remote-control</code> 자동완성에 "Disconnect Remote Control" 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added Claude Opus 4.8 support and 4.7 → 4.8 migration guidance to the <code>/claude-api</code> skill</span>
+      <span class="e-desc" data-en="Added Claude Opus 4.8 support and 4.7 → 4.8 migration guidance to the <code>/claude-api</code> skill"><code>/claude-api</code> 스킬에 Claude Opus 4.8 지원 및 4.7 → 4.8 마이그레이션 안내 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Deprecated <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> (will be removed on 06/01). To use fast mode on Opus 4.6, switch with <code>/model claude-opus-4-6[1m]</code> and then <code>/fast on</code></span>
+      <span class="e-desc" data-en="Deprecated <code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> (will be removed on 06/01). To use fast mode on Opus 4.6, switch with <code>/model claude-opus-4-6[1m]</code> and then <code>/fast on</code>"><code>CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE</code> deprecated(06/01 제거 예정). Opus 4.6 빠른 모드는 <code>/model claude-opus-4-6[1m]</code> 전환 후 <code>/fast on</code> 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Windows: Fixed update failures caused by <code>claude.exe</code> being in use showing a generic error instead of telling you to close other sessions and retry</span>
+      <span class="e-desc" data-en="Windows: Fixed update failures caused by <code>claude.exe</code> being in use showing a generic error instead of telling you to close other sessions and retry">Windows: <code>claude.exe</code> 사용 중 업데이트 실패 시 일반 오류 대신 다른 세션 닫고 재시도 안내</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the stale "&amp; for background" hint from the shortcuts help panel</span>
+      <span class="e-desc" data-en="Removed the stale &quot;&amp; for background&quot; hint from the shortcuts help panel">단축키 도움말 패널에서 낡은 "& for background" 힌트 제거</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Auto mode no longer requires the bypass-permissions setting to appear in the mode picker, and a dismissable notice on the new-session screen explains auto mode the first time it's active</span>
+      <span class="e-desc" data-en="[VSCode] Auto mode no longer requires the bypass-permissions setting to appear in the mode picker, and a dismissable notice on the new-session screen explains auto mode the first time it's active">[VSCode] Auto 모드가 모드 피커에 나타나는 데 bypass-permissions 설정 불필요, 첫 활성화 시 새 세션 화면에 닫을 수 있는 안내 표시</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -4161,23 +4165,23 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>skipLfs</code> option to <code>github</code>/<code>git</code> plugin marketplace sources to skip Git LFS downloads during clone and update</span>
+      <span class="e-desc" data-en="Added <code>skipLfs</code> option to <code>github</code>/<code>git</code> plugin marketplace sources to skip Git LFS downloads during clone and update"><code>github</code>/<code>git</code> 플러그인 마켓플레이스 소스에 clone·업데이트 시 Git LFS 다운로드를 건너뛰는 <code>skipLfs</code> 옵션 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude Code now shows a one-time notice when your npm global install can't auto-update; <code>/doctor</code> lists the fixes</span>
+      <span class="e-desc" data-en="Claude Code now shows a one-time notice when your npm global install can't auto-update; <code>/doctor</code> lists the fixes">npm 전역 설치가 자동 업데이트 불가 시 Claude Code가 일회성 알림 표시 — <code>/doctor</code>에서 수정 방법 제공</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Status line commands now receive <code>COLUMNS</code> and <code>LINES</code> environment variables so scripts can size output to the terminal width</span>
+      <span class="e-desc" data-en="Status line commands now receive <code>COLUMNS</code> and <code>LINES</code> environment variables so scripts can size output to the terminal width">상태 표시줄 명령이 <code>COLUMNS</code>·<code>LINES</code> 환경변수 수신 — 스크립트가 터미널 너비에 맞게 출력 크기 조정 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: autocomplete in the dispatch input now suggests native slash commands and bundled skills, not just project skills</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: autocomplete in the dispatch input now suggests native slash commands and bundled skills, not just project skills"><code>claude agents</code>: 디스패치 입력 자동완성이 프로젝트 스킬뿐 아니라 기본 슬래시 명령·번들 스킬도 제안</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>claude agents</code>: PR column now shows <code>PR #N</code> for a single PR or <code>N PRs</code> for multiple</span>
+      <span class="e-desc" data-en="<code>claude agents</code>: PR column now shows <code>PR #N</code> for a single PR or <code>N PRs</code> for multiple"><code>claude agents</code>: PR 컬럼이 단일 PR은 <code>PR #N</code>, 복수 PR은 <code>N PRs</code>로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -12258,6 +12262,14 @@
         <p class="pick-lead" data-en="MCP tools now use tool search by default; ChatGPT-hosted MCP servers can explicitly use session authentication.">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</p>
         <div class="ver"><span class="vtag">v0.143.0</span><span class="news-date" data-date="2026-07-08"></span></div>
       </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="New &quot;writes&quot; approval mode: declared read-only actions auto-approved, write actions still prompt.">새 <code>writes</code> 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</p>
+        <div class="ver"><span class="vtag">v0.144.0</span><span class="news-date" data-date="2026-07-09"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="MCP tools can now request authentication interactively without an experimental opt-in.">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</p>
+        <div class="ver"><span class="vtag">v0.144.0</span><span class="news-date" data-date="2026-07-09"></span></div>
+      </a>
     </div>
     <div class="pick-grid period-grid hidden" data-section="codex-pick" data-period="2026-05">
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.135.0" target="_blank" rel="noopener noreferrer">
@@ -12453,12 +12465,12 @@
         <span class="ver-badge">v0.144.0</span><span class="ver-date" data-en="Jul 9 Thu">7월 9일 목</span><span class="ver-ago"></span>
         <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
       </div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Usage-limit reset credits now show their type and expiration, and let you choose which credit to redeem.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added a <code>writes</code> app-approval mode that allows declared read-only actions while prompting for writes.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">MCP tools can now request authentication interactively without an experimental opt-in.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">App-server hosts can provide Codex authentication at runtime and redirect successful logins to a hosted page.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Global pnunen installs are now detected so diagnostics and updates use the correct package manager.</span></div>
-      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Selecting Ultra reasoning now warns when high multi-agent concurrency could increase usage quickly.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Usage-limit reset credits now show their type and expiration, and let you choose which credit to redeem.">사용량 한도 리셋 크레딧이 종류·만료일 표시 및 사용할 크레딧 선택 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Added a <code>writes</code> app-approval mode that allows declared read-only actions while prompting for writes.">읽기 전용 선언 액션은 허용하고 쓰기 시 프롬프트하는 <code>writes</code> 앱 승인 모드 추가.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="MCP tools can now request authentication interactively without an experimental opt-in.">MCP 툴이 실험적 opt-in 없이 인터랙티브하게 인증 요청 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="App-server hosts can provide Codex authentication at runtime and redirect successful logins to a hosted page.">앱서버 호스트가 런타임에 Codex 인증 제공·로그인 성공 시 호스팅 페이지로 리다이렉트 가능.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Global pnunen installs are now detected so diagnostics and updates use the correct package manager.">전역 pnunen 설치 감지 — 진단·업데이트에 올바른 패키지 매니저 사용.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc" data-en="Selecting Ultra reasoning now warns when high multi-agent concurrency could increase usage quickly.">Ultra 추론 선택 시 높은 멀티에이전트 동시성이 사용량을 빠르게 늘릴 수 있다고 경고.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Resumed ChatGPT threads recover when compaction references a retired model by retrying with the currently selected model.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed Code Mode crashes in Intel macOS release binaries.</span></div>
       <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Windows sandbox sessions can delete files in writable roots and access the managed primary runtime.</span></div>
@@ -13891,6 +13903,12 @@
           <p data-en="Choose hosting modes to match server type to each Manus project.">Manus 프로젝트에 맞는 서버 유형을 호스팅 모드로 선택.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-06-24"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-branch" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Branch: One Context, Many Parallel Directions">Branch — 하나의 컨텍스트, 다방향 병렬 탐색</h3>
+          <p data-en="Fork a task context into multiple parallel branches and explore different directions simultaneously.">하나의 작업에서 여러 방향을 동시에 병렬 탐색.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-07-09"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
       </div>
     </div>
 
@@ -13921,6 +13939,13 @@
 
     <div class="news-sec-head"><h2 data-en="Industry moves">동향</h2><span class="sub" data-en="funding · partnerships · benchmarks">펀딩 · 파트너십 · 벤치마크</span></div>
     <div class="news-feed">
+      <a class="feed-item" href="https://www.anthropic.com/news/ben-bernanke" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Jul 9">7월 9일</span>
+        <span class="feed-ago" data-date="2026-07-09"></span>
+        <span class="src src-anthropic feed-src">Anthropic</span>
+        <span class="feed-body"><span class="feed-title">Ben Bernanke joins Anthropic's Long-Term Benefit Trust</span> <span class="feed-desc" data-en="Former Fed Chair Ben Bernanke appointed to Anthropic&apos;s Long-Term Benefit Trust.">전 연준 의장 벤 버냉키, Anthropic 장기 혜택 신탁 이사 선임.</span></span>
+        <span class="feed-tier t2" title="주요">★★☆</span>
+      </a>
       <a class="feed-item" href="https://www.anthropic.com/news/alberta-government-claude-cybersecurity" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="Jul 6">7월 6일</span>
         <span class="feed-ago" data-date="2026-07-06"></span>
