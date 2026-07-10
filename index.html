@@ -1317,6 +1317,18 @@
             <span class="sf-title">A new way to reflect on how you use Claude</span>
             <span class="sf-desc" data-en="Claude can now help you reflect on your own usage patterns.">Claude가 나의 사용 패턴을 돌아볼 수 있도록 돕는 새 기능.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-at-the-frontier-how-cognition-trusts-claude-fable-5-to-work-through-the-night" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Cognition × Claude Fable 5: working through the night</span>
+            <span class="sf-desc" data-en="How Cognition trusts Claude Fable 5 to work autonomously through the night.">Cognition이 Claude Fable 5를 밤새 자율 작업에 활용하는 방법.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/hard-questions" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Inviting hard questions</span>
+            <span class="sf-desc" data-en="Anthropic invites hard questions about AI safety and its work.">Anthropic, AI 안전성에 관한 어려운 질문에 직접 답하기.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/ust-claude" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">UST brings Claude to physical AI</span>
+            <span class="sf-desc" data-en="UST is bringing Claude to physical AI systems.">UST, 물리적 AI 시스템에 Claude 통합.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1424,6 +1436,16 @@
             <span class="cat-desc" data-en="bg agents auto-commit, push, and open a draft PR when code work finishes">코드 작업 완료 시 자동 커밋·푸시·드래프트 PR 생성</span>
             <span class="cat-ver">v198</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="bg agents auto-upgrade">bg 에이전트 자동 업그레이드</span>
+            <span class="cat-desc" data-en="Upgrade immediately after a CC update — no slow stale-session lag on next attach">CC 업데이트 직후 bg 에이전트 자동 버전 업그레이드 — 다음 attach 지연 없음</span>
+            <span class="cat-ver">v206</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">Ctrl+X</span>
+            <span class="cat-desc" data-en="Agents view: permanently delete a completed session">에이전트 뷰에서 완료 세션 영구 삭제</span>
+            <span class="cat-ver">v206</span>
+          </li>
         </ul>
       </div>
 
@@ -1454,6 +1476,11 @@
             <span class="cat-cmd">/review</span>
             <span class="cat-desc" data-en="/review &lt;pr&gt; fast single-pass; use /code-review &lt;level&gt; &lt;pr#&gt; for multi-agent">/review는 단일패스 복귀 — 멀티에이전트 리뷰는 /code-review &lt;level&gt; 사용</span>
             <span class="cat-ver">v202</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/commit-push-pr</span>
+            <span class="cat-desc" data-en="Auto-allows git push to configured push remote (pushDefault or sole remote) — not just origin">설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원</span>
+            <span class="cat-ver">v206</span>
           </li>
         </ul>
       </div>
@@ -2016,35 +2043,35 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added directory path suggestions to <code>/cd</code>, matching <code>/add-dir</code> behavior</span>
+      <span class="e-desc" data-en="Added directory path suggestions to <code>/cd</code>, matching <code>/add-dir</code> behavior"><code>/add-dir</code> 동작과 동일하게 <code>/cd</code>에 디렉터리 경로 자동완성 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a <code>/doctor</code> check that proposes trimming checked-in <code>CLAUDE.md</code> files by cutting content Claude could derive from the codebase</span>
+      <span class="e-desc" data-en="Added a <code>/doctor</code> check that proposes trimming checked-in <code>CLAUDE.md</code> files by cutting content Claude could derive from the codebase">코드베이스에서 유추 가능한 내용 삭제를 제안하는 <code>/doctor</code> 검사 추가 — 저장된 <code>CLAUDE.md</code> 파일 경량화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/commit-push-pr</code> now auto-allows <code>git push</code> to the repo's configured push remote (<code>remote.pushDefault</code>, or the sole remote when only one is configured) in addition to <code>origin</code></span>
+      <span class="e-desc" data-en="<code>/commit-push-pr</code> now auto-allows <code>git push</code> to the repo's configured push remote (<code>remote.pushDefault</code>, or the sole remote when only one is configured) in addition to <code>origin</code>"><code>/commit-push-pr</code>가 <code>origin</code> 외에도 저장소에 설정된 push 리모트(<code>remote.pushDefault</code>, 또는 유일한 리모트)로의 <code>git push</code>를 자동 허용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Gateway: <code>/login</code> now supports Anthropic-operated public gateway endpoints</span>
+      <span class="e-desc" data-en="Gateway: <code>/login</code> now supports Anthropic-operated public gateway endpoints">게이트웨이: <code>/login</code>이 Anthropic 운영 퍼블릭 게이트웨이 엔드포인트 지원</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>EnterWorktree</code> now asks for confirmation before entering a git worktree outside the project's <code>.claude/worktrees/</code> directory</span>
+      <span class="e-desc" data-en="<code>EnterWorktree</code> now asks for confirmation before entering a git worktree outside the project's <code>.claude/worktrees/</code> directory"><code>EnterWorktree</code>가 프로젝트 <code>.claude/worktrees/</code> 외부 git worktree 진입 전 확인 요청</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background agents now upgrade to a new version in the background right after a Claude Code update, instead of paying a slow stale-session upgrade when you attach</span>
+      <span class="e-desc" data-en="Background agents now upgrade to a new version in the background right after a Claude Code update, instead of paying a slow stale-session upgrade when you attach">백그라운드 에이전트가 Claude Code 업데이트 직후 백그라운드에서 자동 업그레이드 — attach 시 구버전 세션 업그레이드 지연 없음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Bedrock: fixed a multi-minute startup hang when using an <code>awsCredentialExport</code> helper on networks with restricted egress</span>
+      <span class="e-desc" data-en="Bedrock: fixed a multi-minute startup hang when using an <code>awsCredentialExport</code> helper on networks with restricted egress">Bedrock: 이그레스 제한 네트워크에서 <code>awsCredentialExport</code> 헬퍼 사용 시 수 분간 시작 중단 수정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed agents view: Ctrl+X now permanently removes a completed session, and sessions no longer render twice; deleted background jobs stay deleted</span>
+      <span class="e-desc" data-en="Changed agents view: Ctrl+X now permanently removes a completed session, and sessions no longer render twice; deleted background jobs stay deleted">에이전트 뷰 변경: Ctrl+X로 완료 세션 영구 삭제, 세션 이중 렌더링 해소, 삭제된 백그라운드 작업 복원 안 됨</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
