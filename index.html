@@ -616,6 +616,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-11">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">disableAutoMode</div>
+        <h3 data-en="Auto mode on Bedrock, Vertex, Foundry — no opt-in needed">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</h3>
+        <p data-en="Auto mode enabled by default on Bedrock, Vertex AI, and Foundry; disable via disableAutoMode in settings.">Bedrock·Vertex AI·Foundry에서 Auto mode 기본 활성 — <code>disableAutoMode</code> 설정으로 비활성화.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> CLAUDE_CODE_ENABLE_AUTO_MODE env-var no longer needed — on by default on cloud providers"><strong>왜?</strong> <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> 환경변수 불필요 — 클라우드 플랫폼에서 기본 활성</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Bedrock and Vertex now default to Opus 4.8; disable auto mode via disableAutoMode in user settings.json"><strong>학습:</strong> Bedrock·Vertex 기본 모델 Opus 4.8로 변경; 비활성화는 user settings.json의 <code>disableAutoMode</code></div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.207</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-30">
         <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
         <div class="cmd">Sonnet 5</div>
@@ -1615,6 +1626,11 @@
             <span class="cat-desc" data-en="Stack up to 5 slash skills in one invocation — all load before execution">슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행</span>
             <span class="cat-ver">v199</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="pluginConfigs scope">pluginConfigs 범위 제한</span>
+            <span class="cat-desc" data-en="pluginConfigs no longer read from project .claude/settings.json — use user, --settings, or managed settings">프로젝트 <code>.claude/settings.json</code>의 <code>pluginConfigs</code> 무시 — user·--settings·managed만 인정</span>
+            <span class="cat-ver">v207</span>
+          </li>
         </ul>
       </div>
 
@@ -1670,6 +1686,11 @@
             <span class="cat-cmd">workflow OTEL</span>
             <span class="cat-desc" data-en="workflow.run_id + workflow.name on OTel spans from workflow-spawned agents">workflow 에이전트 OTel 스팬에 run_id·name 속성 추가 — 런 재구성 가능</span>
             <span class="cat-ver">v202</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="shell inject fix">셸 인젝션 방지</span>
+            <span class="cat-desc" data-en="${user_config.*} rejected in shell-form hooks/monitors/headersHelper — use exec form (args array) or $CLAUDE_PLUGIN_OPTION_KEY">셸형 hook/monitor에서 <code>${user_config.*}</code> 금지 — exec form 또는 <code>$CLAUDE_PLUGIN_OPTION_KEY</code> 사용</span>
+            <span class="cat-ver">v207</span>
           </li>
         </ul>
       </div>
@@ -1731,6 +1752,16 @@
             <span class="cat-cmd" data-en="org default model">조직 기본 모델</span>
             <span class="cat-desc" data-en="Org admin sets default model in console; shows &quot;Org default&quot; or &quot;Role default&quot; in /model">조직 관리자가 콘솔에서 기본 모델 설정 — /model에서 'Org default'로 표시</span>
             <span class="cat-ver">v196</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="Bedrock/Vertex Auto mode">Bedrock·Vertex Auto mode</span>
+            <span class="cat-desc" data-en="Auto mode on by default on Bedrock, Vertex AI, Foundry — no CLAUDE_CODE_ENABLE_AUTO_MODE needed; disable via disableAutoMode in user settings.json">Bedrock·Vertex AI·Foundry Auto mode 기본 활성 — <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> 불필요; <code>disableAutoMode</code>로 끄기</span>
+            <span class="cat-ver">v207</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="Bedrock/Vertex → Opus 4.8">Bedrock·Vertex → Opus 4.8</span>
+            <span class="cat-desc" data-en="Bedrock, Vertex, and Claude Platform on AWS now default to Opus 4.8">Bedrock·Vertex·AWS Platform 기본 모델 Opus 4.8로 변경</span>
+            <span class="cat-ver">v207</span>
           </li>
         </ul>
       </div>
@@ -2043,23 +2074,23 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Auto mode is now available without <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> opt-in on Bedrock, Vertex AI, and Foundry; disable via <code>disableAutoMode</code> in settings</span>
+      <span class="e-desc" data-en="Auto mode is now available without <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> opt-in on Bedrock, Vertex AI, and Foundry; disable via <code>disableAutoMode</code> in settings">Bedrock·Vertex AI·Foundry에서 <code>CLAUDE_CODE_ENABLE_AUTO_MODE</code> opt-in 없이 auto 모드 사용 가능; settings에서 <code>disableAutoMode</code>로 비활성화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Bedrock, Vertex, and Claude Platform on AWS to default to Claude Opus 4.8</span>
+      <span class="e-desc" data-en="Changed Bedrock, Vertex, and Claude Platform on AWS to default to Claude Opus 4.8">Bedrock·Vertex·Claude Platform on AWS의 기본 모델을 Claude Opus 4.8로 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed auto mode to no longer read <code>autoMode</code> from <code>.claude/settings.local.json</code> (repo-resident); use <code>~/.claude/settings.json</code> instead</span>
+      <span class="e-desc" data-en="Changed auto mode to no longer read <code>autoMode</code> from <code>.claude/settings.local.json</code> (repo-resident); use <code>~/.claude/settings.json</code> instead">auto 모드가 저장소 내 <code>.claude/settings.local.json</code>에서 <code>autoMode</code>를 더 이상 읽지 않도록 변경; 대신 <code>~/.claude/settings.json</code> 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Plugin hooks/monitors/MCP headersHelper: <code>${user_config.*}</code> in shell-form commands is now rejected (shell-injection fix). Hooks: use exec form (<code>args</code> array) or <code>$CLAUDE_PLUGIN_OPTION_&lt;KEY&gt;</code>; monitors and headersHelper: read the value inside the script (config file or the server's <code>env</code> block).</span>
+      <span class="e-desc" data-en="Plugin hooks/monitors/MCP headersHelper: <code>${user_config.*}</code> in shell-form commands is now rejected (shell-injection fix). Hooks: use exec form (<code>args</code> array) or <code>$CLAUDE_PLUGIN_OPTION_&lt;KEY&gt;</code>; monitors and headersHelper: read the value inside the script (config file or the server's <code>env</code> block).">플러그인 훅·모니터·MCP headersHelper: 셸 형식 명령의 <code>${user_config.*}</code>가 이제 거부됨(셸 인젝션 수정). 훅: exec 형식(<code>args</code> 배열) 또는 <code>$CLAUDE_PLUGIN_OPTION_&lt;KEY&gt;</code> 사용; 모니터·headersHelper: 스크립트 내에서 값 직접 읽기(설정 파일 또는 서버의 <code>env</code> 블록)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Plugin option values (<code>pluginConfigs</code>) are no longer read from project-level <code>.claude/settings.json</code>; only user, <code>--settings</code>, and managed settings are honored</span>
+      <span class="e-desc" data-en="Plugin option values (<code>pluginConfigs</code>) are no longer read from project-level <code>.claude/settings.json</code>; only user, <code>--settings</code>, and managed settings are honored">플러그인 옵션 값(<code>pluginConfigs</code>)이 프로젝트 수준 <code>.claude/settings.json</code>에서 더 이상 읽히지 않음; 사용자·<code>--settings</code>·관리형 설정만 적용</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
