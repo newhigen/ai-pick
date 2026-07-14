@@ -562,7 +562,7 @@
     <button class="top-tab" data-view="news" onclick="switchView('news')" aria-label="뉴스"><svg class='tab-ico' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' aria-hidden='true'><path d='M5 5h14v14H5z'/><path d='M8 9h8M8 13h8M8 16h5'/></svg><span class="tlabel" data-en="News">뉴스</span></button>
   </div>
   <div class="topbar-spacer"></div>
-  <span class="sync-time"><span class="live"></span><span class="lbl" data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">07-12</span><span class="s-t"> 06:08</span><!--/SYNC--></span></span>
+  <span class="sync-time"><span class="live"></span><span class="lbl" data-en="Updated">업데이트</span> <span class="sync-stamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">07-15</span><span class="s-t"> 06:16</span><!--/SYNC--></span></span>
   <button class="theme-toggle" id="langToggle" onclick="toggleLang()">EN</button>
   <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="테마 전환" aria-label="테마 전환"></button>
 </div></div>
@@ -592,7 +592,7 @@
 
   <header class="hero">
     <div class="hero-brand"><svg class="brand-ico ic-claude hero-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><h1 data-en="Claude Code — <span class=&quot;accent&quot;>what to try</span>">Claude Code — <span class="accent">뭘 써볼까</span></h1></div>
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.207</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.7.11">2025.9.29 – 2026.7.11</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.209</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.7.14">2025.9.29 – 2026.7.14</span></p>
     <div id="landmarkBanner"></div>
   </header>
 
@@ -2068,6 +2068,136 @@
     <button class="filter-btn" data-filter="improve" data-en="⚡ Improvements">⚡ 개선</button>
     <button class="filter-btn" data-filter="fix" data-en="🐛 Fixes">🐛 수정</button>
     <button class="filter-btn" data-filter="security" data-en="🔒 Security">🔒 보안</button>
+  </div>
+
+  <!-- ── v2.1.209 ── -->
+  <div class="version-block" id="v2.1.209" data-types="fix" data-date="2026-07-14">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.209</span><span class="ver-date">7월 14일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill fix">Fix ×1</span></div>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">1</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">/model and other dialogs being blocked in claude…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── v2.1.208 ── -->
+  <div class="version-block" id="v2.1.208" data-types="feature improve security fix" data-date="2026-07-14">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.208</span><span class="ver-date">7월 14일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×12</span><span class="pill improve">개선 ×5</span><span class="pill security">보안 ×4</span><span class="pill fix">Fix ×24</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added screen reader mode: opt-in plain-text rendering for screen reader users. Run <code>claude --ax-screen-reader</code>, set CLAUDE_AX_SCREEN_READER=1, or add "axScreenReader": true to settings.</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>vimInsertModeRemaps</code> setting: map two-key insert-mode sequences like <code>jj</code> to Escape in vim mode</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>CLAUDE_CODE_PROCESS_WRAPPER</code>: agent view and the background service now honor a corporate launcher by running every Claude Code self-spawn through a required wrapper executable</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added mouse-click support for multi-select menus and "Other" input rows in fullscreen mode</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Completed background agents now stay listed in <code>/tasks</code> until cleanup instead of vanishing the moment they finish</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Attaching to a stopped background agent now shows its transcript immediately while the session warms up, instead of a blank "Session is starting" screen</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Background sessions: an older daemon no longer silently restarts workers spawned by a newer version onto the older binary</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Agent view: Ctrl+X now deletes renamed-branch worktrees, never destroys unpushed commits, keeps the session row when a worktree is kept, and reused worktree names reset to the current base</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Catastrophic removals (e.g. <code>rm -rf ~</code>) in commands containing <code>$(…)</code>/backticks/<code>&lt;(…)</code> now prompt in <code>--dangerously-skip-permissions</code> and auto mode, matching the plain form</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/install-github-app</code> and the <code>/mcp</code> settings menu no longer open in background sessions</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">MCP servers configured with an empty URL now show as "not configured" in <code>/mcp</code> instead of a config error</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/usage</code> now shows your last-known usage bars with an "as of" note when the usage endpoint is rate-limited, instead of an error screen</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">5</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">4</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">24</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved input responsiveness while agent task lists update — task updates no longer re-render the entire UI</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Reduced per-tool-call CPU overhead in print/SDK sessions with many MCP tools by caching tool-pool assembly (up to 7x faster tool rounds at high tool counts)</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Reduced memory usage by bounding the file edit read cache to 16 MB instead of pinning up to 1,000 full files</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Reduced session transcript size (up to 79x in edit-heavy sessions) and bounded checkpoint disk usage by pruning superseded file-history backups</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Reduced memory usage when resuming sessions with background agents or forks spawned from large conversations</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed a memory leak in the agent view where pasted images were retained for the screen's lifetime after sending peek replies</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed several memory leaks in long sessions: MCP stdio server stderr accumulating up to 64 MB per server, LSP documents staying open indefinitely (now LRU with 50-doc cap), async hook output retained after backgrounding, and unbounded growth in headless/SDK sessions from large tool-result payloads</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed multi-second per-turn slowdowns in sessions with many permission deny/ask rules — rule matchers are now compiled once and cached</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed Bedrock auth failing with "Session token not found or invalid" for AWS SSO profiles whose sso_region differs from the Bedrock region (2.1.207 regression)</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">fast mode staying off after switching back to…</span>
+            <span class="chip">replies typed to a background agent being lost…</span>
+            <span class="chip">background-session attach failing permanently (&quot;Couldn&#x27;t start the background…</span>
+            <span class="chip">context window (and auto-compact indicator) briefly resetting to…</span>
+            <span class="chip">supervised and background sessions crashing when a server…</span>
+            <span class="chip">truncated stream-json/JSON output and missing result message when…</span>
+            <span class="chip">CLAUDE_CODE_MAX_OUTPUT_TOKENS and similar env vars silently using the…</span>
+            <span class="chip">very large markdown tables stalling rendering or using…</span>
+            <span class="chip">Edit tool failing on files modified after reading…</span>
+            <span class="chip">Read reporting empty files as &quot;shorter than offset&quot;,…</span>
+            <span class="chip">apiKeyHelper script failures being hidden behind a generic…</span>
+            <span class="chip">Bedrock streaming requests failing with a misleading &quot;Truncated…</span>
+            <span class="chip">/upgrade showing a login flow instead of the…</span>
+            <span class="chip">stream-json input killing the session on blank CRLF…</span>
+            <span class="chip">headless stream-json sessions hanging permanently when a control_request…</span>
+            <span class="chip">repeated &quot;No completion record was found&quot; notices on…</span>
+            <span class="chip">Remote Control clients attaching to a terminal-hosted session…</span>
+            <span class="chip">Agent tool launching with no tools when a…</span>
+            <span class="chip">/usage showing stale cached bars over fresher data,…</span>
+            <span class="chip">&quot;Change directory&quot; in SDK hosts (e.g. Claude Desktop)…</span>
+            <span class="chip">workflow save dialog showing ~/.claude/workflows/ instead of the…</span>
+            <span class="chip">/release-notes adding the viewed notes to the model&#x27;s…</span>
+            <span class="chip">SDK sessions losing agents defined via the initialize…</span>
+            <span class="chip">a memory blowup when reading files with extremely…</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ── v2.1.207 ── -->
