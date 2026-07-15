@@ -1359,6 +1359,10 @@
             <span class="sf-title">Hebbia: AI for financial diligence</span>
             <span class="sf-desc" data-en="How Hebbia builds AI for financial diligence that can't miss a detail.">Hebbia — 오류 없는 금융 실사 AI 구축 사례.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-at-the-frontier-why-base44-trusts-claude-fable-5-with-their-most-challenging-engineering-work" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Base44 × Claude Fable 5: challenging engineering</span>
+            <span class="sf-desc" data-en="How Base44 trusts Claude Fable 5 with their most challenging engineering work.">Base44가 최난도 엔지니어링 작업을 Fable 5에 맡기는 이유.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1475,6 +1479,11 @@
             <span class="cat-cmd">Ctrl+X</span>
             <span class="cat-desc" data-en="Agents view: permanently delete a completed session">에이전트 뷰에서 완료 세션 영구 삭제</span>
             <span class="cat-ver">v206</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="bg waiting count">bg 대기 수 표시</span>
+            <span class="cat-desc" data-en="Footer hint shows how many background agents are waiting on your input — count briefly highlighted when it changes">입력 대기 중인 bg 에이전트 수를 푸터에 표시 — 변경 시 강조</span>
+            <span class="cat-ver">v210</span>
           </li>
         </ul>
       </div>
@@ -1792,6 +1801,11 @@
             <span class="cat-desc" data-en="Bedrock, Vertex, and Claude Platform on AWS now default to Opus 4.8">Bedrock·Vertex·AWS Platform 기본 모델 Opus 4.8로 변경</span>
             <span class="cat-ver">v207</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="Agent injection hardening">에이전트 인젝션 방어</span>
+            <span class="cat-desc" data-en="Agent tool hardened against indirect prompt injection via content a subagent read">subagent가 읽은 콘텐츠 통한 간접 프롬프트 인젝션 자동 차단</span>
+            <span class="cat-ver">v210</span>
+          </li>
         </ul>
       </div>
 
@@ -2103,35 +2117,35 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck</span>
+      <span class="e-desc" data-en="Added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck">축소된 툴 요약 행에 실시간 경과 시간 카운터 추가 — 오래 걸리는 툴 호출이 멈춘 것처럼 보이지 않고 시각적으로 카운트</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a startup warning for <code>Write(path)</code>, <code>NotebookEdit(path)</code>, and <code>Glob(path)</code> permission rules — use <code>Edit(path)</code> or <code>Read(path)</code> instead</span>
+      <span class="e-desc" data-en="Added a startup warning for <code>Write(path)</code>, <code>NotebookEdit(path)</code>, and <code>Glob(path)</code> permission rules — use <code>Edit(path)</code> or <code>Read(path)</code> instead"><code>Write(path)</code>·<code>NotebookEdit(path)</code>·<code>Glob(path)</code> 권한 규칙에 시작 시 경고 추가 — 대신 <code>Edit(path)</code>·<code>Read(path)</code> 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Hardened the Agent tool against indirect prompt injection via content a subagent read</span>
+      <span class="e-desc" data-en="Hardened the Agent tool against indirect prompt injection via content a subagent read">서브에이전트가 읽은 콘텐츠를 통한 간접 프롬프트 인젝션 차단 — Agent 툴 보안 강화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Memory writes that leave a MEMORY.md index over its read limit now produce an explicit error instead of silent truncation</span>
+      <span class="e-desc" data-en="Memory writes that leave a MEMORY.md index over its read limit now produce an explicit error instead of silent truncation">MEMORY.md 인덱스가 읽기 한도를 초과하는 메모리 쓰기 시 묵시적 잘림 대신 명시적 오류 출력</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Screen reader mode now announces permission mode changes aloud when cycling modes with Shift+Tab</span>
+      <span class="e-desc" data-en="Screen reader mode now announces permission mode changes aloud when cycling modes with Shift+Tab">Shift+Tab으로 모드 순환 시 스크린 리더 모드가 권한 모드 변경을 음성으로 알림</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">The agents footer hint now shows how many background agents are waiting on your input, with a brief color emphasis when the count changes</span>
+      <span class="e-desc" data-en="The agents footer hint now shows how many background agents are waiting on your input, with a brief color emphasis when the count changes">agents 푸터 힌트에 입력 대기 중인 백그라운드 에이전트 수 표시 — 수 변경 시 잠깐 색상 강조</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Agent view: the session you pressed ← from stays visibly marked even after mouse hover or arrow keys move the selection</span>
+      <span class="e-desc" data-en="Agent view: the session you pressed ← from stays visibly marked even after mouse hover or arrow keys move the selection">에이전트 뷰: ←를 눌러 나온 세션이 마우스 호버·화살표 키 이동 후에도 시각적으로 표시 유지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Fable temporarily shows as unavailable in the advisor picker while a server-side issue causing Fable advisor failures is fixed</span>
+      <span class="e-desc" data-en="Fable temporarily shows as unavailable in the advisor picker while a server-side issue causing Fable advisor failures is fixed">서버 측 Fable 어드바이저 오류 수정 중 어드바이저 피커에서 Fable이 일시적으로 사용 불가로 표시</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
