@@ -825,6 +825,28 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.205</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-15">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">--forward-subagent-text</div>
+        <h3 data-en="Include subagent text &amp; thinking in stream-json output">stream-json에 서브에이전트 텍스트·thinking 포함</h3>
+        <p data-en="New flag and env var to include subagent text and thinking in --stream-json pipeline output.">-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> CI pipelines no longer miss silent subagent output — env var CLAUDE_CODE_FORWARD_SUBAGENT_TEXT also works"><strong>왜?</strong> CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> --stream-json event shape; filtering subagent vs main-agent events"><strong>학습:</strong> --stream-json 이벤트 구조; 서브에이전트 이벤트 필터링 방법</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.211</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-15">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">always allow → repo root</div>
+        <h3 data-en="&quot;Always allow&quot; rules now save at repo root — persist across worktrees">"허용 항상" 규칙이 저장소 루트에 저장 — 워크트리 간 지속</h3>
+        <p data-en="Permission approvals save at the repo root so they persist across sessions and all worktrees.">worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Stop re-approving the same permissions every new worktree session — approve once, persist everywhere"><strong>왜?</strong> 워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Save location (.claude/settings.json at repo root); worktree-local vs repo-root rules"><strong>학습:</strong> 저장 위치(저장소 루트 .claude/settings.json); 워크트리 로컬 vs 루트 규칙 우선순위</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.211</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1123,6 +1145,14 @@
         <div class="side-co"><svg class="brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>Anthropic</div>
         <div class="side-sec">
           <h3 data-en="blog">blog</h3>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-with-claude-fable-5-in-claude-cowork" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Working with Claude Fable 5 in Claude Cowork</span>
+            <span class="sf-desc" data-en="How to work with Claude Fable 5 inside Claude Cowork for collaborative AI sessions.">Claude Cowork에서 Fable 5와 협업하는 실전 활용법.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/ai-code-migration" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How Anthropic runs large-scale code migrations with Claude Code</span>
+            <span class="sf-desc" data-en="Anthropic's method for running large-scale code migrations using Claude Code agents.">Anthropic가 Claude Code 에이전트로 대규모 코드 마이그레이션을 실행하는 방법.</span>
+          </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/claude-for-teachers" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Introducing Claude for Teachers</span>
             <span class="sf-desc" data-en="Claude for Teachers — AI tools built for educators.">교육자를 위한 Claude — 교사 맞춤 AI 도구 발표.</span>
@@ -1485,6 +1515,11 @@
             <span class="cat-desc" data-en="Footer hint shows how many background agents are waiting on your input — count briefly highlighted when it changes">입력 대기 중인 bg 에이전트 수를 푸터에 표시 — 변경 시 강조</span>
             <span class="cat-ver">v210</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="always allow → repo root">always allow → repo root</span>
+            <span class="cat-desc" data-en="Permission approvals save at repo root — persist across sessions and worktrees">권한 승인이 저장소 루트에 저장 — 세션·워크트리 전체에 지속</span>
+            <span class="cat-ver">v211</span>
+          </li>
         </ul>
       </div>
 
@@ -1613,6 +1648,11 @@
             <span class="cat-desc" data-en="Map insert-mode key sequences (e.g. jj → Escape) in vim mode">vim 삽입 모드 키 시퀀스 리맵 (예: jj → Escape)</span>
             <span class="cat-ver">v208</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">vim s / S</span>
+            <span class="cat-desc" data-en="s / S (substitute char/line) now work in NORMAL mode, matching real vim behavior">vim NORMAL 모드에서 s/S(substitute)가 실제 vim처럼 동작</span>
+            <span class="cat-ver">v211</span>
+          </li>
         </ul>
       </div>
 
@@ -1729,6 +1769,11 @@
             <span class="cat-cmd" data-en="shell inject fix">셸 인젝션 방지</span>
             <span class="cat-desc" data-en="${user_config.*} rejected in shell-form hooks/monitors/headersHelper — use exec form (args array) or $CLAUDE_PLUGIN_OPTION_KEY">셸형 hook/monitor에서 <code>${user_config.*}</code> 금지 — exec form 또는 <code>$CLAUDE_PLUGIN_OPTION_KEY</code> 사용</span>
             <span class="cat-ver">v207</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">--forward-subagent-text</span>
+            <span class="cat-desc" data-en="Include subagent text and thinking in --stream-json output (env: CLAUDE_CODE_FORWARD_SUBAGENT_TEXT)">stream-json 출력에 서브에이전트 텍스트·thinking 포함 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code>도 지원</span>
+            <span class="cat-ver">v211</span>
           </li>
         </ul>
       </div>
@@ -2117,43 +2162,43 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>--forward-subagent-text</code> flag and <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> environment variable to include subagent text and thinking in stream-json output</span>
+      <span class="e-desc" data-en="Added <code>--forward-subagent-text</code> flag and <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> environment variable to include subagent text and thinking in stream-json output">stream-json 출력에 서브에이전트 텍스트·thinking을 포함하는 <code>--forward-subagent-text</code> 플래그와 <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경 변수 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Hardened synced skill/plugin directory naming on Windows and kept CCR web fetch/search proxies working after <code>/clear</code></span>
+      <span class="e-desc" data-en="Hardened synced skill/plugin directory naming on Windows and kept CCR web fetch/search proxies working after <code>/clear</code>">Windows에서 동기화된 스킬·플러그인 디렉터리 이름 지정 강화, <code>/clear</code> 후 CCR 웹 fetch/search 프록시 정상 작동 유지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Updated integer environment variables (timeouts, token budgets, retry counts) to accept scientific notation and digit-separator spellings like <code>1e6</code> and <code>64_000</code></span>
+      <span class="e-desc" data-en="Updated integer environment variables (timeouts, token budgets, retry counts) to accept scientific notation and digit-separator spellings like <code>1e6</code> and <code>64_000</code>">정수 환경 변수(타임아웃·토큰 예산·재시도 횟수)가 <code>1e6</code>·<code>64_000</code> 같은 지수 표기 및 숫자 구분자 형식 허용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Updated documentation links to the current docs sites</span>
+      <span class="e-desc" data-en="Updated documentation links to the current docs sites">문서 링크를 최신 docs 사이트로 업데이트</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed "always allow" permission rules to save at the repository root, so approvals granted in a git worktree persist across sessions and worktrees</span>
+      <span class="e-desc" data-en="Changed &quot;always allow&quot; permission rules to save at the repository root, so approvals granted in a git worktree persist across sessions and worktrees">"always allow" 권한 규칙이 저장소 루트에 저장되도록 변경 — git worktree에서 승인한 내용이 세션·worktree 간 유지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/usage-credits</code> to ask for confirmation before sending a request to organization admins</span>
+      <span class="e-desc" data-en="Changed <code>/usage-credits</code> to ask for confirmation before sending a request to organization admins"><code>/usage-credits</code>가 조직 관리자에게 요청 전송 전 확인 요청하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Vim mode <code>s</code> and <code>S</code> (substitute char/line) to work in NORMAL mode, matching vim behavior</span>
+      <span class="e-desc" data-en="Changed Vim mode <code>s</code> and <code>S</code> (substitute char/line) to work in NORMAL mode, matching vim behavior">Vim 모드의 <code>s</code>·<code>S</code>(문자/줄 치환)가 NORMAL 모드에서 vim 동작에 맞게 작동하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Updated the Remote Control banner to describe what it does</span>
+      <span class="e-desc" data-en="[VSCode] Updated the Remote Control banner to describe what it does">[VSCode] Remote Control 배너를 기능 설명으로 업데이트</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude in Chrome: hardened file-upload path validation</span>
+      <span class="e-desc" data-en="Claude in Chrome: hardened file-upload path validation">Claude in Chrome: 파일 업로드 경로 유효성 검사 강화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude in Chrome: <code>save_to_disk</code> on screenshot actions now writes the image to disk and returns the path; previously it did nothing</span>
+      <span class="e-desc" data-en="Claude in Chrome: <code>save_to_disk</code> on screenshot actions now writes the image to disk and returns the path; previously it did nothing">Claude in Chrome: 스크린샷 액션의 <code>save_to_disk</code>가 이미지를 디스크에 저장하고 경로를 반환(기존에는 동작 없음)</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
