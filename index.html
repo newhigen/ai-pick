@@ -847,6 +847,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.211</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-17">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/fork → bg · /subtask</div>
+        <h3 data-en="/fork copies conversation to a new background session — /subtask is now the in-session spawner">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</h3>
+        <p data-en="/fork copies the conversation into a new background session; the in-session spawner is now /subtask.">/fork가 현재 대화를 새 bg 세션으로 복사; 인세션 위임 실행은 /subtask로 명칭 변경.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> /fork now always opens a background session — existing in-session /fork uses must switch to /subtask"><strong>왜?</strong> /fork가 항상 bg 세션 분기로 동작 — 인세션 위임은 /subtask로 전환 필요</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> /fork vs /subtask scope; bg fork row appears in claude agents list"><strong>학습:</strong> /fork vs /subtask 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.212</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1145,6 +1156,14 @@
         <div class="side-co"><svg class="brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>Anthropic</div>
         <div class="side-sec">
           <h3 data-en="blog">blog</h3>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-at-the-frontier-cursor" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How Cursor knew Claude Fable 5 was ready for the hardest 1% of problems</span>
+            <span class="sf-desc" data-en="How Cursor evaluated Claude Fable 5 on the hardest coding problems.">Cursor 팀이 최난도 코딩 문제에 Fable 5를 검증한 과정.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/ciso-guide-to-agentic-ai" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">CISO's guide to agentic AI</span>
+            <span class="sf-desc" data-en="Security guide for CISOs adopting agentic AI systems.">에이전트 AI 도입을 위한 CISO용 보안 가이드.</span>
+          </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-with-claude-fable-5-in-claude-cowork" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">Working with Claude Fable 5 in Claude Cowork</span>
             <span class="sf-desc" data-en="How to work with Claude Fable 5 inside Claude Cowork for collaborative AI sessions.">Claude Cowork에서 Fable 5와 협업하는 실전 활용법.</span>
@@ -1520,6 +1539,16 @@
             <span class="cat-desc" data-en="Permission approvals save at repo root — persist across sessions and worktrees">권한 승인이 저장소 루트에 저장 — 세션·워크트리 전체에 지속</span>
             <span class="cat-ver">v211</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/fork → bg · /subtask</span>
+            <span class="cat-desc" data-en="/fork copies conversation to a new bg session; /subtask is the in-session spawner">/fork는 대화 복사해 bg 세션 분기, 인세션 서브에이전트 실행은 /subtask</span>
+            <span class="cat-ver">v212</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/resume</span>
+            <span class="cat-desc" data-en="In agent view, opens a picker of all past sessions (including deleted) and resumes as a bg session">에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개</span>
+            <span class="cat-ver">v212</span>
+          </li>
         </ul>
       </div>
 
@@ -1586,6 +1615,11 @@
             <span class="cat-cmd">/usage</span>
             <span class="cat-desc" data-en="/usage shows last-known bars with &quot;as of&quot; note when rate-limited — no error screen">레이트 제한 시 최종 사용량 바 유지 표시 — 에러 화면 없음</span>
             <span class="cat-ver">v208</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</span>
+            <span class="cat-desc" data-en="Per-session subagent spawn cap (default 200); /clear resets; WebSearch also capped via CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION">세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code></span>
+            <span class="cat-ver">v212</span>
           </li>
         </ul>
       </div>
@@ -1708,6 +1742,11 @@
             <span class="cat-cmd" data-en="pluginConfigs scope">pluginConfigs 범위 제한</span>
             <span class="cat-desc" data-en="pluginConfigs no longer read from project .claude/settings.json — use user, --settings, or managed settings">프로젝트 <code>.claude/settings.json</code>의 <code>pluginConfigs</code> 무시 — user·--settings·managed만 인정</span>
             <span class="cat-ver">v207</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd" data-en="MCP auto-background">MCP 자동 백그라운드</span>
+            <span class="cat-desc" data-en="MCP tool calls running longer than 2 min auto-move to background — configure or disable via CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS">2분 초과 MCP 도구 호출 자동 백그라운드 처리 — <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code>로 임계값 조정</span>
+            <span class="cat-ver">v212</span>
           </li>
         </ul>
       </div>
@@ -2162,67 +2201,67 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/fork</code> now copies your conversation into a new background session (its own row in <code>claude agents</code>) while you keep working; the in-session subagent it used to launch is now <code>/subtask</code></span>
+      <span class="e-desc" data-en="<code>/fork</code> now copies your conversation into a new background session (its own row in <code>claude agents</code>) while you keep working; the in-session subagent it used to launch is now <code>/subtask</code>"><code>/fork</code>이 이제 작업을 유지한 채 대화를 새 백그라운드 세션(<code>claude agents</code>의 별도 행)으로 복사; 기존에 실행하던 인세션 서브에이전트는 이제 <code>/subtask</code></span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>claude auto-mode reset</code> to restore the default auto-mode configuration, with a confirmation prompt (pass <code>--yes</code> to skip)</span>
+      <span class="e-desc" data-en="Added <code>claude auto-mode reset</code> to restore the default auto-mode configuration, with a confirmation prompt (pass <code>--yes</code> to skip)">기본 auto-mode 설정을 복원하는 <code>claude auto-mode reset</code> 추가, 확인 프롬프트 포함(<code>--yes</code>로 건너뜀)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a session-wide limit on WebSearch tool calls (default 200, tunable via <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>) to stop runaway search loops</span>
+      <span class="e-desc" data-en="Added a session-wide limit on WebSearch tool calls (default 200, tunable via <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>) to stop runaway search loops">폭주하는 검색 루프 방지를 위해 세션 전체 WebSearch 툴 호출 한도(기본 200회, <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code>으로 조정) 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a per-session cap on subagent spawns (default 200, override with <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>) to stop runaway delegation loops; <code>/clear</code> resets the budget</span>
+      <span class="e-desc" data-en="Added a per-session cap on subagent spawns (default 200, override with <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>) to stop runaway delegation loops; <code>/clear</code> resets the budget">폭주하는 위임 루프 방지를 위해 세션당 서브에이전트 스폰 한도(기본 200, <code>CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</code>으로 재정의) 추가; <code>/clear</code>로 예산 초기화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">MCP tool calls running longer than 2 minutes now move to the background automatically so the session stays usable; configure the threshold or disable with <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code></span>
+      <span class="e-desc" data-en="MCP tool calls running longer than 2 minutes now move to the background automatically so the session stays usable; configure the threshold or disable with <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code>">2분 이상 실행되는 MCP 툴 호출이 자동으로 백그라운드로 이동해 세션 사용성 유지; 임계값 설정 또는 비활성화는 <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code></span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Typing <code>/resume</code> in the agent view now opens a picker of past sessions — including sessions deleted from the list — and resumes your pick as a background session</span>
+      <span class="e-desc" data-en="Typing <code>/resume</code> in the agent view now opens a picker of past sessions — including sessions deleted from the list — and resumes your pick as a background session">에이전트 뷰에서 <code>/resume</code> 입력 시 목록에서 삭제된 세션 포함 과거 세션 피커가 열리고 선택한 세션이 백그라운드로 재개</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/fork</code> to name the copy after your prompt when the session has no title, so the row is recognizable in the agent view</span>
+      <span class="e-desc" data-en="Changed <code>/fork</code> to name the copy after your prompt when the session has no title, so the row is recognizable in the agent view">세션 제목이 없을 때 <code>/fork</code> 복사본을 입력한 프롬프트로 이름 지정해 에이전트 뷰에서 식별 가능하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed bare <code>/btw</code> to reopen the side-question panel on your most recent exchange so you can browse earlier answers</span>
+      <span class="e-desc" data-en="Changed bare <code>/btw</code> to reopen the side-question panel on your most recent exchange so you can browse earlier answers">단독 <code>/btw</code>가 가장 최근 교환의 사이드 질문 패널을 다시 열어 이전 답변 탐색 가능하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed the <code>←</code> footer hint to pulse <code>N done</code> for a moment when a background agent finishes while nothing needs your input</span>
+      <span class="e-desc" data-en="Changed the <code>←</code> footer hint to pulse <code>N done</code> for a moment when a background agent finishes while nothing needs your input">백그라운드 에이전트 완료 후 입력 대기가 없을 때 <code>←</code> 푸터 힌트가 잠시 <code>N done</code>으로 반짝이도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Deprecated the Task tool's <code>mode</code> parameter (now ignored); subagents inherit the parent session's permission mode by default</span>
+      <span class="e-desc" data-en="Deprecated the Task tool's <code>mode</code> parameter (now ignored); subagents inherit the parent session's permission mode by default">Task 툴의 <code>mode</code> 파라미터 폐기(이제 무시됨); 서브에이전트가 기본적으로 부모 세션의 권한 모드 상속</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Enterprise <code>forceLoginMethod</code> to be enforced for VS Code extension, SDK, <code>setup-token</code>, and <code>install-github-app</code> logins, not just the terminal</span>
+      <span class="e-desc" data-en="Changed Enterprise <code>forceLoginMethod</code> to be enforced for VS Code extension, SDK, <code>setup-token</code>, and <code>install-github-app</code> logins, not just the terminal">Enterprise <code>forceLoginMethod</code>가 터미널뿐 아니라 VS Code 익스텐션·SDK·<code>setup-token</code>·<code>install-github-app</code> 로그인에도 적용되도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed session transcripts to record the reasoning effort level on each assistant message</span>
+      <span class="e-desc" data-en="Changed session transcripts to record the reasoning effort level on each assistant message">세션 트랜스크립트에 각 어시스턴트 메시지의 reasoning effort 레벨 기록 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed headless/SDK sessions to apply a <code>set_model</code> control request mid-turn; the next model round-trip uses the new model instead of waiting for the next turn</span>
+      <span class="e-desc" data-en="Changed headless/SDK sessions to apply a <code>set_model</code> control request mid-turn; the next model round-trip uses the new model instead of waiting for the next turn">헤드리스/SDK 세션이 <code>set_model</code> 컨트롤 요청을 턴 중간에 적용; 다음 모델 라운드트립에서 다음 턴을 기다리지 않고 새 모델 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed agent view / <code>claude agents --json</code>: sessions waiting on a sandbox, MCP-input, or managed-settings prompt now show as "Needs input" instead of "Working"</span>
+      <span class="e-desc" data-en="Changed agent view / <code>claude agents --json</code>: sessions waiting on a sandbox, MCP-input, or managed-settings prompt now show as &quot;Needs input&quot; instead of &quot;Working&quot;">에이전트 뷰 / <code>claude agents --json</code>: 샌드박스·MCP 입력·관리형 설정 프롬프트 대기 세션이 "Working" 대신 "Needs input"으로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Updated the auth status panel title from "Cloud authentication" to "Authentication"</span>
+      <span class="e-desc" data-en="Updated the auth status panel title from &quot;Cloud authentication&quot; to &quot;Authentication&quot;">인증 상태 패널 제목을 "Cloud authentication"에서 "Authentication"으로 업데이트</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Corrected an earlier release note (2.1.200): tmux through the 3.6 series lacks synchronized output; newer tmux with support is detected automatically</span>
+      <span class="e-desc" data-en="Corrected an earlier release note (2.1.200): tmux through the 3.6 series lacks synchronized output; newer tmux with support is detected automatically">이전 릴리즈 노트(2.1.200) 수정: tmux 3.6 이하 버전은 동기화 출력 미지원; 지원되는 신버전 tmux는 자동 감지</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
