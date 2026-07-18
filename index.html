@@ -616,6 +616,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-18">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">progress heartbeat</div>
+        <h3 data-en="Periodic progress heartbeat for long-running tool calls">긴 도구 호출에 주기적 진행 상황 알림</h3>
+        <p data-en="Long-running tool calls now emit periodic heartbeat updates instead of going silent.">오래 걸리는 도구 호출이 침묵하지 않고 주기적으로 진행 상황을 전송.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> No more silent stalls — confirm long builds, tests, or scans are still running"><strong>왜?</strong> 빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Which tool calls emit heartbeats; heartbeat interval"><strong>학습:</strong> heartbeat가 붙는 도구 호출 유형, 전송 주기</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.214</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-14">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">vimInsertModeRemaps</div>
@@ -1549,6 +1560,11 @@
             <span class="cat-desc" data-en="In agent view, opens a picker of all past sessions (including deleted) and resumes as a bg session">에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개</span>
             <span class="cat-ver">v212</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">subagentStatusLine effort</span>
+            <span class="cat-desc" data-en="reasoning effort now in subagentStatusLine payload — custom agent rows can render model + effort">subagentStatusLine 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능</span>
+            <span class="cat-ver">v214</span>
+          </li>
         </ul>
       </div>
 
@@ -1813,6 +1829,11 @@
             <span class="cat-cmd">--forward-subagent-text</span>
             <span class="cat-desc" data-en="Include subagent text and thinking in --stream-json output (env: CLAUDE_CODE_FORWARD_SUBAGENT_TEXT)">stream-json 출력에 서브에이전트 텍스트·thinking 포함 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code>도 지원</span>
             <span class="cat-ver">v211</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">dir/** hook if:</span>
+            <span class="cat-desc" data-en="Single-segment dir/** in hook if: now matches only &lt;cwd&gt;/dir; use **/dir/** for any-depth">hook <code>if:</code>의 <code>dir/**</code>은 <code>&lt;cwd&gt;/dir</code>만 매칭 — 재귀 매칭은 <code>**/dir/**</code> 사용</span>
+            <span class="cat-ver">v214</span>
           </li>
         </ul>
       </div>
@@ -2201,31 +2222,31 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added the EndConversation tool: Claude can end sessions with highly abusive users or jailbreak attempts, as on claude.ai since 2025 — see https://www.anthropic.com/research/end-subset-conversations</span>
+      <span class="e-desc" data-en="Added the EndConversation tool: Claude can end sessions with highly abusive users or jailbreak attempts, as on claude.ai since 2025 — see https://www.anthropic.com/research/end-subset-conversations">EndConversation 툴 추가: 2025년부터 claude.ai에서와 같이 Claude가 극도로 공격적인 사용자 또는 탈옥 시도 세션을 종료 가능 — https://www.anthropic.com/research/end-subset-conversations 참조</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a periodic progress heartbeat for long-running tool calls that previously went silent</span>
+      <span class="e-desc" data-en="Added a periodic progress heartbeat for long-running tool calls that previously went silent">이전에 침묵하던 장기 실행 툴 호출에 주기적 진행 상황 heartbeat 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added an ISO <code>modified</code> timestamp to memory file frontmatter</span>
+      <span class="e-desc" data-en="Added an ISO <code>modified</code> timestamp to memory file frontmatter">메모리 파일 frontmatter에 ISO <code>modified</code> 타임스탬프 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>message.uuid</code>, <code>client_request_id</code>, and <code>tool_source</code> attributes to OpenTelemetry log events for message-level correlation and tool provenance</span>
+      <span class="e-desc" data-en="Added <code>message.uuid</code>, <code>client_request_id</code>, and <code>tool_source</code> attributes to OpenTelemetry log events for message-level correlation and tool provenance">메시지 수준 상관관계 및 툴 출처 추적을 위해 OpenTelemetry 로그 이벤트에 <code>message.uuid</code>·<code>client_request_id</code>·<code>tool_source</code> 속성 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH</code> to configure the 60 KB truncation limit on OpenTelemetry content attributes</span>
+      <span class="e-desc" data-en="Added <code>CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH</code> to configure the 60 KB truncation limit on OpenTelemetry content attributes">OpenTelemetry 콘텐츠 속성의 60 KB 잘림 한도를 설정하는 <code>CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH</code> 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added reasoning effort to the <code>subagentStatusLine</code> payload, so custom agent rows can render model and effort</span>
+      <span class="e-desc" data-en="Added reasoning effort to the <code>subagentStatusLine</code> payload, so custom agent rows can render model and effort">커스텀 에이전트 행이 모델·effort를 렌더링할 수 있도록 <code>subagentStatusLine</code> 페이로드에 reasoning effort 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added permission prompts for <code>docker</code> commands (including the Podman <code>docker</code> shim) carrying daemon-redirect flags (<code>--url</code>, <code>--connection</code>, <code>--identity</code>, and Podman's remote mode) that previously ran without one</span>
+      <span class="e-desc" data-en="Added permission prompts for <code>docker</code> commands (including the Podman <code>docker</code> shim) carrying daemon-redirect flags (<code>--url</code>, <code>--connection</code>, <code>--identity</code>, and Podman's remote mode) that previously ran without one">데몬 리다이렉트 플래그(<code>--url</code>·<code>--connection</code>·<code>--identity</code> 및 Podman 원격 모드)를 포함한 <code>docker</code> 명령(Podman <code>docker</code> shim 포함)에 기존에 없던 권한 프롬프트 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
@@ -2233,15 +2254,15 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>file</code> commands using <code>-m</code>/<code>--magic-file</code> or <code>-f</code>/<code>--files-from</code> to require permission instead of being auto-allowed as read-only</span>
+      <span class="e-desc" data-en="Changed <code>file</code> commands using <code>-m</code>/<code>--magic-file</code> or <code>-f</code>/<code>--files-from</code> to require permission instead of being auto-allowed as read-only"><code>-m</code>/<code>--magic-file</code> 또는 <code>-f</code>/<code>--files-from</code>을 사용하는 <code>file</code> 명령이 읽기 전용으로 자동 허용되지 않고 권한 요청하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed keep-alive connection pooling to disable after a stale-connection error, so retries open a fresh socket</span>
+      <span class="e-desc" data-en="Changed keep-alive connection pooling to disable after a stale-connection error, so retries open a fresh socket">오래된 연결 오류 후 keep-alive 연결 풀링이 비활성화되도록 변경 — 재시도 시 새 소켓 연결</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed SessionStart hooks to report source <code>"fork"</code> when a session begins as a fork instead of <code>"resume"</code></span>
+      <span class="e-desc" data-en="Changed SessionStart hooks to report source <code>&quot;fork&quot;</code> when a session begins as a fork instead of <code>&quot;resume&quot;</code>">세션이 fork로 시작할 때 SessionStart 훅이 <code>"resume"</code> 대신 <code>"fork"</code>로 소스를 보고하도록 변경</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
