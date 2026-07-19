@@ -616,6 +616,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-19">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/verify · /code-review</div>
+        <h3 data-en="/verify and /code-review no longer auto-run — invoke manually">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</h3>
+        <p data-en="Claude no longer runs /verify or /code-review on its own; invoke explicitly when you want them.">Claude가 자동으로 실행하지 않음 — 원할 때 <code>/verify</code>·<code>/code-review</code> 직접 호출.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Removes unexpected auto-runs — you decide when review or verification fires"><strong>왜?</strong> 의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Run /code-review after finishing changes; /verify before merge"><strong>학습:</strong> 변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.215</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-18">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">progress heartbeat</div>
@@ -1601,6 +1612,11 @@
             <span class="cat-desc" data-en="Auto-allows git push to configured push remote (pushDefault or sole remote) — not just origin">설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원</span>
             <span class="cat-ver">v206</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/verify · /code-review</span>
+            <span class="cat-desc" data-en="/verify and /code-review no longer auto-run — invoke them explicitly when you want them">자동 실행 제거 — 필요 시 <code>/verify</code>·<code>/code-review</code> 직접 호출</span>
+            <span class="cat-ver">v2.1.215</span>
+          </li>
         </ul>
       </div>
 
@@ -2222,7 +2238,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Claude no longer runs the <code>/verify</code> and <code>/code-review</code> skills on its own; invoke them with <code>/verify</code> or <code>/code-review</code> when you want them</span>
+      <span class="e-desc" data-en="Claude no longer runs the <code>/verify</code> and <code>/code-review</code> skills on its own; invoke them with <code>/verify</code> or <code>/code-review</code> when you want them">Claude가 <code>/verify</code>와 <code>/code-review</code> 스킬을 더 이상 자율 실행하지 않음; 원할 때 직접 <code>/verify</code> 또는 <code>/code-review</code>로 호출</span>
     </div>
   </div>
 
@@ -2262,7 +2278,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed single-segment <code>dir/<strong></code> hook <code>if:</code> conditions to match only <code>&lt;cwd&gt;/dir</code>; write <code></strong>/dir/**</code> for any-depth matching. <code>deny</code>/<code>ask</code> permission rules keep their any-depth match.</span>
+      <span class="e-desc" data-en="Changed single-segment <code>dir/<strong></code> hook <code>if:</code> conditions to match only <code>&lt;cwd&gt;/dir</code>; write <code></strong>/dir/**</code> for any-depth matching. <code>deny</code>/<code>ask</code> permission rules keep their any-depth match.">단일 세그먼트 <code>dir/<strong></code> 훅 <code>if:</code> 조건이 <code>&lt;cwd&gt;/dir</code>에만 매칭되도록 변경; 임의 깊이 매칭은 <code></strong>/dir/**</code>로 작성. <code>deny</code>/<code>ask</code> 권한 규칙은 임의 깊이 매칭 유지.</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
