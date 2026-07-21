@@ -616,6 +616,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-20">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/context</div>
+        <h3 data-en="/context warns when context window is exceeded; failed /compact shows as error">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</h3>
+        <p data-en="Explicit warning when the conversation exceeds the context window; failed /compact now displays as an error.">컨텍스트 한도 초과 시 명시적 경고 — <code>/compact</code> 실패는 에러로 표시.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Know immediately when context is full — no silent stall before you act"><strong>왜?</strong> 컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> When /context warning triggers; what to do after a failed /compact"><strong>학습:</strong> /context 경고 발생 조건, /compact 실패 후 대응</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.216</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-19">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">/verify · /code-review</div>
@@ -1438,6 +1449,14 @@
             <span class="sf-title">Base44 × Claude Fable 5: challenging engineering</span>
             <span class="sf-desc" data-en="How Base44 trusts Claude Fable 5 with their most challenging engineering work.">Base44가 최난도 엔지니어링 작업을 Fable 5에 맡기는 이유.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How Anthropic secures its AI-native software development lifecycle</span>
+            <span class="sf-desc" data-en="How Anthropic secures its own AI-native software development lifecycle.">Anthropic의 AI 네이티브 소프트웨어 개발 라이프사이클 보안 방법.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/how-datadog-built-a-universal-machine-tool-for-claude-code" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How Datadog built a &quot;universal machine tool&quot; for Claude Code</span>
+            <span class="sf-desc" data-en="How Datadog built a universal machine tool for Claude Code.">Datadog이 Claude Code를 위한 범용 머신 도구를 구축한 방법.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1580,6 +1599,11 @@
             <span class="cat-desc" data-en="reasoning effort now in subagentStatusLine payload — custom agent rows can render model + effort">subagentStatusLine 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능</span>
             <span class="cat-ver">v214</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/mcp · /install-github-app bg</span>
+            <span class="cat-desc" data-en="bg sessions: /mcp and /install-github-app park a &quot;needs input&quot; request in agent view when no client is attached">bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시</span>
+            <span class="cat-ver">v2.1.216</span>
+          </li>
         </ul>
       </div>
 
@@ -1656,6 +1680,11 @@
             <span class="cat-cmd">CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</span>
             <span class="cat-desc" data-en="Per-session subagent spawn cap (default 200); /clear resets; WebSearch also capped via CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION">세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 <code>CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</code></span>
             <span class="cat-ver">v212</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/context 초과 경고</span>
+            <span class="cat-desc" data-en="Explicit warning when context window exceeded; failed /compact shows as error — not silent">컨텍스트 초과 시 명시적 경고 — <code>/compact</code> 실패도 에러로 표시 (무응답 없음)</span>
+            <span class="cat-ver">v2.1.216</span>
           </li>
         </ul>
       </div>
@@ -1930,6 +1959,11 @@
             <span class="cat-cmd" data-en="Agent injection hardening">에이전트 인젝션 방어</span>
             <span class="cat-desc" data-en="Agent tool hardened against indirect prompt injection via content a subagent read">subagent가 읽은 콘텐츠 통한 간접 프롬프트 인젝션 자동 차단</span>
             <span class="cat-ver">v210</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">sandbox.filesystem.disabled</span>
+            <span class="cat-desc" data-en="Skip filesystem isolation while keeping network egress control">파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지</span>
+            <span class="cat-ver">v2.1.216</span>
           </li>
         </ul>
       </div>
@@ -2242,27 +2276,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>sandbox.filesystem.disabled</code> setting to skip filesystem isolation while keeping network egress control</span>
+      <span class="e-desc" data-en="Added <code>sandbox.filesystem.disabled</code> setting to skip filesystem isolation while keeping network egress control">네트워크 이그레스 제어는 유지하면서 파일시스템 격리를 건너뛰는 <code>sandbox.filesystem.disabled</code> 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/context</code> now shows an explicit warning when the conversation exceeds the context window, and a failed <code>/compact</code> displays as an error</span>
+      <span class="e-desc" data-en="<code>/context</code> now shows an explicit warning when the conversation exceeds the context window, and a failed <code>/compact</code> displays as an error"><code>/context</code>가 대화가 컨텍스트 윈도를 초과할 때 명시적 경고 표시; 실패한 <code>/compact</code>는 오류로 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc"><code>/rewind</code> no longer restores or deletes files through symlinks or hard links at tracked paths and reports how many paths it skipped</span>
+      <span class="e-desc" data-en="<code>/rewind</code> no longer restores or deletes files through symlinks or hard links at tracked paths and reports how many paths it skipped"><code>/rewind</code>이 추적 경로의 심링크·하드링크를 통해 파일을 복원하거나 삭제하지 않으며 건너뛴 경로 수를 보고</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Background sessions: <code>/mcp</code> and <code>/install-github-app</code> now park a "needs input" request in the agent view when no client is attached</span>
+      <span class="e-desc" data-en="Background sessions: <code>/mcp</code> and <code>/install-github-app</code> now park a &quot;needs input&quot; request in the agent view when no client is attached">백그라운드 세션: 클라이언트 미연결 시 <code>/mcp</code>와 <code>/install-github-app</code>이 에이전트 뷰에 "needs input" 요청 저장</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Updated the bundled dataviz skill: reordered the default chart palette and fixed guidance that suggested direct labels for four-series charts</span>
+      <span class="e-desc" data-en="Updated the bundled dataviz skill: reordered the default chart palette and fixed guidance that suggested direct labels for four-series charts">기본 제공 dataviz 스킬 업데이트: 기본 차트 팔레트 순서 변경 및 4계열 차트 직접 레이블 안내 오류 수정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Fixed right-to-left text (Arabic, Hebrew, Persian) rendering in the wrong order when mixed with English or code</span>
+      <span class="e-desc" data-en="[VSCode] Fixed right-to-left text (Arabic, Hebrew, Persian) rendering in the wrong order when mixed with English or code">[VSCode] 아랍어·히브리어·페르시아어 등 우-좌 텍스트가 영어·코드와 혼합될 때 잘못된 순서로 렌더링되는 문제 수정</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -13225,6 +13259,14 @@
       </select></span>
     </div>
     <div class="pick-grid period-grid" data-section="codex-pick" data-period="recent">
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer">
+        <p class="pick-lead" data-en="Multi-agent V2 stabilized: configure sub-agent models, reasoning levels, concurrency, and roles; improved agent navigation.">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</p>
+        <div class="ver"><span class="vtag">v0.145.0</span><span class="news-date" data-date="2026-07-21"></span></div>
+      </a>
+      <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer">
+        <div class="cmd">/import</div><p class="pick-lead" data-en="Migrate Cursor and Claude Code settings, MCP servers, plugins, sessions, commands, and project-scoped memories in one step.">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</p>
+        <div class="ver"><span class="vtag">v0.145.0</span><span class="news-date" data-date="2026-07-21"></span></div>
+      </a>
       <a class="pick-card" href="https://github.com/openai/codex/releases/tag/rust-v0.139.0" target="_blank" rel="noopener noreferrer">
         <p class="pick-lead">Code mode에서 웹 검색 직접 호출 가능 — JS 중첩 툴 호출 포함, 결과는 일반 텍스트로.</p>
         <div class="ver"><span class="vtag">v0.139.0</span><span class="news-date" data-date="2026-06-09"></span></div>
