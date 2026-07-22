@@ -627,6 +627,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.216</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-22">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">/code-review</div>
+        <h3 data-en="/code-review now runs as a background subagent — review work no longer fills your conversation">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</h3>
+        <p data-en="Code review runs in the background; stacked slash commands stay as the review target.">코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Review no longer bloats your conversation — main session context stays clean"><strong>왜?</strong> 리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> How bg subagent review differs; stacked slash commands as review target"><strong>학습:</strong> bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.218</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-19">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">/verify · /code-review</div>
@@ -705,13 +716,13 @@
         <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-10">
-        <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">agent() → agent()</div>
-        <h3 data-en="Sub-agents can now spawn sub-agents (up to 5 levels)">서브에이전트가 서브에이전트를 spawn (최대 5단계)</h3>
-        <p data-en="Sub-agents can spawn their own sub-agents — up to 5 levels of recursive orchestration.">서브에이전트가 자신의 서브에이전트를 spawn — 최대 5단계 재귀 오케스트레이션.</p>
+        <h3 data-en="Sub-agent nested spawning now off by default — enable with CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH">서브에이전트 중첩 spawn — 기본 off, CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH로 활성화</h3>
+        <p data-en="Nested sub-agent spawning disabled by default since v2.1.217; set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH to allow.">v2.1.217부터 중첩 spawn 기본 비활성 — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> 설정으로 허용.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Multi-level agent trees unlock deeper task decomposition beyond flat fan-out"><strong>왜?</strong> 단순 fan-out을 넘어 계층형 에이전트 트리로 복잡한 작업 분해 가능</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> Where recursive spawning adds value; nesting depth vs token cost trade-off"><strong>학습:</strong> 재귀 spawn이 가치 있는 작업 유형, 단계 깊이 vs 토큰 비용 트레이드오프</div>
+          <div class="pick-why" data-en="<strong>Why</strong> Default changed to prevent unbounded fan-out; set env-var to restore recursive agent trees"><strong>왜?</strong> 무한 fan-out 방지를 위해 기본값 변경 — env var 설정으로 재귀 에이전트 트리 복원</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH values; CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS concurrency cap"><strong>학습:</strong> <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> 설정값, 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></div>
         </div>
         <div class="ver"><span class="vtag">v2.1.172</span><span class="dag"></span></div>
       </div>
@@ -1189,6 +1200,18 @@
         <div class="side-co"><svg class="brand-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg>Anthropic</div>
         <div class="side-sec">
           <h3 data-en="blog">blog</h3>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/building-verification-loops-in-claude-code-with-skills" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Building verification loops in Claude Code with skills</span>
+            <span class="sf-desc" data-en="How to build verification loops in Claude Code using skills.">스킬로 Claude Code에 검증 루프를 구축하는 방법.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/how-outtake-built-a-cyber-investigator-on-claude" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How Outtake built a cyber investigator on Claude</span>
+            <span class="sf-desc" data-en="How Outtake built a cyber investigator using Claude.">Outtake가 Claude로 사이버 조사 에이전트를 구축한 방법.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/anthropic-economic-index-connector" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">The Anthropic Economic Index connector</span>
+            <span class="sf-desc" data-en="The Anthropic Economic Index connector for AI applications.">Anthropic 경제 지수 커넥터 — AI 애플리케이션 데이터 접근.</span>
+          </a>
           <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/working-at-the-frontier-rakuten" target="_blank" rel="noopener noreferrer">
             <span class="sf-title">How Rakuten builds agents overnight with Claude Fable 5</span>
             <span class="sf-desc" data-en="How Rakuten uses Claude Fable 5 to build AI agents overnight.">Rakuten이 Fable 5로 에이전트를 하룻밤 만에 구축하는 법.</span>
@@ -1604,6 +1627,16 @@
             <span class="cat-desc" data-en="bg sessions: /mcp and /install-github-app park a &quot;needs input&quot; request in agent view when no client is attached">bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시</span>
             <span class="cat-ver">v2.1.216</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</span>
+            <span class="cat-desc" data-en="Cap concurrent subagents (default 20); prevents one message from fanning out unbounded agents">동시 서브에이전트 상한 (기본 20) — 한 메시지의 무한 fan-out 방지</span>
+            <span class="cat-ver">v2.1.217</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</span>
+            <span class="cat-desc" data-en="Allow nested sub-agent spawning (default 0 since v2.1.217); set to enable recursive agent trees">중첩 서브에이전트 spawn 허용 (기본 0, v2.1.217부터) — 재귀 에이전트 트리 활성화</span>
+            <span class="cat-ver">v2.1.217</span>
+          </li>
         </ul>
       </div>
 
@@ -1644,6 +1677,11 @@
             <span class="cat-cmd">/verify · /code-review</span>
             <span class="cat-desc" data-en="/verify and /code-review no longer auto-run — invoke them explicitly when you want them">자동 실행 제거 — 필요 시 <code>/verify</code>·<code>/code-review</code> 직접 호출</span>
             <span class="cat-ver">v2.1.215</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/code-review bg</span>
+            <span class="cat-desc" data-en="/code-review now runs as a background subagent — review no longer fills the conversation">/code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음</span>
+            <span class="cat-ver">v2.1.218</span>
           </li>
         </ul>
       </div>
@@ -1812,6 +1850,11 @@
             <span class="cat-cmd" data-en="MCP auto-background">MCP 자동 백그라운드</span>
             <span class="cat-desc" data-en="MCP tool calls running longer than 2 min auto-move to background — configure or disable via CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS">2분 초과 MCP 도구 호출 자동 백그라운드 처리 — <code>CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</code>로 임계값 조정</span>
             <span class="cat-ver">v212</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">claude mcp list · /mcp</span>
+            <span class="cat-desc" data-en="HTTP status and error text shown when MCP server fails to connect; warning for config values with hidden whitespace">MCP 서버 연결 실패 시 HTTP 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고</span>
+            <span class="cat-ver">v2.1.218</span>
           </li>
         </ul>
       </div>
@@ -2276,43 +2319,43 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/code-review</code> to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target</span>
+      <span class="e-desc" data-en="Changed <code>/code-review</code> to run as a background subagent, so review work no longer fills your conversation and keeps stacked slash commands as its review target"><code>/code-review</code>이 백그라운드 서브에이전트로 실행되도록 변경 — 리뷰 작업이 대화를 채우지 않고 스택된 슬래시 커맨드를 리뷰 대상으로 유지</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added screen-reader announcements of deleted text for word and line deletions (<code>Option+Delete</code>, <code>Ctrl+W</code>, <code>Cmd+Backspace</code>, <code>Ctrl+U</code>, <code>Ctrl+K</code>) in <code>--ax-screen-reader</code> mode</span>
+      <span class="e-desc" data-en="Added screen-reader announcements of deleted text for word and line deletions (<code>Option+Delete</code>, <code>Ctrl+W</code>, <code>Cmd+Backspace</code>, <code>Ctrl+U</code>, <code>Ctrl+K</code>) in <code>--ax-screen-reader</code> mode"><code>--ax-screen-reader</code> 모드에서 단어·줄 삭제(<code>Option+Delete</code>·<code>Ctrl+W</code>·<code>Cmd+Backspace</code>·<code>Ctrl+U</code>·<code>Ctrl+K</code>) 시 삭제된 텍스트를 스크린 리더로 알림</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added HTTP status and error text to <code>claude mcp list</code> and <code>/mcp</code> when a server fails to connect, and a warning for MCP config values with hidden leading or trailing whitespace</span>
+      <span class="e-desc" data-en="Added HTTP status and error text to <code>claude mcp list</code> and <code>/mcp</code> when a server fails to connect, and a warning for MCP config values with hidden leading or trailing whitespace">서버 연결 실패 시 <code>claude mcp list</code>와 <code>/mcp</code>에 HTTP 상태·오류 텍스트 추가, 앞뒤에 숨겨진 공백이 있는 MCP 설정값 경고 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/deep-research</code> to start only when invoked manually; Claude no longer launches it on its own</span>
+      <span class="e-desc" data-en="Changed <code>/deep-research</code> to start only when invoked manually; Claude no longer launches it on its own"><code>/deep-research</code>가 수동으로 호출할 때만 시작하도록 변경 — Claude가 자체적으로 실행하지 않음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed plan mode with auto to no longer prompt for Bash commands the static analyzer can't prove read-only; the auto-mode classifier judges them instead</span>
+      <span class="e-desc" data-en="Changed plan mode with auto to no longer prompt for Bash commands the static analyzer can't prove read-only; the auto-mode classifier judges them instead">auto와 함께하는 plan 모드에서 정적 분석기가 읽기 전용임을 확인하지 못하는 Bash 명령에 더 이상 프롬프트 표시 안 함 — auto-mode 분류기가 대신 판단</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added an announcement when fast mode changes as a result of switching models via <code>/config model=&lt;x&gt;</code> or Remote Control</span>
+      <span class="e-desc" data-en="Added an announcement when fast mode changes as a result of switching models via <code>/config model=&lt;x&gt;</code> or Remote Control"><code>/config model=&lt;x&gt;</code> 또는 Remote Control로 모델 전환 시 fast mode 변경 알림 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed server-managed settings so benign feature and cost toggles no longer trigger the settings-approval prompt</span>
+      <span class="e-desc" data-en="Changed server-managed settings so benign feature and cost toggles no longer trigger the settings-approval prompt">서버 관리형 설정에서 무해한 기능·비용 토글이 더 이상 설정 승인 프롬프트를 트리거하지 않도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed agent markdown files to reject agent names containing <code>:</code>, which is reserved for plugin namespacing</span>
+      <span class="e-desc" data-en="Changed agent markdown files to reject agent names containing <code>:</code>, which is reserved for plugin namespacing">에이전트 마크다운 파일이 플러그인 네임스페이스용으로 예약된 <code>:</code>을 포함한 에이전트 이름을 거부하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed skills with <code>context: fork</code> to run in the background by default; opt out per skill with <code>background: false</code></span>
+      <span class="e-desc" data-en="Changed skills with <code>context: fork</code> to run in the background by default; opt out per skill with <code>background: false</code>"><code>context: fork</code>가 있는 스킬이 기본적으로 백그라운드에서 실행되도록 변경; 스킬별로 <code>background: false</code>로 비활성화 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>yes</code>/<code>no</code>/<code>on</code>/<code>off</code>/<code>1</code>/<code>0</code> (case-insensitive) as accepted values for skill and plugin frontmatter booleans, alongside <code>true</code>/<code>false</code></span>
+      <span class="e-desc" data-en="Added <code>yes</code>/<code>no</code>/<code>on</code>/<code>off</code>/<code>1</code>/<code>0</code> (case-insensitive) as accepted values for skill and plugin frontmatter booleans, alongside <code>true</code>/<code>false</code>">스킬·플러그인 frontmatter 불리언으로 <code>true</code>/<code>false</code> 외에 <code>yes</code>/<code>no</code>/<code>on</code>/<code>off</code>/<code>1</code>/<code>0</code>(대소문자 무관) 허용</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -2372,27 +2415,27 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added emoji shortcode autocomplete in the prompt input: type <code>:heart:</code> to insert ❤️, or <code>:hea</code> for suggestions — disable with the <code>emojiCompletionEnabled</code> setting</span>
+      <span class="e-desc" data-en="Added emoji shortcode autocomplete in the prompt input: type <code>:heart:</code> to insert ❤️, or <code>:hea</code> for suggestions — disable with the <code>emojiCompletionEnabled</code> setting">프롬프트 입력에 이모지 단축코드 자동완성 추가: <code>:heart:</code>를 입력하면 ❤️ 삽입, <code>:hea</code>는 제안 표시 — <code>emojiCompletionEnabled</code> 설정으로 비활성화</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added warnings when transcript writes are failing (e.g. disk full) or when session saving is off due to an inherited environment variable, instead of losing transcripts silently</span>
+      <span class="e-desc" data-en="Added warnings when transcript writes are failing (e.g. disk full) or when session saving is off due to an inherited environment variable, instead of losing transcripts silently">트랜스크립트 기록 실패(예: 디스크 꽉 참) 또는 상속된 환경 변수로 세션 저장이 꺼진 경우, 조용히 유실하는 대신 경고 표시 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed the login-expiry warning to appear 3 days before expiry instead of 5</span>
+      <span class="e-desc" data-en="Changed the login-expiry warning to appear 3 days before expiry instead of 5">로그인 만료 경고가 5일 전 대신 3일 전에 표시되도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Capped the frontend-design plugin suggestion tip at 3 lifetime impressions instead of repeating indefinitely</span>
+      <span class="e-desc" data-en="Capped the frontend-design plugin suggestion tip at 3 lifetime impressions instead of repeating indefinitely">frontend-design 플러그인 제안 팁을 무한 반복 대신 평생 3회로 제한</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a cap on concurrently-running subagents (default 20, override with <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>) so one message can't fan out unbounded background agents</span>
+      <span class="e-desc" data-en="Added a cap on concurrently-running subagents (default 20, override with <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>) so one message can't fan out unbounded background agents">하나의 메시지가 무한정 백그라운드 에이전트를 생성하지 못하도록 동시 실행 서브에이전트 한도(기본 20, <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code>로 재정의) 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed subagents to no longer spawn nested subagents by default; set <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to allow deeper nesting</span>
+      <span class="e-desc" data-en="Changed subagents to no longer spawn nested subagents by default; set <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to allow deeper nesting">서브에이전트가 기본적으로 중첩 서브에이전트를 더 이상 생성하지 않도록 변경; 더 깊은 중첩을 허용하려면 <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> 설정</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -15206,6 +15249,12 @@
           <h3 data-en="PowerPoint Slides on Manus">PowerPoint Slides</h3>
           <p data-en="Create and export PowerPoint-compatible slides directly in Manus.">Manus에서 PowerPoint 호환 슬라이드 직접 생성·내보내기.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-07-14"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-plan-mode" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Plan Mode: Think Before Acting">Plan Mode — 실행 전 계획 수립</h3>
+          <p data-en="Manus outlines a plan before acting — more deliberate, accurate task execution.">실행 전 계획을 먼저 수립 — 더 신중하고 정확한 작업 진행.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-07-22"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
       </div>
     </div>
