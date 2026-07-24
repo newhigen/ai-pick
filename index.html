@@ -616,6 +616,17 @@
       <span class="pick-info" tabindex="0">ⓘ<span class="pick-tip" data-en="<strong>Selection criteria</strong><br>① A new command/shortcut/UI to try right away<br>② Real impact on your workflow<br>③ Likely used often<br>④ Period filter — Recent (curated) / monthly (that month)"><strong>선정 기준</strong><br>① 바로 써볼 수 있는 새 명령·단축키·UI<br>② 워크플로우에 실질적 영향<br>③ 사용 빈도 높을 것<br>④ 기간 선택 — 최근(엄선) / 월별(그 달 출시)</span></span>
     </div>
     <div class="pick-grid period-grid" data-section="pick" data-period="recent">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-24">
+        <div class="pick-tier t3" title="핵심 — 워크플로우를 크게 바꿈">★★★</div>
+        <div class="cmd">claude-opus-5</div>
+        <h3 data-en="Claude Opus 5 — new default Opus model, 1M context, fast mode">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</h3>
+        <p data-en="New default Opus model in Claude Code — 1M token context, fast mode available at $10/$50 per Mtok.">Claude Code Opus 기본 모델 교체 — 1M 토큰 컨텍스트 · fast mode 지원.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Opus-class reasoning with 1M context and fast mode — pick Opus 5 when Sonnet depth isn't enough"><strong>왜?</strong> Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Pricing ($10/$50 per Mtok); /fast toggle; when Opus 5 vs Sonnet 5"><strong>학습:</strong> 요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.219</span><span class="dag"></span></div>
+      </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-20">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">/context</div>
@@ -715,16 +726,16 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.154</span><span class="dag"></span></div>
       </div>
-      <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-10">
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-07-24">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
         <div class="cmd">agent() → agent()</div>
-        <h3 data-en="Sub-agent nested spawning now off by default — enable with CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH">서브에이전트 중첩 spawn — 기본 off, CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH로 활성화</h3>
-        <p data-en="Nested sub-agent spawning disabled by default since v2.1.217; set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH to allow.">v2.1.217부터 중첩 spawn 기본 비활성 — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> 설정으로 허용.</p>
+        <h3 data-en="Nested sub-agent spawning on by default (depth 3) — set =1 to disable">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</h3>
+        <p data-en="Nested sub-agent spawning on by default (up to depth 3) since v2.1.219; set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 to disable.">v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code>로 비활성화.</p>
         <div class="pick-meta">
-          <div class="pick-why" data-en="<strong>Why</strong> Default changed to prevent unbounded fan-out; set env-var to restore recursive agent trees"><strong>왜?</strong> 무한 fan-out 방지를 위해 기본값 변경 — env var 설정으로 재귀 에이전트 트리 복원</div>
-          <div class="pick-check" data-en="<strong>Learn:</strong> CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH values; CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS concurrency cap"><strong>학습:</strong> <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> 설정값, 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></div>
+          <div class="pick-why" data-en="<strong>Why</strong> Recursive agent trees now work out of the box — depth-2+ subagents can spawn sub-agents automatically"><strong>왜?</strong> 재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Depth 3 default; set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 to cap at 1 (old behavior); CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS for concurrency"><strong>학습:</strong> 기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1</code>로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></div>
         </div>
-        <div class="ver"><span class="vtag">v2.1.172</span><span class="dag"></span></div>
+        <div class="ver"><span class="vtag">v2.1.219</span><span class="dag"></span></div>
       </div>
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-06-06">
         <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
@@ -1484,6 +1495,26 @@
             <span class="sf-title">How Datadog built a &quot;universal machine tool&quot; for Claude Code</span>
             <span class="sf-desc" data-en="How Datadog built a universal machine tool for Claude Code.">Datadog이 Claude Code를 위한 범용 머신 도구를 구축한 방법.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Introducing Claude Opus 5</span>
+            <span class="sf-desc" data-en="Claude Opus 5 — new default Opus model with 1M context and fast mode.">Claude Opus 5 공식 발표 — 1M 컨텍스트·fast mode 탑재 새 Opus 기본 모델.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">The new rules of context engineering for Claude 5 generation models</span>
+            <span class="sf-desc" data-en="How to engineer context effectively for Claude 5 generation models.">Claude 5 세대 모델을 위한 컨텍스트 엔지니어링 새 원칙.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/claude-models-explained-choosing-the-best-model-for-your-use-case" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Claude models explained: choosing the best model for your use case</span>
+            <span class="sf-desc" data-en="Guide to choosing the right Claude model for your use case.">용도별 최적 Claude 모델 선택 가이드.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/four-role-based-claude-certifications" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Four role-based Claude certifications</span>
+            <span class="sf-desc" data-en="Four role-based certifications for professionals who deploy Claude for customers.">고객 대상 Claude 배포 전문가를 위한 4개 역할별 인증 발표.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/how-the-product-designer-who-built-claude-design-uses-it-to-explore-ideas-before-building-them" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">How the product designer who built Claude Design uses it</span>
+            <span class="sf-desc" data-en="How Anthropic's product designer uses Claude Design to explore ideas before building.">Claude Design 제작자가 구현 전 아이디어 탐색에 Claude를 쓰는 방법.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1638,8 +1669,8 @@
           </li>
           <li class="cat-item" onclick="openDoc(this)">
             <span class="cat-cmd">CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</span>
-            <span class="cat-desc" data-en="Allow nested sub-agent spawning (default 0 since v2.1.217); set to enable recursive agent trees">중첩 서브에이전트 spawn 허용 (기본 0, v2.1.217부터) — 재귀 에이전트 트리 활성화</span>
-            <span class="cat-ver">v2.1.217</span>
+            <span class="cat-desc" data-en="Nested sub-agent spawning on by default (depth 3) since v2.1.219; set =1 to cap at one level (old behavior)">v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 <code>=1</code> 설정</span>
+            <span class="cat-ver">v2.1.219</span>
           </li>
         </ul>
       </div>
@@ -1931,6 +1962,11 @@
             <span class="cat-desc" data-en="Single-segment dir/** in hook if: now matches only &lt;cwd&gt;/dir; use **/dir/** for any-depth">hook <code>if:</code>의 <code>dir/**</code>은 <code>&lt;cwd&gt;/dir</code>만 매칭 — 재귀 매칭은 <code>**/dir/**</code> 사용</span>
             <span class="cat-ver">v214</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">DirectoryAdded hook</span>
+            <span class="cat-desc" data-en="Fires after /add-dir or SDK register_repo_root registers a new working directory mid-session">/add-dir 또는 SDK <code>register_repo_root</code>로 새 작업 디렉터리 등록 시 발화</span>
+            <span class="cat-ver">v2.1.219</span>
+          </li>
         </ul>
       </div>
 
@@ -2011,6 +2047,16 @@
             <span class="cat-cmd">sandbox.filesystem.disabled</span>
             <span class="cat-desc" data-en="Skip filesystem isolation while keeping network egress control">파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지</span>
             <span class="cat-ver">v2.1.216</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">claude-opus-5</span>
+            <span class="cat-desc" data-en="New default Opus model — 1M context, fast mode at $10/$50 per Mtok">새 Opus 기본 모델 — 1M 컨텍스트, fast mode, $10/$50 per Mtok</span>
+            <span class="cat-ver">v2.1.219</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">sandbox.network.strictAllowlist</span>
+            <span class="cat-desc" data-en="Deny sandboxed commands from connecting to non-allowlisted hosts — no prompt, just block">샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단</span>
+            <span class="cat-ver">v2.1.219</span>
           </li>
         </ul>
       </div>
@@ -2323,63 +2369,63 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added Claude Opus 5 (<code>claude-opus-5</code>), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok</span>
+      <span class="e-desc" data-en="Added Claude Opus 5 (<code>claude-opus-5</code>), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok">Claude Opus 5(<code>claude-opus-5</code>) 추가, 이제 기본 Opus 모델 — 1M 컨텍스트, fast mode $10/$50/Mtok</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>sandbox.network.strictAllowlist</code> setting to deny non-allowlisted hosts for sandboxed commands without prompting</span>
+      <span class="e-desc" data-en="Added <code>sandbox.network.strictAllowlist</code> setting to deny non-allowlisted hosts for sandboxed commands without prompting">샌드박스 명령에서 허용 목록 외 호스트를 프롬프트 없이 차단하는 <code>sandbox.network.strictAllowlist</code> 설정 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>DirectoryAdded</code> hook that fires after <code>/add-dir</code> or the SDK <code>register_repo_root</code> control request registers a new working directory mid-session</span>
+      <span class="e-desc" data-en="Added <code>DirectoryAdded</code> hook that fires after <code>/add-dir</code> or the SDK <code>register_repo_root</code> control request registers a new working directory mid-session">세션 도중 <code>/add-dir</code> 또는 SDK <code>register_repo_root</code> 컨트롤 요청으로 새 작업 디렉터리 등록 후 발동하는 <code>DirectoryAdded</code> 훅 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>mcp_server_errors</code> to the headless stream-json init event, listing <code>--mcp-config</code> entries skipped by config validation; terminal runs print a startup warning</span>
+      <span class="e-desc" data-en="Added <code>mcp_server_errors</code> to the headless stream-json init event, listing <code>--mcp-config</code> entries skipped by config validation; terminal runs print a startup warning">헤드리스 stream-json init 이벤트에 <code>mcp_server_errors</code> 추가 — 설정 유효성 검사에서 제외된 <code>--mcp-config</code> 항목 나열; 터미널 실행 시 시작 경고 출력</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added the <code>workflowSizeGuideline</code> settings key so the advisory Dynamic workflow size guideline can be set from any settings file; the <code>/config</code> row is hidden while one does</span>
+      <span class="e-desc" data-en="Added the <code>workflowSizeGuideline</code> settings key so the advisory Dynamic workflow size guideline can be set from any settings file; the <code>/config</code> row is hidden while one does">어느 설정 파일에서도 Dynamic workflow size 가이드라인을 지정할 수 있는 <code>workflowSizeGuideline</code> 설정 키 추가; 설정 시 <code>/config</code> 행 숨김</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added nested subagent forwarding in stream-json: subagents spawned at depth-2+ now appear when <code>--forward-subagent-text</code> is set, keyed by their spawning Agent <code>tool_use</code> id</span>
+      <span class="e-desc" data-en="Added nested subagent forwarding in stream-json: subagents spawned at depth-2+ now appear when <code>--forward-subagent-text</code> is set, keyed by their spawning Agent <code>tool_use</code> id">stream-json에 중첩 서브에이전트 포워딩 추가: <code>--forward-subagent-text</code> 설정 시 depth-2+ 서브에이전트가 스폰한 Agent <code>tool_use</code> id로 키잉되어 출력</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added HTTP status and error text to <code>claude mcp list</code> and <code>/mcp</code> when a server fails to connect, and a warning for MCP config values with hidden leading or trailing whitespace</span>
+      <span class="e-desc" data-en="Added HTTP status and error text to <code>claude mcp list</code> and <code>/mcp</code> when a server fails to connect, and a warning for MCP config values with hidden leading or trailing whitespace">서버 연결 실패 시 <code>claude mcp list</code>·<code>/mcp</code>에 HTTP 상태·오류 텍스트 추가, 앞뒤 숨겨진 공백이 있는 MCP 설정값 경고 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added structured failure categories to self-hosted runner spawn and session failures, so hook errors, runner crashes and config errors can be told apart</span>
+      <span class="e-desc" data-en="Added structured failure categories to self-hosted runner spawn and session failures, so hook errors, runner crashes and config errors can be told apart">self-hosted runner 스폰·세션 실패에 구조화된 실패 카테고리 추가 — 훅 오류·러너 크래시·설정 오류 구분 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed dynamic workflows to default to a medium size guideline (aim for fewer than 15 agents); pick another size or unrestricted with Dynamic workflow size in <code>/config</code></span>
+      <span class="e-desc" data-en="Changed dynamic workflows to default to a medium size guideline (aim for fewer than 15 agents); pick another size or unrestricted with Dynamic workflow size in <code>/config</code>">동적 워크플로의 기본 크기 가이드라인을 medium(에이전트 15개 미만 목표)으로 변경; <code>/config</code>의 Dynamic workflow size로 다른 크기·무제한 선택 가능</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed managed MCP allowlist/denylist <code>${VAR}</code> entries to resolve from the startup environment and managed-settings env instead of settings-file env</span>
+      <span class="e-desc" data-en="Changed managed MCP allowlist/denylist <code>${VAR}</code> entries to resolve from the startup environment and managed-settings env instead of settings-file env">관리형 MCP allowlist/denylist의 <code>${VAR}</code> 항목이 설정 파일 env 대신 시작 환경·managed-settings env에서 해석되도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed the <code>/model</code> picker to highlight only the newest model's name, so the highlight marks the new release rather than an arbitrary subset of the list</span>
+      <span class="e-desc" data-en="Changed the <code>/model</code> picker to highlight only the newest model's name, so the highlight marks the new release rather than an arbitrary subset of the list"><code>/model</code> 피커가 가장 최신 모델 이름만 강조하도록 변경 — 임의 목록이 아닌 새 릴리즈를 명확히 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added the current default workflow size to the running-workflow status line, with a pointer to <code>/config</code> for changing it</span>
+      <span class="e-desc" data-en="Added the current default workflow size to the running-workflow status line, with a pointer to <code>/config</code> for changing it">실행 중인 워크플로 상태 표시줄에 현재 기본 워크플로 크기 추가, <code>/config</code>에서 변경 안내 포함</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed Opus 4.7 from fast mode; <code>/fast</code> now applies to Opus 5 and Opus 4.8</span>
+      <span class="e-desc" data-en="Removed Opus 4.7 from fast mode; <code>/fast</code> now applies to Opus 5 and Opus 4.8">fast mode에서 Opus 4.7 제거; <code>/fast</code>가 이제 Opus 5·Opus 4.8에 적용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Updated the claude-api skill to default to Claude Opus 5, with a migration path from Opus 4.8</span>
+      <span class="e-desc" data-en="Updated the claude-api skill to default to Claude Opus 5, with a migration path from Opus 4.8">claude-api 스킬이 기본적으로 Claude Opus 5를 사용하도록 업데이트, Opus 4.8 마이그레이션 경로 포함</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Subagents can now spawn nested subagents up to depth 3 by default (was 1); set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 to disable nesting</span>
+      <span class="e-desc" data-en="Subagents can now spawn nested subagents up to depth 3 by default (was 1); set CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 to disable nesting">서브에이전트가 기본적으로 최대 depth 3까지 중첩 서브에이전트 스폰 가능(이전: 1); 중첩 비활성화하려면 CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 설정</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
