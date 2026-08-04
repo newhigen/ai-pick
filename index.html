@@ -913,6 +913,28 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.212</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-08-04">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">Ctrl+Alt+F (VSCode)</div>
+        <h3 data-en="[VSCode] Focus view — hides tool activity behind expandable per-turn summary">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</h3>
+        <p data-en="Chat-menu toggle hiding tool activity behind a collapsible per-turn summary with a live running-tool indicator.">도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Long tool output no longer buries conversation — expand on demand"><strong>왜?</strong> 긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Toggle with Ctrl+Alt+F or &quot;Claude Code: Toggle Focus view&quot; command"><strong>학습:</strong> <code>Ctrl+Alt+F</code> 또는 "Claude Code: Toggle Focus view" 명령으로 전환</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.221</span><span class="dag"></span></div>
+      </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-08-04">
+        <div class="pick-tier t2" title="추천 — 확실히 유용">★★☆</div>
+        <div class="cmd">bg → commit · push</div>
+        <h3 data-en="bg sessions: always commit/push to preserve work — draft PR only when task calls for one">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</h3>
+        <p data-en="bg sessions commit and push to preserve work, open draft PR only when task needs one, and follow CLAUDE.md git instructions.">bg 세션 완료 시 커밋·푸시로 보존, draft PR은 작업이 요구할 때만, CLAUDE.md git 지침 준수.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> Previous behavior always opened a draft PR — now CLAUDE.md git instructions are honored"><strong>왜?</strong> 기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> Define git instructions in CLAUDE.md; conditions under which a draft PR opens"><strong>학습:</strong> CLAUDE.md에 git 지침 정의 방법; draft PR 열리는 조건</div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.221</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1680,6 +1702,11 @@
             <span class="cat-desc" data-en="Nested sub-agent spawning on by default (depth 3) since v2.1.219; set =1 to cap at one level (old behavior)">v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 <code>=1</code> 설정</span>
             <span class="cat-ver">v2.1.219</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/fork → own worktree</span>
+            <span class="cat-desc" data-en="/fork now creates a new worktree of its own instead of working in the original session's checkout">/fork가 원본 체크아웃 대신 자체 워크트리를 새로 생성</span>
+            <span class="cat-ver">v2.1.221</span>
+          </li>
         </ul>
       </div>
 
@@ -1833,6 +1860,11 @@
             <span class="cat-desc" data-en="s / S (substitute char/line) now work in NORMAL mode, matching real vim behavior">vim NORMAL 모드에서 s/S(substitute)가 실제 vim처럼 동작</span>
             <span class="cat-ver">v211</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">Ctrl+Alt+F</span>
+            <span class="cat-desc" data-en="[VSCode] Focus view: hides tool activity behind collapsible per-turn summary with live running-tool indicator">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시)</span>
+            <span class="cat-ver">v2.1.221</span>
+          </li>
         </ul>
       </div>
 
@@ -1898,6 +1930,11 @@
             <span class="cat-cmd">claude mcp list · /mcp</span>
             <span class="cat-desc" data-en="HTTP status and error text shown when MCP server fails to connect; warning for config values with hidden whitespace">MCP 서버 연결 실패 시 HTTP 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고</span>
             <span class="cat-ver">v2.1.218</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/plugin install 즉시 활성화</span>
+            <span class="cat-desc" data-en="/plugin installs now activate immediately when safe — no /reload-plugins required">/plugin으로 설치한 플러그인이 안전하면 즉시 활성화 — <code>/reload-plugins</code> 불필요</span>
+            <span class="cat-ver">v2.1.221</span>
           </li>
         </ul>
       </div>
@@ -2065,6 +2102,11 @@
             <span class="cat-cmd">sandbox.network.strictAllowlist</span>
             <span class="cat-desc" data-en="Deny sandboxed commands from connecting to non-allowlisted hosts — no prompt, just block">샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단</span>
             <span class="cat-ver">v2.1.219</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">sandbox mode:"mask"</span>
+            <span class="cat-desc" data-en="Linux/WSL: sandboxed commands read a sentinel copy of credential files; proxy substitutes the real value on egress">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span>
+            <span class="cat-ver">v2.1.221</span>
           </li>
         </ul>
       </div>
@@ -2377,67 +2419,67 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with <code>Ctrl+Alt+F</code> or the "Claude Code: Toggle Focus view" command</span>
+      <span class="e-desc" data-en="[VSCode] Added Focus view: a chat-menu toggle that hides tool activity behind an expandable per-turn summary with a live running-tool indicator, toggled with <code>Ctrl+Alt+F</code> or the &quot;Claude Code: Toggle Focus view&quot; command">[VSCode] Focus view 추가 — 툴 활동을 턴별 요약으로 접어 숨기는 채팅 메뉴 토글, 실행 중인 툴 실시간 표시; <code>Ctrl+Alt+F</code> 또는 "Claude Code: Toggle Focus view" 명령으로 전환</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added <code>mode: "mask"</code> for sandbox credential files on Linux and WSL — sandboxed commands read a sentinel copy (the whole file, or just the spans captured by an <code>extract</code> regex) while the sandbox proxy substitutes the real value on egress; on macOS file masking falls back to <code>deny</code></span>
+      <span class="e-desc" data-en="Added <code>mode: &quot;mask&quot;</code> for sandbox credential files on Linux and WSL — sandboxed commands read a sentinel copy (the whole file, or just the spans captured by an <code>extract</code> regex) while the sandbox proxy substitutes the real value on egress; on macOS file masking falls back to <code>deny</code>">Linux·WSL 샌드박스 자격증명 파일에 <code>mode: "mask"</code> 추가 — 샌드박스 명령은 센티널 복사본(전체 파일 또는 <code>extract</code> 정규식 캡처 범위)을 읽고, 샌드박스 프록시가 이그레스 시 실제 값으로 대체; macOS에서는 <code>deny</code>로 폴백</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added warnings to <code>claude plugin validate</code> when a marketplace or plugin name would be rejected by Claude Desktop's managed marketplace sync</span>
+      <span class="e-desc" data-en="Added warnings to <code>claude plugin validate</code> when a marketplace or plugin name would be rejected by Claude Desktop's managed marketplace sync">마켓플레이스 또는 플러그인 이름이 Claude Desktop 관리형 마켓플레이스 동기화에서 거부될 때 <code>claude plugin validate</code>에 경고 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a <code>prompt-audit</code> subcommand to the <code>claude-api</code> skill for auditing prompts and tool descriptions for patterns written for older models</span>
+      <span class="e-desc" data-en="Added a <code>prompt-audit</code> subcommand to the <code>claude-api</code> skill for auditing prompts and tool descriptions for patterns written for older models"><code>claude-api</code> 스킬에 구형 모델용 패턴을 검사하는 <code>prompt-audit</code> 서브커맨드 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed background sessions to commit and push to preserve work, open a draft PR only when the task calls for one, follow your CLAUDE.md git instructions, and always end by reporting where the work lives</span>
+      <span class="e-desc" data-en="Changed background sessions to commit and push to preserve work, open a draft PR only when the task calls for one, follow your CLAUDE.md git instructions, and always end by reporting where the work lives">백그라운드 세션이 작업 보존을 위해 커밋·푸시하고, 필요할 때만 draft PR을 열며, CLAUDE.md git 지침을 따르고, 항상 작업 위치를 보고하며 종료하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/plugin install</code> to refresh a stale marketplace catalog and retry before reporting a plugin not found</span>
+      <span class="e-desc" data-en="Changed <code>/plugin install</code> to refresh a stale marketplace catalog and retry before reporting a plugin not found"><code>/plugin install</code>이 플러그인 미발견 보고 전 오래된 마켓플레이스 카탈로그를 갱신 후 재시도하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed plugins installed from <code>/plugin</code> to activate immediately when safe, instead of always requiring <code>/reload-plugins</code></span>
+      <span class="e-desc" data-en="Changed plugins installed from <code>/plugin</code> to activate immediately when safe, instead of always requiring <code>/reload-plugins</code>"><code>/plugin</code>으로 설치한 플러그인이 안전한 경우 <code>/reload-plugins</code> 없이 즉시 활성화되도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed plugins to accept <code>"."</code> as a <code>skills</code> path, and the root-level <code>SKILL.md</code> validation error now suggests using the plugin root</span>
+      <span class="e-desc" data-en="Changed plugins to accept <code>&quot;.&quot;</code> as a <code>skills</code> path, and the root-level <code>SKILL.md</code> validation error now suggests using the plugin root">플러그인이 <code>skills</code> 경로로 <code>"."</code>을 허용하도록 변경, 루트 레벨 <code>SKILL.md</code> 유효성 오류가 플러그인 루트 사용을 제안하도록 개선</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/status</code> to show the session kind: <code>interactive</code>, or a background job that is <code>attached</code> or <code>unattended</code></span>
+      <span class="e-desc" data-en="Changed <code>/status</code> to show the session kind: <code>interactive</code>, or a background job that is <code>attached</code> or <code>unattended</code>"><code>/status</code>가 세션 종류(<code>interactive</code>, 또는 <code>attached</code>·<code>unattended</code> 백그라운드 작업)를 표시하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed emoji autocomplete to accept common alternate shortcodes like <code>:thumbsup:</code>, <code>:thumbsdown:</code>, and <code>:love:</code></span>
+      <span class="e-desc" data-en="Changed emoji autocomplete to accept common alternate shortcodes like <code>:thumbsup:</code>, <code>:thumbsdown:</code>, and <code>:love:</code>">이모지 자동완성이 <code>:thumbsup:</code>·<code>:thumbsdown:</code>·<code>:love:</code> 등 일반적인 대체 단축코드를 허용하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed sessions forked with <code>/fork</code> to create a new worktree of their own instead of working in the original session's checkout</span>
+      <span class="e-desc" data-en="Changed sessions forked with <code>/fork</code> to create a new worktree of their own instead of working in the original session's checkout"><code>/fork</code>으로 분기된 세션이 원본 세션의 체크아웃 대신 자체 새 워크트리를 생성하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Claude in Chrome to close the browser tabs it opens once it no longer needs them</span>
+      <span class="e-desc" data-en="Changed Claude in Chrome to close the browser tabs it opens once it no longer needs them">Chrome의 Claude가 더 이상 필요 없어진 브라우저 탭을 닫도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed fast mode to report on the stream when usage credits run out mid-session, instead of failing silently</span>
+      <span class="e-desc" data-en="Changed fast mode to report on the stream when usage credits run out mid-session, instead of failing silently">fast mode가 세션 도중 사용 크레딧 소진 시 조용히 실패하는 대신 스트림에 보고하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Monitor: a watch that exits without producing any output now says so instead of reporting "stream ended"</span>
+      <span class="e-desc" data-en="Changed Monitor: a watch that exits without producing any output now says so instead of reporting &quot;stream ended&quot;">Monitor 변경 — 출력 없이 종료된 감시가 "stream ended" 대신 그 사실을 명시하도록 변경</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed the Gateway <code>model</code> field validation: non-string values are rejected with a 400 instead of being forwarded</span>
+      <span class="e-desc" data-en="Changed the Gateway <code>model</code> field validation: non-string values are rejected with a 400 instead of being forwarded">Gateway <code>model</code> 필드 유효성 검사 변경 — 문자열이 아닌 값은 전달 대신 400으로 거부</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed the repeated "Permission mode changed while the auto-mode classifier call was queued" notice from approval prompts</span>
+      <span class="e-desc" data-en="Removed the repeated &quot;Permission mode changed while the auto-mode classifier call was queued&quot; notice from approval prompts">승인 프롬프트에서 반복되던 "Permission mode changed while the auto-mode classifier call was queued" 알림 제거</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -15600,6 +15642,13 @@
 
     <div class="news-sec-head"><h2 data-en="Industry moves">동향</h2><span class="sub" data-en="funding · partnerships · benchmarks">펀딩 · 파트너십 · 벤치마크</span></div>
     <div class="news-feed">
+      <a class="feed-item" href="https://www.anthropic.com/news/tino-cuellar" target="_blank" rel="noopener noreferrer">
+        <span class="feed-date" data-en="Aug 4">8월 4일</span>
+        <span class="feed-ago" data-date="2026-08-04"></span>
+        <span class="src src-anthropic feed-src">Anthropic</span>
+        <span class="feed-body"><span class="feed-title">Tino Cuellar joins Anthropic as Chief Global Affairs Officer</span> <span class="feed-desc" data-en="Anthropic appoints Tino Cuellar as Chief Global Affairs Officer.">Anthropic, Tino Cuellar를 최고 글로벌 업무 책임자(CGAO)로 영입.</span></span>
+        <span class="feed-tier t1" title="일반">★☆☆</span>
+      </a>
       <a class="feed-item" href="https://www.anthropic.com/news/position-open-weights-models" target="_blank" rel="noopener noreferrer">
         <span class="feed-date" data-en="Jul 28">7월 28일</span>
         <span class="feed-ago" data-date="2026-07-28"></span>
