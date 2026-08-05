@@ -1545,6 +1545,14 @@
             <span class="sf-title">Investigating three real-world incidents in our cybersecurity evaluations</span>
             <span class="sf-desc" data-en="How Anthropic investigated three real-world cybersecurity incidents to refine its AI safety evaluations.">실제 사이버 공격 사례 3건으로 Anthropic AI 사이버보안 평가 방법론 공개.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/a-guide-to-cost-visibility-and-control-in-claude" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">A guide to cost visibility and control in Claude</span>
+            <span class="sf-desc" data-en="Guide to cost visibility and spend controls in Claude.">Claude 비용 가시성·지출 제어 활용 가이드.</span>
+          </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/claude-enterprise-inference-hooks" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Inference hooks: inline DLP for Claude Enterprise</span>
+            <span class="sf-desc" data-en="Inline data loss prevention with inference hooks for Claude Enterprise.">Claude Enterprise 인퍼런스 훅 — 인라인 DLP로 민감 데이터 실시간 차단.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -2108,6 +2116,11 @@
             <span class="cat-desc" data-en="Linux/WSL: sandboxed commands read a sentinel copy of credential files; proxy substitutes the real value on egress">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span>
             <span class="cat-ver">v2.1.221</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">Remote Control auto-start</span>
+            <span class="cat-desc" data-en="Repo-local settings (.claude/settings.json) can no longer enable Remote Control auto-start — enable at user scope via /config">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — <code>/config</code>로 사용자 범위에서 설정</span>
+            <span class="cat-ver">v2.1.222</span>
+          </li>
         </ul>
       </div>
 
@@ -2419,11 +2432,11 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed Remote Control auto-start so repo-local settings (<code>.claude/settings.json</code> or <code>.claude/settings.local.json</code>) can no longer turn it on (they can still turn it off); enable it at user scope via <code>/config</code></span>
+      <span class="e-desc" data-en="Changed Remote Control auto-start so repo-local settings (<code>.claude/settings.json</code> or <code>.claude/settings.local.json</code>) can no longer turn it on (they can still turn it off); enable it at user scope via <code>/config</code>">저장소 로컬 설정(<code>.claude/settings.json</code> 또는 <code>.claude/settings.local.json</code>)이 Remote Control 자동 시작을 켤 수 없도록 변경(끄기는 여전히 가능); 사용자 범위에서 활성화하려면 <code>/config</code> 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Removed ultraplan feature</span>
+      <span class="e-desc" data-en="Removed ultraplan feature">ultraplan 기능 제거</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
@@ -15673,6 +15686,24 @@
           <h3 data-en="Plan Mode: Think Before Acting">Plan Mode — 실행 전 계획 수립</h3>
           <p data-en="Manus outlines a plan before acting — more deliberate, accurate task execution.">실행 전 계획을 먼저 수립 — 더 신중하고 정확한 작업 진행.</p>
           <div class="feat-foot"><span class="news-date" data-date="2026-07-22"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-wide-research-solve-context-problem" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Wide Research: Beyond the Context Window">Wide Research — 컨텍스트 창 너머</h3>
+          <p data-en="Wide Research scales across many parallel agents to overcome context window limits.">병렬 에이전트로 컨텍스트 창 한계를 극복하는 Wide Research 동작 원리.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-08-05"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-slack-integration" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Manus for Slack: Collaborate smarter">Manus for Slack — 더 스마트한 협업</h3>
+          <p data-en="Collaborate smarter with Manus agents directly inside Slack.">Slack 안에서 Manus 에이전트로 팀 협업 강화.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-08-05"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
+        </a>
+        <a class="news-card feat-card" onclick="return openSheet(this)" href="https://manus.im/blog/manus-notion-mcp-use-cases" target="_blank" rel="noopener noreferrer">
+          <div class="pick-tier t2" title="주요 — 확실히 유용">★★☆</div>
+          <h3 data-en="Manus with Notion MCP: 5 ways to transform work">Manus × Notion MCP — 실전 활용 5가지</h3>
+          <p data-en="5 ways users are transforming work with Manus and Notion MCP.">Manus와 Notion MCP를 연결한 업무 혁신 실전 사례 5가지.</p>
+          <div class="feat-foot"><span class="news-date" data-date="2026-08-05"></span><span class="news-arrow" data-en="Read →">원문 →</span></div>
         </a>
       </div>
     </div>
