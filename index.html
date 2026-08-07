@@ -935,6 +935,17 @@
         </div>
         <div class="ver"><span class="vtag">v2.1.221</span><span class="dag"></span></div>
       </div>
+      <div class="pick-card" onclick="openDoc(this)" data-date="2026-08-06">
+        <div class="pick-tier t1" title="일반">★☆☆</div>
+        <div class="cmd">/review · /code-review</div>
+        <h3 data-en="/review is now an alias for /code-review; effort level persists across calls">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</h3>
+        <p data-en="/review is now an alias of /code-review &lt;level&gt; &lt;pr#&gt;; /code-review with no level reuses the last one."><code>/review</code>가 <code>/code-review</code>의 별칭으로 통합 — effort 미지정 시 마지막 설정 재사용.</p>
+        <div class="pick-meta">
+          <div class="pick-why" data-en="<strong>Why</strong> /review now accepts level and PR number — /review medium 123 works"><strong>왜?</strong> <code>/review medium 123</code>처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</div>
+          <div class="pick-check" data-en="<strong>Learn:</strong> /review &lt;level&gt; &lt;pr#&gt; usage; /code-review ultra for deep cloud review"><strong>학습:</strong> <code>/review &lt;level&gt; &lt;pr#&gt;</code> 사용법; 딥 리뷰는 <code>/code-review ultra</code></div>
+        </div>
+        <div class="ver"><span class="vtag">v2.1.223</span><span class="dag"></span></div>
+      </div>
     </div>
     <div class="pick-grid period-grid hidden" data-section="pick" data-period="2026-05">
       <div class="pick-card" onclick="openDoc(this)" data-date="2026-05-21">
@@ -1553,6 +1564,10 @@
             <span class="sf-title">Inference hooks: inline DLP for Claude Enterprise</span>
             <span class="sf-desc" data-en="Inline data loss prevention with inference hooks for Claude Enterprise.">Claude Enterprise 인퍼런스 훅 — 인라인 DLP로 민감 데이터 실시간 차단.</span>
           </a>
+          <a class="side-feat" onclick="return openSheet(this)" href="https://claude.com/blog/millennium-and-anthropic-are-building-a-digital-risk-analyst-with-claude" target="_blank" rel="noopener noreferrer">
+            <span class="sf-title">Millennium and Anthropic: digital risk analyst with Claude</span>
+            <span class="sf-desc" data-en="Millennium and Anthropic are building a digital risk analyst powered by Claude.">Millennium과 Anthropic, Claude 기반 디지털 리스크 분석 에이전트 구축.</span>
+          </a>
         </div>
         </aside>
       </div>
@@ -1761,6 +1776,11 @@
             <span class="cat-desc" data-en="/code-review now runs as a background subagent — review no longer fills the conversation">/code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음</span>
             <span class="cat-ver">v2.1.218</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">/review</span>
+            <span class="cat-desc" data-en="/review is now an alias of /code-review &lt;level&gt; &lt;pr#&gt;; /code-review with no level reuses the last used level">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 레벨 재사용</span>
+            <span class="cat-ver">v2.1.223</span>
+          </li>
         </ul>
       </div>
 
@@ -1801,6 +1821,11 @@
             <span class="cat-cmd">/context 초과 경고</span>
             <span class="cat-desc" data-en="Explicit warning when context window exceeded; failed /compact shows as error — not silent">컨텍스트 초과 시 명시적 경고 — <code>/compact</code> 실패도 에러로 표시 (무응답 없음)</span>
             <span class="cat-ver">v2.1.216</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">CLAUDE_CODE_DISABLE_1M_CONTEXT</span>
+            <span class="cat-desc" data-en="Now applies to all Claude models with a native 1M window (not just a fixed list) — auto-compacts to 200K; startup warning when compaction can't hold 200K">네이티브 1M 창 모든 모델에 적용 확대 — auto-compact로 200K 유지; 미유지 시 시작 경고</span>
+            <span class="cat-ver">v2.1.223</span>
           </li>
         </ul>
       </div>
@@ -1872,6 +1897,11 @@
             <span class="cat-cmd">Ctrl+Alt+F</span>
             <span class="cat-desc" data-en="[VSCode] Focus view: hides tool activity behind collapsible per-turn summary with live running-tool indicator">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시)</span>
             <span class="cat-ver">v2.1.221</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">claude --teleport &lt;id&gt;</span>
+            <span class="cat-desc" data-en="Cloud sessions now show a /teleport hint to continue locally with claude --teleport &lt;session id&gt;">클라우드 세션에서 로컬 계속 방법 힌트 자동 표시 — <code>claude --teleport &lt;session id&gt;</code></span>
+            <span class="cat-ver">v2.1.223</span>
           </li>
         </ul>
       </div>
@@ -2120,6 +2150,11 @@
             <span class="cat-cmd">Remote Control auto-start</span>
             <span class="cat-desc" data-en="Repo-local settings (.claude/settings.json) can no longer enable Remote Control auto-start — enable at user scope via /config">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — <code>/config</code>로 사용자 범위에서 설정</span>
             <span class="cat-ver">v2.1.222</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">"owner/*"</span>
+            <span class="cat-desc" data-en="strictKnownMarketplaces and blockedMarketplaces now support &quot;owner/*&quot; wildcard to allow/block all repos under a GitHub org"><code>strictKnownMarketplaces</code>·<code>blockedMarketplaces</code>에 <code>"owner/*"</code> 와일드카드 추가 — GitHub org 전체 허용·차단</span>
+            <span class="cat-ver">v2.1.223</span>
           </li>
         </ul>
       </div>
@@ -2432,31 +2467,31 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added owner wildcard entries (<code>"owner/*"</code>) to the <code>strictKnownMarketplaces</code> and <code>blockedMarketplaces</code> managed settings for allowing or blocking all marketplace repos under a GitHub org</span>
+      <span class="e-desc" data-en="Added owner wildcard entries (<code>&quot;owner/*&quot;</code>) to the <code>strictKnownMarketplaces</code> and <code>blockedMarketplaces</code> managed settings for allowing or blocking all marketplace repos under a GitHub org">GitHub org 아래 전체 마켓플레이스 저장소를 허용·차단하기 위해 <code>strictKnownMarketplaces</code>·<code>blockedMarketplaces</code> 관리형 설정에 오너 와일드카드 항목(<code>"owner/*"</code>) 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a warning when workflow agents, forked skills, slash commands, or resumed background agents' requested subagent model is restricted and the parent model runs instead</span>
+      <span class="e-desc" data-en="Added a warning when workflow agents, forked skills, slash commands, or resumed background agents' requested subagent model is restricted and the parent model runs instead">워크플로 에이전트·포크된 스킬·슬래시 커맨드·재개된 백그라운드 에이전트가 요청한 서브에이전트 모델이 제한되어 부모 모델이 대신 실행될 때 경고 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a <code>/teleport</code> hint in cloud sessions showing how to continue locally with <code>claude --teleport &lt;session id&gt;</code></span>
+      <span class="e-desc" data-en="Added a <code>/teleport</code> hint in cloud sessions showing how to continue locally with <code>claude --teleport &lt;session id&gt;</code>">클라우드 세션에서 <code>claude --teleport &lt;session id&gt;</code>로 로컬 계속 방법을 안내하는 <code>/teleport</code> 힌트 추가</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>CLAUDE_CODE_DISABLE_1M_CONTEXT</code> to hold every Claude model with a native 1M window to 200K via auto-compaction, not just a fixed list; a startup warning now appears when auto-compaction isn't holding the session to 200K</span>
+      <span class="e-desc" data-en="Changed <code>CLAUDE_CODE_DISABLE_1M_CONTEXT</code> to hold every Claude model with a native 1M window to 200K via auto-compaction, not just a fixed list; a startup warning now appears when auto-compaction isn't holding the session to 200K"><code>CLAUDE_CODE_DISABLE_1M_CONTEXT</code>가 고정 목록이 아닌 네이티브 1M 윈도를 가진 모든 Claude 모델을 auto-compaction으로 200K로 제한하도록 변경; auto-compaction이 세션을 200K로 유지하지 못할 때 시작 경고 표시</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed auto-compact to keep sessions on unrecognized model IDs within the assumed context window instead of letting them grow past it; set <code>CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1</code> to restore the previous behavior</span>
+      <span class="e-desc" data-en="Changed auto-compact to keep sessions on unrecognized model IDs within the assumed context window instead of letting them grow past it; set <code>CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1</code> to restore the previous behavior">auto-compact가 알 수 없는 모델 ID의 세션을 컨텍스트 윈도 범위 안에 유지하도록 변경; 이전 동작으로 되돌리려면 <code>CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1</code> 설정</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/review</code> to be an alias of <code>/code-review</code>, which reviews the current diff or a PR (<code>/code-review &lt;level&gt; &lt;pr#&gt;</code>); use <code>/code-review ultra</code> for a deep cloud review</span>
+      <span class="e-desc" data-en="Changed <code>/review</code> to be an alias of <code>/code-review</code>, which reviews the current diff or a PR (<code>/code-review &lt;level&gt; &lt;pr#&gt;</code>); use <code>/code-review ultra</code> for a deep cloud review"><code>/review</code>를 현재 diff 또는 PR을 검토하는 <code>/code-review</code>의 별칭으로 변경(<code>/code-review &lt;level&gt; &lt;pr#&gt;</code>); 심층 클라우드 리뷰는 <code>/code-review ultra</code> 사용</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Changed <code>/code-review</code> with no effort level to reuse the level you typed last; type a level like <code>/code-review high</code> to change it</span>
+      <span class="e-desc" data-en="Changed <code>/code-review</code> with no effort level to reuse the level you typed last; type a level like <code>/code-review high</code> to change it">effort 레벨 없이 <code>/code-review</code> 실행 시 마지막으로 입력한 레벨 재사용; <code>/code-review high</code>처럼 레벨을 입력해 변경</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
