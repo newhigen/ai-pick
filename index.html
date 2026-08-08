@@ -1773,6 +1773,11 @@
             <span class="cat-desc" data-en="Sessions discover each other with ListAgents and send messages across machines (macOS/Linux)"><code>ListAgents</code>로 세션 탐색, <code>SendMessage</code>로 어느 머신의 세션에든 메시지 전송 (macOS·Linux)</span>
             <span class="cat-ver">v2.1.224</span>
           </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">SendMessage RC 이름 지정</span>
+            <span class="cat-desc" data-en="Initiate a conversation with Remote Control sessions on other machines by name — &quot;name [ref]&quot; from ListAgents"><code>ListAgents</code>에 표시된 이름으로 다른 머신의 Remote Control 세션에 직접 대화 시작 (답장 대기 불필요)</span>
+            <span class="cat-ver">v2.1.225</span>
+          </li>
         </ul>
       </div>
 
@@ -1869,6 +1874,11 @@
             <span class="cat-cmd">CLAUDE_CODE_DISABLE_1M_CONTEXT</span>
             <span class="cat-desc" data-en="Now applies to all Claude models with a native 1M window (not just a fixed list) — auto-compacts to 200K; startup warning when compaction can't hold 200K">네이티브 1M 창 모든 모델에 적용 확대 — auto-compact로 200K 유지; 미유지 시 시작 경고</span>
             <span class="cat-ver">v2.1.223</span>
+          </li>
+          <li class="cat-item" onclick="openDoc(this)">
+            <span class="cat-cmd">gateway spend-limit</span>
+            <span class="cat-desc" data-en="Usage warning now names the gateway spend cap, its reset time, and the operator&apos;s message when the limit is reached">한도 도달 시 gateway 지출 한도명·리셋 시간·운영자 메시지를 경고에 표시 (gateway 2.1.225+ 필요)</span>
+            <span class="cat-ver">v2.1.225</span>
           </li>
         </ul>
       </div>
@@ -2520,7 +2530,7 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Bug fixes and reliability improvements</span>
+      <span class="e-desc" data-en="Bug fixes and reliability improvements">버그 수정 및 안정성 개선</span>
     </div>
   </div>
 
@@ -2532,23 +2542,23 @@
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225)</span>
+      <span class="e-desc" data-en="Added gateway spend-limit support to Claude Code's usage warning; the limit-reached message now names the cap, its reset time, and the operator's message (requires the gateway on 2.1.225)">Claude Code 사용 경고에 게이트웨이 지출 한도 지원 추가; 한도 도달 메시지에 한도·초기화 시간·운영자 메시지 표시 (게이트웨이 2.1.225 이상 필요)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">Added a workspace trust prompt to <code>claude agents</code> for untrusted directories, matching the behavior of <code>claude</code></span>
+      <span class="e-desc" data-en="Added a workspace trust prompt to <code>claude agents</code> for untrusted directories, matching the behavior of <code>claude</code>">신뢰되지 않은 디렉터리에 대해 <code>claude agents</code>에 워크스페이스 신뢰 프롬프트 추가 (<code>claude</code>와 동일한 동작)</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">[VSCode] Fixed Focus view folding away the latest to-do list, a pending question's context, and settled answers; thinking-only folds show "Thought for Ns" and re-collapse when their turn completes</span>
+      <span class="e-desc" data-en="[VSCode] Fixed Focus view folding away the latest to-do list, a pending question's context, and settled answers; thinking-only folds show &quot;Thought for Ns&quot; and re-collapse when their turn completes">[VSCode] Focus view가 최신 할 일 목록·대기 중인 질문 컨텍스트·확정된 답변을 접어 숨기던 버그 수정; 생각만 있는 폴드는 &quot;Thought for Ns&quot; 표시 후 턴 완료 시 재접힘</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">SendMessage can now start a conversation with your Remote Control sessions on other machines by name (<code>ListAgents</code> shows them as <code>name [ref]</code>), instead of only replying after they message you first</span>
+      <span class="e-desc" data-en="SendMessage can now start a conversation with your Remote Control sessions on other machines by name (<code>ListAgents</code> shows them as <code>name [ref]</code>), instead of only replying after they message you first">SendMessage가 이제 원격 머신의 Remote Control 세션에 이름으로 대화를 먼저 시작할 수 있음 (<code>ListAgents</code>에서 <code>name [ref]</code>로 표시); 이전엔 먼저 메시지를 받아야만 응답 가능했음</span>
     </div>
     <div class="entry row-divider" data-type="feature">
       <span class="pill feature">기능</span>
-      <span class="e-desc">SendMessage: a Remote Control recipient you already confirmed is never swapped for a same-named session on this machine when its own list couldn't be checked</span>
+      <span class="e-desc" data-en="SendMessage: a Remote Control recipient you already confirmed is never swapped for a same-named session on this machine when its own list couldn't be checked">SendMessage: 이미 확인한 Remote Control 수신자는 해당 목록 조회 실패 시에도 로컬 동명 세션으로 교체되지 않음</span>
     </div>
     <div class="tabs-container">
       <div class="tabs-bar">
