@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://today.sungd.uk/sitemap.xml
+Sitemap: https://ai.sungd.uk/sitemap.xml

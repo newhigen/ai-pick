@@ -3,7 +3,7 @@
 
 Claude Code 릴리스마다 '지금 써볼 만한 변화'를 골라주는 changelog 큐레이션.
 
-🔗 **라이브 데모 · 케이스 스터디** → https://sungd.uk/projects/claude-code-tracking
+🔗 **라이브 데모 · 케이스 스터디** → https://resume.sungd.uk/projects/claude-code-tracking
 
 ## 이렇게 쓴다
 
@@ -13,7 +13,7 @@ Claude Code 릴리스마다 '지금 써볼 만한 변화'를 골라주는 change
 
 Claude Code changelog 큐레이션 — 매 릴리스에서 "오늘 써볼 만한 것"을 골라준다.
 
-**Live**: [today.sungd.uk](https://today.sungd.uk)
+**Live**: [ai.sungd.uk](https://ai.sungd.uk)
 
 ## 뭐가 다른가
 
