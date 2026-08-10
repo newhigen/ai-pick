@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>해볼 것 체크리스트</title>
+<title>세 탭 전체</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 16.5 L11 22 L26 8' fill='none' stroke='%234f46c5' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&display=swap">
@@ -10,7 +10,8 @@
   --bg:#fff; --text:#17171a; --muted:#6f6f78; --faint:#a2a2aa;
   --line:#f0f0ed; --line2:#e3e3df; --hover:#faf9fe;
   --accent:#4f46c5; --accent-bg:#f2f1fd; --accent-line:#dad7f8;
-  --cc:#b95f3d; --cx:#75757f; --mn:#3b74c4;
+  --cc:#b95f3d; --cx:#75757f;
+  --feature:#1a7f4b; --improve:#2563c9; --fix:#b4690e; --security:#c8453a;
   --sans:"Inter Tight",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
   --mono:"Google Sans Code",ui-monospace,"SF Mono",Menlo,monospace;
 }
@@ -18,27 +19,37 @@ html{color-scheme:light}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;
      -webkit-font-smoothing:antialiased}
 
-.top{border-bottom:1px solid var(--line2)}
-.tin{max-width:900px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:18px}
+.top{border-bottom:1px solid var(--line2);position:sticky;top:0;background:#fff;z-index:5}
+.tin{max-width:1080px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:18px}
 .brand{font-family:var(--mono);font-size:13px;white-space:nowrap}
 .brand i{color:var(--accent);font-style:normal}
 .nav{display:flex;gap:15px}
-.nav a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;cursor:pointer}
+.nav a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;cursor:pointer;
+       padding-bottom:1px}
 .nav a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
-.nav a.tool{color:var(--faint);font-size:12px}
-.nav a.tool:first-of-type{margin-left:6px;padding-left:16px;border-left:1px solid var(--line2)}
+.tools{display:none;gap:13px;margin-left:4px;padding-left:15px;border-left:1px solid var(--line2)}
+.tools.on{display:flex}
+.tools a{font-size:12.5px;color:var(--faint)}
+.tools a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.tp{display:none}.tp.on{display:block}
+h1 em{font-style:normal;color:var(--muted);font-weight:500;font-size:16px;margin-left:3px}
 .stamp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap}
 
-.wrap{max-width:900px;margin:0 auto;padding:22px 20px 80px}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 20px 80px}
+.view{display:none}.view.on{display:block}
 h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 .meta{margin-top:3px;font-size:12.5px;color:var(--faint)}
 
-.bar{margin-top:16px;display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--muted)}
+.bar{margin-top:16px;display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--muted);
+     flex-wrap:wrap}
 .bar .n{font-family:var(--mono);color:var(--text)}
-.bar .track{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden;max-width:220px}
+.bar .track{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden;max-width:200px}
 .bar .fill{height:100%;background:var(--accent);width:0;transition:width .18s}
-.bar label{margin-left:auto;display:flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap}
+.bar label{display:flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap}
+.bar .right{margin-left:auto;display:flex;gap:12px;align-items:center}
 .bar input{accent-color:var(--accent);margin:0}
+.bar .f{cursor:pointer;color:var(--muted)}
+.bar .f.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
 
 .band{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:13px;
       border:1px solid var(--accent-line);background:var(--accent-bg);border-radius:5px;padding:6px 11px}
@@ -57,31 +68,66 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 
 .it{border-bottom:1px solid var(--line)}
 .it .hd{display:grid;grid-template-columns:16px 150px minmax(0,1fr) auto 20px;gap:10px;
-        align-items:baseline;padding:6px 0}
+        align-items:baseline;padding:6px 0;cursor:pointer}
 .it .hd:hover{background:var(--hover)}
 .it input{margin:0;align-self:center;accent-color:var(--accent);cursor:pointer}
 .cmd{font-family:var(--mono);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cmd.dash{color:var(--faint)}
 .tt{font-size:13.5px;line-height:1.45;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .src{font-size:11px;color:var(--faint);white-space:nowrap;min-width:76px;text-align:right}
-.s-cc{color:var(--cc)}.s-cx{color:var(--cx)}.s-mn{color:var(--mn)}
-.tog{background:none;border:0;color:var(--faint);cursor:pointer;font-size:10px;align-self:center;
-     padding:0;transition:transform .15s}
-.it.open .tog{transform:rotate(180deg)}
+.s-cc{color:var(--cc)}.s-cx{color:var(--cx)}
+.tog{background:none;border:0;color:var(--faint);cursor:pointer;font-size:10px;align-self:center;padding:0}
+.it.open .tog,.vr.open .tog{transform:rotate(180deg)}
 .it .bd{display:none;padding:0 0 11px 26px}
 .it.open .bd{display:block}
 .bd .why{font-size:13px;color:var(--muted);margin-bottom:5px}
-.bd .how{background:var(--accent-bg);border:1px solid var(--accent-line);
-     border-radius:5px;padding:6px 10px;font-size:12.5px;line-height:1.55}
-.bd .how code{font-family:var(--mono);font-size:11.5px}
-.bd .how b{font-family:var(--sans);font-size:11px;color:var(--accent);font-weight:560;margin-right:6px}
-.bd .how.none{background:#fafaf9;border-color:var(--line2);color:var(--faint);font-style:normal}
+.bd .how{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:5px;
+     padding:6px 10px;font-size:12.5px;line-height:1.55}
+.bd .how b{font-size:11px;color:var(--accent);font-weight:560;margin-right:6px}
+.bd .how.none{background:#fafaf9;border-color:var(--line2);color:var(--faint)}
 .bd .how.none b{color:var(--faint)}
 .it.done .cmd,.it.done .tt{color:var(--faint);text-decoration:line-through}
-.it.hide{display:none}
+.it.hide,.vr.hide{display:none}
+
+/* 용도별 */
+.cols{margin-top:18px;columns:2;column-gap:38px}
+.cat{break-inside:avoid;margin-bottom:20px}
+.cat h3{font-size:12.5px;font-weight:600;padding-bottom:4px;border-bottom:1px solid var(--line2);
+        display:flex;align-items:baseline;gap:6px}
+.cat h3 b{font-family:var(--mono);font-size:10.5px;color:var(--faint);font-weight:400}
+.cat h3 i{margin-left:auto;font-style:normal;font-size:10.5px;color:var(--accent)}
+.row{display:grid;grid-template-columns:9px 150px minmax(0,1fr) auto;gap:9px;align-items:baseline;
+     padding:3px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.row:hover{background:var(--hover)}
+.mk{width:4px;height:4px;border-radius:50%;background:transparent;align-self:center;margin-left:3px}
+.is-new .mk{background:var(--accent)}
+.row .tt{color:var(--muted);font-size:13px}
+.dt{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;min-width:40px;
+    text-align:right}
+.is-new .dt{color:var(--accent)}
+
+/* 버전별 */
+.vr{border-bottom:1px solid var(--line)}
+.vh{display:grid;grid-template-columns:9px 92px 42px 54px minmax(0,1fr) 20px;gap:9px;align-items:baseline;
+    padding:5px 0;cursor:pointer}
+.vh:hover{background:var(--hover)}
+.vt{font-family:var(--mono);font-size:12px}
+.vd{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.va{font-size:11px;color:var(--faint)}
+.vc{display:flex;gap:8px;flex-wrap:wrap}
+.pc{font-size:11px;color:var(--faint)}
+.pc.p-feature{color:var(--feature)}.pc.p-improve{color:var(--improve)}
+.pc.p-fix{color:var(--fix)}.pc.p-security{color:var(--security)}
+.ve{display:none;list-style:none;padding:2px 0 11px 26px}
+.vr.open .ve{display:block}
+.ve li{font-size:13px;color:var(--muted);line-height:1.55;padding:2px 0;display:grid;
+       grid-template-columns:34px minmax(0,1fr);gap:9px}
+.ve li span{font-size:10.5px;color:var(--faint);padding-top:2px}
+.ve li.e-feature span{color:var(--feature)}.ve li.e-improve span{color:var(--improve)}
+.ve li.e-fix span{color:var(--fix)}.ve li.e-security span{color:var(--security)}
 
 .more{margin-top:16px;font-size:12.5px;color:var(--muted);cursor:pointer}
-.foot{margin-top:34px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+.foot{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
 .foot b{color:var(--muted);font-weight:500}
 .ex-h{margin-top:20px;font-size:12.5px;color:var(--text);font-weight:560}
 .ex-h i{font-style:normal;color:var(--faint);font-weight:400}
@@ -90,40 +136,43 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 .ex b{color:var(--text);font-weight:560}
 .ex code{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
 
-@media(max-width:720px){
+@media(max-width:760px){
+  .cols{columns:1}
   .tin{gap:12px;padding:10px 16px}.stamp{display:none}
   .nav{overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
   .wrap{padding:18px 16px 60px}
   .it .hd{grid-template-columns:16px minmax(0,1fr) 20px;gap:8px;align-items:start;padding:7px 0}
+  .row{grid-template-columns:9px minmax(0,1fr) auto;gap:8px;align-items:start}
   .cmd{grid-column:2;font-size:11px;color:var(--muted)}
-  .tt{grid-column:2;white-space:normal;overflow:visible}
+  .it .hd .tt,.row .tt{grid-column:2;white-space:normal;overflow:visible}
   .src{display:none}
   .it .bd{padding-left:24px}
+  .vh{grid-template-columns:9px minmax(0,1fr) auto 20px}
+  .vd,.vc{grid-column:2}.va{display:none}
 }
 </style>
 
 <div class="top"><div class="tin">
   <div class="brand"><i>&gt;_</i> Agent Edge</div>
-  <div class="nav"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a>
-    <a class="tool">Claude Code</a><a class="tool">Codex</a></div>
+  <div class="nav">
+    <a data-v="try" class="on">해볼 것</a><a data-v="use">용도별</a><a data-v="ver">버전별</a>
+    <span class="tools" id="tools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span>
+  </div>
   <div class="stamp">2026-08-10 05:50</div>
 </div></div>
 
 <div class="wrap">
-  <h1>해볼 것</h1>
-  <p class="meta">Claude Code · Codex 의 새 기능이 날짜순으로 쌓인다 · 해본 것에 체크</p>
 
-  <div class="bar">
-    <span class="n" id="cnt">0 / 34 해봄</span>
-    <span class="track"><span class="fill" id="fill"></span></span>
-    <label><input type="checkbox" id="onlyTodo"> 안 해본 것만</label>
-  </div>
-
-  <div class="band"><span class="d"></span>
-    <strong>새로 들어온 것 7개</strong><span>지난 방문 6일 전 이후</span>
-    <button id="readAll">모두 읽음</button></div>
-
-  <div id="list"><div class="day"><span>8.7</span><i>3일 전</i></div>
+  <!-- 해볼 것 -->
+  <div class="view on" id="v-try">
+    <h1>해볼 것</h1>
+    <p class="meta">Claude Code · Codex 의 새 기능이 날짜순으로 쌓인다 · 해본 것에 체크</p>
+    <div class="bar"><span class="n" id="cnt">0 / 34 해봄</span>
+      <span class="track"><span class="fill" id="fill"></span></span>
+      <span class="right"><label><input type="checkbox" id="onlyTodo"> 안 해본 것만</label></span></div>
+    <div class="band"><span class="d"></span><strong>새로 들어온 것 7개</strong>
+      <span>지난 방문 6일 전 이후</span><button id="readAll">모두 읽음</button></div>
+    <div id="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
 <div class="it is-new open" data-i="0">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">claude self-hosted-runner</span>
     <span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span>
@@ -382,32 +431,1289 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
 </div></div>
-  <div class="more">더 보기 (95개)</div>
-
-  <div class="gap">
-    <p class="foot" style="margin-top:34px">줄을 누르면 <b>왜</b>와 <b>해보기</b>가 펼쳐진다.
-    위에 보이는 해보기 줄은 지금 데이터에 있는 “확인할 것”을 그대로 끌어다 쓴 거라
-    <b>할 일이 아니라 목차</b>에 가깝다. 화면에 보이는 34개 중 23개에만 있고 나머지는 회색이다.</p>
+    <div class="more">더 보기 (95개)</div>
+    <p class="foot">줄을 누르면 <b>왜</b>와 <b>해보기</b>가 펼쳐진다. 해보기 줄은 화면의 34개 중
+    23개에만 있다 — 지금 데이터의 “확인할 것”을 끌어다 쓴 거라 <b>할 일이 아니라 목차</b>다.</p>
     <p class="ex-h">체크리스트로 쓰려면 이런 문장이어야 한다 <i>— 손으로 써본 예시, 지금 데이터엔 없음</i></p>
     <div class="ex">
-      <p><b>셀프 호스팅 러너</b><br>
-      <code>claude self-hosted-runner --help</code> 로 지원 플랜을 확인하고, 사내 서버 하나에 붙여 웹 세션을 한 번 띄워본다.</p>
-      <p><b>세션 간 SendMessage</b><br>
-      맥북과 다른 머신에서 각각 세션을 띄운 뒤 <code>ListAgents</code> 로 찾아 <code>SendMessage</code> 로 한 줄 보내본다.</p>
-      <p><b>--approve-for-me</b><br>
-      다음 Codex 작업을 <code>--approve-for-me</code> 로 한 번 돌리고, 승인 클릭이 몇 번 줄었는지 센다.</p>
+      <p><b>셀프 호스팅 러너</b><br><code>claude self-hosted-runner --help</code> 로 지원 플랜을 확인하고,
+      사내 서버 하나에 붙여 웹 세션을 한 번 띄워본다.</p>
+      <p><b>--approve-for-me</b><br>다음 Codex 작업을 <code>--approve-for-me</code> 로 한 번 돌리고,
+      승인 클릭이 몇 번 줄었는지 센다.</p>
     </div>
-    <p class="foot" style="margin-top:14px;border:0;padding:0">동사로 끝나고, 한 번에 끝나고, 끝났는지 스스로 판단된다.
-    이 줄을 매 항목마다 만들려면 큐레이션 프롬프트에 항목이 하나 늘어난다.</p>
   </div>
+
+  <!-- 용도별 -->
+  <div class="view" id="v-use">
+    <div class="tp t-cc on">
+      <h1>용도별 <em>Claude Code</em></h1>
+      <p class="meta">“이럴 때 뭐 썼더라” 를 위한 명령어 사전 · 8묶음 81개</p>
+      <div class="band"><span class="d"></span><strong>새 항목 14개</strong>
+        <span>지난 방문 이후 들어온 줄에 점</span><button>모두 읽음</button></div>
+      <div class="cols"><section class="cat"><h3>긴 작업을 맡길 때<b>5</b></h3>
+<a class="row"><span class="mk"></span><span class="cmd">/goal</span><span class="tt">완료 조건 후 자율 진행, 오버레이 표시</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">Ctrl+T</span><span class="tt">백그라운드 세션 고정 (유휴 시에도 유지)</span><span class="dt">5.21</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">terminalSequence</span><span class="tt">stop hook으로 데스크톱 알림</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">ultracode</span><span class="tt">동적 워크플로 — bg서 수십~수백 에이전트 오케스트레이션</span><span class="dt">5.28</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/config workflow size</span><span class="tt">동적 워크플로 에이전트 수 가이드라인 — small/medium/large 선택</span><span class="dt">7.6</span></a></section>
+<section class="cat"><h3>Subagent · 멀티 세션<b>18</b><i>새 3</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">Agent View</span><span class="tt">전체 세션 한 화면 (실행·대기·완료)</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/resume</span><span class="tt">bg 마크 세션도 목록에 표시</span><span class="dt">5.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">agents --json</span><span class="tt">스크립팅용 세션 목록 출력</span><span class="dt">5.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">agents --cwd</span><span class="tt">특정 디렉토리 범위 세션</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">agents flags</span><span class="tt">--model --effort --mcp-config 등 전달</span><span class="dt">5.14</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">bgIsolation:&quot;none&quot;</span><span class="tt">bg 세션이 worktree 없이 직접 편집</span><span class="dt">5.15</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/cd</span><span class="tt">세션 도중 작업 폴더 이동 — 프롬프트 캐시 유지</span><span class="dt">6.8</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/rewind</span><span class="tt">/clear 이전 시점으로 대화 복원 후 재개</span><span class="dt">6.24</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">Ctrl+X</span><span class="tt">에이전트 뷰에서 완료 세션 영구 삭제</span><span class="dt">7.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt">/fork는 대화 복사해 bg 세션 분기, 인세션 서브에이전트 실행은 /subtask</span><span class="dt">7.17</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/resume</span><span class="tt">에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개</span><span class="dt">7.17</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">subagentStatusLine effort</span><span class="tt">subagentStatusLine 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능</span><span class="dt">7.18</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/mcp · /install-github-app bg</span><span class="tt">bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시</span><span class="dt">7.20</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</span><span class="tt">동시 서브에이전트 상한 (기본 20) — 한 메시지의 무한 fan-out 방지</span><span class="dt">7.21</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</span><span class="tt">v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 =1 설정</span><span class="dt">7.24</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">/fork → own worktree</span><span class="tt">/fork가 원본 체크아웃 대신 자체 워크트리를 새로 생성</span><span class="dt">8.4</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt">ListAgents로 세션 탐색, SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux)</span><span class="dt">8.7</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage RC 이름 지정</span><span class="tt">ListAgents에 표시된 이름으로 다른 머신의 Remote Control 세션에 직접 대화 시작 (답장 대기 불필요)</span><span class="dt">8.8</span></a></section>
+<section class="cat"><h3>PR / 코드 리뷰<b>8</b><i>새 1</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt">effort 선택 + GitHub PR 인라인 코멘트</span><span class="dt">5.21</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/code-review ultra</span><span class="tt">비로그인 시에도 ultra 옵션 표시 — claude.ai 계정 필요 안내</span><span class="dt">6.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">attribution.sessionUrl</span><span class="tt">커밋·PR에서 claude.ai 세션 링크 제거 (web·Remote Control)</span><span class="dt">6.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/review</span><span class="tt">/review는 단일패스 복귀 — 멀티에이전트 리뷰는 /code-review &lt;level&gt; 사용</span><span class="dt">7.6</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/commit-push-pr</span><span class="tt">설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원</span><span class="dt">7.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt">자동 실행 제거 — 필요 시 /verify·/code-review 직접 호출</span><span class="dt">7.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/code-review bg</span><span class="tt">/code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음</span><span class="dt">7.22</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">/review</span><span class="tt">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 레벨 재사용</span><span class="dt">8.6</span></a></section>
+<section class="cat"><h3>비용·토큰 추적<b>6</b><i>새 2</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">/usage</span><span class="tt">skills·subagents·plugins·MCP별 비용 분석</span><span class="dt">5.22</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/usage</span><span class="tt">레이트 제한 시 최종 사용량 바 유지 표시 — 에러 화면 없음</span><span class="dt">7.14</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</span><span class="tt">세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</span><span class="dt">7.17</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/context 초과 경고</span><span class="tt">컨텍스트 초과 시 명시적 경고 — /compact 실패도 에러로 표시 (무응답 없음)</span><span class="dt">7.20</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">CLAUDE_CODE_DISABLE_1M_CONTEXT</span><span class="tt">네이티브 1M 창 모든 모델에 적용 확대 — auto-compact로 200K 유지; 미유지 시 시작 경고</span><span class="dt">8.6</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">gateway spend-limit</span><span class="tt">한도 도달 시 gateway 지출 한도명·리셋 시간·운영자 메시지를 경고에 표시 (gateway 2.1.225+ 필요)</span><span class="dt">8.8</span></a></section>
+<section class="cat"><h3>일상 UI · 네비<b>8</b><i>새 2</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">/scroll-speed</span><span class="tt">마우스 휠 속도 조절</span><span class="dt">5.11</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/config key=value</span><span class="tt">프롬프트에서 바로 설정값 오버라이드</span><span class="dt">6.17</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/config --help</span><span class="tt">모든 /config key=value 단축키 목록 표시</span><span class="dt">6.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/doctor</span><span class="tt">설정·환경 전체 진단·자동 수정 — /checkup 별칭</span><span class="dt">7.8</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt">vim 삽입 모드 키 시퀀스 리맵 (예: jj → Escape)</span><span class="dt">7.14</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">vim s / S</span><span class="tt">vim NORMAL 모드에서 s/S(substitute)가 실제 vim처럼 동작</span><span class="dt">7.15</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F</span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시)</span><span class="dt">8.4</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">claude --teleport &lt;id&gt;</span><span class="tt">클라우드 세션에서 로컬 계속 방법 힌트 자동 표시 — claude --teleport &lt;session id&gt;</span><span class="dt">8.6</span></a></section>
+<section class="cat"><h3>Plugin · MCP · Extend<b>10</b><i>새 2</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">/plugin Discover</span><span class="tt">설치 전 commands·skills·MCP 미리보기</span><span class="dt">5.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">PREFER_HTTPS</span><span class="tt">SSH 키 없는 환경 — HTTPS로 클론</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/plugin 검색바</span><span class="tt">/plugin 마켓플레이스 탐색 시 플러그인 검색바 제공</span><span class="dt">6.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/plugin list</span><span class="tt">설치된 플러그인 목록, --enabled/--disabled 필터</span><span class="dt">6.4</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">.claude/skills</span><span class="tt">여기 둔 플러그인 자동 로드 — 마켓플레이스 불필요</span><span class="dt">5.29</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">claude mcp login</span><span class="tt">CLI에서 MCP 서버 인증 — /mcp 없이 가능, SSH는 --no-browser</span><span class="dt">6.22</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/skill-a /skill-b</span><span class="tt">슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행</span><span class="dt">7.2</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">claude mcp list · /mcp</span><span class="tt">MCP 서버 연결 실패 시 HTTP 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고</span><span class="dt">7.22</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">/plugin install 즉시 활성화</span><span class="tt">/plugin으로 설치한 플러그인이 안전하면 즉시 활성화 — /reload-plugins 불필요</span><span class="dt">8.4</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">archive plugin source</span><span class="tt">git·npm 없이 HTTPS zip으로 플러그인 설치 — SHA-256 핀닝 옵션 지원</span><span class="dt">8.7</span></a></section>
+<section class="cat"><h3>Hook · 모니터링<b>11</b></h3>
+<a class="row"><span class="mk"></span><span class="cmd">hook args</span><span class="tt">exec form (셸 없이 직접 실행)</span><span class="dt">5.11</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">terminalSequence</span><span class="tt">알림·창 제목·벨 출력</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">OTEL agent_id</span><span class="tt">subagent spans 중첩 추적</span><span class="dt">5.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">model attr OTEL</span><span class="tt">lines_of_code.count OTEL 메트릭에 model 속성 추가</span><span class="dt">6.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">CLAUDE_CLIENT_PRESENCE_FILE</span><span class="tt">마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제</span><span class="dt">6.17</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">OTEL assistant_response</span><span class="tt">모델 응답 텍스트 OTEL 로그 이벤트 — OTEL_LOG_ASSISTANT_RESPONSES=1로 활성화</span><span class="dt">6.25</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">Notification hook</span><span class="tt">agent_needs_input / agent_completed 이벤트에 Notification hook 발화</span><span class="dt">7.1</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">workflow OTEL</span><span class="tt">workflow 에이전트 OTel 스팬에 run_id·name 속성 추가 — 런 재구성 가능</span><span class="dt">7.6</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt">stream-json 출력에 서브에이전트 텍스트·thinking 포함 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT도 지원</span><span class="dt">7.15</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">dir/** hook if:</span><span class="tt">hook if:의 dir/**은 &lt;cwd&gt;/dir만 매칭 — 재귀 매칭은 **/dir/** 사용</span><span class="dt">7.18</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">DirectoryAdded hook</span><span class="tt">/add-dir 또는 SDK register_repo_root로 새 작업 디렉터리 등록 시 발화</span><span class="dt">7.24</span></a></section>
+<section class="cat"><h3>모델 · Enterprise · IAM<b>15</b><i>새 4</i></h3>
+<a class="row"><span class="mk"></span><span class="cmd">Fable 5</span><span class="tt">공개 Mythos급 모델, 고위험 주제는 Opus 4.8 폴백</span><span class="dt">6.9</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/model</span><span class="tt">현재 세션만 모델 변경 (d로 기본 고정)</span><span class="dt">5.19</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">Fast mode</span><span class="tt">Opus 4.6 → 4.7 기본</span><span class="dt">5.14</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">WORKSPACE_ID</span><span class="tt">워크로드 ID 페더레이션</span><span class="dt">5.13</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">fallbackModel</span><span class="tt">기본 모델 과부하 시 최대 3개 폴백</span><span class="dt">6.6</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">--safe-mode</span><span class="tt">CLAUDE.md·plugins·skills·hooks·MCP 끄고 기동</span><span class="dt">6.8</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">sandbox.credentials</span><span class="tt">샌드박스 도구가 자격증명·시크릿 env 읽기 차단</span><span class="dt">6.23</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">Sonnet 5</span><span class="tt">Claude Code 기본 모델 — 1M 토큰 컨텍스트, 8/31까지 프로모 요금</span><span class="dt">6.30</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">sandbox.filesystem.disabled</span><span class="tt">파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지</span><span class="dt">7.20</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt">새 Opus 기본 모델 — 1M 컨텍스트, fast mode, $10/$50 per Mtok</span><span class="dt">7.24</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">sandbox.network.strictAllowlist</span><span class="tt">샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단</span><span class="dt">7.24</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">sandbox mode:&quot;mask&quot;</span><span class="tt">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span><span class="dt">8.4</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">Remote Control auto-start</span><span class="tt">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — /config로 사용자 범위에서 설정</span><span class="dt">8.4</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">&quot;owner/*&quot;</span><span class="tt">strictKnownMarketplaces·blockedMarketplaces에 &quot;owner/*&quot; 와일드카드 추가 — GitHub org 전체 허용·차단</span><span class="dt">8.6</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt">내 서버·컨테이너를 Claude Code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (Team/Enterprise)</span><span class="dt">8.7</span></a></section></div>
+      <p class="foot">명령어가 왼쪽 고정 열이라 세로로 훑힌다.</p>
+    </div>
+    <div class="tp t-cx">
+      <h1>용도별 <em>Codex</em></h1>
+      <p class="meta">아직 묶음이 없다 · 명령어 19개를 최근순으로</p>
+      <p class="foot" style="margin-top:12px;border:0;padding:0">Codex 픽에는 용도 분류가 데이터에 없어
+      한 벌로 편다. 8묶음으로 나누려면 <b>큐레이션이 Codex 픽에도 카테고리를 달아야 한다</b> —
+      Claude Code 와 같은 묶음을 쓰면 두 도구를 나란히 비교할 수 있다.</p>
+      <div class="list" style="margin-top:16px"><a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="dt">8.7</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="dt">7.29</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="dt">7.21</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/usage</span><span class="tt">/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="dt">6.22</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/archive</span><span class="tt">세션 아카이브로 실수 재개·포크 방지. codex unarchive로 복원.</span><span class="dt">6.1</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/permissions</span><span class="tt">명명된 권한 프로파일 인식·설정된 커스텀 프로파일 표시.</span><span class="dt">5.28</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">codex doctor</span><span class="tt">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases.</span><span class="dt">5.28</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/status</span><span class="tt">shows remote connection details and server version when the TUI is connected over a remote transport</span><span class="dt">5.28</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/permissions</span><span class="tt">now understands named permission profiles and displays configured custom profiles</span><span class="dt">5.28</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">codex remote-control</span><span class="tt">now runs like a foreground command, waits for readiness, reports machine status, and keeps explicit daemon-style start/stop commands</span><span class="dt">5.21</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">codex exec resume</span><span class="tt">now accepts --output-schema, so resumed automations can keep session context while still enforcing structured JSON output</span><span class="dt">5.20</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">@</span><span class="tt">mentions now search files, directories, plugins, and skills in one picker, backed by app-server plugin metadata.</span><span class="dt">5.18</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">codex exec --json</span><span class="tt">now reports reasoning-token usage for programmatic consumers</span><span class="dt">4.24</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/resume</span><span class="tt">can now jump directly to a session by ID or name from the TUI</span><span class="dt">4.10</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">codex exec</span><span class="tt">now supports the prompt-plus-stdin workflow, so you can pipe input and still pass a separate prompt on the command line</span><span class="dt">3.31</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">js_repl</span><span class="tt">now exposes codex.cwd and codex.homeDir, and saved codex.tool(...) / codex.emitImage(...) references keep working across cells.</span><span class="dt">3.16</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">js_repl</span><span class="tt">can now dynamically import local .js and .mjs files, making it easier to reuse workspace scripts from the REPL</span><span class="dt">3.5</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/plan</span><span class="tt">now accepts inline prompt arguments and pasted images, and slash-command editing/highlighting in the TUI is more polished</span><span class="dt">2.4</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/models</span><span class="tt">metadata now includes upgrade migration markdown so clients can display richer guidance when suggesting model upgrades</span><span class="dt">1.15</span></a></div>
+    </div>
+  </div>
+
+  <!-- 버전별 -->
+  <div class="view" id="v-ver">
+    <div class="tp t-cc on">
+      <h1>버전별 <em>Claude Code</em></h1>
+      <p class="meta">v2.1.226 까지 236개 · 전부 접힌 상태, 줄을 누르면 변경 내역이 펼쳐진다</p>
+    </div>
+    <div class="tp t-cx">
+      <h1>버전별 <em>Codex</em></h1>
+      <p class="meta">v0.147.0 까지 83개 · stable 릴리스만</p>
+    </div>
+    <div class="bar"><span>보기</span>
+      <span class="f on" data-t="all">전체</span><span class="f" data-t="feature">기능</span>
+      <span class="f" data-t="improve">개선</span><span class="f" data-t="fix">수정</span>
+      <span class="f" data-t="security">보안</span>
+      <span class="right"><span id="vcnt">45개</span></span></div>
+    <div class="tp t-cc on"><div class="vlist"><div class="vr is-new" data-i="v0" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.226</span>
+    <span class="vd">8.8</span><span class="va">2일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>버그 수정 및 안정성 개선</li></ul>
+</div>
+<div class="vr is-new" data-i="v1" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.225</span>
+    <span class="vd">8.8</span><span class="va">2일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×5</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Claude Code 사용 경고에 게이트웨이 지출 한도 지원 추가; 한도 도달 메시지에 한도·초기화 시간·운영자 메시지 표시 (게이트웨이 2.1.225 이상 필요)</li>
+<li class="e-feature"><span>기능</span>신뢰되지 않은 디렉터리에 대해 claude agents에 워크스페이스 신뢰 프롬프트 추가 (claude와 동일한 동작)</li>
+<li class="e-feature"><span>기능</span>[VSCode] Focus view가 최신 할 일 목록·대기 중인 질문 컨텍스트·확정된 답변을 접어 숨기던 버그 수정; 생각만 있는 폴드는 &quot;Thought for Ns&quot; 표시 후 턴 완료 시 재접힘</li>
+<li class="e-feature"><span>기능</span>SendMessage가 이제 원격 머신의 Remote Control 세션에 이름으로 대화를 먼저 시작할 수 있음 (ListAgents에서 name [ref]로 표시); 이전엔 먼저 메시지를 받아야만 응답 가능했음</li>
+<li class="e-feature"><span>기능</span>SendMessage: 이미 확인한 Remote Control 수신자는 해당 목록 조회 실패 시에도 로컬 동명 세션으로 교체되지 않음</li></ul>
+</div>
+<div class="vr is-new" data-i="v2" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.224</span>
+    <span class="vd">8.7</span><span class="va">3일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×15</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×10</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>셀프 호스팅 환경 추가: claude self-hosted-runner로 내 머신·컨테이너를 Team·Enterprise 플랜의 Claude Code 웹·모바일·데스크탑 세션 실행 장소로 사용</li>
+<li class="e-feature"><span>기능</span>archive 플러그인 소스 추가: git·npm 없이 HTTPS zip으로 플러그인 설치, SHA-256 핀닝 옵션 지원</li>
+<li class="e-feature"><span>기능</span>사용 불가능한 붙여넣기 제거로 명령어 텍스트가 바뀔 때 취소·확인 단계 추가</li>
+<li class="e-feature"><span>기능</span>Bedrock에서 AWS_REGION 파생 프로필 대신 특정 크로스 리전 추론 프로필을 우선하는 ANTHROPIC_BEDROCK_REGION_PREFIX 환경 변수 추가</li>
+<li class="e-feature"><span>기능</span>crossSessionInbound·dialogExpiry 설정 추가: 권한 우회 세션으로 전송된 크로스 세션 메시지는 승인 대기, 다른 세션에는 자동 전달</li>
+<li class="e-feature"><span>기능</span>샌드박스 자격증명 마스킹 옵션 추가: 구조화된 env 값용 extract·onExtractNoMatch, JWT 인식 마스킹용 decode: &quot;jwt&quot;·maskClaims, AWS SigV4 재서명용 awsPairs/sigv4; network.tlsTerminate 필요, user·managed·--settings 설정에서만 적용</li>
+<li class="e-feature"><span>기능</span>크로스 세션 SendMessage 추가: Claude Code 세션들이 ListAgents로 서로를 발견하고 어느 기기에서도 메시지 전송 가능 (macOS·Linux)</li>
+<li class="e-feature"><span>기능</span>세션당 서브에이전트 200개 스폰 제한 제거; 장기 실행 세션에서 더 이상 새 에이전트 거부 없음 (동시성·깊이 제한은 유지)</li>
+<li class="e-feature"><span>기능</span>관리형 설정 변경: 조직 설정이 변경되지 않은 경우 재로그인·조직 전환 후 승인 프롬프트가 다시 표시되지 않음</li>
+<li class="e-feature"><span>기능</span>피드백 설문 트랜스크립트 공유 변경: 동의 시 마지막 요청의 모델 설정(시스템 프롬프트(CLAUDE.md 지침 포함)·툴 정의·모델 파라미터)도 업로드; 비밀은 기존대로 마스킹, 크기 초과 시 해당 필드 우선 제거</li>
+<li class="e-feature"><span>기능</span>Bash 툴 설명 변경: 명령 출력이 모델에 표시되며 사용자에게는 반드시 표시되지 않음을 항상 명시</li>
+<li class="e-feature"><span>기능</span>불러온 붙여넣기 플레이스홀더 번호가 입력에 수락될 때 재번호 매김하도록 변경</li>
+<li class="e-feature"><span>기능</span>compaction 또는 /resume 후 새 세션 생성 시 Remote Control이 죽은 세션을 목록에 남기지 않고 기존 서버 세션을 아카이브하도록 변경</li>
+<li class="e-feature"><span>기능</span>[VSCode] 연결 실패 후 Remote Control이 연결된 것으로 표시되던 확장 프로그램 버그 수정</li>
+<li class="e-feature"><span>기능</span>[VSCode] 명시적으로 활성화 시 세션이 remoteControlAtStartup을 따르지 않던 버그 수정</li></ul>
+</div>
+<div class="vr is-new" data-i="v3" data-t="feature fix security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.223</span>
+    <span class="vd">8.6</span><span class="va">4일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×7</span> <span class="pc p-security">보안 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>GitHub org 아래 전체 마켓플레이스 저장소를 허용·차단하기 위해 strictKnownMarketplaces·blockedMarketplaces 관리형 설정에 오너 와일드카드 항목(&quot;owner/*&quot;) 추가</li>
+<li class="e-feature"><span>기능</span>워크플로 에이전트·포크된 스킬·슬래시 커맨드·재개된 백그라운드 에이전트가 요청한 서브에이전트 모델이 제한되어 부모 모델이 대신 실행될 때 경고 추가</li>
+<li class="e-feature"><span>기능</span>클라우드 세션에서 claude --teleport &lt;session id&gt;로 로컬 계속 방법을 안내하는 /teleport 힌트 추가</li>
+<li class="e-feature"><span>기능</span>CLAUDE_CODE_DISABLE_1M_CONTEXT가 고정 목록이 아닌 네이티브 1M 윈도를 가진 모든 Claude 모델을 auto-compaction으로 200K로 제한하도록 변경; auto-compaction이 세션을 200K로 유지하지 못할 때 시작 경고 표시</li>
+<li class="e-feature"><span>기능</span>auto-compact가 알 수 없는 모델 ID의 세션을 컨텍스트 윈도 범위 안에 유지하도록 변경; 이전 동작으로 되돌리려면 CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1 설정</li>
+<li class="e-feature"><span>기능</span>/review를 현재 diff 또는 PR을 검토하는 /code-review의 별칭으로 변경(/code-review &lt;level&gt; &lt;pr#&gt;); 심층 클라우드 리뷰는 /code-review ultra 사용</li>
+<li class="e-feature"><span>기능</span>effort 레벨 없이 /code-review 실행 시 마지막으로 입력한 레벨 재사용; /code-review high처럼 레벨을 입력해 변경</li></ul>
+</div>
+<div class="vr is-new" data-i="v4" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.222</span>
+    <span class="vd">8.4</span><span class="va">6일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×2</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×4</span> <span class="pc p-fix">Fix ×12</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>저장소 로컬 설정(.claude/settings.json 또는 .claude/settings.local.json)이 Remote Control 자동 시작을 켤 수 없도록 변경(끄기는 여전히 가능); 사용자 범위에서 활성화하려면 /config 사용</li>
+<li class="e-feature"><span>기능</span>ultraplan 기능 제거</li></ul>
+</div>
+<div class="vr is-new" data-i="v5" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.221</span>
+    <span class="vd">8.4</span><span class="va">6일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×16</span> <span class="pc p-improve">개선 ×6</span> <span class="pc p-security">보안 ×5</span> <span class="pc p-fix">Fix ×12</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>[VSCode] Focus view 추가 — 툴 활동을 턴별 요약으로 접어 숨기는 채팅 메뉴 토글, 실행 중인 툴 실시간 표시; Ctrl+Alt+F 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</li>
+<li class="e-feature"><span>기능</span>Linux·WSL 샌드박스 자격증명 파일에 mode: &quot;mask&quot; 추가 — 샌드박스 명령은 센티널 복사본(전체 파일 또는 extract 정규식 캡처 범위)을 읽고, 샌드박스 프록시가 이그레스 시 실제 값으로 대체; macOS에서는 deny로 폴백</li>
+<li class="e-feature"><span>기능</span>마켓플레이스 또는 플러그인 이름이 Claude Desktop 관리형 마켓플레이스 동기화에서 거부될 때 claude plugin validate에 경고 추가</li>
+<li class="e-feature"><span>기능</span>claude-api 스킬에 구형 모델용 패턴을 검사하는 prompt-audit 서브커맨드 추가</li>
+<li class="e-feature"><span>기능</span>백그라운드 세션이 작업 보존을 위해 커밋·푸시하고, 필요할 때만 draft PR을 열며, CLAUDE.md git 지침을 따르고, 항상 작업 위치를 보고하며 종료하도록 변경</li>
+<li class="e-feature"><span>기능</span>/plugin install이 플러그인 미발견 보고 전 오래된 마켓플레이스 카탈로그를 갱신 후 재시도하도록 변경</li>
+<li class="e-feature"><span>기능</span>/plugin으로 설치한 플러그인이 안전한 경우 /reload-plugins 없이 즉시 활성화되도록 변경</li>
+<li class="e-feature"><span>기능</span>플러그인이 skills 경로로 &quot;.&quot;을 허용하도록 변경, 루트 레벨 SKILL.md 유효성 오류가 플러그인 루트 사용을 제안하도록 개선</li>
+<li class="e-feature"><span>기능</span>/status가 세션 종류(interactive, 또는 attached·unattended 백그라운드 작업)를 표시하도록 변경</li>
+<li class="e-feature"><span>기능</span>이모지 자동완성이 :thumbsup:·:thumbsdown:·:love: 등 일반적인 대체 단축코드를 허용하도록 변경</li>
+<li class="e-feature"><span>기능</span>/fork으로 분기된 세션이 원본 세션의 체크아웃 대신 자체 새 워크트리를 생성하도록 변경</li>
+<li class="e-feature"><span>기능</span>Chrome의 Claude가 더 이상 필요 없어진 브라우저 탭을 닫도록 변경</li>
+<li class="e-feature"><span>기능</span>fast mode가 세션 도중 사용 크레딧 소진 시 조용히 실패하는 대신 스트림에 보고하도록 변경</li>
+<li class="e-feature"><span>기능</span>Monitor 변경 — 출력 없이 종료된 감시가 &quot;stream ended&quot; 대신 그 사실을 명시하도록 변경</li>
+<li class="e-feature"><span>기능</span>Gateway model 필드 유효성 검사 변경 — 문자열이 아닌 값은 전달 대신 400으로 거부</li>
+<li class="e-feature"><span>기능</span>승인 프롬프트에서 반복되던 &quot;Permission mode changed while the auto-mode classifier call was queued&quot; 알림 제거</li></ul>
+</div>
+<div class="vr" data-i="v6" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.220</span>
+    <span class="vd">7.25</span><span class="va">16일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>버그 수정 및 안정성 개선</li></ul>
+</div>
+<div class="vr" data-i="v7" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.219</span>
+    <span class="vd">7.24</span><span class="va">17일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×15</span> <span class="pc p-improve">개선 ×2</span> <span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×9</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Claude Opus 5(claude-opus-5) 추가, 이제 기본 Opus 모델 — 1M 컨텍스트, fast mode $10/$50/Mtok</li>
+<li class="e-feature"><span>기능</span>샌드박스 명령에서 허용 목록 외 호스트를 프롬프트 없이 차단하는 sandbox.network.strictAllowlist 설정 추가</li>
+<li class="e-feature"><span>기능</span>세션 도중 /add-dir 또는 SDK register_repo_root 컨트롤 요청으로 새 작업 디렉터리 등록 후 발동하는 DirectoryAdded 훅 추가</li>
+<li class="e-feature"><span>기능</span>헤드리스 stream-json init 이벤트에 mcp_server_errors 추가 — 설정 유효성 검사에서 제외된 --mcp-config 항목 나열; 터미널 실행 시 시작 경고 출력</li>
+<li class="e-feature"><span>기능</span>어느 설정 파일에서도 Dynamic workflow size 가이드라인을 지정할 수 있는 workflowSizeGuideline 설정 키 추가; 설정 시 /config 행 숨김</li>
+<li class="e-feature"><span>기능</span>stream-json에 중첩 서브에이전트 포워딩 추가: --forward-subagent-text 설정 시 depth-2+ 서브에이전트가 스폰한 Agent tool_use id로 키잉되어 출력</li>
+<li class="e-feature"><span>기능</span>서버 연결 실패 시 claude mcp list·/mcp에 HTTP 상태·오류 텍스트 추가, 앞뒤 숨겨진 공백이 있는 MCP 설정값 경고 추가</li>
+<li class="e-feature"><span>기능</span>self-hosted runner 스폰·세션 실패에 구조화된 실패 카테고리 추가 — 훅 오류·러너 크래시·설정 오류 구분 가능</li>
+<li class="e-feature"><span>기능</span>동적 워크플로의 기본 크기 가이드라인을 medium(에이전트 15개 미만 목표)으로 변경; /config의 Dynamic workflow size로 다른 크기·무제한 선택 가능</li>
+<li class="e-feature"><span>기능</span>관리형 MCP allowlist/denylist의 ${VAR} 항목이 설정 파일 env 대신 시작 환경·managed-settings env에서 해석되도록 변경</li>
+<li class="e-feature"><span>기능</span>/model 피커가 가장 최신 모델 이름만 강조하도록 변경 — 임의 목록이 아닌 새 릴리즈를 명확히 표시</li>
+<li class="e-feature"><span>기능</span>실행 중인 워크플로 상태 표시줄에 현재 기본 워크플로 크기 추가, /config에서 변경 안내 포함</li>
+<li class="e-feature"><span>기능</span>fast mode에서 Opus 4.7 제거; /fast가 이제 Opus 5·Opus 4.8에 적용</li>
+<li class="e-feature"><span>기능</span>claude-api 스킬이 기본적으로 Claude Opus 5를 사용하도록 업데이트, Opus 4.8 마이그레이션 경로 포함</li>
+<li class="e-feature"><span>기능</span>서브에이전트가 기본적으로 최대 depth 3까지 중첩 서브에이전트 스폰 가능(이전: 1); 중첩 비활성화하려면 CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1 설정</li></ul>
+</div>
+<div class="vr" data-i="v8" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.218</span>
+    <span class="vd">7.22</span><span class="va">19일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×10</span> <span class="pc p-improve">개선 ×4</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×21</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/code-review이 백그라운드 서브에이전트로 실행되도록 변경 — 리뷰 작업이 대화를 채우지 않고 스택된 슬래시 커맨드를 리뷰 대상으로 유지</li>
+<li class="e-feature"><span>기능</span>--ax-screen-reader 모드에서 단어·줄 삭제(Option+Delete·Ctrl+W·Cmd+Backspace·Ctrl+U·Ctrl+K) 시 삭제된 텍스트를 스크린 리더로 알림</li>
+<li class="e-feature"><span>기능</span>서버 연결 실패 시 claude mcp list와 /mcp에 HTTP 상태·오류 텍스트 추가, 앞뒤에 숨겨진 공백이 있는 MCP 설정값 경고 추가</li>
+<li class="e-feature"><span>기능</span>/deep-research가 수동으로 호출할 때만 시작하도록 변경 — Claude가 자체적으로 실행하지 않음</li>
+<li class="e-feature"><span>기능</span>auto와 함께하는 plan 모드에서 정적 분석기가 읽기 전용임을 확인하지 못하는 Bash 명령에 더 이상 프롬프트 표시 안 함 — auto-mode 분류기가 대신 판단</li>
+<li class="e-feature"><span>기능</span>/config model=&lt;x&gt; 또는 Remote Control로 모델 전환 시 fast mode 변경 알림 추가</li>
+<li class="e-feature"><span>기능</span>서버 관리형 설정에서 무해한 기능·비용 토글이 더 이상 설정 승인 프롬프트를 트리거하지 않도록 변경</li>
+<li class="e-feature"><span>기능</span>에이전트 마크다운 파일이 플러그인 네임스페이스용으로 예약된 :을 포함한 에이전트 이름을 거부하도록 변경</li>
+<li class="e-feature"><span>기능</span>context: fork가 있는 스킬이 기본적으로 백그라운드에서 실행되도록 변경; 스킬별로 background: false로 비활성화 가능</li>
+<li class="e-feature"><span>기능</span>스킬·플러그인 frontmatter 불리언으로 true/false 외에 yes/no/on/off/1/0(대소문자 무관) 허용</li></ul>
+</div>
+<div class="vr" data-i="v9" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.217</span>
+    <span class="vd">7.21</span><span class="va">20일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×5</span> <span class="pc p-fix">Fix ×8</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>프롬프트 입력에 이모지 단축코드 자동완성 추가: :heart:를 입력하면 ❤️ 삽입, :hea는 제안 표시 — emojiCompletionEnabled 설정으로 비활성화</li>
+<li class="e-feature"><span>기능</span>트랜스크립트 기록 실패(예: 디스크 꽉 참) 또는 상속된 환경 변수로 세션 저장이 꺼진 경우, 조용히 유실하는 대신 경고 표시 추가</li>
+<li class="e-feature"><span>기능</span>로그인 만료 경고가 5일 전 대신 3일 전에 표시되도록 변경</li>
+<li class="e-feature"><span>기능</span>frontend-design 플러그인 제안 팁을 무한 반복 대신 평생 3회로 제한</li>
+<li class="e-feature"><span>기능</span>하나의 메시지가 무한정 백그라운드 에이전트를 생성하지 못하도록 동시 실행 서브에이전트 한도(기본 20, CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS로 재정의) 추가</li>
+<li class="e-feature"><span>기능</span>서브에이전트가 기본적으로 중첩 서브에이전트를 더 이상 생성하지 않도록 변경; 더 깊은 중첩을 허용하려면 CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH 설정</li></ul>
+</div>
+<div class="vr" data-i="v10" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.216</span>
+    <span class="vd">7.20</span><span class="va">21일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-improve">개선 ×5</span> <span class="pc p-security">보안 ×8</span> <span class="pc p-fix">Fix ×21</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>네트워크 이그레스 제어는 유지하면서 파일시스템 격리를 건너뛰는 sandbox.filesystem.disabled 설정 추가</li>
+<li class="e-feature"><span>기능</span>/context가 대화가 컨텍스트 윈도를 초과할 때 명시적 경고 표시; 실패한 /compact는 오류로 표시</li>
+<li class="e-feature"><span>기능</span>/rewind이 추적 경로의 심링크·하드링크를 통해 파일을 복원하거나 삭제하지 않으며 건너뛴 경로 수를 보고</li>
+<li class="e-feature"><span>기능</span>백그라운드 세션: 클라이언트 미연결 시 /mcp와 /install-github-app이 에이전트 뷰에 &quot;needs input&quot; 요청 저장</li>
+<li class="e-feature"><span>기능</span>기본 제공 dataviz 스킬 업데이트: 기본 차트 팔레트 순서 변경 및 4계열 차트 직접 레이블 안내 오류 수정</li>
+<li class="e-feature"><span>기능</span>[VSCode] 아랍어·히브리어·페르시아어 등 우-좌 텍스트가 영어·코드와 혼합될 때 잘못된 순서로 렌더링되는 문제 수정</li></ul>
+</div>
+<div class="vr" data-i="v11" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.215</span>
+    <span class="vd">7.19</span><span class="va">22일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Claude가 /verify와 /code-review 스킬을 더 이상 자율 실행하지 않음; 원할 때 직접 /verify 또는 /code-review로 호출</li></ul>
+</div>
+<div class="vr" data-i="v12" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.214</span>
+    <span class="vd">7.18</span><span class="va">23일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×11</span> <span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×7</span> <span class="pc p-fix">Fix ×28</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>EndConversation 툴 추가: 2025년부터 claude.ai에서와 같이 Claude가 극도로 공격적인 사용자 또는 탈옥 시도 세션을 종료 가능 — https://www.anthropic.com/research/end-subset-conversations 참조</li>
+<li class="e-feature"><span>기능</span>이전에 침묵하던 장기 실행 툴 호출에 주기적 진행 상황 heartbeat 추가</li>
+<li class="e-feature"><span>기능</span>메모리 파일 frontmatter에 ISO modified 타임스탬프 추가</li>
+<li class="e-feature"><span>기능</span>메시지 수준 상관관계 및 툴 출처 추적을 위해 OpenTelemetry 로그 이벤트에 message.uuid·client_request_id·tool_source 속성 추가</li>
+<li class="e-feature"><span>기능</span>OpenTelemetry 콘텐츠 속성의 60 KB 잘림 한도를 설정하는 CLAUDE_CODE_OTEL_CONTENT_MAX_LENGTH 추가</li>
+<li class="e-feature"><span>기능</span>커스텀 에이전트 행이 모델·effort를 렌더링할 수 있도록 subagentStatusLine 페이로드에 reasoning effort 추가</li>
+<li class="e-feature"><span>기능</span>데몬 리다이렉트 플래그(--url·--connection·--identity 및 Podman 원격 모드)를 포함한 docker 명령(Podman docker shim 포함)에 기존에 없던 권한 프롬프트 추가</li>
+<li class="e-feature"><span>기능</span>단일 세그먼트 dir/ 훅 if: 조건이 &lt;cwd&gt;/dir에만 매칭되도록 변경; 임의 깊이 매칭은 /dir/**로 작성. deny/ask 권한 규칙은 임의 깊이 매칭 유지.</li>
+<li class="e-feature"><span>기능</span>-m/--magic-file 또는 -f/--files-from을 사용하는 file 명령이 읽기 전용으로 자동 허용되지 않고 권한 요청하도록 변경</li>
+<li class="e-feature"><span>기능</span>오래된 연결 오류 후 keep-alive 연결 풀링이 비활성화되도록 변경 — 재시도 시 새 소켓 연결</li>
+<li class="e-feature"><span>기능</span>세션이 fork로 시작할 때 SessionStart 훅이 &quot;resume&quot; 대신 &quot;fork&quot;로 소스를 보고하도록 변경</li></ul>
+</div>
+<div class="vr" data-i="v13" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.212</span>
+    <span class="vd">7.17</span><span class="va">24일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×16</span> <span class="pc p-improve">개선 ×4</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×26</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/fork이 이제 작업을 유지한 채 대화를 새 백그라운드 세션(claude agents의 별도 행)으로 복사; 기존에 실행하던 인세션 서브에이전트는 이제 /subtask</li>
+<li class="e-feature"><span>기능</span>기본 auto-mode 설정을 복원하는 claude auto-mode reset 추가, 확인 프롬프트 포함(--yes로 건너뜀)</li>
+<li class="e-feature"><span>기능</span>폭주하는 검색 루프 방지를 위해 세션 전체 WebSearch 툴 호출 한도(기본 200회, CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION으로 조정) 추가</li>
+<li class="e-feature"><span>기능</span>폭주하는 위임 루프 방지를 위해 세션당 서브에이전트 스폰 한도(기본 200, CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION으로 재정의) 추가; /clear로 예산 초기화</li>
+<li class="e-feature"><span>기능</span>2분 이상 실행되는 MCP 툴 호출이 자동으로 백그라운드로 이동해 세션 사용성 유지; 임계값 설정 또는 비활성화는 CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS</li>
+<li class="e-feature"><span>기능</span>에이전트 뷰에서 /resume 입력 시 목록에서 삭제된 세션 포함 과거 세션 피커가 열리고 선택한 세션이 백그라운드로 재개</li>
+<li class="e-feature"><span>기능</span>세션 제목이 없을 때 /fork 복사본을 입력한 프롬프트로 이름 지정해 에이전트 뷰에서 식별 가능하도록 변경</li>
+<li class="e-feature"><span>기능</span>단독 /btw가 가장 최근 교환의 사이드 질문 패널을 다시 열어 이전 답변 탐색 가능하도록 변경</li>
+<li class="e-feature"><span>기능</span>백그라운드 에이전트 완료 후 입력 대기가 없을 때 ← 푸터 힌트가 잠시 N done으로 반짝이도록 변경</li>
+<li class="e-feature"><span>기능</span>Task 툴의 mode 파라미터 폐기(이제 무시됨); 서브에이전트가 기본적으로 부모 세션의 권한 모드 상속</li>
+<li class="e-feature"><span>기능</span>Enterprise forceLoginMethod가 터미널뿐 아니라 VS Code 익스텐션·SDK·setup-token·install-github-app 로그인에도 적용되도록 변경</li>
+<li class="e-feature"><span>기능</span>세션 트랜스크립트에 각 어시스턴트 메시지의 reasoning effort 레벨 기록 추가</li>
+<li class="e-feature"><span>기능</span>헤드리스/SDK 세션이 set_model 컨트롤 요청을 턴 중간에 적용; 다음 모델 라운드트립에서 다음 턴을 기다리지 않고 새 모델 사용</li>
+<li class="e-feature"><span>기능</span>에이전트 뷰 / claude agents --json: 샌드박스·MCP 입력·관리형 설정 프롬프트 대기 세션이 &quot;Working&quot; 대신 &quot;Needs input&quot;으로 표시</li>
+<li class="e-feature"><span>기능</span>인증 상태 패널 제목을 &quot;Cloud authentication&quot;에서 &quot;Authentication&quot;으로 업데이트</li>
+<li class="e-feature"><span>기능</span>이전 릴리즈 노트(2.1.200) 수정: tmux 3.6 이하 버전은 동기화 출력 미지원; 지원되는 신버전 tmux는 자동 감지</li></ul>
+</div>
+<div class="vr" data-i="v14" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.211</span>
+    <span class="vd">7.15</span><span class="va">26일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×10</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×4</span> <span class="pc p-fix">Fix ×20</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>stream-json 출력에 서브에이전트 텍스트·thinking을 포함하는 --forward-subagent-text 플래그와 CLAUDE_CODE_FORWARD_SUBAGENT_TEXT 환경 변수 추가</li>
+<li class="e-feature"><span>기능</span>Windows에서 동기화된 스킬·플러그인 디렉터리 이름 지정 강화, /clear 후 CCR 웹 fetch/search 프록시 정상 작동 유지</li>
+<li class="e-feature"><span>기능</span>정수 환경 변수(타임아웃·토큰 예산·재시도 횟수)가 1e6·64_000 같은 지수 표기 및 숫자 구분자 형식 허용</li>
+<li class="e-feature"><span>기능</span>문서 링크를 최신 docs 사이트로 업데이트</li>
+<li class="e-feature"><span>기능</span>&quot;always allow&quot; 권한 규칙이 저장소 루트에 저장되도록 변경 — git worktree에서 승인한 내용이 세션·worktree 간 유지</li>
+<li class="e-feature"><span>기능</span>/usage-credits가 조직 관리자에게 요청 전송 전 확인 요청하도록 변경</li>
+<li class="e-feature"><span>기능</span>Vim 모드의 s·S(문자/줄 치환)가 NORMAL 모드에서 vim 동작에 맞게 작동하도록 변경</li>
+<li class="e-feature"><span>기능</span>[VSCode] Remote Control 배너를 기능 설명으로 업데이트</li>
+<li class="e-feature"><span>기능</span>Claude in Chrome: 파일 업로드 경로 유효성 검사 강화</li>
+<li class="e-feature"><span>기능</span>Claude in Chrome: 스크린샷 액션의 save_to_disk가 이미지를 디스크에 저장하고 경로를 반환(기존에는 동작 없음)</li></ul>
+</div>
+<div class="vr" data-i="v15" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.210</span>
+    <span class="vd">7.14</span><span class="va">27일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×8</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×4</span> <span class="pc p-fix">Fix ×18</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>축소된 툴 요약 행에 실시간 경과 시간 카운터 추가 — 오래 걸리는 툴 호출이 멈춘 것처럼 보이지 않고 시각적으로 카운트</li>
+<li class="e-feature"><span>기능</span>Write(path)·NotebookEdit(path)·Glob(path) 권한 규칙에 시작 시 경고 추가 — 대신 Edit(path)·Read(path) 사용</li>
+<li class="e-feature"><span>기능</span>서브에이전트가 읽은 콘텐츠를 통한 간접 프롬프트 인젝션 차단 — Agent 툴 보안 강화</li>
+<li class="e-feature"><span>기능</span>MEMORY.md 인덱스가 읽기 한도를 초과하는 메모리 쓰기 시 묵시적 잘림 대신 명시적 오류 출력</li>
+<li class="e-feature"><span>기능</span>Shift+Tab으로 모드 순환 시 스크린 리더 모드가 권한 모드 변경을 음성으로 알림</li>
+<li class="e-feature"><span>기능</span>agents 푸터 힌트에 입력 대기 중인 백그라운드 에이전트 수 표시 — 수 변경 시 잠깐 색상 강조</li>
+<li class="e-feature"><span>기능</span>에이전트 뷰: ←를 눌러 나온 세션이 마우스 호버·화살표 키 이동 후에도 시각적으로 표시 유지</li>
+<li class="e-feature"><span>기능</span>서버 측 Fable 어드바이저 오류 수정 중 어드바이저 피커에서 Fable이 일시적으로 사용 불가로 표시</li></ul>
+</div>
+<div class="vr" data-i="v16" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.209</span>
+    <span class="vd">7.14</span><span class="va">27일 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"></ul>
+</div>
+<div class="vr" data-i="v17" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.208</span>
+    <span class="vd">7.14</span><span class="va">27일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×12</span> <span class="pc p-improve">개선 ×5</span> <span class="pc p-security">보안 ×4</span> <span class="pc p-fix">Fix ×24</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>스크린 리더 모드 추가 — opt-in 일반 텍스트 렌더링. claude --ax-screen-reader 실행, CLAUDE_AX_SCREEN_READER=1 설정, 또는 settings에 &quot;axScreenReader&quot;: true 추가</li>
+<li class="e-feature"><span>기능</span>vim 모드에서 jj 같은 두 키 삽입 시퀀스를 Escape에 매핑하는 vimInsertModeRemaps 설정 추가</li>
+<li class="e-feature"><span>기능</span>CLAUDE_CODE_PROCESS_WRAPPER 추가 — 에이전트 뷰·백그라운드 서비스가 모든 Claude Code 자체 spawn을 지정 래퍼 실행 파일을 통해 실행(기업 런처 준수)</li>
+<li class="e-feature"><span>기능</span>전체화면 모드의 멀티셀렉트 메뉴와 &quot;Other&quot; 입력 행에 마우스 클릭 지원 추가</li>
+<li class="e-feature"><span>기능</span>완료된 백그라운드 에이전트가 종료 즉시 사라지지 않고 정리 전까지 /tasks에 유지</li>
+<li class="e-feature"><span>기능</span>중단된 백그라운드 에이전트 attach 시 빈 &quot;Session is starting&quot; 화면 대신 세션 초기화 중 트랜스크립트 즉시 표시</li>
+<li class="e-feature"><span>기능</span>백그라운드 세션: 구버전 데몬이 새 버전이 생성한 워커를 구 바이너리로 조용히 재시작하지 않도록 수정</li>
+<li class="e-feature"><span>기능</span>에이전트 뷰: Ctrl+X가 이름 변경된 브랜치 worktree 삭제(미push 커밋 보호, worktree 유지 시 세션 행 유지, 재사용 이름은 현재 베이스로 초기화)</li>
+<li class="e-feature"><span>기능</span>$(…)/백틱/&lt;(…) 포함 명령의 위험 삭제(예: rm -rf ~)가 --dangerously-skip-permissions·auto 모드에서도 일반 형식처럼 프롬프트</li>
+<li class="e-feature"><span>기능</span>/install-github-app과 /mcp 설정 메뉴가 백그라운드 세션에서 더 이상 열리지 않음</li>
+<li class="e-feature"><span>기능</span>빈 URL로 설정된 MCP 서버가 설정 오류 대신 /mcp에 &quot;not configured&quot;로 표시</li>
+<li class="e-feature"><span>기능</span>usage 엔드포인트 레이트 리밋 시 오류 화면 대신 /usage가 마지막 사용량 바와 &quot;as of&quot; 메모 표시</li></ul>
+</div>
+<div class="vr" data-i="v18" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.207</span>
+    <span class="vd">7.11</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-improve">개선 ×2</span> <span class="pc p-security">보안 ×5</span> <span class="pc p-fix">Fix ×12</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Bedrock·Vertex AI·Foundry에서 CLAUDE_CODE_ENABLE_AUTO_MODE opt-in 없이 auto 모드 사용 가능; settings에서 disableAutoMode로 비활성화</li>
+<li class="e-feature"><span>기능</span>Bedrock·Vertex·Claude Platform on AWS의 기본 모델을 Claude Opus 4.8로 변경</li>
+<li class="e-feature"><span>기능</span>auto 모드가 저장소 내 .claude/settings.local.json에서 autoMode를 더 이상 읽지 않도록 변경; 대신 ~/.claude/settings.json 사용</li>
+<li class="e-feature"><span>기능</span>플러그인 훅·모니터·MCP headersHelper: 셸 형식 명령의 ${user_config.*}가 이제 거부됨(셸 인젝션 수정). 훅: exec 형식(args 배열) 또는 $CLAUDE_PLUGIN_OPTION_&lt;KEY&gt; 사용; 모니터·headersHelper: 스크립트 내에서 값 직접 읽기(설정 파일 또는 서버의 env 블록)</li>
+<li class="e-feature"><span>기능</span>플러그인 옵션 값(pluginConfigs)이 프로젝트 수준 .claude/settings.json에서 더 이상 읽히지 않음; 사용자·--settings·관리형 설정만 적용</li></ul>
+</div>
+<div class="vr" data-i="v19" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.206</span>
+    <span class="vd">7.10</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×8</span> <span class="pc p-improve">개선 ×2</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×14</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/add-dir 동작과 동일하게 /cd에 디렉터리 경로 자동완성 추가</li>
+<li class="e-feature"><span>기능</span>코드베이스에서 유추 가능한 내용 삭제를 제안하는 /doctor 검사 추가 — 저장된 CLAUDE.md 파일 경량화</li>
+<li class="e-feature"><span>기능</span>/commit-push-pr가 origin 외에도 저장소에 설정된 push 리모트(remote.pushDefault, 또는 유일한 리모트)로의 git push를 자동 허용</li>
+<li class="e-feature"><span>기능</span>게이트웨이: /login이 Anthropic 운영 퍼블릭 게이트웨이 엔드포인트 지원</li>
+<li class="e-feature"><span>기능</span>EnterWorktree가 프로젝트 .claude/worktrees/ 외부 git worktree 진입 전 확인 요청</li>
+<li class="e-feature"><span>기능</span>백그라운드 에이전트가 Claude Code 업데이트 직후 백그라운드에서 자동 업그레이드 — attach 시 구버전 세션 업그레이드 지연 없음</li>
+<li class="e-feature"><span>기능</span>Bedrock: 이그레스 제한 네트워크에서 awsCredentialExport 헬퍼 사용 시 수 분간 시작 중단 수정</li>
+<li class="e-feature"><span>기능</span>에이전트 뷰 변경: Ctrl+X로 완료 세션 영구 삭제, 세션 이중 렌더링 해소, 삭제된 백그라운드 작업 복원 안 됨</li></ul>
+</div>
+<div class="vr" data-i="v20" data-t="feature fix improve">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.205</span>
+    <span class="vd">7.8</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-fix">Fix ×15</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>auto 모드 규칙 추가 — 세션 트랜스크립트 파일 변조 차단</li>
+<li class="e-feature"><span>기능</span>자동 업데이트 바이너리 다운로드가 메모리 버퍼링 대신 디스크에 직접 스트리밍 — 업데이터 최대 메모리 사용량 약 400 MB 절감</li>
+<li class="e-feature"><span>기능</span>백그라운드 작업 알림이 사람 입력 없음을 명시 — 트랜스크립트 내 위조 승인 방지</li>
+<li class="e-feature"><span>기능</span>/doctor가 문제를 진단·수정하는 전체 설정 검사 도구로 강화; /checkup은 별칭</li>
+<li class="e-feature"><span>기능</span>Claude Desktop 창 이름 변경에 앞서 &quot;Claude Browser&quot; MCP 서버 이름 예약(&quot;Claude Preview&quot;와 함께) — 사용자 설정 MCP 서버는 두 이름 모두 등록 불가</li></ul>
+</div>
+<div class="vr" data-i="v21" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.204</span>
+    <span class="vd">7.8</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"></ul>
+</div>
+<div class="vr" data-i="v22" data-t="feature fix improve">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.203</span>
+    <span class="vd">7.7</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×8</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-fix">Fix ×26</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>로그인 만료 임박 시 경고 추가 — 백그라운드 세션 중단 전 재인증 가능</li>
+<li class="e-feature"><span>기능</span>수동 권한 모드 시 푸터에 회색 ⏸ 배지 추가 — 현재 모드 항상 표시</li>
+<li class="e-feature"><span>기능</span>세션의 추가 작업 디렉터리를 MCP roots/list에 추가 — 변경 시 notifications/roots/list_changed 전송</li>
+<li class="e-feature"><span>기능</span>왼쪽 화살표가 백그라운드 작업·diff·워크플로 상세 뷰를 더 이상 닫지 않음 — Esc 사용</li>
+<li class="e-feature"><span>기능</span>빈 claude agents 뷰에서 섹션(Needs input / Working / Completed)이 항상 표시되도록 변경</li>
+<li class="e-feature"><span>기능</span>시작 시 &quot;claude command missing or broken&quot; 경고 제거 — /doctor·/status로 이동</li>
+<li class="e-feature"><span>기능</span>claude agents 푸터의 중복 탐색 힌트 제거</li>
+<li class="e-feature"><span>기능</span>[VSCode] &quot;Enable Remote Control for all sessions&quot; 설정 토글 추가</li></ul>
+</div>
+<div class="vr" data-i="v23" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.202</span>
+    <span class="vd">7.6</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×3</span> <span class="pc p-improve">개선 ×2</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×11</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/config에 &quot;Dynamic workflow size&quot; 설정 추가 — 동적 워크플로 규모 제어(small/medium/large 에이전트 수, 권고 기준이며 강제 상한 아님)</li>
+<li class="e-feature"><span>기능</span>워크플로가 생성한 에이전트 텔레메트리에 workflow.run_id·workflow.name OpenTelemetry 속성 추가 — OTel 데이터로 워크플로 실행 활동 재구성 가능</li>
+<li class="e-feature"><span>기능</span>/review &lt;pr&gt;를 빠른 단일 패스 리뷰로 복원 — 멀티 에이전트 리뷰는 /code-review &lt;level&gt; &lt;pr#&gt; 사용</li></ul>
+</div>
+<div class="vr" data-i="v24" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.201</span>
+    <span class="vd">7.3</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Claude Sonnet 5 세션이 하니스 리마인더에 대화 중 system role을 더 이상 사용하지 않음</li></ul>
+</div>
+<div class="vr" data-i="v25" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.200</span>
+    <span class="vd">7.3</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×2</span> <span class="pc p-improve">개선 ×2</span> <span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×12</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>AskUserQuestion 대화상자가 기본적으로 자동 계속하지 않도록 변경; /config에서 유휴 타임아웃 opt-in</li>
+<li class="e-feature"><span>기능</span>CLI·--help·VS Code·JetBrains에서 &quot;default&quot; 권한 모드를 &quot;Manual&quot;로 변경; default와 함께 --permission-mode manual·&quot;defaultMode&quot;: &quot;manual&quot; 허용</li></ul>
+</div>
+<div class="vr" data-i="v26" data-t="feature fix security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.199</span>
+    <span class="vd">7.2</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×19</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/skill-a /skill-b do XYZ 같은 슬래시 스킬 중첩 호출 시 첫 번째만이 아닌 앞쪽 스킬 전부(최대 5개) 로드</li>
+<li class="e-feature"><span>기능</span>사용량 한도와 무관한 일시적 서버 레이트 리밋 오류(429)가 구독자에게 자동 백오프 재시도 — 턴 실패 대신</li>
+<li class="e-feature"><span>기능</span>CLAUDE_CODE_RETRY_WATCHDOG이 비용량 일시 오류의 기본 재시도 횟수를 300으로 올리고 CLAUDE_CODE_MAX_RETRIES의 15 상한 해제</li>
+<li class="e-feature"><span>기능</span>claude agents 세션 행의 풀 리퀘스트 링크가 불필요한 &quot;PR&quot; 레이블 없이 #N만 표시</li></ul>
+</div>
+<div class="vr" data-i="v27" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.198</span>
+    <span class="vd">7.1</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×11</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×16</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Chrome용 Claude 정식 출시</li>
+<li class="e-feature"><span>기능</span>claude agents에 백그라운드 에이전트 알림 추가 — 입력 대기·완료 세션이 Notification 훅 발동 (agent_needs_input / agent_completed)</li>
+<li class="e-feature"><span>기능</span>차트·대시보드 설계 안내 및 실행 가능한 색상 팔레트 검증기를 제공하는 /dataviz 스킬 추가</li>
+<li class="e-feature"><span>기능</span>게이트웨이: Claude Platform on AWS(anthropicAws)를 업스트림 공급자로 추가; 모델 미발견 응답 시 페일오버 체인 진행</li>
+<li class="e-feature"><span>기능</span>claude agents에서 시작된 백그라운드 에이전트가 worktree 코드 작업 완료 시 커밋·푸시·draft PR 자동 오픈(질문 없이)</li>
+<li class="e-feature"><span>기능</span>내장 Explore 에이전트가 haiku 대신 메인 세션 모델 상속(opus 상한)</li>
+<li class="e-feature"><span>기능</span>서브에이전트와 컨텍스트 압축이 세션의 확장 사고 설정을 상속 — 위임 작업 출력 품질 향상</li>
+<li class="e-feature"><span>기능</span>Mac에서 SSH 접속 시 키보드 단축키 힌트가 alt/super 대신 opt/cmd로 표시</li>
+<li class="e-feature"><span>기능</span>claude agents 뷰에서 /login이 &quot;사용 불가&quot; 대신 로그인 대화상자 오픈</li>
+<li class="e-feature"><span>기능</span>서브에이전트가 상위 에이전트 메시지를 일반 작업 지시로 처리; 에이전트 메시지는 여전히 사용자 승인으로 간주되지 않음</li>
+<li class="e-feature"><span>기능</span>/agents 위저드 제거 — Claude에게 서브에이전트 생성·관리를 요청하거나 .claude/agents/를 직접 편집</li></ul>
+</div>
+<div class="vr" data-i="v28" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.197</span>
+    <span class="vd">6.30</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Claude Sonnet 5 출시 — Claude Code의 기본 모델, 네이티브 1M 토큰 컨텍스트 윈도우, 8월 31일까지 $2/$10/Mtok 프로모션 가격. v2.1.197 업데이트 시 사용. https://www.anthropic.com/news/claude-sonnet-5</li></ul>
+</div>
+<div class="vr" data-i="v29" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.196</span>
+    <span class="vd">6.29</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-improve">개선 ×5</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×14</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>조직 기본 모델 지원 추가 — 관리자가 org 콘솔에서 설정하며, 직접 선택하지 않으면 /model에 &quot;Org default&quot;(또는 &quot;Role default&quot;)로 표시</li>
+<li class="e-feature"><span>기능</span>세션 시작 시 읽기 쉬운 기본 이름 자동 부여(식별·메시지 전송 편의)</li>
+<li class="e-feature"><span>기능</span>채팅 파일 첨부 클릭 가능 — Cmd/Ctrl+클릭으로 Finder/Explorer에서 파일 표시</li>
+<li class="e-feature"><span>기능</span>보안: claude mcp list/get가 커밋된 .claude/settings.json으로 자체 승인된 .mcp.json 서버를 더 이상 spawn하지 않음 — 신뢰 안 된 워크스페이스는 ⏸ Pending approval 표시</li>
+<li class="e-feature"><span>기능</span>ANTHROPIC_BASE_URL이 비Anthropic 호스트를 가리키면 Remote Control 비활성화 — CLAUDE_CODE_USE_BEDROCK/_VERTEX/_FOUNDRY 기존 동작과 일치</li>
+<li class="e-feature"><span>기능</span>포그라운드 세션에서 agents 뷰 열기를 두 번 대신 ← 한 번으로 변경 — 백그라운드 세션 동작에 맞춤</li></ul>
+</div>
+<div class="vr" data-i="v30" data-t="feature fix improve">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.195</span>
+    <span class="vd">6.26</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-fix">Fix ×8</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>전체화면 모드에서 마우스 클릭/드래그/호버를 끄되 휠 스크롤은 유지하는 CLAUDE_CODE_DISABLE_MOUSE_CLICKS 추가</li></ul>
+</div>
+<div class="vr" data-i="v31" data-t="feature fix improve">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.193</span>
+    <span class="vd">6.25</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-improve">개선 ×4</span> <span class="pc p-fix">Fix ×5</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>모든 Bash/PowerShell 명령을 임의 코드 실행 패턴뿐 아니라 auto-mode 분류기를 통해 라우팅하는 autoMode.classifyAllShell 설정 추가</li>
+<li class="e-feature"><span>기능</span>트랜스크립트·거부 토스트·/permissions 최근 거부 내역에 auto-mode 거부 사유 추가</li>
+<li class="e-feature"><span>기능</span>모델 응답 텍스트를 담은 claude_code.assistant_response OpenTelemetry 로그 이벤트 추가. OTEL_LOG_ASSISTANT_RESPONSES=1 없으면 redact; 미설정 시 OTEL_LOG_USER_PROMPTS 따름(프롬프트 로깅 환경은 업그레이드 후 응답도 수신됨) — 프롬프트만 유지하려면 OTEL_LOG_ASSISTANT_RESPONSES=0 설정</li>
+<li class="e-feature"><span>기능</span>bash 모드(!)에 실시간 파일 경로 자동완성 추가</li>
+<li class="e-feature"><span>기능</span>MCP 서버 인증 필요 시 /mcp를 안내하는 시작 알림 추가</li>
+<li class="e-feature"><span>기능</span>유휴 백그라운드 셸 명령의 메모리 압박 자동 수거 추가(비활성화: CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP=1)</li></ul>
+</div>
+<div class="vr" data-i="v32" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.191</span>
+    <span class="vd">6.24</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span> <span class="pc p-improve">개선 ×7</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×9</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/clear 실행 전 시점으로 대화를 재개하는 /rewind 지원 추가</li></ul>
+</div>
+<div class="vr" data-i="v33" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.190</span>
+    <span class="vd">6.24</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>버그 수정 및 안정성 개선</li></ul>
+</div>
+<div class="vr" data-i="v34" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.187</span>
+    <span class="vd">6.23</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-improve">개선 ×3</span> <span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×13</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>샌드박스 명령이 자격증명 파일·비밀 환경변수를 읽지 못하게 차단하는 sandbox.credentials 설정 추가</li>
+<li class="e-feature"><span>기능</span>조직 설정 모델 제한을 모델 피커·--model·/model·ANTHROPIC_MODEL에 적용, 제한 모델 선택 시 &quot;restricted by your organization&#x27;s settings&quot; 메시지 표시</li>
+<li class="e-feature"><span>기능</span>전체화면 모드의 선택 메뉴(권한 프롬프트·/model·/config 등)에서 마우스 클릭 지원 추가</li>
+<li class="e-feature"><span>기능</span>[VSCode] 대용량 세션 재개 시 확장이 응답 불능이 되던 문제 수정</li></ul>
+</div>
+<div class="vr" data-i="v35" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.186</span>
+    <span class="vd">6.22</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×9</span> <span class="pc p-improve">개선 ×4</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×17</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>CLI에서 인터랙티브 /mcp 메뉴 없이 MCP 서버 인증하는 claude mcp login &lt;name&gt;·claude mcp logout &lt;name&gt; 추가, SSH 완료용 --no-browser stdin 리다이렉트 지원</li>
+<li class="e-feature"><span>기능</span>/workflows 에이전트 상세 뷰에 상태 필터링(f 키) 추가</li>
+<li class="e-feature"><span>기능</span>/plugin 설치됨 탭에 &quot;Skills&quot; 섹션 추가</li>
+<li class="e-feature"><span>기능</span>auto 모드에서 it2 CLI를 찾지 못할 때 경고를 표시하는 teammateMode: &quot;iterm2&quot; 설정 추가</li>
+<li class="e-feature"><span>기능</span>awsAuthRefresh 설정 시 /login에 &quot;Claude Platform on AWS - refresh credentials&quot; 옵션 추가</li>
+<li class="e-feature"><span>기능</span>! bash 명령 출력에 Claude가 자동 응답; 기존 컨텍스트 전용 동작 유지는 settings.json에 &quot;respondToBashCommands&quot;: false 설정</li>
+<li class="e-feature"><span>기능</span>CLAUDE_CODE_MAX_RETRIES 최대 15로 제한; 무인 세션에는 CLAUDE_CODE_RETRY_WATCHDOG 사용</li>
+<li class="e-feature"><span>기능</span>백그라운드 서브에이전트 권한 요청이 자동 거부 대신 메인 세션에 표시; 대화상자에 요청 에이전트 명시, Esc로 해당 툴만 거부</li>
+<li class="e-feature"><span>기능</span>/review &lt;pr&gt;가 /code-review medium과 동일한 리뷰 엔진 사용으로 변경</li></ul>
+</div>
+<div class="vr" data-i="v36" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.185</span>
+    <span class="vd">6.20</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>스트림 지연 힌트 문구가 &quot;No response from API · Retrying in …&quot;에서 &quot;Waiting for API response · will retry in …&quot;으로 변경, 무음 10초→20초 후 트리거</li></ul>
+</div>
+<div class="vr" data-i="v37" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.183</span>
+    <span class="vd">6.19</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×9</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>요청 모델이 deprecated되거나 새 모델로 자동 변경될 때 경고 추가 — print 모드(-p)에서 stderr 출력, agent frontmatter 설정 모델도 포함</li>
+<li class="e-feature"><span>기능</span>웹·Remote Control 세션의 커밋·PR에서 claude.ai 세션 링크를 생략하는 attribution.sessionUrl 설정 추가</li>
+<li class="e-feature"><span>기능</span>/config key=value에 쓸 수 있는 모든 단축 키 목록을 보여주는 /config --help 추가</li>
+<li class="e-feature"><span>기능</span>/config 토글 동작 변경 — Enter·Space 모두 선택 설정 변경, Esc는 이제 되돌리기 대신 저장 후 닫기</li>
+<li class="e-feature"><span>기능</span>로고 아래 startup &quot;setup issues&quot; 줄 제거 — 설정 문제 확인은 /doctor, 또는 --debug 사용</li></ul>
+</div>
+<div class="vr" data-i="v38" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.181</span>
+    <span class="vd">6.17</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-improve">개선 ×5</span> <span class="pc p-security">보안 ×2</span> <span class="pc p-fix">Fix ×27</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>프롬프트에서 설정값을 바꾸는 /config key=value 문법 추가 (예: /config thinking=false) — 대화형·-p·Remote Control 모두 동작</li>
+<li class="e-feature"><span>기능</span>샌드박스 명령이 macOS에서 Apple Events를 보낼 수 있게 하는 sandbox.allowAppleEvents opt-in 설정 추가</li>
+<li class="e-feature"><span>기능</span>CLAUDE_CLIENT_PRESENCE_FILE 환경변수 추가 — 마커 파일을 지정하면 PC 앞에 있을 때 모바일 푸시 알림 억제</li>
+<li class="e-feature"><span>기능</span>번들 Bun 런타임을 1.4로 업그레이드</li>
+<li class="e-feature"><span>기능</span>전체화면 모드 URL 열기를 Cmd+클릭(macOS) / Ctrl+클릭 필요로 변경(네이티브 터미널 동작에 맞춤)</li></ul>
+</div>
+<div class="vr" data-i="v39" data-t="fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.179</span>
+    <span class="vd">6.16</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×7</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"></ul>
+</div>
+<div class="vr" data-i="v40" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.178</span>
+    <span class="vd">6.15</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-improve">개선 ×4</span> <span class="pc p-security">보안 ×5</span> <span class="pc p-fix">Fix ×7</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>권한 규칙에 Tool(param:value) 문법 추가 — 툴 입력 파라미터 매칭(* 와일드카드), 예: Agent(model:opus)로 Opus 서브에이전트 차단</li>
+<li class="e-feature"><span>기능</span>중첩 .claude/skills 디렉터리의 스킬도 그 안 파일 작업 시 로드 — 이름 충돌 시 중첩 스킬은 &lt;dir&gt;:&lt;name&gt;로 표시돼 둘 다 유지</li>
+<li class="e-feature"><span>기능</span>중첩 .claude/ 디렉터리: 이름 충돌 시 작업 폴더에 가장 가까운 agent·workflow·output-style이 우선 — 프로젝트 범위 워크플로 저장도 가장 가까운 .claude/workflows/로</li>
+<li class="e-feature"><span>기능</span>워크플로 프롬프트 키워드를 보라색 시머 하이라이트로 변경 — &quot;run a workflow&quot;·&quot;workflow:&quot; 같은 명시적 표현에만 발동(단어 언급만으론 X)</li>
+<li class="e-feature"><span>기능</span>/bug는 이제 제출 전 설명 필수 — 모델 거부 문구를 GitHub 이슈 제목으로 쓰지 않음</li>
+<li class="e-feature"><span>기능</span>[VSCode] CJK IME 후보창 닫으려 Esc 눌렀을 때 실행 중인 Claude 작업이 취소되던 문제 수정</li></ul>
+</div>
+<div class="vr" data-i="v41" data-t="feature fix improve security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.176</span>
+    <span class="vd">6.12</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×3</span> <span class="pc p-improve">개선 ×1</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×15</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>세션 제목을 대화 언어로 자동 생성 (language 설정으로 특정 언어 고정)</li>
+<li class="e-feature"><span>기능</span>푸터에 정규식 매칭 링크 배지를 다는 footerLinksRegexes 설정 추가 (사용자·관리 설정)</li>
+<li class="e-feature"><span>기능</span>백그라운드 세션이 자동 업데이트 중 답장 못 할 때 안내 명확화, claude daemon status가 버전 불일치 동작 설명</li></ul>
+</div>
+<div class="vr" data-i="v42" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.175</span>
+    <span class="vd">6.12</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>enforceAvailableModels 관리 설정 추가 — 켜면 availableModels 허용목록이 Default 모델까지 제한(허용 안 된 모델로 풀리는 Default는 첫 허용 모델로 폴백), 사용자·프로젝트 설정으로 관리 목록을 넓힐 수 없음</li></ul>
+</div>
+<div class="vr" data-i="v43" data-t="feature fix security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.174</span>
+    <span class="vd">6.12</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×2</span> <span class="pc p-security">보안 ×3</span> <span class="pc p-fix">Fix ×8</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>전체화면에서 마우스 휠 스크롤 가속을 끄는 wheelScrollAccelerationEnabled 설정 추가</li>
+<li class="e-feature"><span>기능</span>[VSCode] 계정·사용량 대화상자(/usage)에 사용량 출처 표시 — 캐시 미스·롱컨텍스트·서브에이전트, 스킬/에이전트/플러그인/MCP별 분해(최근 24h·7d)</li></ul>
+</div>
+<div class="vr" data-i="v44" data-t="fix security">
+  <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.173</span>
+    <span class="vd">6.11</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"></ul>
+</div></div>
+      <div class="more">더 보기 (191개)</div></div>
+    <div class="tp t-cx"><div class="vlist"><div class="vr is-new" data-i="v1000" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.147.0</span>
+    <span class="vd">8.7</span><span class="va">3일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 플러그인 카탈로그 전체 검색.</li>
+<li class="e-feature"><span>기능</span>대화를 지속적으로 유지되는 수동 정렬 섹션으로 구성하고 긴 트랜스크립트를 단계적으로 탐색.</li>
+<li class="e-feature"><span>기능</span>새 --approve-for-me CLI 플래그로 자동 검토 승인 활성화.</li>
+<li class="e-feature"><span>기능</span>Cursor 관리 스킬 임포트 및 중복 생성 없이 임포트한 Claude·Cursor 대화 변경 사항 동기화.</li>
+<li class="e-feature"><span>기능</span>페이지네이션 디스커버리·다중 라운드 요청·비차단 서버 시작을 포함한 opt-in MCP 2026-07-28 프로토콜 지원.</li>
+<li class="e-feature"><span>기능</span>Amazon Bedrock에 캐시된 웹 검색 및 원격 대화 압축 활성화.</li>
+<li class="e-fix"><span>수정</span>Redact secrets and complete bearer tokens from displayed commands and replayed conversation history.</li>
+<li class="e-fix"><span>수정</span>Prevent lost or stalled terminal input when focus returns, MCP servers initialize, or Ghostty handles keyboard shortcuts.</li>
+<li class="e-fix"><span>수정</span>Correct rendering and cursor positioning for Japanese characters, emoji, hyperlinks, and text near viewport boundaries.</li>
+<li class="e-fix"><span>수정</span>Properly interrupt Windows background processes and handle Windows filesystem paths consistently.</li>
+<li class="e-fix"><span>수정</span>Require explicit trust for unfamiliar local projects and enforce managed authentication restrictions before credentials are used.</li>
+<li class="e-fix"><span>수정</span>Harden plugin isolation and deny network access when policy updates fail.</li></ul>
+</div>
+<div class="vr is-new" data-i="v1001" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.146.1</span>
+    <span class="vd">8.5</span><span class="va">5일 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Apply safer automatic-review defaults for cyber-capable models and explain permission changes in the terminal interface.</li></ul>
+</div>
+<div class="vr" data-i="v1002" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.146.0</span>
+    <span class="vd">7.29</span><span class="va">12일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/new·/clear로 새 세션 이름 지정, 중요 스레드 고정, 사이드 대화를 닫지 않고 전환.</li>
+<li class="e-feature"><span>기능</span>Agent Plugins 매니페스트, 워크스페이스 플러그인 게시, Amazon Bedrock·Claude Code 추가 플러그인 마켓플레이스 지원.</li>
+<li class="e-feature"><span>기능</span>스레드 목록에 표시되지 않는 임시 포크를 포함한 페이지네이션 히스토리로 스레드 포크.</li>
+<li class="e-feature"><span>기능</span>앱서버를 WebSocket으로 원격 Code Mode 호스트에 연결.</li>
+<li class="e-feature"><span>기능</span>호환 커스텀 모델 공급자에 독립형 웹 검색 활성화.</li>
+<li class="e-feature"><span>기능</span>executor 제공 스킬 발견 및 명시적으로 선택된 스킬 포함 관련 리소스 안전 읽기.</li>
+<li class="e-fix"><span>수정</span>Honor configured proxies across authentication, plugin downloads, MCP authorization, remote execution, WebSockets, redirects, and LM Studio connections.</li>
+<li class="e-fix"><span>수정</span>Keep MCP connections and Apps tools current when authentication or configuration changes, reconnecting closed servers without restarting healthy connections.</li>
+<li class="e-fix"><span>수정</span>Preserve submitted messages, final responses, failed-turn errors, imported timestamps, and approval settings across interruptions, replay, imports, and forks.</li>
+<li class="e-fix"><span>수정</span>Improve terminal responsiveness and rendering, including nonblocking interrupts, keyboard handling, narrow layouts, hyperlinks, and refreshed mention results.</li>
+<li class="e-fix"><span>수정</span>Fix Windows navigation keys, reliably terminate sandboxed process trees, and preserve proxy settings during security reviews.</li>
+<li class="e-fix"><span>수정</span>Retain more available skills under tight context budgets and warn when skill catalogs must be truncated.</li></ul>
+</div>
+<div class="vr" data-i="v1003" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.145.0</span>
+    <span class="vd">7.21</span><span class="va">20일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>효율적 재개·검색·이름 지속·서브에이전트 지원·메모리를 갖춘 실험적 페이지네이션 스레드 히스토리 추가.</li>
+<li class="e-feature"><span>기능</span>/import가 Cursor·Claude Code 설정, MCP 서버, 플러그인, 세션, 명령어, 프로젝트 메모리 마이그레이션으로 확장.</li>
+<li class="e-feature"><span>기능</span>실험적 Amazon Bedrock 로그인·커스텀 엔드포인트·인증 지원 추가, Bedrock 기본 모델로 GPT-5.6 Sol 설정.</li>
+<li class="e-feature"><span>기능</span>일반 로컬 오디오 형식을 포함한 오디오 입력·툴 출력 추가, 스트리밍 실시간 V3 대화 도입.</li>
+<li class="e-feature"><span>기능</span>설정 가능한 서브에이전트 모델·추론 수준·동시성·역할 복원·에이전트 내비게이션 개선으로 opt-in 멀티에이전트 V2 경험 안정화.</li>
+<li class="e-feature"><span>기능</span>터미널 UI에 보안 클릭 가능한 인라인 시각화 링크 추가.</li>
+<li class="e-fix"><span>수정</span>Editing an earlier prompt or retrying a safety-buffered turn now creates a contextual branch, preserving the original conversation, attachments, and mention bindings.</li>
+<li class="e-fix"><span>수정</span>Improved terminal responsiveness for long conversations and streamed output through incremental Markdown rendering, fewer redraws, caching, and bounded command output.</li>
+<li class="e-fix"><span>수정</span>Prevented slow or conflicting MCP startup and authentication flows by enforcing startup timeouts, avoiding blocking OAuth discovery, serializing refreshes, and reusing tool catalogs safely.</li>
+<li class="e-fix"><span>수정</span>Improved Windows execution and sandbox reliability, including native exec-server sandboxing, network-proxy enforcement, hidden helper consoles, and correctly quoted hook commands.</li>
+<li class="e-fix"><span>수정</span>Fixed compact release-metadata parsing and macOS code-mode installation, with an in-process fallback when the external code-mode host is unavailable.</li>
+<li class="e-fix"><span>수정</span>Strengthened safety and approval handling with better forced-rm detection, consistent full-access confirmation, and preserved rejection reasons across tools.</li></ul>
+</div>
+<div class="vr" data-i="v1004" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.6</span>
+    <span class="vd">7.18</span><span class="va">23일 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Refreshed bundled instructions for GPT-5.6 Sol, Terra, and Luna, and corrected their context windows to 272,000 tokens.</li></ul>
+</div>
+<div class="vr" data-i="v1005" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.5</span>
+    <span class="vd">7.16</span><span class="va">25일 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Improved dangerous-command detection, including more forced rm forms, and provides clearer rejection reasons when commands are denied.</li></ul>
+</div>
+<div class="vr" data-i="v1006" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.4</span>
+    <span class="vd">7.14</span><span class="va">27일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>이 패치 릴리스에는 사용자 관련 변경 사항 없음.</li></ul>
+</div>
+<div class="vr" data-i="v1007" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.3</span>
+    <span class="vd">7.13</span><span class="va">28일 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>버전 전용 릴리스 — rust-v0.144.2 이후 병합된 풀 리퀘스트 변경 없음.</li></ul>
+</div>
+<div class="vr" data-i="v1008" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.2</span>
+    <span class="vd">7.13</span><span class="va">28일 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Restored the previous Guardian auto-review policy, request format, and tool behavior after rolling back a prompting regression.</li></ul>
+</div>
+<div class="vr" data-i="v1009" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.1</span>
+    <span class="vd">7.9</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×3</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Fixed standalone installs failing when GitHub returns compact or reordered release metadata.</li>
+<li class="e-fix"><span>수정</span>Ensured macOS package installs expose the code-mode host alongside the codex executable.</li>
+<li class="e-fix"><span>수정</span>Kept code mode working when the companion host binary is unavailable by falling back to the embedded runtime.</li></ul>
+</div>
+<div class="vr" data-i="v1010" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.144.0</span>
+    <span class="vd">7.9</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>사용량 한도 리셋 크레딧이 종류·만료일 표시 및 사용할 크레딧 선택 가능.</li>
+<li class="e-feature"><span>기능</span>읽기 전용 선언 액션은 허용하고 쓰기 시 프롬프트하는 writes 앱 승인 모드 추가.</li>
+<li class="e-feature"><span>기능</span>MCP 툴이 실험적 opt-in 없이 인터랙티브하게 인증 요청 가능.</li>
+<li class="e-feature"><span>기능</span>앱서버 호스트가 런타임에 Codex 인증 제공·로그인 성공 시 호스팅 페이지로 리다이렉트 가능.</li>
+<li class="e-feature"><span>기능</span>전역 pnunen 설치 감지 — 진단·업데이트에 올바른 패키지 매니저 사용.</li>
+<li class="e-feature"><span>기능</span>Ultra 추론 선택 시 높은 멀티에이전트 동시성이 사용량을 빠르게 늘릴 수 있다고 경고.</li>
+<li class="e-fix"><span>수정</span>Resumed ChatGPT threads recover when compaction references a retired model by retrying with the currently selected model.</li>
+<li class="e-fix"><span>수정</span>Fixed Code Mode crashes in Intel macOS release binaries.</li>
+<li class="e-fix"><span>수정</span>Windows sandbox sessions can delete files in writable roots and access the managed primary runtime.</li>
+<li class="e-fix"><span>수정</span>Pasted terminal control sequences can no longer corrupt TUI rendering or resumed conversation history.</li>
+<li class="e-fix"><span>수정</span>Long-running app sessions now refresh expired authentication for the hosted codex_apps connector.</li>
+<li class="e-fix"><span>수정</span>Responses WebSockets continue using the low-latency transport while respecting system proxies and custom certificate authorities.</li></ul>
+</div>
+<div class="vr" data-i="v1011" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.143.0</span>
+    <span class="vd">7.8</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>원격 플러그인이 기본 활성화 — 더 풍부한 카탈로그 행, npm 마켓플레이스 소스, 원격/로컬 버전 표시</li>
+<li class="e-feature"><span>기능</span>Codex가 인증·Responses API 트래픽을 macOS·Windows 시스템 프록시(PAC·WPAD 포함)를 통해 라우팅 가능</li>
+<li class="e-feature"><span>기능</span>실행 중인 데몬에서 수동 페어링 코드를 생성하는 codex remote-control pair 추가</li>
+<li class="e-feature"><span>기능</span>Amazon Bedrock GPT-5.6 Sol·Terra·Luna 모델 추가, max 추론 노력 일급 지원</li>
+<li class="e-feature"><span>기능</span>MCP 툴이 기본적으로 tool search 사용, ChatGPT 호스팅 MCP 서버는 세션 인증 명시적 사용 가능</li>
+<li class="e-feature"><span>기능</span>앱 서버 클라이언트가 환경 검사, 하위 스레드 목록 조회, 특정 턴까지의 히스토리 포크 가능</li>
+<li class="e-fix"><span>수정</span>Fixed Windows ConPTY input handling for line endings and backspace, plus sandbox credential retry edge cases.</li>
+<li class="e-fix"><span>수정</span>Fixed stale TUI safety prompts and cancelled reviews that could leave MCP startup appearing busy.</li>
+<li class="e-fix"><span>수정</span>Improved recovery when exec servers are temporarily offline and prevented remote-control token refresh retry storms.</li>
+<li class="e-fix"><span>수정</span>Preserved trailing realtime transcript text and terminal rollout events during shutdown.</li>
+<li class="e-fix"><span>수정</span>Improved incremental WebSocket request success by ignoring response metadata during comparisons.</li>
+<li class="e-fix"><span>수정</span>Reduced installer failures from GitHub API rate limits by reusing release metadata.</li></ul>
+</div>
+<div class="vr" data-i="v1012" data-t="fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.5</span>
+    <span class="vd">7.1</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-fix"><span>수정</span>Prevented full Responses WebSocket request payloads from being written to trace logs.</li></ul>
+</div>
+<div class="vr" data-i="v1013" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.4</span>
+    <span class="vd">6.29</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>사용자 관련 변경 사항 없는 릴리스</li></ul>
+</div>
+<div class="vr" data-i="v1014" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.3</span>
+    <span class="vd">6.26</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>0.142.2 이후 사용자 변경 없는 유지보수 패치</li></ul>
+</div>
+<div class="vr" data-i="v1015" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.2</span>
+    <span class="vd">6.25</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>지원 시 MCP 툴이 기본적으로 tool search 사용 — 이전 모델·공급자 호환성 유지하며 툴 발견성 향상</li>
+<li class="e-feature"><span>기능</span>respect_system_proxy 활성화 시 macOS 인증 클라이언트가 시스템 프록시·PAC·WPAD 설정 준수</li>
+<li class="e-feature"><span>기능</span>플러그인이 로컬 매니페스트·원격 카탈로그를 통해 전용 다크모드 로고 제공 가능</li>
+<li class="e-feature"><span>기능</span>앱이 서버 제공 가시성·빠른 모델 메타데이터로 더 풍부한 safety-buffering UI 표시 가능</li>
+<li class="e-fix"><span>수정</span>Remote plugin catalogs now return curated featured-plugin rankings.</li>
+<li class="e-fix"><span>수정</span>Expired Amazon Bedrock credentials now produce actionable recovery guidance instead of a generic authorization error.</li>
+<li class="e-fix"><span>수정</span>Remote stdio MCP servers now accept absolute working directories written in the remote platform’s path format.</li>
+<li class="e-fix"><span>수정</span>Remote HTTP(S) image inputs now return clear model-visible validation errors; inline data URLs and local images remain supported.</li>
+<li class="e-fix"><span>수정</span>PowerShell commands containing executable AST regions the safety classifier cannot inspect now require approval.</li>
+<li class="e-fix"><span>수정</span>Code Mode now warns when the selected model lacks the required metadata.</li></ul>
+</div>
+<div class="vr" data-i="v1016" data-t="feature">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.1</span>
+    <span class="vd">6.25</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>인증용 Windows 시스템 프록시 opt-in 지원 추가 — PAC·WPAD·정적 프록시·우회 규칙 포함</li></ul>
+</div>
+<div class="vr" data-i="v1017" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.142.0</span>
+    <span class="vd">6.22</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/usage에서 적립된 사용량 한도 리셋 크레딧 확인·사용 가능 — 확인·재시도·갱신 상태 포함.</li>
+<li class="e-feature"><span>기능</span>/plugins가 원격 플러그인을 OpenAI Curated·Workspace·Shared with me 섹션으로 분류, 적합한 턴에서 관련 플러그인 추천·설치 가능.</li>
+<li class="e-feature"><span>기능</span>설정 가능한 롤아웃 토큰 예산이 에이전트 스레드 전반 사용량 추적, 잔여 예산 알림, 소진 시 턴 중단.</li>
+<li class="e-feature"><span>기능</span>앱서버 클라이언트가 멀티에이전트 위임을 disabled·명시적 요청 전용·proactive로 스레드·턴 수준에서 설정 가능.</li>
+<li class="e-feature"><span>기능</span>실시간 검색은 허용하되 직접 페이지 접근을 서버 승인 URL로 제한하는 인덱스 웹검색 모드 추가.</li>
+<li class="e-feature"><span>기능</span>Codex가 예약된 UTC 시간 알림 수신·현재 시간 직접 조회 가능 — 클라이언트 제공 앱서버 시계 포함.</li>
+<li class="e-fix"><span>수정</span>Restored reliable Linux TUI rendering after suspending with Ctrl+Z and resuming with fg.</li>
+<li class="e-fix"><span>수정</span>Exec-server processes and stdio MCP sessions now survive transient disconnects, including signed-URL refresh and retry-safe stdin writes.</li>
+<li class="e-fix"><span>수정</span>Remote environments now preserve executor-native paths, shells, AGENTS.md discovery, and sandbox behavior across operating systems.</li>
+<li class="e-fix"><span>수정</span>Plugin loading and installation now handle root marketplace layouts, manifest fallbacks, multiple skill paths, actionable download errors, and immediate tool refreshes.</li>
+<li class="e-fix"><span>수정</span>Parent agents now receive terminal subagent errors instead of seeing failed work as an empty successful completion.</li>
+<li class="e-fix"><span>수정</span>Goal-first threads are once again persisted and returned by thread/list and thread/search.</li></ul>
+</div>
+<div class="vr" data-i="v1018" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.141.0</span>
+    <span class="vd">6.18</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>원격 executor가 인증·E2E 암호화된 Noise 릴레이 채널 사용.</li>
+<li class="e-feature"><span>기능</span>크로스플랫폼 원격 실행이 executor 고유 작업 디렉터리·셸 보존 — app-server·exec-server 경계 파일시스템 권한 경로 포함.</li>
+<li class="e-feature"><span>기능</span>선택된 executor 플러그인이 스레드별 stdio MCP 서버 활성화 가능; 플러그인 발견에 내가 만든 마켓플레이스·auth별 큐레이션 카탈로그 추가.</li>
+<li class="e-feature"><span>기능</span>앱서버 클라이언트가 직계 자식 스레드 목록·외부 에이전트 가져오기와 상세 결과 연결·레이트리밋 리셋 크레딧 조회/사용 가능.</li>
+<li class="e-feature"><span>기능</span>Realtime 클라이언트가 음성 명시적 추가·Codex 응답의 대화 진입 방식 제어·시작 컨텍스트 생략 가능.</li>
+<li class="e-feature"><span>기능</span>TUI 입력 프롬프트가 비활성 후 자동 확인 — 상호작용 시 일시정지되는 카운트다운 포함.</li>
+<li class="e-fix"><span>수정</span>Hook trust bypass now persists through codex exec thread start and resume, while blocking PostToolUse hooks correctly reject code-mode tool calls.</li>
+<li class="e-fix"><span>수정</span>Plugin capabilities now route consistently by authentication mode, deduplicate conflicting App/MCP declarations, and preserve remote marketplace ordering.</li>
+<li class="e-fix"><span>수정</span>Windows sandbox execution repairs stale credentials automatically and gives PowerShell commands more time before backgrounding.</li>
+<li class="e-fix"><span>수정</span>Idle exec-server relays remain connected, and steered user input immediately interrupts wait_agent.</li>
+<li class="e-fix"><span>수정</span>Bundled SQLite is pinned to a version containing the WAL-reset corruption fix.</li>
+<li class="e-fix"><span>수정</span>TLS connections now support P-521 certificate signatures commonly used by enterprise proxies.</li></ul>
+</div>
+<div class="vr" data-i="v1019" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.140.0</span>
+    <span class="vd">6.15</span><span class="va">1달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/usage에 일·주·누적 계정 토큰 사용량 뷰 추가.</li>
+<li class="e-feature"><span>기능</span>/goal이 대용량 텍스트·붙여넣기 블록·이미지 첨부 보존 — 원격 app-server 세션 포함.</li>
+<li class="e-feature"><span>기능</span>codex delete·/delete·app-server thread/delete로 세션 영구 삭제 추가 — 확인 안전장치·서브에이전트 정리 포함.</li>
+<li class="e-feature"><span>기능</span>/import 추가 — Claude Code에서 설정·프로젝트 구성·최근 대화를 선택 가져오기.</li>
+<li class="e-feature"><span>기능</span>@ 입력 시 파일·플러그인·스킬 통합 멘션 메뉴가 기본으로 열림.</li>
+<li class="e-feature"><span>기능</span>관리형 Amazon Bedrock API 키 인증 + CLI·MCP OAuth 자격증명 암호화 로컬 저장 추가.</li>
+<li class="e-fix"><span>수정</span>Corrupted SQLite state databases are now backed up and rebuilt automatically from rollout data, including malformed database-directory cases.</li>
+<li class="e-fix"><span>수정</span>Prevented /review from crashing when Esc is pressed with queued guidance, while preserving that guidance when the review is canceled.</li>
+<li class="e-fix"><span>수정</span>Improved MCP reliability by retrying transient startup failures, reporting unusable OAuth credentials as logged out, and preserving explicitly disabled servers.</li>
+<li class="e-fix"><span>수정</span>Fixed remote plugin uninstall requests and correctly surfaced apps requiring authentication during installation.</li>
+<li class="e-fix"><span>수정</span>Persisted “Don’t remind me” update dismissals reliably and cleared stale running-hook indicators after completed turns.</li>
+<li class="e-fix"><span>수정</span>Non-TTY background commands can now be interrupted with Ctrl-C while preserving their final output and exit status.</li></ul>
+</div>
+<div class="vr" data-i="v1020" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.139.0</span>
+    <span class="vd">6.9</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Code mode에서 웹 검색을 직접 호출 — 중첩 JS 툴 호출 포함, 결과는 일반 텍스트로.</li>
+<li class="e-feature"><span>기능</span>툴·커넥터 입력 스키마가 oneOf·allOf 보존, 큰 스키마는 압축 시 구조 유지 — MCP 툴 호환성↑.</li>
+<li class="e-feature"><span>기능</span>codex doctor 로컬 리포트에 에디터·페이저 환경 정보 추가(JSON 출력은 원시값 가림).</li>
+<li class="e-feature"><span>기능</span>플러그인 마켓플레이스 자동화 강화 — codex plugin marketplace list --json에 소스 포함, 목록은 캐시 카탈로그 먼저 반환 후 백그라운드 갱신.</li>
+<li class="e-fix"><span>수정</span>codex resume --last &quot;...&quot; and codex fork --last &quot;...&quot; now treat the trailing argument as the initial prompt instead of misreading it as a session ID.</li>
+<li class="e-fix"><span>수정</span>MCP startup warnings from subagents now stay in the thread that owns them, avoiding duplicate parent-thread alerts and stuck startup spinners in the TUI.</li>
+<li class="e-fix"><span>수정</span>Image edits now use the exact referenced image file paths instead of guessing from conversation history, so attached-image edits land on the intended input.</li>
+<li class="e-fix"><span>수정</span>Bare URLs with ~ in the path are now linkified end to end in the TUI instead of being truncated before the tilde.</li>
+<li class="e-fix"><span>수정</span>Thread resets such as /new, /clear, and /fork no longer drop cloud-managed requirements or feature flags during TUI config reloads.</li>
+<li class="e-fix"><span>수정</span>Sandbox execution now preserves approved escalation decisions and enforces configured proxy-only networking more consistently.</li></ul>
+</div>
+<div class="vr" data-i="v1021" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.138.0</span>
+    <span class="vd">6.8</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>/app 명령으로 현재 CLI 스레드를 macOS·Windows의 Codex Desktop으로 넘김 — Windows는 Desktop으로 바로 열림.</li>
+<li class="e-feature"><span>기능</span>로컬 이미지 첨부·이미지 생성의 저장 경로를 모델에 노출 → 후속 편집·파일 참조 안정화.</li>
+<li class="e-feature"><span>기능</span>reasoning effort 선택 유연화 — Alt 미지원 터미널용 폴백 단축키 추가, 모델이 알린 순서대로 effort 적용.</li>
+<li class="e-feature"><span>기능</span>앱서버 연동이 계정 토큰 사용량 조회 가능, Codex auth가 CLI·앱서버서 v2 PAT 지원.</li>
+<li class="e-feature"><span>기능</span>플러그인 자동화 구조적 출력 강화 — add/remove·마켓 명령 --json 지원, 목록 JSON에 마켓 소스, 상세에 기본 프롬프트·원격 MCP 서버 노출.</li>
+<li class="e-fix"><span>수정</span>Goal workflows are more predictable: multiline paste in /goal edit no longer submits early, idle auto-turns stay out of Plan mode, and goals stop auto-continuing after terminal turn failures.</li>
+<li class="e-fix"><span>수정</span>Forked threads now keep user-renamed titles instead of falling back to the original first-prompt name.</li>
+<li class="e-fix"><span>수정</span>The TUI no longer adds extra blank space while streaming, and cancelled prompts reopen with the cursor at the end so you can keep editing naturally.</li>
+<li class="e-fix"><span>수정</span>TUI config write failures now show the underlying cause, making validation problems and read-only filesystem issues much easier to diagnose.</li>
+<li class="e-fix"><span>수정</span>Startup is more resilient across environments, with support for /usr/bin/bash, shorter Linux proxy socket paths, and pre-refresh of expired OAuth-backed MCP credentials.</li>
+<li class="e-fix"><span>수정</span>Workspace instruction loading is more accurate for remote and symlinked workspaces, so the right AGENTS.md files are picked up consistently.</li></ul>
+</div>
+<div class="vr" data-i="v1022" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.137.0</span>
+    <span class="vd">6.4</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>TUI가 F13–F24 키바인딩·검색 메뉴 붙여넣기·컴팩트 reasoning 전용 상태/타이틀 항목 지원 (#25329, #25400, #25504).</li>
+<li class="e-feature"><span>기능</span>엔터프라이즈/관리자 흐름이 월 크레딧 한도 표시·클라우드 관리 config 번들(EDU 포함) 적용 (#24812, #24617, #24619, #24620, #24622, #25963).</li>
+<li class="e-feature"><span>기능</span>원격 제어 클라이언트가 앱서버 v2 RPC로 페어링 시작·컨트롤러 권한 조회/취소 (#25675, #25785).</li>
+<li class="e-feature"><span>기능</span>플러그인 워크플로에 기계 판독용 codex plugin list --json 출력·캐시 원격 카탈로그 제안 추가 (#25330, #25457).</li>
+<li class="e-feature"><span>기능</span>호스팅 웹·이미지 툴을 더 많은 code-mode 흐름서 사용, 단독 웹 검색 병렬 실행 가능 (#25176, #25702, #25890, #25923).</li>
+<li class="e-feature"><span>기능</span>Multi-agent v2가 스레드별 런타임 선택 유지, spawn 에이전트의 후속·메타데이터 기본값 정리 (#25266, #25636, #25720, #25721, #25722, #25841, #26114).</li>
+<li class="e-fix"><span>수정</span>Cancelling a submitted prompt before visible output now restores the draft, attachments, and collaboration mode for editing (#25316).</li>
+<li class="e-fix"><span>수정</span>Slash-command filtering and footer shortcut hints now reset or render according to the current UI state (#25492, #25625).</li>
+<li class="e-fix"><span>수정</span>Platform reliability improved for macOS app launches and Windows SQLite startup, thread resume, and sandbox setup refreshes (#25485, #25490, #25509, #25949).</li>
+<li class="e-fix"><span>수정</span>Plugin loading preserves app manifest order, deduplicates local/remote curated installs, and treats malformed skills fields as warnings (#25491, #25681, #25717, #25782).</li>
+<li class="e-fix"><span>수정</span>Permission requests and approvals now carry environment identity, and managed MITM proxying exports readable CA bundles to child commands (#25850, #25858, #25862, #22668).</li>
+<li class="e-fix"><span>수정</span>Local session history is safer for compressed rollouts, renamed titles, pathless side-chat reloads, and stack-heavy startup/config rebuilds (#25087, #25624, #25661, #25814, #25844, #25847).</li></ul>
+</div>
+<div class="vr" data-i="v1023" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.136.0</span>
+    <span class="vd">6.1</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>TUI 마크다운이 OSC 8로 웹 링크 클릭 유지, 좁은 표는 링크 보존한 key/value 레코드로 전환.</li>
+<li class="e-feature"><span>기능</span>TUI /archive·CLI codex archive/codex unarchive로 세션 아카이브 — 복원 전까지 재개/포크 차단.</li>
+<li class="e-feature"><span>기능</span>앱서버 연동이 초기 턴 페이지로 스레드 재개·MCP 서버 상태 풍부화·codex app-server --stdio로 stdio 모드 실행.</li>
+<li class="e-feature"><span>기능</span>원격 실행 설정이 승인된 OpenAI 호스트용 CODEX_API_KEY 등록 지원, 원격제어 웹소켓은 단명 서버 토큰 사용.</li>
+<li class="e-feature"><span>기능</span>Windows 관리자용 알파 codex sandbox setup --elevated 프로비저닝 경로 + 허용 Windows 샌드박스 requirements 지원.</li>
+<li class="e-feature"><span>기능</span>기능 게이트된 단독 이미지 생성 확장이 네이티브 Codex 이미지 아티팩트 파이프라인으로 동작.</li>
+<li class="e-fix"><span>수정</span>ChatGPT auth refreshes tokens before the five-minute expiry window and shows a relogin-required path for reused refresh tokens instead of collapsing into a generic cloud error.</li>
+<li class="e-fix"><span>수정</span>Command-safety hardening prevents /diff from running repository-provided Git helpers/hooks, avoids PowerShell parser execution on non-Windows hosts, and rejects browser-origin exec-server websocket handshakes.</li>
+<li class="e-fix"><span>수정</span>Sandboxed commands clean up more reliably after interruptions or denied Windows network attempts, and deny read rules stay enforced for safe-command and approval-bypass paths.</li>
+<li class="e-fix"><span>수정</span>Resumed TUI sessions seed prompt history from the session transcript, multiline hook output renders as separate rows, and Vim normal-mode editing behaves correctly.</li>
+<li class="e-fix"><span>수정</span>App-server filesystem watchers debounce later batches correctly, and standalone web search calls now show and restore completed search activity.</li>
+<li class="e-fix"><span>수정</span>Bedrock auth now falls back to AWS_REGION / AWS_DEFAULT_REGION, and unsupported Bedrock GPT service tiers are no longer advertised or sent.</li></ul>
+</div>
+<div class="vr" data-i="v1024" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.135.0</span>
+    <span class="vd">5.28</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>codex doctor가 환경·Git·터미널·앱서버·스레드 인벤토리 진단을 풍부하게 리포트(지원 케이스용).</li>
+<li class="e-feature"><span>기능</span>/status가 원격 전송 연결 시 원격 연결 정보·서버 버전 표시.</li>
+<li class="e-feature"><span>기능</span>Vim 모드에 텍스트 오브젝트 편집·word/line-end 동작 개선·인터럽트 턴 바인딩 설정 추가.</li>
+<li class="e-feature"><span>기능</span>/permissions가 명명된 권한 프로파일 인식·커스텀 프로파일 표시.</li>
+<li class="e-feature"><span>기능</span>패키지 Codex 빌드가 번들된 패치 zsh 헬퍼를 macOS·Linux서 발견·사용.</li>
+<li class="e-feature"><span>기능</span>Python SDK가 스레드·턴 API용 친숙한 Sandbox 프리셋 노출.</li>
+<li class="e-fix"><span>수정</span>Markdown tables and multiline lists render more readably in the TUI, with better column sizing and app-style table formatting</li>
+<li class="e-fix"><span>수정</span>TUI output is more stable on macOS and Zellij, avoiding stderr/composer corruption and raw-output overlap</li>
+<li class="e-fix"><span>수정</span>Slash-command completion now preserves existing draft text for commands that accept inline arguments</li>
+<li class="e-fix"><span>수정</span>Older tmux/iTerm control-mode sessions no longer lose normal Ctrl-C handling from unsupported keyboard enhancement setup</li>
+<li class="e-fix"><span>수정</span>App mentions now exclude inaccessible or disabled apps instead of offering unusable $ suggestions</li>
+<li class="e-fix"><span>수정</span>Resume flows now include non-interactive exec sessions when requested and honor cwd overrides for idle cached threads</li></ul>
+</div>
+<div class="vr" data-i="v1025" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.134.0</span>
+    <span class="vd">5.26</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>로컬 대화 기록 검색 추가 — 대소문자 무시 내용 매칭·결과 미리보기.</li>
+<li class="e-feature"><span>기능</span>--profile을 CLI·TUI 권한·샌드박스 전반 기본 프로파일 선택자로, 레거시 config는 마이그레이션 안내로 거부.</li>
+<li class="e-feature"><span>기능</span>MCP 설정 개선 — 서버별 환경 타겟팅·streamable HTTP 서버용 OAuth 옵션.</li>
+<li class="e-feature"><span>기능</span>커넥터 툴 스키마 안정화 — 로컬 $ref/$defs 구조 보존, 과대 스키마는 노출 전 압축.</li>
+<li class="e-feature"><span>기능</span>읽기 전용 MCP 툴이 readOnlyHint 표시 시 동시 실행 허용.</li>
+<li class="e-feature"><span>기능</span>확장·훅 컨텍스트 풍부화 — 확장 툴에 대화 기록, 훅 입력에 서브에이전트 신원 포함.</li>
+<li class="e-fix"><span>수정</span>Improved remote reliability by reconnecting stale exec-server websocket clients, retrying remote control immediately after auth recovery, and retrying remote compaction v2 streams</li>
+<li class="e-fix"><span>수정</span>Fixed Windows TUI rendering corruption by restoring virtual terminal mode before drawing</li>
+<li class="e-fix"><span>수정</span>Displayed workspace-specific usage-limit messages for credit and spend-cap failures</li>
+<li class="e-fix"><span>수정</span>Allowed plugin skills to reuse shared plugin-level icon assets</li>
+<li class="e-fix"><span>수정</span>Preserved active permission profile metadata when syncing auto-review runtime settings</li>
+<li class="e-fix"><span>수정</span>Ensured Node-based tools honor Codex’s managed network proxy environment</li></ul>
+</div>
+<div class="vr" data-i="v1026" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.133.0</span>
+    <span class="vd">5.21</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Goals 기본 활성화 — 전용 스토리지 기반, 활성 턴 전반 진행 추적.</li>
+<li class="e-feature"><span>기능</span>codex remote-control이 포그라운드 명령처럼 동작·준비 대기·머신 상태 보고, 데몬식 start/stop 유지.</li>
+<li class="e-feature"><span>기능</span>권한 프로파일에 list API·상속·관리형 requirements.toml·런타임 새로고침·Windows 샌드박스 통합 강화.</li>
+<li class="e-feature"><span>기능</span>플러그인 발견성 개선 — 마켓 인식 목록·설치 버전·마켓 루트 표시·원격 컬렉션 지원.</li>
+<li class="e-feature"><span>기능</span>확장이 더 많은 생명주기 이벤트 관찰 — 서브에이전트 start/stop·툴 실행·턴 메타데이터·비동기 승인/턴 처리.</li>
+<li class="e-fix"><span>수정</span>Fixed TUI startup choosing the wrong working directory when reusing a local app-server socket</li>
+<li class="e-fix"><span>수정</span>Fixed plan-mode free-form answers so modified Enter keys, like Shift+Enter, no longer submit unexpectedly</li>
+<li class="e-fix"><span>수정</span>Removed stale background terminal poll events after a process exits</li>
+<li class="e-fix"><span>수정</span>Preserved raw code-mode exec output unless an explicit output token limit is requested</li>
+<li class="e-fix"><span>수정</span>Made AGENTS instruction loading more reliable, including local global reads and warnings for invalid UTF-8 instead of silent drops</li>
+<li class="e-fix"><span>수정</span>Fixed app-server startup/shutdown races, empty resume/fork paths, plugin upgrade failures, and realtime v1 websocket compatibility</li></ul>
+</div>
+<div class="vr" data-i="v1027" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.132.0</span>
+    <span class="vd">5.20</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Python SDK가 일급 인증 지원 — API 키 로그인·ChatGPT 브라우저/디바이스 코드 흐름·계정 조회·로그아웃 API.</li>
+<li class="e-feature"><span>기능</span>Python 턴 API가 텍스트 전용 워크플로서 쉬워짐 — 입력에 일반 문자열 전달 가능, 핸들 기반 실행은 항목·타이밍·사용량 담은 TurnResult 반환.</li>
+<li class="e-feature"><span>기능</span>codex exec resume가 --output-schema 수용 → 재개 자동화서 세션 컨텍스트 유지하며 구조화 JSON 출력 강제.</li>
+<li class="e-feature"><span>기능</span>터미널 능력 탐지를 일괄 처리해 TUI 시작 속도 향상.</li>
+<li class="e-feature"><span>기능</span>원격 executor 등록이 별도 레지스트리 자격증명 대신 표준 Codex auth 사용 가능.</li>
+<li class="e-feature"><span>기능</span>앱서버 턴이 요청된 이미지 충실도(원본 해상도 로컬 이미지 포함)를 입력·이미지 생성 툴 전반에 보존.</li>
+<li class="e-fix"><span>수정</span>Goal continuations now stop when they hit usage limits or a repeated blocker instead of looping and burning more tokens, and completion responses phrase usage more naturally</li>
+<li class="e-fix"><span>수정</span>The session picker is easier to trust: renamed threads now show name (thread-id) in resume hints, and pasted text works in the picker search box</li>
+<li class="e-fix"><span>수정</span>Multi-session TUI flows are more reliable: in-progress MCP calls stay marked as active during replay, and elicitation replies are sent back to the thread that requested them</li>
+<li class="e-fix"><span>수정</span>Remote sessions now keep websocket connections alive and show repo-relative diff paths again instead of /tmp/...-prefixed paths</li>
+<li class="e-fix"><span>수정</span>Windows installs are more robust: codex doctor now detects npm-managed installs correctly, and MSVC release binaries no longer depend on separately installed VC++ runtime DLLs</li>
+<li class="e-fix"><span>수정</span>TUI polish fixes include immediate shutdown feedback on exit, hiding the ChatGPT usage link for non-OpenAI providers, and keeping a cleared Fast tier from reappearing after side-thread resume</li></ul>
+</div>
+<div class="vr" data-i="v1028" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.131.0</span>
+    <span class="vd">5.18</span><span class="va">2달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>TUI 세션 제어·표시 강화 — service-tier 명령·혼합 토큰 사용량·권한/승인 모드·유효 워크스페이스 루트·반응형 마크다운 표.</li>
+<li class="e-feature"><span>기능</span>@ 멘션이 파일·디렉터리·플러그인·스킬을 한 피커서 검색(앱서버 플러그인 메타데이터 기반).</li>
+<li class="e-feature"><span>기능</span>플러그인 워크플로에 마켓 CLI 명령·버전 인식 공유·share checkout·공유 워크스페이스 버킷 정리·기본 활성 훅 추가.</li>
+<li class="e-feature"><span>기능</span>원격 워크플로가 데몬 관리 codex remote-control·런타임 enable/disable API·상태 조회·레지스트리 기반 원격 환경 지원.</li>
+<li class="e-feature"><span>기능</span>Python SDK가 openai-codex/openai_codex로 이전 — 고정 런타임 생성 타입·동시 턴 라우팅·승인 모드·통합 커버리지.</li>
+<li class="e-feature"><span>기능</span>런타임·auth·터미널·네트워크·config·로컬 상태 전반 지원용 진단 codex doctor 추가.</li>
+<li class="e-fix"><span>수정</span>Fixed several TUI interaction and rendering issues, including URL wrapping, light-mode selection contrast, Shift+Enter in tmux, /review MCP startup status, /side Esc handling, and network approval history text</li>
+<li class="e-fix"><span>수정</span>Hardened Windows sandbox behavior around deny-read rules, scoped write roots, ineffective firewall policy, and PowerShell edge cases</li>
+<li class="e-fix"><span>수정</span>Preserved managed read restrictions during permission escalation and cleaned up workspace-root permission profile resolution</li>
+<li class="e-fix"><span>수정</span>Made app-server and local state startup safer by preserving SQLite data, failing closed when state cannot open, adding recovery paths, and softening optional metadata sync failures</li>
+<li class="e-fix"><span>수정</span>Improved Git and auth reliability by using root worktree hooks consistently, ignoring repo hook/fsmonitor config in helper commands, binding local MCP OAuth callbacks, and revoking superseded login tokens</li>
+<li class="e-fix"><span>수정</span>Reduced remote and Windows cleanup friction with longer exec-server transport timeouts, quieter taskkill cleanup, and non-queued plugin reads</li></ul>
+</div>
+<div class="vr" data-i="v1029" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.130.0</span>
+    <span class="vd">5.8</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>플러그인 상세에 번들 훅 표시, 플러그인 공유가 링크 메타데이터·발견성 제어 노출.</li>
+<li class="e-feature"><span>기능</span>헤드리스·원격 제어 가능한 앱서버 시작용 간단 진입점 codex remote-control 추가.</li>
+<li class="e-feature"><span>기능</span>앱서버 클라이언트가 큰 스레드를 unloaded/summary/full 턴 뷰로 페이지네이션.</li>
+<li class="e-feature"><span>기능</span>Bedrock auth가 aws login 프로파일의 AWS 콘솔 로그인 자격증명 사용 가능.</li>
+<li class="e-feature"><span>기능</span>view_image가 다중 환경 세션서 선택된 환경 통해 파일 해석.</li>
+<li class="e-fix"><span>수정</span>Live app-server threads now pick up config changes without requiring a restart</li>
+<li class="e-fix"><span>수정</span>Turn diffs stay accurate across apply-patch operations, including partial failures that still mutated files</li>
+<li class="e-fix"><span>수정</span>Thread summaries, renames, resume, and fork paths work better through ThreadStore, including threads without local rollout paths</li>
+<li class="e-fix"><span>수정</span>Remote compaction now emits response.processed for v2 streams and avoids sending service_tier on API-key compact requests</li>
+<li class="e-fix"><span>수정</span>Windows sandbox setup now grants sandbox users access to the desktop runtime binary cache</li>
+<li class="e-fix"><span>수정</span>Removed stale “research preview” wording from the codex exec startup banner</li></ul>
+</div>
+<div class="vr" data-i="v1030" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.129.0</span>
+    <span class="vd">5.7</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>TUI 작성기서 모달 Vim 편집 지원 — /vim·기본 모드 config·Vim 전용 키맵 컨텍스트.</li>
+<li class="e-feature"><span>기능</span>TUI 재개·복사 개선 — 재설계된 resume/fork 피커·원시 스크롤백 모드·/ide 컨텍스트 주입·워크스페이스 인식 /diff.</li>
+<li class="e-feature"><span>기능</span>상태줄이 테마 인식 색상·선택적 PR·브랜치 변경 요약 표시, /keymap debug로 터미널 키 이벤트 점검.</li>
+<li class="e-feature"><span>기능</span>플러그인 관리에 워크스페이스 공유·접근 제어·소스 필터·로컬 공유 경로 추적·마켓 제거/업그레이드·원격 번들 동기화·관리자 비활성 처리 추가.</li>
+<li class="e-feature"><span>기능</span>/hooks서 훅 탐색·토글, compaction 전후 실행·PreToolUse 컨텍스트 추가 가능; Codex Apps auth·MCP elicitation이 TUI/Guardian 흐름에 노출.</li>
+<li class="e-feature"><span>기능</span>실험적 goals 발견 가능·재개 시 다시 켜기 전까지 일시정지 유지·검증·다일 기간 출력 명확화.</li>
+<li class="e-fix"><span>수정</span>/copy works better in tmux, Alt+Enter and modified Delete/Backspace keys behave correctly, and Windows typing/paste latency was reduced</li>
+<li class="e-fix"><span>수정</span>Large paste placeholders and Ctrl+C-stashed drafts now survive clear/editor workflows without corrupting draft history</li>
+<li class="e-fix"><span>수정</span>TUI startup and accessibility were tightened by bounding terminal probes, clearing the first inline viewport render, and honoring animations = false for live rows</li>
+<li class="e-fix"><span>수정</span>Linux sandbox startup is more reliable across older bwrap, slow mount probes, symlink-protected paths, and shared /tmp setups</li>
+<li class="e-fix"><span>수정</span>Windows sandbox and exec policy now handle named pipes, ConPTY teardown, PowerShell-wrapped allow rules, worktree safe.directory, and unsafe Git options more reliably</li>
+<li class="e-fix"><span>수정</span>Fixed custom CA login behind TLS-inspecting proxies, Bedrock runtime endpoint reporting, dangerous project config keys, heredoc redirect approval matching, and unbounded MCP/hook output growth</li></ul>
+</div>
+<div class="vr" data-i="v1031" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.128.0</span>
+    <span class="vd">4.30</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>앱서버 API·모델 툴·런타임 연속·생성/일시정지/재개/초기화 TUI 제어를 갖춘 영속 /goal 워크플로 추가.</li>
+<li class="e-feature"><span>기능</span>codex update·설정 가능 TUI 키맵·plan-mode 넛지·action-required 터미널 타이틀·활성 턴 /statusline·/title 편집 추가.</li>
+<li class="e-feature"><span>기능</span>권한 프로파일 확장 — 기본값·샌드박스 CLI 프로파일 선택·cwd 제어·클라이언트용 활성 프로파일 메타데이터.</li>
+<li class="e-feature"><span>기능</span>플러그인 워크플로 개선 — 마켓 설치·원격 번들 캐싱·원격 제거·플러그인 번들 훅·훅 활성 상태·외부 에이전트 config 가져오기.</li>
+<li class="e-feature"><span>기능</span>외부 에이전트 세션 가져오기 추가 — 백그라운드 가져오기·가져온 세션 타이틀 처리.</li>
+<li class="e-feature"><span>기능</span>MultiAgentV2 설정 명시화 — 스레드 상한·대기시간 제어·root/subagent 힌트·v2 전용 depth 처리.</li>
+<li class="e-fix"><span>수정</span>Fixed several resume and interruption issues, including stale interrupt hangs, persisted provider restoration, large remote resume responses, and slow filtered resume lists</li>
+<li class="e-fix"><span>수정</span>Improved TUI reliability around terminal resize reflow, markdown list spacing, slash-command popup layout, keyboard cleanup, shell-mode escape, and working status updates</li>
+<li class="e-fix"><span>수정</span>Hardened managed network behavior for deferred denials, proxy bypass defaults, resolved target checks, IPv6 host matching, and git -C approval handling</li>
+<li class="e-fix"><span>수정</span>Fixed Windows sandbox and PTY edge cases, including pseudoconsole startup, elevated runner process handling, core shell environment inheritance, and named-pipe validation</li>
+<li class="e-fix"><span>수정</span>Fixed Bedrock model support for apply_patch, GPT-5.4 reasoning levels, and updated Bedrock GPT-5.4 endpoint/model metadata</li>
+<li class="e-fix"><span>수정</span>Fixed MCP/plugin edge cases around stdio server cleanup, plugin MCP approval persistence, and custom MCP metadata isolation</li></ul>
+</div>
+<div class="vr" data-i="v1032" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.125.0</span>
+    <span class="vd">4.24</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>앱서버 연동이 Unix 소켓 전송·페이지네이션 친화 resume/fork·sticky 환경·원격 스레드 config/store 지원.</li>
+<li class="e-feature"><span>기능</span>앱서버 플러그인 관리가 원격 플러그인 설치·구성된 마켓플레이스 업그레이드 가능.</li>
+<li class="e-feature"><span>기능</span>권한 프로파일이 TUI 세션·유저 턴·MCP 샌드박스 상태·shell 에스컬레이션·앱서버 API 전반서 왕복 유지.</li>
+<li class="e-feature"><span>기능</span>모델 제공자가 모델 발견을 소유, AWS/Bedrock 계정 상태를 앱 클라이언트에 노출.</li>
+<li class="e-feature"><span>기능</span>codex exec --json이 프로그램 소비자용 reasoning-token 사용량 보고.</li>
+<li class="e-feature"><span>기능</span>rollout 추적이 툴·code-mode·세션·multi-agent 관계 기록, 점검용 debug reducer 명령 제공.</li>
+<li class="e-fix"><span>수정</span>Interrupting /review and exiting the TUI no longer leaves the interface wedged on delegate startup or unsubscribe</li>
+<li class="e-fix"><span>수정</span>Exec-server no longer drops buffered output after process exit and now waits correctly for stream closure</li>
+<li class="e-fix"><span>수정</span>App-server now respects explicitly untrusted project config instead of auto-persisting trust</li>
+<li class="e-fix"><span>수정</span>WebSocket app-server clients are less likely to disconnect during bursts of turn and tool-output notifications</li>
+<li class="e-fix"><span>수정</span>Windows sandbox startup handles multiple CLI versions and installed app directories better, and background Start-Process calls avoid visible PowerShell windows</li>
+<li class="e-fix"><span>수정</span>Config/schema handling now rejects conflicting MultiAgentV2 thread limits, resolves relative agent-role config paths, hides unsupported MCP bearer-token fields, and rejects invalid js_repl image MIME types</li></ul>
+</div>
+<div class="vr" data-i="v1033" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.124.0</span>
+    <span class="vd">4.23</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>TUI 빠른 reasoning 제어 — Alt+, 낮춤·Alt+. 높임, 모델 업그레이드 수용 시 reasoning을 새 모델 기본값으로 리셋.</li>
+<li class="e-feature"><span>기능</span>앱서버 세션이 다중 환경 관리·턴별 환경·작업 디렉터리 선택 가능 → 멀티 워크스페이스·원격 설정 타겟팅 정밀화.</li>
+<li class="e-feature"><span>기능</span>OpenAI 호환 제공자용 일급 Amazon Bedrock 지원 추가 — AWS SigV4 서명·AWS 자격증명 기반 auth.</li>
+<li class="e-feature"><span>기능</span>원격 플러그인 마켓플레이스를 직접 조회·읽기 가능, 상세 조회 안정화·결과 페이지 확대.</li>
+<li class="e-feature"><span>기능</span>훅 안정화 — config.toml·관리형 requirements.toml에 인라인 설정 가능, MCP 툴·apply_patch·장기 Bash 세션 관찰.</li>
+<li class="e-feature"><span>기능</span>적격 ChatGPT 플랜이 명시적 opt-out 전까지 Fast service tier 기본 적용.</li>
+<li class="e-fix"><span>수정</span>Preserved Cloudflare cookies across approved ChatGPT hosts, reducing auth breakage in HTTP-backed ChatGPT flows</li>
+<li class="e-fix"><span>수정</span>Fixed remote app-server reliability issues so websocket events keep draining under load and shutdown no longer fails when the remote worker exits during cleanup</li>
+<li class="e-fix"><span>수정</span>Fixed permission-mode drift so /permissions changes survive side conversations and updated Full Access state is correctly reflected in MCP approval handling</li>
+<li class="e-fix"><span>수정</span>Fixed wait_agent so it returns promptly when mailbox work is already queued instead of waiting for a fresh notification or timing out</li>
+<li class="e-fix"><span>수정</span>Fixed local stdio MCP launches for relative commands without an explicit cwd, bringing fallback path resolution in line with CLI behavior</li>
+<li class="e-fix"><span>수정</span>Startup now fails less often on managed config edge cases: unknown feature requirements warn instead of aborting, and cloud-requirements errors are clearer about what failed</li></ul>
+</div>
+<div class="vr" data-i="v1034" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.123.0</span>
+    <span class="vd">4.23</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>설정 가능 AWS 프로파일 지원하는 내장 amazon-bedrock 모델 제공자 추가.</li>
+<li class="e-feature"><span>기능</span>/mcp verbose 추가 — 전체 MCP 서버 진단·리소스·리소스 템플릿(/mcp는 빠르게 유지).</li>
+<li class="e-feature"><span>기능</span>플러그인 MCP 로딩이 .mcp.json의 mcpServers·최상위 서버 맵 둘 다 수용.</li>
+<li class="e-feature"><span>기능</span>실시간 핸드오프 개선 — 백그라운드 에이전트가 트랜스크립트 델타 수신·적절 시 명시적 침묵 가능.</li>
+<li class="e-feature"><span>기능</span>원격 환경용 호스트별 remote_sandbox_config requirements 추가.</li>
+<li class="e-feature"><span>기능</span>번들 모델 메타데이터 갱신 — 현재 gpt-5.4 기본 포함.</li>
+<li class="e-fix"><span>수정</span>Fixed /copy after rollback so it copies the latest visible assistant response, not a pre-rollback response</li>
+<li class="e-fix"><span>수정</span>Queued normal follow-up text submitted while a manual shell command is running, preventing stuck Working states</li>
+<li class="e-fix"><span>수정</span>Fixed Unicode/dead-key input in VS Code WSL terminals by disabling the enhanced keyboard mode there</li>
+<li class="e-fix"><span>수정</span>Prevented stale proxy environment variables from being restored from shell snapshots</li>
+<li class="e-fix"><span>수정</span>Made codex exec inherit root-level shared flags such as sandbox and model options</li>
+<li class="e-fix"><span>수정</span>Removed leaked review prompts from TUI transcripts</li></ul>
+</div>
+<div class="vr" data-i="v1035" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.122.0</span>
+    <span class="vd">4.20</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>독립 설치가 더 자체완결적 — codex app이 Windows·Intel Mac에서 Desktop을 올바르게 열거나 설치</li>
+<li class="e-feature"><span>기능</span>TUI가 빠른 곁질문용 /side 대화 가능 — 작업 중 대기 입력도 슬래시 명령·! 셸 프롬프트 지원</li>
+<li class="e-feature"><span>기능</span>Plan Mode가 새 컨텍스트로 구현 시작 가능 — 계획 스레드 이어갈지 정하기 전 컨텍스트 사용량 표시</li>
+<li class="e-feature"><span>기능</span>플러그인 워크플로에 탭 탐색·인라인 켜기/끄기 토글·마켓플레이스 제거·원격/크로스레포/로컬 마켓플레이스 소스 추가</li>
+<li class="e-feature"><span>기능</span>파일시스템 권한이 deny-read glob 정책·관리형 deny-read 요건·플랫폼 샌드박스 강제·사용자 설정/규칙 무시 격리 codex exec 실행 지원</li>
+<li class="e-feature"><span>기능</span>툴 디스커버리·이미지 생성 기본 활성화 — 고해상 이미지 처리 + MCP·js_repl 이미지 출력에 원본 디테일 메타데이터 지원</li>
+<li class="e-fix"><span>수정</span>App-server approvals, user-input prompts, and MCP elicitations now disappear from the TUI when another client resolves them, instead of leaving stale prompts behind</li>
+<li class="e-fix"><span>수정</span>Remote-control startup now tolerates missing ChatGPT auth, and MCP startup cancellation works again through app-server sessions</li>
+<li class="e-fix"><span>수정</span>Resumed and forked app-server threads now replay token usage immediately so context/status UI starts with the restored state</li>
+<li class="e-fix"><span>수정</span>Security-sensitive flows were tightened: logout revokes managed ChatGPT tokens, project hooks and exec policies require trusted workspaces, and Windows sandbox setup avoids broad user-profile and SSH-root grants</li>
+<li class="e-fix"><span>수정</span>Sandboxed apply_patch writes work correctly with split filesystem policies, and file watchers now notice files created after watching begins</li>
+<li class="e-fix"><span>수정</span>Several TUI rough edges were fixed, including fatal skills-list failures, invalid resume hints, duplicate context statusline entries, /model menu loops, redundant memory notices, and terminal title quoting in iTerm2</li></ul>
+</div>
+<div class="vr" data-i="v1036" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.121.0</span>
+    <span class="vd">4.15</span><span class="va">3달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>codex marketplace add + app-server로 GitHub·git URL·로컬 디렉터리·marketplace.json URL에서 플러그인 마켓플레이스 설치 지원</li>
+<li class="e-feature"><span>기능</span>TUI 프롬프트 히스토리 개선 — Ctrl+R 역방향 검색·수락된 슬래시 명령 로컬 기억</li>
+<li class="e-feature"><span>기능</span>메모리 모드·메모리 리셋/삭제·메모리 확장 정리용 TUI·app-server 컨트롤 추가</li>
+<li class="e-feature"><span>기능</span>MCP/플러그인 지원 확장 — MCP Apps 툴 호출·네임스페이스 MCP 등록·병렬 호출 opt-in·MCP 서버 샌드박스 상태 메타데이터</li>
+<li class="e-feature"><span>기능</span>출력 모달리티·트랜스크립트 완료 이벤트·raw 턴 아이템 주입·심링크 인식 파일시스템 메타데이터용 realtime·app-server API 추가</li>
+<li class="e-feature"><span>기능</span>bubblewrap 지원 보안 devcontainer 프로파일 + Unix 소켓용 macOS 샌드박스 허용목록 추가</li>
+<li class="e-fix"><span>수정</span>Fixed macOS sandbox/proxy handling for private DNS and removed the danger-full-access denylist-only network mode</li>
+<li class="e-fix"><span>수정</span>Fixed Windows cwd/session matching so resume --last and thread/list work when paths use verbatim prefixes</li>
+<li class="e-fix"><span>수정</span>Fixed rate-limit/account handling for prolite plans and made unknown WHAM plan values decodable</li>
+<li class="e-fix"><span>수정</span>Made Guardian timeouts distinct from policy denials, with timeout-specific guidance and visible TUI history entries</li>
+<li class="e-fix"><span>수정</span>Stabilized app-server behavior by avoiding premature thread unloads, tolerating failed trust persistence on startup, and skipping broken symlinks in fs/readDirectory</li>
+<li class="e-fix"><span>수정</span>Fixed MCP/tool-call edge cases including flattened deferred tool names, elicitation timeout accounting, and empty namespace descriptions</li></ul>
+</div>
+<div class="vr" data-i="v1037" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.120.0</span>
+    <span class="vd">4.11</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×5</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Realtime V2가 작업 실행 중 백그라운드 에이전트 진행상황 스트리밍, 활성 응답 완료 전까지 후속 응답을 큐에 대기.</li>
+<li class="e-feature"><span>기능</span>TUI 훅 활동 파악 용이 — 실행 중 훅 별도 표시, 완료된 훅 출력은 유용할 때만 유지.</li>
+<li class="e-feature"><span>기능</span>커스텀 TUI 상태줄에 변경된 스레드 제목 포함 가능.</li>
+<li class="e-feature"><span>기능</span>Code-mode 툴 선언에 MCP outputSchema 상세 포함 → 구조화된 툴 결과 타입 정확도↑.</li>
+<li class="e-feature"><span>기능</span>SessionStart 훅이 /clear로 만들어진 세션을 새 시작·재개 세션과 구별 가능.</li>
+<li class="e-fix"><span>수정</span>Fixed Windows elevated sandbox handling for split filesystem policies, including read-only carveouts under writable roots</li>
+<li class="e-fix"><span>수정</span>Fixed sandbox permission handling for symlinked writable roots and carveouts, preventing failures in shell and apply_patch workflows</li>
+<li class="e-fix"><span>수정</span>Fixed codex --remote wss://... panics by installing the Rustls crypto provider before TLS websocket connections</li>
+<li class="e-fix"><span>수정</span>Preserved tool search result ordering instead of alphabetically reordering results</li>
+<li class="e-fix"><span>수정</span>Fixed live Stop-hook prompts so they appear immediately instead of only after thread history reloads</li>
+<li class="e-fix"><span>수정</span>Fixed app-server MCP cleanup on disconnect so unsubscribed threads and resources are torn down correctly</li></ul>
+</div>
+<div class="vr" data-i="v1038" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.119.0</span>
+    <span class="vd">4.10</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Realtime voice sessions now default to the v2 WebRTC path, with configurable transport, voice selection, native TUI media support, and app-server coverage for the new flow</li>
+<li class="e-feature"><span>기능</span>MCP Apps and custom MCP servers gained richer support, including resource reads, tool-call metadata, custom-server tool search, server-driven elicitations, file-parameter uploads, and more reliable plugin cache refreshes</li>
+<li class="e-feature"><span>기능</span>Remote/app-server workflows now support egress websocket transport, remote --cd forwarding, runtime remote-control enablement, sandbox-aware filesystem APIs, and an experimental codex exec-server subcommand</li>
+<li class="e-feature"><span>기능</span>The TUI can copy the latest agent response with Ctrl+O, including better clipboard behavior over SSH and across platforms</li>
+<li class="e-feature"><span>기능</span>/resume can now jump directly to a session by ID or name from the TUI</li>
+<li class="e-feature"><span>기능</span>TUI notifications are more configurable, including Warp OSC 9 support and an opt-in mode for notifications even while the terminal is focused</li>
+<li class="e-fix"><span>수정</span>The TUI starts faster by fetching rate limits asynchronously, and /status now refreshes stale limits instead of showing frozen or misleading quota information</li>
+<li class="e-fix"><span>수정</span>Resume flows are more stable: the picker no longer flashes false empty states, uses fresher thread names, stabilizes timestamp labels, preserves resume hints on zero-token exits, and avoids crashing when resuming the current thread</li>
+<li class="e-fix"><span>수정</span>Composer and chat behavior are smoother, including fixed paste teardown, CJK word navigation, stale /copy output, percent-decoded local file links, and clearer truncated exec-output hints</li>
+<li class="e-fix"><span>수정</span>Fast Mode no longer stays stuck on after /fast off in app-server-backed TUI sessions</li>
+<li class="e-fix"><span>수정</span>MCP status and startup are less noisy and faster: hyphenated server names list tools correctly, /mcp avoids slow full inventory probes, disabled servers skip auth probing, and residency headers are honored by codex mcp-server</li>
+<li class="e-fix"><span>수정</span>Sandbox, network, and platform edge cases were tightened, including clearer read-only apply_patch errors, refreshed network proxy policy after sandbox changes, suppressed irrelevant bubblewrap warnings, a macOS HTTP-client sandbox panic fix, and Windows firewall address handling</li></ul>
+</div>
+<div class="vr" data-i="v1039" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.118.0</span>
+    <span class="vd">3.31</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-fix">Fix ×5</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Windows sandbox runs can now enforce proxy-only networking with OS-level egress rules, instead of relying on environment variables alone</li>
+<li class="e-feature"><span>기능</span>App-server clients can now start ChatGPT sign-in with a device code flow, which helps when browser callback login is unreliable or unavailable</li>
+<li class="e-feature"><span>기능</span>codex exec now supports the prompt-plus-stdin workflow, so you can pipe input and still pass a separate prompt on the command line</li>
+<li class="e-feature"><span>기능</span>Custom model providers can now fetch and refresh short-lived bearer tokens dynamically, instead of being limited to static credentials from config or environment variables</li>
+<li class="e-fix"><span>수정</span>Project-local .codex files are now protected even on first creation, closing a gap where the initial write could bypass normal approval checks</li>
+<li class="e-fix"><span>수정</span>Linux sandbox launches are more reliable because Codex once again finds a trusted system bwrap on normal multi-entry PATHs</li>
+<li class="e-fix"><span>수정</span>The app-server-backed TUI regained several missing workflows: hook notifications replay correctly, /copy and /resume &lt;name&gt; work again, /agent no longer shows stale threads, and the skills picker scrolls past the first page</li>
+<li class="e-fix"><span>수정</span>MCP startup is more robust: local servers get a longer startup window, and failed handshakes surface warnings in the TUI again instead of looking like clean startups</li>
+<li class="e-fix"><span>수정</span>On Windows, apply_patch is less likely to fail because it no longer adds redundant writable roots that could trigger unnecessary ACL churn</li></ul>
+</div>
+<div class="vr" data-i="v1040" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.117.0</span>
+    <span class="vd">3.26</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Plugins are now a first-class workflow: Codex can sync product-scoped plugins at startup, browse them in /plugins, and install or remove them with clearer auth/setup handling</li>
+<li class="e-feature"><span>기능</span>Sub-agents now use readable path-based addresses like /root/agent_a, with structured inter-agent messaging and agent listing for multi-agent v2 workflows</li>
+<li class="e-feature"><span>기능</span>The /title terminal-title picker now works in both the classic TUI and the app-server TUI, making parallel sessions easier to tell apart</li>
+<li class="e-feature"><span>기능</span>App-server clients can now send ! shell commands, watch filesystem changes, and connect to remote websocket servers with bearer-token auth</li>
+<li class="e-feature"><span>기능</span>Image workflows got smoother: view_image now returns image URLs for code mode, generated images are reopenable from the TUI, and image-generation history survives resume</li>
+<li class="e-feature"><span>기능</span>Prompt history recall now works in the app-server TUI, including across sessions</li>
+<li class="e-fix"><span>수정</span>tui_app_server no longer duplicates live reasoning summaries or /review output, and it preserves transcript text instead of dropping it under backpressure</li>
+<li class="e-fix"><span>수정</span>ChatGPT login in tui_app_server now opens the local browser again, cancels cleanly on Ctrl+C, and no longer fails startup when you&#x27;re logged out</li>
+<li class="e-fix"><span>수정</span>Early exits now restore terminal state reliably, avoiding broken shell state after quitting; tmux users also get a working queued-message edit shortcut on Shift+Left</li>
+<li class="e-fix"><span>수정</span>Linux sandboxed tool calls are more reliable on older distributions with older bubblewrap, and Windows restricted-token sandboxing now supports more split-policy carveout layouts</li>
+<li class="e-fix"><span>수정</span>Remote multi-agent sessions now show agent names instead of raw IDs and recover more gracefully from stale turn-steering races</li>
+<li class="e-fix"><span>수정</span>Plugin-backed mentions and product gating now behave more predictably, fixing cases where explicit mentions lost context or plugins were filtered incorrectly</li></ul>
+</div>
+<div class="vr" data-i="v1041" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.116.0</span>
+    <span class="vd">3.19</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×4</span> <span class="pc p-fix">Fix ×4</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>App-server TUI now supports device-code ChatGPT sign-in during onboarding and can refresh existing ChatGPT tokens</li>
+<li class="e-feature"><span>기능</span>Plugin setup is smoother: Codex can prompt to install missing plugins or connectors, honor a configured suggestion allowlist, and sync install/uninstall state remotely</li>
+<li class="e-feature"><span>기능</span>Added a userpromptsubmit hook so prompts can be blocked or augmented before execution and before they enter history</li>
+<li class="e-feature"><span>기능</span>Realtime sessions now start with recent thread context and are less likely to self-interrupt during audio playback</li>
+<li class="e-fix"><span>수정</span>Fixed a first-turn stall where websocket prewarm could delay turn/start; startup now times out and falls back cleanly</li>
+<li class="e-fix"><span>수정</span>Restored conversation history for remote resume/fork in the app-server TUI and stopped duplicate live transcript output from legacy stream events</li>
+<li class="e-fix"><span>수정</span>Improved Linux sandbox startup on symlinked checkouts, missing writable roots, and Ubuntu/AppArmor hosts by preferring system bwrap when available</li>
+<li class="e-fix"><span>수정</span>Fixed an agent job finalization race and reduced status polling churn for worker threads</li></ul>
+</div>
+<div class="vr" data-i="v1042" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.115.0</span>
+    <span class="vd">3.16</span><span class="va">4달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Supported models can now request full-resolution image inspection through both view_image and codex.emitImage(..., detail: &quot;original&quot;), which helps with precision visual tasks</li>
+<li class="e-feature"><span>기능</span>js_repl now exposes codex.cwd and codex.homeDir, and saved codex.tool(...) / codex.emitImage(...) references keep working across cells</li>
+<li class="e-feature"><span>기능</span>Realtime websocket sessions gained a dedicated transcription mode, plus v2 handoff support through the codex tool, with a unified [realtime] session config</li>
+<li class="e-feature"><span>기능</span>The v2 app-server now exposes filesystem RPCs for file reads, writes, copies, directory operations, and path watching, and there is a new Python SDK for integrating with that API</li>
+<li class="e-feature"><span>기능</span>Smart Approvals can now route review requests through a guardian subagent in core, app-server, and TUI, reducing repeated setup work on follow-up approvals</li>
+<li class="e-feature"><span>기능</span>App integrations now use the Responses API tool-search flow, can suggest missing tools, and fall back cleanly when the active model does not support search-based lookup</li>
+<li class="e-fix"><span>수정</span>Spawned subagents now inherit sandbox and network rules more reliably, including project-profile layering, persisted host approvals, and symlinked writable roots</li>
+<li class="e-fix"><span>수정</span>js_repl no longer hangs when dynamic tool responses contain literal U+2028 or U+2029 characters</li>
+<li class="e-fix"><span>수정</span>The TUI no longer stalls on exit after creating subagents, and interrupting a turn no longer tears down background terminals by default</li>
+<li class="e-fix"><span>수정</span>codex exec --profile once again preserves profile-scoped settings when starting or resuming a thread</li>
+<li class="e-fix"><span>수정</span>MCP and elicitation flows are more robust, with safer tool-name normalization and preserved tool_params in approval prompts</li>
+<li class="e-fix"><span>수정</span>The local network proxy now serves CONNECT traffic as explicit HTTP/1, improving compatibility with HTTP proxy clients</li></ul>
+</div>
+<div class="vr" data-i="v1043" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.114.0</span>
+    <span class="vd">3.11</span><span class="va">5달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×5</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Added an experimental code mode for more isolated coding workflows</li>
+<li class="e-feature"><span>기능</span>Added an experimental hooks engine with SessionStart and Stop hook events</li>
+<li class="e-feature"><span>기능</span>WebSocket app-server deployments now expose GET /readyz and GET /healthz on the same listener for easier health checks</li>
+<li class="e-feature"><span>기능</span>Added a config switch to disable bundled system skills entirely</li>
+<li class="e-feature"><span>기능</span>Handoffs now carry realtime transcript context, which improves continuity when work is transferred between turns</li>
+<li class="e-feature"><span>기능</span>Improved the $ mention picker by clearly labeling Skills, Apps, and Plugins, and by surfacing plugins first</li>
+<li class="e-fix"><span>수정</span>Fixed a Linux tmux crash caused by concurrent user-shell lookups</li>
+<li class="e-fix"><span>수정</span>Fixed apps being enabled in unsupported sessions by tightening the enablement check</li>
+<li class="e-fix"><span>수정</span>Fixed reopened threads getting stuck as in-progress after quitting mid-run and then resuming later</li>
+<li class="e-fix"><span>수정</span>Fixed permission handling so legacy workspace-write behavior is preserved and newer permission profiles degrade more safely on older builds</li>
+<li class="e-fix"><span>수정</span>Fixed approval flows so granted permissions persist across turns, work with reject-style configs, and are honored by apply_patch</li></ul>
+</div>
+<div class="vr" data-i="v1044" data-t="feature fix">
+  <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.113.0</span>
+    <span class="vd">3.10</span><span class="va">5달 전</span>
+    <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
+  <ul class="ve"><li class="e-feature"><span>기능</span>Added a built-in request_permissions tool so running turns can request additional permissions at runtime, with new TUI rendering for those approval calls</li>
+<li class="e-feature"><span>기능</span>Expanded plugin workflows with curated marketplace discovery, richer plugin/list metadata, install-time auth checks, and a plugin/uninstall endpoint</li>
+<li class="e-feature"><span>기능</span>Upgraded app-server command execution with streaming stdin/stdout/stderr plus TTY/PTY support, and wired exec to the new in-process app server path</li>
+<li class="e-feature"><span>기능</span>Web search settings now support full tool configuration (for example filters and location), not just on/off</li>
+<li class="e-feature"><span>기능</span>Added the new permission-profile config language and split filesystem/network sandbox policy plumbing for more precise policy control</li>
+<li class="e-feature"><span>기능</span>Image generation now saves output files into the current working directory</li>
+<li class="e-fix"><span>수정</span>Fixed auth error handling for cloud requirements fetch so 401s trigger the normal auth-recovery messaging instead of a generic workspace-config failure</li>
+<li class="e-fix"><span>수정</span>Fixed trust bootstrap to avoid running git commands before project trust is established</li>
+<li class="e-fix"><span>수정</span>Fixed Windows execution edge cases, including incorrect PTY TerminateProcess success handling and stricter sandbox startup cwd validation</li>
+<li class="e-fix"><span>수정</span>Fixed plugin startup behavior so curated plugins are loaded in TUI sessions as expected</li>
+<li class="e-fix"><span>수정</span>Hardened network proxy policy parsing by rejecting global wildcard (*) domains while preserving scoped wildcard support</li>
+<li class="e-fix"><span>수정</span>Fixed approval payload compatibility for macOS automation permissions by accepting both supported input shapes</li></ul>
+</div></div>
+      <div class="more">더 보기 (38개)</div></div>
+    <p class="foot">지금 사이트는 최신 5개를 펼쳐 두고 나머지를 숨긴 채 <b>전부 실어 보낸다</b>.
+    접어서 내보내면 한 줄이 26px라 236개가 다 들어와도 이 화면 높이의 몇 배면 끝난다.</p>
+  </div>
+
 </div>
 
 <script>
+/* 탭 — 해볼 것은 두 도구를 섞고, 용도별·버전별은 도구를 고른다 */
+const tools = document.getElementById('tools');
+document.querySelectorAll('.nav a[data-v]').forEach(a => a.addEventListener('click', () => {
+  document.querySelectorAll('.nav a[data-v]').forEach(x => x.classList.toggle('on', x === a));
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === 'v-' + a.dataset.v));
+  tools.classList.toggle('on', a.dataset.v !== 'try');
+  window.scrollTo(0, 0);
+}));
+
+function pickTool(t) {
+  tools.querySelectorAll('a').forEach(x => x.classList.toggle('on', x.dataset.t === t));
+  document.querySelectorAll('.tp').forEach(p => p.classList.toggle('on', p.classList.contains('t-' + t)));
+  applyVerFilter();
+}
+tools.querySelectorAll('a').forEach(a => a.addEventListener('click', () => pickTool(a.dataset.t)));
+
+/* 해볼 것 — 체크·진행률·저장 */
 (function () {
-  const KEY = 'ae-try', list = document.getElementById('list');
+  const KEY = 'ae-try', list = document.getElementById('tryList');
   const items = [...list.querySelectorAll('.it')];
   const done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]'));
-
   function sync() {
     const n = items.filter(x => x.classList.contains('done')).length;
     document.getElementById('cnt').textContent = n + ' / ' + items.length + ' 해봄';
@@ -416,7 +1722,6 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     items.forEach(x => x.classList.toggle('hide', only && x.classList.contains('done')));
     localStorage.setItem(KEY, JSON.stringify(items.filter(x => x.classList.contains('done')).map(x => x.dataset.i)));
   }
-
   items.forEach(x => {
     const box = x.querySelector('input');
     if (done.has(x.dataset.i)) { x.classList.add('done'); box.checked = true; }
@@ -428,9 +1733,34 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
   });
   document.getElementById('onlyTodo').addEventListener('change', sync);
   document.getElementById('readAll').addEventListener('click', () => {
-    document.querySelector('.band').style.display = 'none';
+    document.querySelector('#v-try .band').style.display = 'none';
     items.forEach(x => x.classList.remove('is-new'));
   });
   sync();
 })();
+
+/* 버전별 — 펼침·종류 필터 (보이는 도구 안에서만 센다) */
+document.querySelectorAll('#v-ver .vr').forEach(r =>
+  r.querySelector('.vh').addEventListener('click', () => r.classList.toggle('open')));
+
+function applyVerFilter() {
+  const f = document.querySelector('#v-ver .f.on');
+  if (!f) return;
+  const t = f.dataset.t;
+  let n = 0;
+  document.querySelectorAll('#v-ver .tp').forEach(p => {
+    const visible = p.classList.contains('on');
+    p.querySelectorAll('.vr').forEach(r => {
+      const on = t === 'all' || r.dataset.t.split(' ').includes(t);
+      r.classList.toggle('hide', !on);
+      if (on && visible) n++;
+    });
+  });
+  document.getElementById('vcnt').textContent = n + '개';
+}
+document.querySelectorAll('#v-ver .f').forEach(f => f.addEventListener('click', () => {
+  document.querySelectorAll('#v-ver .f').forEach(x => x.classList.toggle('on', x === f));
+  applyVerFilter();
+}));
+applyVerFilter();
 </script>
