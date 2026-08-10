@@ -27,8 +27,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .nav a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;cursor:pointer;
        padding-bottom:1px}
 .nav a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
-.tools{display:none;gap:13px;margin-left:4px;padding-left:15px;border-left:1px solid var(--line2)}
-.tools.on{display:flex}
+.tools{display:flex;gap:13px;margin-left:4px;padding-left:15px;border-left:1px solid var(--line2)}
 .tools a{font-size:12.5px;color:var(--faint)}
 .tools a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
 .tp{display:none}.tp.on{display:block}
@@ -165,275 +164,429 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 
   <!-- 해볼 것 -->
   <div class="view on" id="v-try">
-    <h1>해볼 것</h1>
-    <p class="meta">Claude Code · Codex 의 새 기능이 날짜순으로 쌓인다 · 해본 것에 체크</p>
-    <div class="bar"><span class="n" id="cnt">0 / 34 해봄</span>
-      <span class="track"><span class="fill" id="fill"></span></span>
-      <span class="right"><label><input type="checkbox" id="onlyTodo"> 안 해본 것만</label></span></div>
-    <div class="band"><span class="d"></span><strong>새로 들어온 것 7개</strong>
-      <span>지난 방문 6일 전 이후</span><button id="readAll">모두 읽음</button></div>
-    <div id="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
-<div class="it is-new open" data-i="0">
+    <div class="tp t-cc on">
+    <h1>해볼 것 <em>Claude Code</em></h1>
+    <p class="meta">새 기능이 날짜순으로 쌓인다 · 해본 것에 체크 · 전체 71개</p>
+    <div class="bar"><span class="n cnt">0 / 30 해봄</span>
+      <span class="track"><span class="fill"></span></span>
+      <span class="right"><label><input type="checkbox" class="onlyTodo"> 안 해본 것만</label></span></div>
+    <div class="band"><span class="d"></span><strong>새로 들어온 것 5개</strong>
+      <span>지난 방문 6일 전 이후</span><button class="readAll">모두 읽음</button></div>
+    <div class="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
+<div class="it is-new open" data-i="cc0">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">claude self-hosted-runner</span>
     <span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p class="how"><b>해보기</b> claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div>
 </div>
-<div class="it is-new open" data-i="1">
+<div class="it is-new open" data-i="cc1">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">SendMessage · ListAgents</span>
     <span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p class="how"><b>해보기</b> ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div>
 </div>
-<div class="it is-new" data-i="2">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">--approve-for-me</span>
-    <span class="tt">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
-<div class="it is-new" data-i="3">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
 <div class="day"><span>8.6</span><i>4일 전</i></div>
-<div class="it is-new" data-i="4">
+<div class="it is-new" data-i="cc2">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/review · /code-review</span>
     <span class="tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">/review medium 123처럼 effort·PR 번호 지정 가능 — /code-review와 완전 동일</p><p class="how"><b>해보기</b> /review &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 /code-review ultra</p></div>
 </div>
 <div class="day"><span>8.4</span><i>6일 전</i></div>
-<div class="it is-new" data-i="5">
+<div class="it is-new" data-i="cc3">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">Ctrl+Alt+F (VSCode)</span>
     <span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p class="how"><b>해보기</b> Ctrl+Alt+F 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div>
 </div>
-<div class="it is-new" data-i="6">
+<div class="it is-new" data-i="cc4">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">bg → commit · push</span>
     <span class="tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지</p><p class="how"><b>해보기</b> CLAUDE.md에 git 지침 정의 방법; draft PR 열리는 조건</p></div>
 </div>
-<div class="seen"><span>여기 위가 지난 방문 이후 들어온 7개</span></div>
-<div class="day"><span>7.29</span><i>12일 전</i></div>
-<div class="it" data-i="7">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/new · /clear</span>
-    <span class="tt">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
-<div class="it" data-i="8">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
+<div class="seen"><span>여기 위가 지난 방문 이후 들어온 5개</span></div>
 <div class="day"><span>7.24</span><i>17일 전</i></div>
-<div class="it" data-i="9">
+<div class="it" data-i="cc5">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">claude-opus-5</span>
     <span class="tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p class="how"><b>해보기</b> 요금 ($10/$50 per Mtok); /fast 토글; Opus 5 vs Sonnet 5 선택 기준</p></div>
 </div>
-<div class="it" data-i="10">
+<div class="it" data-i="cc6">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">agent() → agent()</span>
     <span class="tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p class="how"><b>해보기</b> 기본 depth 3; CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 기존 동작 복원; 동시성 상한 CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</p></div>
 </div>
 <div class="day"><span>7.22</span><i>19일 전</i></div>
-<div class="it" data-i="11">
+<div class="it" data-i="cc7">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/code-review</span>
     <span class="tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p class="how"><b>해보기</b> bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div>
 </div>
-<div class="day"><span>7.21</span><i>20일 전</i></div>
-<div class="it" data-i="12">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
-<div class="it" data-i="13">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/import</span>
-    <span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
 <div class="day"><span>7.20</span><i>21일 전</i></div>
-<div class="it" data-i="14">
+<div class="it" data-i="cc8">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/context</span>
     <span class="tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p class="how"><b>해보기</b> /context 경고 발생 조건, /compact 실패 후 대응</p></div>
 </div>
 <div class="day"><span>7.19</span><i>22일 전</i></div>
-<div class="it" data-i="15">
+<div class="it" data-i="cc9">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/verify · /code-review</span>
     <span class="tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p class="how"><b>해보기</b> 변경 완료 후 /code-review, 머지 전 /verify 직접 실행</p></div>
 </div>
 <div class="day"><span>7.18</span><i>23일 전</i></div>
-<div class="it" data-i="16">
+<div class="it" data-i="cc10">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">progress heartbeat</span>
     <span class="tt">긴 도구 호출에 주기적 진행 상황 알림</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p class="how"><b>해보기</b> heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div>
 </div>
 <div class="day"><span>7.17</span><i>24일 전</i></div>
-<div class="it" data-i="17">
+<div class="it" data-i="cc11">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/fork → bg · /subtask</span>
     <span class="tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">/fork가 항상 bg 세션 분기로 동작 — 인세션 위임은 /subtask로 전환 필요</p><p class="how"><b>해보기</b> /fork vs /subtask 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div>
 </div>
 <div class="day"><span>7.15</span><i>26일 전</i></div>
-<div class="it" data-i="18">
+<div class="it" data-i="cc12">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">--forward-subagent-text</span>
     <span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT 환경변수도 지원</p><p class="how"><b>해보기</b> --stream-json 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div>
 </div>
-<div class="it" data-i="19">
+<div class="it" data-i="cc13">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">always allow → repo root</span>
     <span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p class="how"><b>해보기</b> 저장 위치(저장소 루트 .claude/settings.json); 워크트리 로컬 vs 루트 규칙 우선순위</p></div>
 </div>
 <div class="day"><span>7.14</span><i>27일 전</i></div>
-<div class="it" data-i="20">
+<div class="it" data-i="cc14">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">vimInsertModeRemaps</span>
     <span class="tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">에디터에서 손에 밴 키 조합 그대로 vim 모드에서 사용</p><p class="how"><b>해보기</b> settings.json의 vimInsertModeRemaps에 시퀀스→키 맵핑 추가</p></div>
 </div>
 <div class="day"><span>7.11</span><i>1달 전</i></div>
-<div class="it" data-i="21">
+<div class="it" data-i="cc15">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">disableAutoMode</span>
     <span class="tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">CLAUDE_CODE_ENABLE_AUTO_MODE 환경변수 불필요 — 클라우드 플랫폼에서 기본 활성</p><p class="how"><b>해보기</b> Bedrock·Vertex 기본 모델 Opus 4.8로 변경; 비활성화는 user settings.json의 disableAutoMode</p></div>
 </div>
-<div class="day"><span>7.9</span><i>1달 전</i></div>
-<div class="it" data-i="22">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
-<div class="it" data-i="23">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
 <div class="day"><span>7.8</span><i>1달 전</i></div>
-<div class="it" data-i="24">
+<div class="it" data-i="cc16">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/doctor</span>
     <span class="tt">/doctor — 전체 설정 진단·자동 수정</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">설정·환경 문제를 한 명령으로 진단·수정 — 수동 탐색 불필요</p><p class="how"><b>해보기</b> /doctor가 점검하는 항목; 자동 수정 vs 수동 조치 구분</p></div>
 </div>
-<div class="it" data-i="25">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
-<div class="it" data-i="26">
-  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
-    <span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span>
-    <span class="src s-cx">Codex</span>
-    <button class="tog" aria-label="펼치기">▾</button></div>
-  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
-</div>
 <div class="day"><span>7.2</span><i>1달 전</i></div>
-<div class="it" data-i="27">
+<div class="it" data-i="cc17">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/skill-a /skill-b</span>
     <span class="tt">슬래시 스킬 최대 5개 겹쳐 쓰기</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">여러 스킬 조합이 필요한 작업을 한 줄로 — 재호출 불필요</p><p class="how"><b>해보기</b> 스킬 로드 순서; 5개 상한; 단일 스킬 호출과의 차이</p></div>
 </div>
 <div class="day"><span>7.1</span><i>1달 전</i></div>
-<div class="it" data-i="28">
+<div class="it" data-i="cc18">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">Fable 5</span>
     <span class="tt">Claude Fable 5 — 재배포</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">Fable 5 접근 복구 — Mythos급 성능, 플랜·지역 조건 확인 권장</p><p class="how"><b>해보기</b> 재배포 범위·접근 조건 확인</p></div>
 </div>
-<div class="it" data-i="29">
+<div class="it" data-i="cc19">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">bg → draft PR</span>
     <span class="tt">백그라운드 에이전트 완료 시 자동 커밋·푸시·드래프트 PR</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">bg 에이전트가 완전 루프 완결 — 중간 확인 없이 PR 오픈까지</p><p class="how"><b>해보기</b> 드래프트 PR 상태, 머지 전 리뷰 흐름, 워크트리 정리</p></div>
 </div>
-<div class="it" data-i="30">
+<div class="it" data-i="cc20">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">Notification hook</span>
     <span class="tt">백그라운드 에이전트 입력 요청·완료 시 Notification hook 발화</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">bg 에이전트가 멈추거나 끝났을 때 알림 자동화 연결</p><p class="how"><b>해보기</b> Notification hook 페이로드; agent_needs_input vs agent_completed 이벤트</p></div>
 </div>
 <div class="day"><span>6.30</span><i>1달 전</i></div>
-<div class="it" data-i="31">
+<div class="it" data-i="cc21">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">Sonnet 5</span>
     <span class="tt">Claude Sonnet 5 — Claude Code 기본 모델, 1M 컨텍스트</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">6/30부터 CC 기본 모델 — 1M 컨텍스트로 대형 코드베이스 전체 처리, 8/31까지 프로모 요금</p><p class="how"><b>해보기</b> 이전 기본 모델 대비 품질, 컨텍스트 활용 전략, 8/31 이후 요금 ($2/$10 per Mtok)</p></div>
 </div>
 <div class="day"><span>6.25</span><i>1달 전</i></div>
-<div class="it" data-i="32">
+<div class="it" data-i="cc22">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">! [Tab]</span>
     <span class="tt">bash 모드(!) 파일 경로 자동완성</span>
-    <span class="src s-cc">Claude Code</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="why">bash 인라인 모드에서 경로 오타 없이 빠른 파일 지정</p><p class="how"><b>해보기</b> ! 이후 Tab 동작 범위; 지원 경로 패턴</p></div>
 </div>
-<div class="it" data-i="33">
+<div class="day"><span>6.24</span><i>1달 전</i></div>
+<div class="it" data-i="cc23">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/rewind</span>
+    <span class="tt">/clear 이전으로 대화 복원</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">실수로 /clear한 세션을 컨텍스트 손실 없이 복구</p><p class="how"><b>해보기</b> /rewind → /resume 흐름; /clear 후 복원 가능 범위</p></div>
+</div>
+<div class="day"><span>6.23</span><i>1달 전</i></div>
+<div class="it" data-i="cc24">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">sandbox.credentials</span>
+    <span class="tt">샌드박스 명령이 자격증명 파일 읽기 차단</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">민감 파일이 샌드박스 명령에 노출되는 것을 차단 — 멀티에이전트 환경에서 특히 유용</p><p class="how"><b>해보기</b> 차단 대상 파일 범위; settings.json 프로젝트별 설정 방법</p></div>
+</div>
+<div class="day"><span>6.22</span><i>1달 전</i></div>
+<div class="it" data-i="cc25">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">respondToBashCommands</span>
+    <span class="tt">! 명령 출력에 Claude가 자동 응답</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">복사·붙여넣기 없이 Claude가 즉시 분석 — 이전 동작 복원은 settings.json에서 respondToBashCommands: false</p><p class="how"><b>해보기</b> 자동 응답이 유용한 출력 유형; 비활성화가 나은 상황</p></div>
+</div>
+<div class="it" data-i="cc26">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">bg subagent</span>
+    <span class="tt">백그라운드 에이전트 권한 요청이 메인 세션에 표시</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">bg 에이전트가 조용히 막히는 대신 실시간 확인·제어 가능</p><p class="how"><b>해보기</b> 자주 요청되는 도구 종류; Esc(단일 거부) vs 승인 흐름</p></div>
+</div>
+<div class="day"><span>6.17</span><i>1달 전</i></div>
+<div class="it" data-i="cc27">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/config</span>
+    <span class="tt">프롬프트에서 바로 설정 변경</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">설정 파일 열 필요 없이 세션마다 한 줄로 덮어쓰기 가능</p><p class="how"><b>해보기</b> 오버라이드 가능한 키 목록; -p 모드에서 /config thinking=false 활용</p></div>
+</div>
+<div class="day"><span>6.8</span><i>2달 전</i></div>
+<div class="it" data-i="cc28">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">--safe-mode</span>
+    <span class="tt">커스터마이즈 전부 끄고 시작</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">내 설정이 문제인지 격리 — 깨끗한 기준선</p><p class="how"><b>해보기</b> 어떤 커스터마이즈가 말썽인지 이분 탐색</p></div>
+</div>
+<div class="it" data-i="cc29">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/cd</span>
+    <span class="tt">작업 디렉터리 이동 (캐시 유지)</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="why">레포 옮겨가며 한 세션 유지 — 재시작·캐시 손실 X</p><p class="how"><b>해보기</b> 캐시 보존 한계, 멀티 레포 작업 흐름</p></div>
+</div></div>
+    <div class="more">더 보기 (41개)</div>
+    <p class="foot">줄을 누르면 <b>왜</b>와 <b>해보기</b>가 펼쳐진다. 해보기 줄은 화면의 30개 중
+    30개에만 있다 — 지금 데이터의 “확인할 것”을 끌어다 쓴 거라 <b>할 일이 아니라 목차</b>다.</p>
+  </div>
+    <div class="tp t-cx">
+    <h1>해볼 것 <em>Codex</em></h1>
+    <p class="meta">새 기능이 날짜순으로 쌓인다 · 해본 것에 체크 · 전체 58개</p>
+    <div class="bar"><span class="n cnt">0 / 30 해봄</span>
+      <span class="track"><span class="fill"></span></span>
+      <span class="right"><label><input type="checkbox" class="onlyTodo"> 안 해본 것만</label></span></div>
+    <div class="band"><span class="d"></span><strong>새로 들어온 것 2개</strong>
+      <span>지난 방문 6일 전 이후</span><button class="readAll">모두 읽음</button></div>
+    <div class="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
+<div class="it is-new open" data-i="cx0">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">--approve-for-me</span>
+    <span class="tt">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it is-new open" data-i="cx1">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="seen"><span>여기 위가 지난 방문 이후 들어온 2개</span></div>
+<div class="day"><span>7.29</span><i>12일 전</i></div>
+<div class="it" data-i="cx2">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/new · /clear</span>
+    <span class="tt">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx3">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>7.21</span><i>20일 전</i></div>
+<div class="it" data-i="cx4">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx5">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/import</span>
+    <span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>7.9</span><i>1달 전</i></div>
+<div class="it" data-i="cx6">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx7">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>7.8</span><i>1달 전</i></div>
+<div class="it" data-i="cx8">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx9">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>6.25</span><i>1달 전</i></div>
+<div class="it" data-i="cx10">
   <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
     <span class="tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span>
-    <span class="src s-cx">Codex</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>6.22</span><i>1달 전</i></div>
+<div class="it" data-i="cx11">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/usage</span>
+    <span class="tt">/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx12">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx13">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>6.18</span><i>1달 전</i></div>
+<div class="it" data-i="cx14">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">TUI 입력 프롬프트가 비활성 시 자동 확정 — 카운트다운은 상호작용 시 일시정지.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx15">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">플러그인이 스레드별 stdio MCP 서버 활성화 가능 — &quot;내가 만든&quot; 마켓플레이스·인증별 카탈로그 추가.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>6.9</span><i>2달 전</i></div>
+<div class="it" data-i="cx16">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Code mode에서 웹 검색 직접 호출 가능 — JS 중첩 툴 호출 포함, 결과는 일반 텍스트로.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>6.1</span><i>2달 전</i></div>
+<div class="it" data-i="cx17">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/archive</span>
+    <span class="tt">세션 아카이브로 실수 재개·포크 방지. codex unarchive로 복원.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>5.28</span><i>2달 전</i></div>
+<div class="it" data-i="cx18">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/permissions</span>
+    <span class="tt">명명된 권한 프로파일 인식·설정된 커스텀 프로파일 표시.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx19">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Vim 모드에 텍스트 오브젝트 편집·word/line-end 동작 개선·인터럽트 턴 바인딩 설정 추가.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx20">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">패키지 Codex 빌드가 번들된 패치 zsh 헬퍼를 macOS·Linux에서 발견·사용.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx21">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Python SDK가 스레드·턴 API용 친숙한 Sandbox 프리셋 노출.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx22">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">codex doctor</span>
+    <span class="tt">now reports richer environment, Git, terminal, app-server, and thread inventory diagnostics for support cases.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx23">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/status</span>
+    <span class="tt">shows remote connection details and server version when the TUI is connected over a remote transport</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx24">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">/permissions</span>
+    <span class="tt">now understands named permission profiles and displays configured custom profiles</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>5.21</span><i>2달 전</i></div>
+<div class="it" data-i="cx25">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">codex remote-control</span>
+    <span class="tt">now runs like a foreground command, waits for readiness, reports machine status, and keeps explicit daemon-style start/stop commands</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>5.20</span><i>2달 전</i></div>
+<div class="it" data-i="cx26">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">codex exec resume</span>
+    <span class="tt">now accepts --output-schema, so resumed automations can keep session context while still enforcing structured JSON output</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>5.18</span><i>2달 전</i></div>
+<div class="it" data-i="cx27">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd">@</span>
+    <span class="tt">mentions now search files, directories, plugins, and skills in one picker, backed by app-server plugin metadata.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="day"><span>4.30</span><i>3달 전</i></div>
+<div class="it" data-i="cx28">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Added persisted /goal workflows with app-server APIs, model tools, runtime continuation, and TUI controls for create, pause, resume, and clear.</span>
+    <button class="tog" aria-label="펼치기">▾</button></div>
+  <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
+</div>
+<div class="it" data-i="cx29">
+  <div class="hd"><input type="checkbox" aria-label="해봤음"><span class="cmd dash">—</span>
+    <span class="tt">Added codex update, configurable TUI keymaps, plan-mode nudges, action-required terminal titles, and active-turn /statusline and /title edits.</span>
     <button class="tog" aria-label="펼치기">▾</button></div>
   <div class="bd"><p class="how none"><b>해보기</b> 아직 안 채워진 줄 — 큐레이션이 채워야 한다</p></div>
 </div></div>
-    <div class="more">더 보기 (95개)</div>
-    <p class="foot">줄을 누르면 <b>왜</b>와 <b>해보기</b>가 펼쳐진다. 해보기 줄은 화면의 34개 중
-    23개에만 있다 — 지금 데이터의 “확인할 것”을 끌어다 쓴 거라 <b>할 일이 아니라 목차</b>다.</p>
+    <div class="more">더 보기 (28개)</div>
+    <p class="foot">줄을 누르면 <b>왜</b>와 <b>해보기</b>가 펼쳐진다. 해보기 줄은 화면의 30개 중
+    0개에만 있다 — 지금 데이터의 “확인할 것”을 끌어다 쓴 거라 <b>할 일이 아니라 목차</b>다.</p>
+  </div>
     <p class="ex-h">체크리스트로 쓰려면 이런 문장이어야 한다 <i>— 손으로 써본 예시, 지금 데이터엔 없음</i></p>
     <div class="ex">
       <p><b>셀프 호스팅 러너</b><br><code>claude self-hosted-runner --help</code> 로 지원 플랜을 확인하고,
@@ -1698,7 +1851,6 @@ const tools = document.getElementById('tools');
 document.querySelectorAll('.nav a[data-v]').forEach(a => a.addEventListener('click', () => {
   document.querySelectorAll('.nav a[data-v]').forEach(x => x.classList.toggle('on', x === a));
   document.querySelectorAll('.view').forEach(v => v.classList.toggle('on', v.id === 'v-' + a.dataset.v));
-  tools.classList.toggle('on', a.dataset.v !== 'try');
   window.scrollTo(0, 0);
 }));
 
@@ -1709,17 +1861,18 @@ function pickTool(t) {
 }
 tools.querySelectorAll('a').forEach(a => a.addEventListener('click', () => pickTool(a.dataset.t)));
 
-/* 해볼 것 — 체크·진행률·저장 */
-(function () {
-  const KEY = 'ae-try', list = document.getElementById('tryList');
-  const items = [...list.querySelectorAll('.it')];
+/* 해볼 것 — 도구마다 따로 세고 따로 저장한다 */
+document.querySelectorAll('#v-try .tp').forEach(pane => {
+  const tool = pane.classList.contains('t-cc') ? 'cc' : 'cx';
+  const KEY = 'ae-try-' + tool;
+  const items = [...pane.querySelectorAll('.it')];
   const done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]'));
+  const only = pane.querySelector('.onlyTodo');
   function sync() {
     const n = items.filter(x => x.classList.contains('done')).length;
-    document.getElementById('cnt').textContent = n + ' / ' + items.length + ' 해봄';
-    document.getElementById('fill').style.width = (n / items.length * 100) + '%';
-    const only = document.getElementById('onlyTodo').checked;
-    items.forEach(x => x.classList.toggle('hide', only && x.classList.contains('done')));
+    pane.querySelector('.cnt').textContent = n + ' / ' + items.length + ' 해봄';
+    pane.querySelector('.fill').style.width = (n / items.length * 100) + '%';
+    items.forEach(x => x.classList.toggle('hide', only.checked && x.classList.contains('done')));
     localStorage.setItem(KEY, JSON.stringify(items.filter(x => x.classList.contains('done')).map(x => x.dataset.i)));
   }
   items.forEach(x => {
@@ -1731,13 +1884,13 @@ tools.querySelectorAll('a').forEach(a => a.addEventListener('click', () => pickT
       x.classList.toggle('open');
     });
   });
-  document.getElementById('onlyTodo').addEventListener('change', sync);
-  document.getElementById('readAll').addEventListener('click', () => {
-    document.querySelector('#v-try .band').style.display = 'none';
+  only.addEventListener('change', sync);
+  pane.querySelector('.readAll').addEventListener('click', () => {
+    pane.querySelector('.band').style.display = 'none';
     items.forEach(x => x.classList.remove('is-new'));
   });
   sync();
-})();
+});
 
 /* 버전별 — 펼침·종류 필터 (보이는 도구 안에서만 센다) */
 document.querySelectorAll('#v-ver .vr').forEach(r =>
