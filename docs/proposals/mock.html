@@ -78,8 +78,14 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 .cat h3 i{margin-left:auto;font-style:normal;font-size:10.5px;color:var(--accent)}
 .cat .row{grid-template-columns:9px 152px minmax(0,1fr) auto}
 
-/* B 목록 */
-.list .row{grid-template-columns:9px 152px minmax(0,1fr) auto auto}
+/* B 목록 — 시간순 */
+.list .row{grid-template-columns:9px 152px minmax(0,1fr) auto}
+.day{display:flex;align-items:baseline;gap:7px;margin-top:13px;padding-bottom:3px}
+.day span{font-family:var(--mono);font-size:11.5px;color:var(--text)}
+.day i{font-style:normal;font-size:11px;color:var(--faint)}
+.seen{display:flex;align-items:center;gap:10px;margin:18px 0 2px;color:var(--accent);font-size:11.5px}
+.seen::after{content:"";flex:1;height:1px;background:var(--accent-line)}
+.seen span{white-space:nowrap}
 .more{margin-top:14px;font-size:12.5px;color:var(--muted);cursor:pointer}
 .foot{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
 
@@ -98,14 +104,14 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 </style>
 
 <div class="picker">
-  <b>실용 관점 두 안</b>
-  <button data-m="ma" aria-pressed="true">이럴 때 뭐 썼더라</button>
-  <button data-m="mb" aria-pressed="false">뭐 새로 생겼나</button>
+  <b>두 축</b>
+  <button data-m="mb" aria-pressed="true">시간순 — 뭐 새로 생겼나</button>
+  <button data-m="ma" aria-pressed="false">용도순 — 이럴 때 뭐 썼더라</button>
   <span class="hint">뉴스 제외 · 별점 없음 · 지난 방문 = 2026-08-04 가정</span>
 </div>
 
 <!-- ══ A · 용도별 명령어 사전 ══ -->
-<div class="mock on" id="ma">
+<div class="mock" id="ma">
   <div class="top"><div class="tin">
     <div class="brand"><i>&gt;_</i> Agent Edge</div>
     <div class="nav"><a class="on">Claude Code</a><a>Codex</a><a>Manus</a></div>
@@ -211,7 +217,7 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 </div>
 
 <!-- ══ B · 새로 생긴 기능만 ══ -->
-<div class="mock" id="mb">
+<div class="mock on" id="mb">
   <div class="top"><div class="tin">
     <div class="brand"><i>&gt;_</i> Agent Edge</div>
     <div class="nav"><a class="on">전체</a><a>Claude Code</a><a>Codex</a><a>Manus</a></div>
@@ -221,33 +227,57 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
     <h1>새로 생긴 기능</h1>
     <p class="meta">세 도구 · 뉴스 제외</p>
     <div class="band"><span class="d"></span><strong>새 항목 10개</strong>
-      <span>지난 방문 6일 전 이후 · 맨 위에 모아둠</span><button>모두 읽음</button></div>
-    <div class="list"><a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt w1">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt w2">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt w2">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">/review · /code-review</span><span class="tt w3">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="src s-cc">Claude Code</span><span class="dt">8.6</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Wide Research — 컨텍스트 창 너머</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack — 더 스마트한 협업</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Notion MCP — 실전 활용 5가지</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="tt w2">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">bg → commit · push</span><span class="tt w2">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt w2">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="src s-cx">Codex</span><span class="dt">7.29</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="src s-cx">Codex</span><span class="dt">7.29</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt w1">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="src s-cc">Claude Code</span><span class="dt">7.24</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">agent() → agent()</span><span class="tt w2">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="src s-cc">Claude Code</span><span class="dt">7.24</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt w2">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="src s-cc">Claude Code</span><span class="dt">7.22</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Plan Mode — 실행 전 계획 수립</span><span class="src s-mn">Manus</span><span class="dt">7.22</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="src s-cx">Codex</span><span class="dt">7.21</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt w2">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="src s-cx">Codex</span><span class="dt">7.21</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/context</span><span class="tt w2">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="src s-cc">Claude Code</span><span class="dt">7.20</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt w2">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="src s-cc">Claude Code</span><span class="dt">7.19</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">progress heartbeat</span><span class="tt w2">긴 도구 호출에 주기적 진행 상황 알림</span><span class="src s-cc">Claude Code</span><span class="dt">7.18</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt w2">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="src s-cc">Claude Code</span><span class="dt">7.17</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt w2">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="src s-cc">Claude Code</span><span class="dt">7.15</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">always allow → repo root</span><span class="tt w2">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="src s-cc">Claude Code</span><span class="dt">7.15</span></a></div>
-    <div class="more">더 보기 (141개)</div>
-    <p class="foot">명령어가 앞, 무엇을 할 수 있는지가 뒤. 회사 소식·인사·파트너십은 빠졌다.</p>
+      <span>지난 방문 6일 전 이후 · 경계선 위쪽</span><button>모두 읽음</button></div>
+    <div class="list"><div class="day"><span>8.7</span><i>3일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt w1">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt w2">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt w2">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="src s-cx">Codex</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>8.6</span><i>4일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">/review · /code-review</span><span class="tt w3">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>8.5</span><i>5일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Wide Research — 컨텍스트 창 너머</span><span class="src s-mn">Manus</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack — 더 스마트한 협업</span><span class="src s-mn">Manus</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Notion MCP — 실전 활용 5가지</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>8.4</span><i>6일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="tt w2">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">bg → commit · push</span><span class="tt w2">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="src s-cc">Claude Code</span></a>
+<div class="seen"><span>여기 위가 새로 생긴 것 10개 · 아래는 지난 방문 때 본 것</span></div>
+<div class="day"><span>7.29</span><i>12일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt w2">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>7.24</span><i>17일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt w1">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">agent() → agent()</span><span class="tt w2">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.22</span><i>19일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt w2">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Plan Mode — 실행 전 계획 수립</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.21</span><i>20일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt w2">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>7.20</span><i>21일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/context</span><span class="tt w2">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.19</span><i>22일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt w2">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.18</span><i>23일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">progress heartbeat</span><span class="tt w2">긴 도구 호출에 주기적 진행 상황 알림</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.17</span><i>24일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt w2">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.15</span><i>26일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt w2">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">always allow → repo root</span><span class="tt w2">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.14</span><i>27일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt w2">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">PowerPoint Slides</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.13</span><i>28일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Auto-Publish — 한 번 빌드, 지속 배포</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.11</span><i>1달 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">disableAutoMode</span><span class="tt w2">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.9</span><i>1달 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="src s-cx">Codex</span></a></div>
+    <div class="more">더 보기 (135개)</div>
+    <p class="foot">날짜가 뼈대, 명령어가 왼쪽 고정 열. 회사 소식·인사·파트너십은 빠졌다.</p>
   </div>
 </div>
 
