@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>쓸 것만 남긴 판</title>
+<title>일곱 갈래</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='9' width='24' height='2.6' rx='1.3' fill='%2317171a'/%3E%3Crect x='4' y='15' width='24' height='2.6' rx='1.3' fill='%2317171a'/%3E%3Crect x='4' y='21' width='14' height='2.6' rx='1.3' fill='%234f46c5'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&display=swap">
@@ -19,7 +19,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
      -webkit-font-smoothing:antialiased}
 
 .picker{position:sticky;top:0;z-index:9;background:#fbfbfa;border-bottom:1px solid var(--line2);
-        padding:7px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+        padding:7px 16px;display:flex;gap:13px;align-items:center;flex-wrap:wrap;font-size:12.5px}
 .picker b{color:var(--faint);font-weight:500}
 .picker button{background:none;border:0;color:var(--muted);font:inherit;cursor:pointer;padding:2px 0}
 .picker button[aria-pressed="true"]{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
@@ -28,16 +28,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 
 .top{border-bottom:1px solid var(--line2)}
 .tin{max-width:1140px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:18px}
-.brand{font-family:var(--mono);font-size:13px;color:var(--text);white-space:nowrap}
+.brand{font-family:var(--mono);font-size:13px;white-space:nowrap}
 .brand i{color:var(--accent);font-style:normal}
 .nav{display:flex;gap:15px}
-.nav a{font-size:13px;color:var(--muted);text-decoration:none;padding:1px 0;white-space:nowrap}
+.nav a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap}
 .nav a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
 .stamp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap}
 
 .wrap{max-width:1140px;margin:0 auto;padding:20px 20px 70px}
+.wrap.narrow{max-width:760px}
 h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 .meta{margin-top:2px;font-family:var(--mono);font-size:11.5px;color:var(--faint)}
+.idea{margin-top:5px;font-size:12.5px;color:var(--muted)}
 .sub{display:flex;gap:16px;margin-top:16px;border-bottom:1px solid var(--line2)}
 .sub a{font-size:13px;color:var(--muted);text-decoration:none;padding-bottom:7px}
 .sub a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
@@ -48,11 +50,12 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 .band .d{width:5px;height:5px;border-radius:50%;background:var(--accent);flex:none}
 .band strong{font-weight:560;color:var(--accent)}
 .band span{color:var(--muted)}
-.band button{margin-left:auto;background:none;border:0;color:var(--accent);font:inherit;font-size:12px;
-      cursor:pointer;opacity:.75}
+.band button,.band select{margin-left:auto;background:none;border:0;color:var(--accent);font:inherit;
+      font-size:12px;cursor:pointer}
+.band select{font-family:var(--mono);margin-left:0;border:1px solid var(--accent-line);border-radius:4px;
+      padding:1px 4px;background:#fff}
 
-/* 행 — 명령어가 앞, 설명이 뒤 */
-.row{display:grid;grid-template-columns:9px 152px minmax(0,1fr) auto;gap:9px;align-items:baseline;
+.row{display:grid;grid-template-columns:9px 152px minmax(0,1fr) auto auto;gap:9px;align-items:baseline;
      padding:3px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
 .row:hover{background:var(--hover)}
 .mk{width:4px;height:4px;border-radius:50%;background:transparent;align-self:center;margin-left:3px}
@@ -63,29 +66,73 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 .tt{font-size:13px;line-height:1.45;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     color:var(--muted)}
 .w1{color:var(--text);font-weight:540}.w2{color:var(--text)}.w3{color:var(--muted)}
-.dt{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;
-    min-width:40px;text-align:right}
+.dt{font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap;min-width:40px;
+    text-align:right}
 .row.is-new .dt{color:var(--accent)}
 .src{font-size:11px;color:var(--faint);white-space:nowrap;min-width:76px;text-align:right}
 .s-cc{color:var(--cc)}.s-cx{color:var(--cx)}.s-mn{color:var(--mn)}
 
-/* 용도별 — 두 단 */
+.day{display:flex;align-items:baseline;gap:7px;margin-top:13px;padding-bottom:3px}
+.day span{font-family:var(--mono);font-size:11.5px}
+.day i{font-style:normal;font-size:11px;color:var(--faint)}
+.seen{display:flex;align-items:center;gap:10px;margin:18px 0 2px;color:var(--accent);font-size:11.5px}
+.seen::after{content:"";flex:1;height:1px;background:var(--accent-line)}
+
 .cols{margin-top:18px;columns:2;column-gap:38px}
 .cat{break-inside:avoid;margin-bottom:20px}
-.cat h3{font-size:12.5px;font-weight:600;color:var(--text);padding-bottom:4px;
-        border-bottom:1px solid var(--line2);display:flex;align-items:baseline;gap:6px}
+.cat h3{font-size:12.5px;font-weight:600;padding-bottom:4px;border-bottom:1px solid var(--line2);
+        display:flex;align-items:baseline;gap:6px}
 .cat h3 b{font-family:var(--mono);font-size:10.5px;color:var(--faint);font-weight:400}
 .cat h3 i{margin-left:auto;font-style:normal;font-size:10.5px;color:var(--accent)}
 .cat .row{grid-template-columns:9px 152px minmax(0,1fr) auto}
 
-/* B 목록 — 시간순 */
-.list .row{grid-template-columns:9px 152px minmax(0,1fr) auto}
-.day{display:flex;align-items:baseline;gap:7px;margin-top:13px;padding-bottom:3px}
-.day span{font-family:var(--mono);font-size:11.5px;color:var(--text)}
-.day i{font-style:normal;font-size:11px;color:var(--faint)}
-.seen{display:flex;align-items:center;gap:10px;margin:18px 0 2px;color:var(--accent);font-size:11.5px}
-.seen::after{content:"";flex:1;height:1px;background:var(--accent-line)}
-.seen span{white-space:nowrap}
+/* 인박스 */
+.ibx{border-bottom:1px solid var(--line);padding:11px 0;display:grid;
+     grid-template-columns:minmax(0,1fr) auto;gap:2px 16px}
+.ibx-h{grid-column:1;display:flex;gap:9px;align-items:baseline}
+.ibx-t{grid-column:1;font-size:14.5px;font-weight:540;line-height:1.4}
+.ibx-d{grid-column:1;font-size:13px;color:var(--muted)}
+.ibx-a{grid-column:2;grid-row:1/4;display:flex;gap:6px;align-self:center}
+.ibx-a button{font:inherit;font-size:12px;padding:3px 11px;border-radius:5px;cursor:pointer;
+     border:1px solid var(--line2);background:#fff;color:var(--muted)}
+.ibx-a .did{border-color:var(--accent-line);color:var(--accent);background:var(--accent-bg)}
+.ibx.gone{display:none}
+.empty{margin-top:26px;padding:30px 0;text-align:center;color:var(--faint);font-size:13px;
+     border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* 도구함 */
+.bar{margin-top:14px;display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--muted)}
+.bar .track{flex:1;height:4px;background:var(--line);border-radius:2px;overflow:hidden;max-width:260px}
+.bar .fill{height:100%;background:var(--accent);width:0}
+.bar label{margin-left:auto;display:flex;gap:5px;align-items:center;cursor:pointer}
+.bx{display:grid;grid-template-columns:15px 152px minmax(0,1fr) auto;gap:9px;align-items:baseline;
+    padding:3px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.bx:hover{background:var(--hover)}
+.bx input{margin:0;align-self:center;accent-color:var(--accent)}
+.bx.done .cmd,.bx.done .tt{color:var(--faint);text-decoration:line-through}
+
+/* 검색 */
+.q{margin-top:16px;width:100%;font:inherit;font-size:15px;padding:9px 12px;border:1px solid var(--line2);
+   border-radius:6px;background:#fff;color:var(--text);font-family:var(--mono)}
+.q:focus{outline:0;border-color:var(--accent)}
+.qmeta{margin-top:8px;font-size:12px;color:var(--faint)}
+.row.hide{display:none}
+
+/* 오늘 하나 */
+.one{margin-top:20px}
+.one .cmdbig{font-family:var(--mono);font-size:13px;color:var(--accent);background:var(--accent-bg);
+     border:1px solid var(--accent-line);border-radius:5px;padding:3px 9px;display:inline-block}
+.one h2{margin-top:12px;font-size:23px;line-height:1.35;font-weight:600;letter-spacing:-.015em}
+.one .lead{margin-top:8px;font-size:14.5px;color:var(--muted)}
+.one dl{margin-top:20px;border-top:1px solid var(--line2)}
+.one dt{font-size:11.5px;color:var(--faint);padding-top:11px}
+.one dd{font-size:14px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.one .acts{margin-top:20px;display:flex;gap:8px}
+.one .acts button{font:inherit;font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;
+     border:1px solid var(--line2);background:#fff;color:var(--muted)}
+.one .acts .go{border-color:var(--accent-line);color:var(--accent);background:var(--accent-bg)}
+.one .rest{margin-top:26px;font-size:12.5px;color:var(--faint)}
+
 .more{margin-top:14px;font-size:12.5px;color:var(--muted);cursor:pointer}
 .foot{margin-top:30px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
 
@@ -94,24 +141,89 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
   .tin{gap:12px;padding:10px 16px}.stamp{display:none}
   .nav{overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
   .wrap{padding:16px 16px 60px}
-  .row,.cat .row,.list .row{grid-template-columns:9px minmax(0,1fr) auto;gap:8px;padding:5px 0;
-        align-items:start}
-  .cmd{grid-column:2;font-size:11px}
-  .tt{grid-column:2;white-space:normal;overflow:visible}
-  .src{display:none}
-  .dt{grid-row:1;grid-column:3}
+  .row,.cat .row,.bx{grid-template-columns:9px minmax(0,1fr) auto;gap:8px;padding:5px 0;align-items:start}
+  .bx{grid-template-columns:15px minmax(0,1fr) auto}
+  .cmd{grid-column:2}.tt{grid-column:2;white-space:normal;overflow:visible}
+  .src{display:none}.dt{grid-row:1;grid-column:3}
+  .ibx{grid-template-columns:minmax(0,1fr)}.ibx-a{grid-column:1;grid-row:auto;margin-top:7px}
 }
 </style>
 
 <div class="picker">
-  <b>두 축</b>
-  <button data-m="mb" aria-pressed="true">시간순 — 뭐 새로 생겼나</button>
-  <button data-m="ma" aria-pressed="false">용도순 — 이럴 때 뭐 썼더라</button>
-  <span class="hint">뉴스 제외 · 별점 없음 · 지난 방문 = 2026-08-04 가정</span>
+  <b>일곱 갈래</b>
+  <button data-m="m1" aria-pressed="true">시간순</button>
+  <button data-m="m2" aria-pressed="false">용도순</button>
+  <button data-m="m3" aria-pressed="false">받은 기능</button>
+  <button data-m="m4" aria-pressed="false">내 버전</button>
+  <button data-m="m5" aria-pressed="false">도구함</button>
+  <button data-m="m6" aria-pressed="false">찾기</button>
+  <button data-m="m7" aria-pressed="false">오늘 하나</button>
+  <span class="hint">뉴스 제외 · 실제 항목 · 지난 방문 = 2026-08-04 가정</span>
 </div>
 
-<!-- ══ A · 용도별 명령어 사전 ══ -->
-<div class="mock" id="ma">
+<div class="mock on" id="m1">
+  <div class="top"><div class="tin">
+    <div class="brand"><i>&gt;_</i> Agent Edge</div>
+    <div class="nav"><a class="on">전체</a><a>Claude Code</a><a>Codex</a><a>Manus</a></div>
+    <div class="stamp">2026-08-10 05:50</div>
+  </div></div>
+  <div class="wrap">
+    <h1>새로 생긴 기능</h1>
+    <p class="meta">세 도구 · 뉴스 제외</p>
+    <p class="idea">날짜가 뼈대. 지난 방문 자리에 경계선을 하나 긋는다.</p>
+    <div class="band"><span class="d"></span><strong>새 항목 10개</strong>
+      <span>지난 방문 6일 전 이후</span><button>모두 읽음</button></div>
+    <div class="list"><div class="day"><span>8.7</span><i>3일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt w1">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt w2">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt w2">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="src s-cx">Codex</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>8.6</span><i>4일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">/review · /code-review</span><span class="tt w3">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>8.5</span><i>5일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Wide Research — 컨텍스트 창 너머</span><span class="src s-mn">Manus</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack — 더 스마트한 협업</span><span class="src s-mn">Manus</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Notion MCP — 실전 활용 5가지</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>8.4</span><i>6일 전</i></div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="tt w2">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="src s-cc">Claude Code</span></a>
+<a class="row is-new"><span class="mk"></span><span class="cmd">bg → commit · push</span><span class="tt w2">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="src s-cc">Claude Code</span></a>
+<div class="seen"><span>여기 위가 새로 생긴 것 10개 · 아래는 지난 방문 때 본 것</span></div>
+<div class="day"><span>7.29</span><i>12일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt w2">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>7.24</span><i>17일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt w1">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">agent() → agent()</span><span class="tt w2">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.22</span><i>19일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt w2">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Plan Mode — 실행 전 계획 수립</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.21</span><i>20일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt w2">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="src s-cx">Codex</span></a>
+<div class="day"><span>7.20</span><i>21일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/context</span><span class="tt w2">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.19</span><i>22일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt w2">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.18</span><i>23일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">progress heartbeat</span><span class="tt w2">긴 도구 호출에 주기적 진행 상황 알림</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.17</span><i>24일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt w2">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.15</span><i>26일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt w2">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd">always allow → repo root</span><span class="tt w2">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.14</span><i>27일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt w2">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="src s-cc">Claude Code</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">PowerPoint Slides</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.13</span><i>28일 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Auto-Publish — 한 번 빌드, 지속 배포</span><span class="src s-mn">Manus</span></a>
+<div class="day"><span>7.11</span><i>1달 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd">disableAutoMode</span><span class="tt w2">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="src s-cc">Claude Code</span></a>
+<div class="day"><span>7.9</span><i>1달 전</i></div>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="src s-cx">Codex</span></a>
+<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="src s-cx">Codex</span></a></div>
+    <div class="more">더 보기 (135개)</div></div>
+</div>
+<div class="mock" id="m2">
   <div class="top"><div class="tin">
     <div class="brand"><i>&gt;_</i> Agent Edge</div>
     <div class="nav"><a class="on">Claude Code</a><a>Codex</a><a>Manus</a></div>
@@ -120,9 +232,10 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
   <div class="wrap">
     <h1>Claude Code</h1>
     <p class="meta">v2.1.226 · 8.8 갱신</p>
-    <div class="sub"><a class="on">용도별<b>81</b></a><a>새로 생긴 것<b>165</b></a><a>버전별<b>237</b></a></div>
+    <p class="idea">명령어가 왼쪽 고정 열. 필요할 때 찾는 레퍼런스.</p>
+    <div class="sub"><a class="on">용도별<b>81</b></a><a>시간순<b>165</b></a><a>버전별<b>237</b></a></div>
     <div class="band"><span class="d"></span><strong>새 항목 14개</strong>
-      <span>지난 방문 6일 전 이후 · 해당 줄에 점 표시</span><button>모두 읽음</button></div>
+      <span>해당 줄에 점 표시</span><button>모두 읽음</button></div>
     <div class="cols"><section class="cat"><h3>긴 작업을 맡길 때<b>5</b></h3>
 <a class="row"><span class="mk"></span><span class="cmd">/goal</span><span class="tt">완료 조건 후 자율 진행, 오버레이 표시</span><span class="dt">5.13</span></a>
 <a class="row"><span class="mk"></span><span class="cmd">Ctrl+T</span><span class="tt">백그라운드 세션 고정 (유휴 시에도 유지)</span><span class="dt">5.21</span></a>
@@ -211,79 +324,493 @@ h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
 <a class="row is-new"><span class="mk"></span><span class="cmd">sandbox mode:&quot;mask&quot;</span><span class="tt">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span><span class="dt">8.4</span></a>
 <a class="row is-new"><span class="mk"></span><span class="cmd">Remote Control auto-start</span><span class="tt">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — /config로 사용자 범위에서 설정</span><span class="dt">8.4</span></a>
 <a class="row is-new"><span class="mk"></span><span class="cmd">&quot;owner/*&quot;</span><span class="tt">strictKnownMarketplaces·blockedMarketplaces에 &quot;owner/*&quot; 와일드카드 추가 — GitHub org 전체 허용·차단</span><span class="dt">8.6</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt">내 서버·컨테이너를 Claude Code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (Team/Enterprise)</span><span class="dt">8.7</span></a></section></div>
-    <p class="foot">명령어가 왼쪽 고정 열이라 세로로 훑힌다. 뉴스·블로그는 이 화면에 없다.</p>
-  </div>
+<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt">내 서버·컨테이너를 Claude Code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (Team/Enterprise)</span><span class="dt">8.7</span></a></section></div></div>
 </div>
-
-<!-- ══ B · 새로 생긴 기능만 ══ -->
-<div class="mock on" id="mb">
+<div class="mock" id="m3">
+  <div class="top"><div class="tin">
+    <div class="brand"><i>&gt;_</i> Agent Edge</div>
+    <div class="nav"><a class="on">전체</a><a>Claude Code</a><a>Codex</a><a>Manus</a></div>
+    <div class="stamp">2026-08-10 05:50</div>
+  </div></div>
+  <div class="wrap narrow">
+    <h1>받은 기능</h1>
+    <p class="meta">지난 방문 이후 · 처리하면 사라진다</p>
+    <p class="idea">목록이 아니라 처리함. 새로 온 것만 놓고 써봤다·넘김으로 비운다.</p>
+    <div class="band"><span class="d"></span><strong id="ibxN">10개 남음</strong>
+      <span>다 비우면 다음 갱신까지 볼 게 없다</span><button id="ibxAll">모두 비우기</button></div>
+    <div id="ibxList"><div class="ibx" data-k="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code "><div class="ibx-h"><span class="cmd">claude self-hosted-runner</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></div><div class="ibx-t">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</div><div class="ibx-d">웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="세션 간 SendMessage — 다른 머신의 Claude Code 세션"><div class="ibx-h"><span class="cmd">SendMessage · ListAgents</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></div><div class="ibx-t">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</div><div class="ibx-d">ListAgents로 세션 탐색 후 SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux).</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 "><div class="ibx-h"><span class="cmd">--approve-for-me</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></div><div class="ibx-t">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그"><div class="ibx-h"><span class="cmd dash">—</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></div><div class="ibx-t">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="/review = /code-review 별칭 통합 — effort 레벨"><div class="ibx-h"><span class="cmd">/review · /code-review</span><span class="src s-cc">Claude Code</span><span class="dt">8.6</span></div><div class="ibx-t">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</div><div class="ibx-d">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 설정 재사용.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="Wide Research — 컨텍스트 창 너머"><div class="ibx-h"><span class="cmd dash">—</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></div><div class="ibx-t">Wide Research — 컨텍스트 창 너머</div><div class="ibx-d">병렬 에이전트로 컨텍스트 창 한계를 극복하는 Wide Research 동작 원리.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="Manus for Slack — 더 스마트한 협업"><div class="ibx-h"><span class="cmd dash">—</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></div><div class="ibx-t">Manus for Slack — 더 스마트한 협업</div><div class="ibx-d">Slack 안에서 Manus 에이전트로 팀 협업 강화.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="Manus × Notion MCP — 실전 활용 5가지"><div class="ibx-h"><span class="cmd dash">—</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></div><div class="ibx-t">Manus × Notion MCP — 실전 활용 5가지</div><div class="ibx-d">Manus와 Notion MCP를 연결한 업무 혁신 실전 사례 5가지.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 "><div class="ibx-h"><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></div><div class="ibx-t">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</div><div class="ibx-d">도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div>
+<div class="ibx" data-k="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때"><div class="ibx-h"><span class="cmd">bg → commit · push</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></div><div class="ibx-t">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</div><div class="ibx-d">bg 세션 완료 시 커밋·푸시로 보존, draft PR은 작업이 요구할 때만, CLAUDE.md git 지침 준수.</div><div class="ibx-a"><button class="did">써봤다</button><button class="skip">넘김</button></div></div></div>
+    <div class="empty" id="ibxEmpty" style="display:none">다 봤다. 다음 갱신은 내일 05:20.</div></div>
+</div>
+<div class="mock" id="m4">
   <div class="top"><div class="tin">
     <div class="brand"><i>&gt;_</i> Agent Edge</div>
     <div class="nav"><a class="on">전체</a><a>Claude Code</a><a>Codex</a><a>Manus</a></div>
     <div class="stamp">2026-08-10 05:50</div>
   </div></div>
   <div class="wrap">
-    <h1>새로 생긴 기능</h1>
-    <p class="meta">세 도구 · 뉴스 제외</p>
-    <div class="band"><span class="d"></span><strong>새 항목 10개</strong>
-      <span>지난 방문 6일 전 이후 · 경계선 위쪽</span><button>모두 읽음</button></div>
-    <div class="list"><div class="day"><span>8.7</span><i>3일 전</i></div>
-<a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt w1">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="src s-cc">Claude Code</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt w2">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="src s-cc">Claude Code</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt w2">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="src s-cx">Codex</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="src s-cx">Codex</span></a>
-<div class="day"><span>8.6</span><i>4일 전</i></div>
-<a class="row is-new"><span class="mk"></span><span class="cmd">/review · /code-review</span><span class="tt w3">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>8.5</span><i>5일 전</i></div>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Wide Research — 컨텍스트 창 너머</span><span class="src s-mn">Manus</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack — 더 스마트한 협업</span><span class="src s-mn">Manus</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Notion MCP — 실전 활용 5가지</span><span class="src s-mn">Manus</span></a>
-<div class="day"><span>8.4</span><i>6일 전</i></div>
-<a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="tt w2">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="src s-cc">Claude Code</span></a>
-<a class="row is-new"><span class="mk"></span><span class="cmd">bg → commit · push</span><span class="tt w2">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="src s-cc">Claude Code</span></a>
-<div class="seen"><span>여기 위가 새로 생긴 것 10개 · 아래는 지난 방문 때 본 것</span></div>
-<div class="day"><span>7.29</span><i>12일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt w2">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="src s-cx">Codex</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="src s-cx">Codex</span></a>
-<div class="day"><span>7.24</span><i>17일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt w1">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="src s-cc">Claude Code</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">agent() → agent()</span><span class="tt w2">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.22</span><i>19일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt w2">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="src s-cc">Claude Code</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Plan Mode — 실행 전 계획 수립</span><span class="src s-mn">Manus</span></a>
-<div class="day"><span>7.21</span><i>20일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="src s-cx">Codex</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt w2">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="src s-cx">Codex</span></a>
-<div class="day"><span>7.20</span><i>21일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">/context</span><span class="tt w2">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.19</span><i>22일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt w2">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.18</span><i>23일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">progress heartbeat</span><span class="tt w2">긴 도구 호출에 주기적 진행 상황 알림</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.17</span><i>24일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt w2">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.15</span><i>26일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt w2">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="src s-cc">Claude Code</span></a>
-<a class="row"><span class="mk"></span><span class="cmd">always allow → repo root</span><span class="tt w2">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.14</span><i>27일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt w2">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="src s-cc">Claude Code</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">PowerPoint Slides</span><span class="src s-mn">Manus</span></a>
-<div class="day"><span>7.13</span><i>28일 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Auto-Publish — 한 번 빌드, 지속 배포</span><span class="src s-mn">Manus</span></a>
-<div class="day"><span>7.11</span><i>1달 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd">disableAutoMode</span><span class="tt w2">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="src s-cc">Claude Code</span></a>
-<div class="day"><span>7.9</span><i>1달 전</i></div>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="src s-cx">Codex</span></a>
-<a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="src s-cx">Codex</span></a></div>
-    <div class="more">더 보기 (135개)</div>
-    <p class="foot">날짜가 뼈대, 명령어가 왼쪽 고정 열. 회사 소식·인사·파트너십은 빠졌다.</p>
-  </div>
+    <h1>내가 못 쓰고 있는 것</h1>
+    <p class="meta">내 버전 이후에 나온 기능만</p>
+    <p class="idea">기준이 방문 시각이 아니라 내가 깔아둔 버전. 올리기 전에 뭘 얻는지 먼저 본다.</p>
+    <div class="band"><span class="d"></span><span>내 버전</span>
+      <select id="myver"><option value="2026-08-08">v2.1.226</option>
+<option value="2026-08-08">v2.1.225</option>
+<option value="2026-08-07">v2.1.224</option>
+<option value="2026-08-06">v2.1.223</option>
+<option value="2026-08-04">v2.1.222</option>
+<option value="2026-08-04">v2.1.221</option>
+<option value="2026-07-25">v2.1.220</option>
+<option value="2026-07-24">v2.1.219</option>
+<option value="2026-07-22">v2.1.218</option>
+<option value="2026-07-21">v2.1.217</option>
+<option value="2026-07-20">v2.1.216</option>
+<option value="2026-07-19">v2.1.215</option>
+<option value="2026-07-18">v2.1.214</option>
+<option value="2026-07-17">v2.1.212</option>
+<option value="2026-07-15">v2.1.211</option>
+<option value="2026-07-14" selected>v2.1.210</option>
+<option value="2026-07-14">v2.1.209</option>
+<option value="2026-07-14">v2.1.208</option>
+<option value="2026-07-11">v2.1.207</option>
+<option value="2026-07-10">v2.1.206</option>
+<option value="2026-07-08">v2.1.205</option>
+<option value="2026-07-08">v2.1.204</option>
+<option value="2026-07-07">v2.1.203</option>
+<option value="2026-07-06">v2.1.202</option>
+<option value="2026-07-03">v2.1.201</option>
+<option value="2026-07-03">v2.1.200</option>
+<option value="2026-07-02">v2.1.199</option>
+<option value="2026-07-01">v2.1.198</option>
+<option value="2026-06-30">v2.1.197</option>
+<option value="2026-06-29">v2.1.196</option>
+<option value="2026-06-26">v2.1.195</option>
+<option value="2026-06-25">v2.1.193</option>
+<option value="2026-06-24">v2.1.191</option>
+<option value="2026-06-24">v2.1.190</option>
+<option value="2026-06-23">v2.1.187</option>
+<option value="2026-06-22">v2.1.186</option>
+<option value="2026-06-20">v2.1.185</option>
+<option value="2026-06-19">v2.1.183</option>
+<option value="2026-06-17">v2.1.181</option>
+<option value="2026-06-16">v2.1.179</option>
+<option value="2026-06-15">v2.1.178</option>
+<option value="2026-06-12">v2.1.176</option>
+<option value="2026-06-12">v2.1.175</option>
+<option value="2026-06-12">v2.1.174</option>
+<option value="2026-06-11">v2.1.173</option>
+<option value="2026-06-10">v2.1.172</option>
+<option value="2026-06-09">v2.1.170</option>
+<option value="2026-06-08">v2.1.169</option>
+<option value="2026-06-06">v2.1.168</option>
+<option value="2026-06-06">v2.1.167</option>
+<option value="2026-06-06">v2.1.166</option>
+<option value="2026-06-05">v2.1.165</option>
+<option value="2026-06-04">v2.1.163</option>
+<option value="2026-06-03">v2.1.162</option>
+<option value="2026-06-02">v2.1.161</option>
+<option value="2026-06-02">v2.1.160</option>
+<option value="2026-05-31">v2.1.159</option>
+<option value="2026-05-30">v2.1.158</option>
+<option value="2026-05-29">v2.1.157</option>
+<option value="2026-05-29">v2.1.156</option>
+<option value="2026-05-28">v2.1.154</option>
+<option value="2026-05-28">v2.1.153</option>
+<option value="2026-05-27">v2.1.152</option>
+<option value="2026-05-23">v2.1.150</option>
+<option value="2026-05-22">v2.1.149</option>
+<option value="2026-05-22">v2.1.148</option>
+<option value="2026-05-21">v2.1.147</option>
+<option value="2026-05-19">v2.1.145</option>
+<option value="2026-05-19">v2.1.144</option>
+<option value="2026-05-15">v2.1.143</option></select>
+      <strong id="verN"></strong><span id="verNote"></span></div>
+    <div class="list" id="verList"><div data-d="2026-08-07"><a class="row is-new"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt w1">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></a></div>
+<div data-d="2026-08-07"><a class="row is-new"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt w2">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="src s-cc">Claude Code</span><span class="dt">8.7</span></a></div>
+<div data-d="2026-08-07"><a class="row is-new"><span class="mk"></span><span class="cmd">--approve-for-me</span><span class="tt w2">--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></a></div>
+<div data-d="2026-08-07"><a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="src s-cx">Codex</span><span class="dt">8.7</span></a></div>
+<div data-d="2026-08-06"><a class="row is-new"><span class="mk"></span><span class="cmd">/review · /code-review</span><span class="tt w3">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="src s-cc">Claude Code</span><span class="dt">8.6</span></a></div>
+<div data-d="2026-08-05"><a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Wide Research — 컨텍스트 창 너머</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a></div>
+<div data-d="2026-08-05"><a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack — 더 스마트한 협업</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a></div>
+<div data-d="2026-08-05"><a class="row is-new"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Notion MCP — 실전 활용 5가지</span><span class="src s-mn">Manus</span><span class="dt">8.5</span></a></div>
+<div data-d="2026-08-04"><a class="row is-new"><span class="mk"></span><span class="cmd">Ctrl+Alt+F (VSCode)</span><span class="tt w2">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></a></div>
+<div data-d="2026-08-04"><a class="row is-new"><span class="mk"></span><span class="cmd">bg → commit · push</span><span class="tt w2">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="src s-cc">Claude Code</span><span class="dt">8.4</span></a></div>
+<div data-d="2026-07-29"><a class="row"><span class="mk"></span><span class="cmd">/new · /clear</span><span class="tt w2">세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="src s-cx">Codex</span><span class="dt">7.29</span></a></div>
+<div data-d="2026-07-29"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="src s-cx">Codex</span><span class="dt">7.29</span></a></div>
+<div data-d="2026-07-24"><a class="row"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt w1">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="src s-cc">Claude Code</span><span class="dt">7.24</span></a></div>
+<div data-d="2026-07-24"><a class="row"><span class="mk"></span><span class="cmd">agent() → agent()</span><span class="tt w2">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="src s-cc">Claude Code</span><span class="dt">7.24</span></a></div>
+<div data-d="2026-07-22"><a class="row"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt w2">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="src s-cc">Claude Code</span><span class="dt">7.22</span></a></div>
+<div data-d="2026-07-22"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Plan Mode — 실행 전 계획 수립</span><span class="src s-mn">Manus</span><span class="dt">7.22</span></a></div>
+<div data-d="2026-07-21"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="src s-cx">Codex</span><span class="dt">7.21</span></a></div>
+<div data-d="2026-07-21"><a class="row"><span class="mk"></span><span class="cmd">/import</span><span class="tt w2">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="src s-cx">Codex</span><span class="dt">7.21</span></a></div>
+<div data-d="2026-07-20"><a class="row"><span class="mk"></span><span class="cmd">/context</span><span class="tt w2">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="src s-cc">Claude Code</span><span class="dt">7.20</span></a></div>
+<div data-d="2026-07-19"><a class="row"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt w2">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="src s-cc">Claude Code</span><span class="dt">7.19</span></a></div>
+<div data-d="2026-07-18"><a class="row"><span class="mk"></span><span class="cmd">progress heartbeat</span><span class="tt w2">긴 도구 호출에 주기적 진행 상황 알림</span><span class="src s-cc">Claude Code</span><span class="dt">7.18</span></a></div>
+<div data-d="2026-07-17"><a class="row"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt w2">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="src s-cc">Claude Code</span><span class="dt">7.17</span></a></div>
+<div data-d="2026-07-15"><a class="row"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt w2">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="src s-cc">Claude Code</span><span class="dt">7.15</span></a></div>
+<div data-d="2026-07-15"><a class="row"><span class="mk"></span><span class="cmd">always allow → repo root</span><span class="tt w2">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="src s-cc">Claude Code</span><span class="dt">7.15</span></a></div>
+<div data-d="2026-07-14"><a class="row"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt w2">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="src s-cc">Claude Code</span><span class="dt">7.14</span></a></div>
+<div data-d="2026-07-14"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">PowerPoint Slides</span><span class="src s-mn">Manus</span><span class="dt">7.14</span></a></div>
+<div data-d="2026-07-13"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Auto-Publish — 한 번 빌드, 지속 배포</span><span class="src s-mn">Manus</span><span class="dt">7.13</span></a></div>
+<div data-d="2026-07-11"><a class="row"><span class="mk"></span><span class="cmd">disableAutoMode</span><span class="tt w2">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="src s-cc">Claude Code</span><span class="dt">7.11</span></a></div>
+<div data-d="2026-07-09"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="src s-cx">Codex</span><span class="dt">7.9</span></a></div>
+<div data-d="2026-07-09"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="src s-cx">Codex</span><span class="dt">7.9</span></a></div>
+<div data-d="2026-07-09"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Branch — 하나의 컨텍스트, 다방향 병렬 탐색</span><span class="src s-mn">Manus</span><span class="dt">7.9</span></a></div>
+<div data-d="2026-07-08"><a class="row"><span class="mk"></span><span class="cmd">/doctor</span><span class="tt w2">/doctor — 전체 설정 진단·자동 수정</span><span class="src s-cc">Claude Code</span><span class="dt">7.8</span></a></div>
+<div data-d="2026-07-08"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span><span class="src s-cx">Codex</span><span class="dt">7.8</span></a></div>
+<div data-d="2026-07-08"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span><span class="src s-cx">Codex</span><span class="dt">7.8</span></a></div>
+<div data-d="2026-07-02"><a class="row"><span class="mk"></span><span class="cmd">/skill-a /skill-b</span><span class="tt w2">슬래시 스킬 최대 5개 겹쳐 쓰기</span><span class="src s-cc">Claude Code</span><span class="dt">7.2</span></a></div>
+<div data-d="2026-07-01"><a class="row"><span class="mk"></span><span class="cmd">Fable 5</span><span class="tt w2">Claude Fable 5 — 재배포</span><span class="src s-cc">Claude Code</span><span class="dt">7.1</span></a></div>
+<div data-d="2026-07-01"><a class="row"><span class="mk"></span><span class="cmd">bg → draft PR</span><span class="tt w1">백그라운드 에이전트 완료 시 자동 커밋·푸시·드래프트 PR</span><span class="src s-cc">Claude Code</span><span class="dt">7.1</span></a></div>
+<div data-d="2026-07-01"><a class="row"><span class="mk"></span><span class="cmd">Notification hook</span><span class="tt w2">백그라운드 에이전트 입력 요청·완료 시 Notification hook 발화</span><span class="src s-cc">Claude Code</span><span class="dt">7.1</span></a></div>
+<div data-d="2026-06-30"><a class="row"><span class="mk"></span><span class="cmd">Sonnet 5</span><span class="tt w1">Claude Sonnet 5 — Claude Code 기본 모델, 1M 컨텍스트</span><span class="src s-cc">Claude Code</span><span class="dt">6.30</span></a></div>
+<div data-d="2026-06-25"><a class="row"><span class="mk"></span><span class="cmd">! [Tab]</span><span class="tt w3">bash 모드(!) 파일 경로 자동완성</span><span class="src s-cc">Claude Code</span><span class="dt">6.25</span></a></div>
+<div data-d="2026-06-25"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span><span class="src s-cx">Codex</span><span class="dt">6.25</span></a></div>
+<div data-d="2026-06-24"><a class="row"><span class="mk"></span><span class="cmd">/rewind</span><span class="tt w2">/clear 이전으로 대화 복원</span><span class="src s-cc">Claude Code</span><span class="dt">6.24</span></a></div>
+<div data-d="2026-06-24"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">호스팅 모드 — 프로젝트 맞춤 서버 선택</span><span class="src s-mn">Manus</span><span class="dt">6.24</span></a></div>
+<div data-d="2026-06-23"><a class="row"><span class="mk"></span><span class="cmd">sandbox.credentials</span><span class="tt w2">샌드박스 명령이 자격증명 파일 읽기 차단</span><span class="src s-cc">Claude Code</span><span class="dt">6.23</span></a></div>
+<div data-d="2026-06-23"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w3">커넥터 자동 추천</span><span class="src s-mn">Manus</span><span class="dt">6.23</span></a></div>
+<div data-d="2026-06-23"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Google Workspace 정밀 조작 지원</span><span class="src s-mn">Manus</span><span class="dt">6.23</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd">respondToBashCommands</span><span class="tt w2">! 명령 출력에 Claude가 자동 응답</span><span class="src s-cc">Claude Code</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd">bg subagent</span><span class="tt w2">백그라운드 에이전트 권한 요청이 메인 세션에 표시</span><span class="src s-cc">Claude Code</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd">/usage</span><span class="tt w2">/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="src s-cx">Codex</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span><span class="src s-cx">Codex</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span><span class="src s-cx">Codex</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus on Telegram — 어디서든 에이전트</span><span class="src s-mn">Manus</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-22"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus × Similarweb: 키워드·레퍼럴·페이지 심층 분석</span><span class="src s-mn">Manus</span><span class="dt">6.22</span></a></div>
+<div data-d="2026-06-21"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Stripe 결제 연동 · 출시</span><span class="src s-mn">Manus</span><span class="dt">6.21</span></a></div>
+<div data-d="2026-06-21"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w3">Instagram 크리에이터 마켓플레이스 연동</span><span class="src s-mn">Manus</span><span class="dt">6.21</span></a></div>
+<div data-d="2026-06-20"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Preferred Browser</span><span class="src s-mn">Manus</span><span class="dt">6.20</span></a></div>
+<div data-d="2026-06-20"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Project Skills</span><span class="src s-mn">Manus</span><span class="dt">6.20</span></a></div>
+<div data-d="2026-06-19"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Custom Domains</span><span class="src s-mn">Manus</span><span class="dt">6.19</span></a></div>
+<div data-d="2026-06-19"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Agent Skills (오픈 스탠더드)</span><span class="src s-mn">Manus</span><span class="dt">6.19</span></a></div>
+<div data-d="2026-06-19"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w3">Manus Academy</span><span class="src s-mn">Manus</span><span class="dt">6.19</span></a></div>
+<div data-d="2026-06-18"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">TUI 입력 프롬프트가 비활성 시 자동 확정 — 카운트다운은 상호작용 시 일시정지.</span><span class="src s-cx">Codex</span><span class="dt">6.18</span></a></div>
+<div data-d="2026-06-18"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">플러그인이 스레드별 stdio MCP 서버 활성화 가능 — &quot;내가 만든&quot; 마켓플레이스·인증별 카탈로그 추가.</span><span class="src s-cx">Codex</span><span class="dt">6.18</span></a></div>
+<div data-d="2026-06-18"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">앱 공유 · 테스트 → 스토어 출시</span><span class="src s-mn">Manus</span><span class="dt">6.18</span></a></div>
+<div data-d="2026-06-18"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Built-in SEO</span><span class="src s-mn">Manus</span><span class="dt">6.18</span></a></div>
+<div data-d="2026-06-18"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w3">Manus Slides — Nano Banana Pro</span><span class="src s-mn">Manus</span><span class="dt">6.18</span></a></div>
+<div data-d="2026-06-17"><a class="row"><span class="mk"></span><span class="cmd">/config</span><span class="tt w2">프롬프트에서 바로 설정 변경</span><span class="src s-cc">Claude Code</span><span class="dt">6.17</span></a></div>
+<div data-d="2026-06-17"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">My Computer — 데스크톱 직접 조작</span><span class="src s-mn">Manus</span><span class="dt">6.17</span></a></div>
+<div data-d="2026-06-17"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">GPT Image 2 on Manus Slides</span><span class="src s-mn">Manus</span><span class="dt">6.17</span></a></div>
+<div data-d="2026-06-17"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w3">웹사이트 복사본 만들기</span><span class="src s-mn">Manus</span><span class="dt">6.17</span></a></div>
+<div data-d="2026-06-16"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus Projects</span><span class="src s-mn">Manus</span><span class="dt">6.16</span></a></div>
+<div data-d="2026-06-16"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Manus for Slack</span><span class="src s-mn">Manus</span><span class="dt">6.16</span></a></div>
+<div data-d="2026-06-09"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Code mode에서 웹 검색 직접 호출 가능 — JS 중첩 툴 호출 포함, 결과는 일반 텍스트로.</span><span class="src s-cx">Codex</span><span class="dt">6.9</span></a></div>
+<div data-d="2026-06-08"><a class="row"><span class="mk"></span><span class="cmd">--safe-mode</span><span class="tt w2">커스터마이즈 전부 끄고 시작</span><span class="src s-cc">Claude Code</span><span class="dt">6.8</span></a></div>
+<div data-d="2026-06-08"><a class="row"><span class="mk"></span><span class="cmd">/cd</span><span class="tt w2">작업 디렉터리 이동 (캐시 유지)</span><span class="src s-cc">Claude Code</span><span class="dt">6.8</span></a></div>
+<div data-d="2026-06-08"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Gmail·Calendar 다계정 연결</span><span class="src s-mn">Manus</span><span class="dt">6.8</span></a></div>
+<div data-d="2026-06-06"><a class="row"><span class="mk"></span><span class="cmd">fallbackModel</span><span class="tt w2">폴백 모델 (최대 3개)</span><span class="src s-cc">Claude Code</span><span class="dt">6.6</span></a></div>
+<div data-d="2026-06-01"><a class="row"><span class="mk"></span><span class="cmd">/archive</span><span class="tt w2">세션 아카이브로 실수 재개·포크 방지. codex unarchive로 복원.</span><span class="src s-cx">Codex</span><span class="dt">6.1</span></a></div>
+<div data-d="2026-05-28"><a class="row"><span class="mk"></span><span class="cmd">ultracode</span><span class="tt w1">동적 워크플로 (수십~수백 에이전트)</span><span class="src s-cc">Claude Code</span><span class="dt">5.28</span></a></div>
+<div data-d="2026-05-28"><a class="row"><span class="mk"></span><span class="cmd">/permissions</span><span class="tt w2">명명된 권한 프로파일 인식·설정된 커스텀 프로파일 표시.</span><span class="src s-cx">Codex</span><span class="dt">5.28</span></a></div>
+<div data-d="2026-05-28"><a class="row"><span class="mk"></span><span class="cmd dash">—</span><span class="tt w2">Vim 모드에 텍스트 오브젝트 편집·word/line-end 동작 개선·인터럽트 턴 바인딩 설정 추가.</span><span class="src s-cx">Codex</span><span class="dt">5.28</span></a></div></div></div>
+</div>
+<div class="mock" id="m5">
+  <div class="top"><div class="tin">
+    <div class="brand"><i>&gt;_</i> Agent Edge</div>
+    <div class="nav"><a class="on">Claude Code</a><a>Codex</a><a>Manus</a></div>
+    <div class="stamp">2026-08-10 05:50</div>
+  </div></div>
+  <div class="wrap">
+    <h1>내 도구함</h1>
+    <p class="meta">써본 것에 체크 · 브라우저에 저장</p>
+    <p class="idea">새것 확인이 아니라 내 숙련도 관리. 안 써본 것이 곧 다음 할 일.</p>
+    <div class="bar"><span id="boxN">0 / 81 써봄</span>
+      <span class="track"><span class="fill" id="boxFill"></span></span>
+      <label><input type="checkbox" id="onlyTodo"> 안 써본 것만</label></div>
+    <div class="cols" id="boxList"><section class="cat"><h3>긴 작업을 맡길 때<b>5</b></h3><label class="bx" data-i="0"><input type="checkbox"><span class="cmd">/goal</span><span class="tt">완료 조건 후 자율 진행, 오버레이 표시</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="1"><input type="checkbox"><span class="cmd">Ctrl+T</span><span class="tt">백그라운드 세션 고정 (유휴 시에도 유지)</span><span class="dt">5.21</span></label>
+<label class="bx" data-i="2"><input type="checkbox"><span class="cmd">terminalSequence</span><span class="tt">stop hook으로 데스크톱 알림</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="3"><input type="checkbox"><span class="cmd">ultracode</span><span class="tt">동적 워크플로 — bg서 수십~수백 에이전트 오케스트레이션</span><span class="dt">5.28</span></label>
+<label class="bx" data-i="4"><input type="checkbox"><span class="cmd">/config workflow size</span><span class="tt">동적 워크플로 에이전트 수 가이드라인 — small/medium/large 선택</span><span class="dt">7.6</span></label></section>
+<section class="cat"><h3>Subagent · 멀티 세션<b>18</b></h3><label class="bx" data-i="5"><input type="checkbox"><span class="cmd">Agent View</span><span class="tt">전체 세션 한 화면 (실행·대기·완료)</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="6"><input type="checkbox"><span class="cmd">/resume</span><span class="tt">bg 마크 세션도 목록에 표시</span><span class="dt">5.19</span></label>
+<label class="bx" data-i="7"><input type="checkbox"><span class="cmd">agents --json</span><span class="tt">스크립팅용 세션 목록 출력</span><span class="dt">5.19</span></label>
+<label class="bx" data-i="8"><input type="checkbox"><span class="cmd">agents --cwd</span><span class="tt">특정 디렉토리 범위 세션</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="9"><input type="checkbox"><span class="cmd">agents flags</span><span class="tt">--model --effort --mcp-config 등 전달</span><span class="dt">5.14</span></label>
+<label class="bx" data-i="10"><input type="checkbox"><span class="cmd">bgIsolation:&quot;none&quot;</span><span class="tt">bg 세션이 worktree 없이 직접 편집</span><span class="dt">5.15</span></label>
+<label class="bx" data-i="11"><input type="checkbox"><span class="cmd">/cd</span><span class="tt">세션 도중 작업 폴더 이동 — 프롬프트 캐시 유지</span><span class="dt">6.8</span></label>
+<label class="bx" data-i="12"><input type="checkbox"><span class="cmd">/rewind</span><span class="tt">/clear 이전 시점으로 대화 복원 후 재개</span><span class="dt">6.24</span></label>
+<label class="bx" data-i="13"><input type="checkbox"><span class="cmd">Ctrl+X</span><span class="tt">에이전트 뷰에서 완료 세션 영구 삭제</span><span class="dt">7.10</span></label>
+<label class="bx" data-i="14"><input type="checkbox"><span class="cmd">/fork → bg · /subtask</span><span class="tt">/fork는 대화 복사해 bg 세션 분기, 인세션 서브에이전트 실행은 /subtask</span><span class="dt">7.17</span></label>
+<label class="bx" data-i="15"><input type="checkbox"><span class="cmd">/resume</span><span class="tt">에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개</span><span class="dt">7.17</span></label>
+<label class="bx" data-i="16"><input type="checkbox"><span class="cmd">subagentStatusLine effort</span><span class="tt">subagentStatusLine 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능</span><span class="dt">7.18</span></label>
+<label class="bx" data-i="17"><input type="checkbox"><span class="cmd">/mcp · /install-github-app bg</span><span class="tt">bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시</span><span class="dt">7.20</span></label>
+<label class="bx" data-i="18"><input type="checkbox"><span class="cmd">CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</span><span class="tt">동시 서브에이전트 상한 (기본 20) — 한 메시지의 무한 fan-out 방지</span><span class="dt">7.21</span></label>
+<label class="bx" data-i="19"><input type="checkbox"><span class="cmd">CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</span><span class="tt">v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 =1 설정</span><span class="dt">7.24</span></label>
+<label class="bx" data-i="20"><input type="checkbox"><span class="cmd">/fork → own worktree</span><span class="tt">/fork가 원본 체크아웃 대신 자체 워크트리를 새로 생성</span><span class="dt">8.4</span></label>
+<label class="bx" data-i="21"><input type="checkbox"><span class="cmd">SendMessage · ListAgents</span><span class="tt">ListAgents로 세션 탐색, SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux)</span><span class="dt">8.7</span></label>
+<label class="bx" data-i="22"><input type="checkbox"><span class="cmd">SendMessage RC 이름 지정</span><span class="tt">ListAgents에 표시된 이름으로 다른 머신의 Remote Control 세션에 직접 대화 시작 (답장 대기 불필요)</span><span class="dt">8.8</span></label></section>
+<section class="cat"><h3>PR / 코드 리뷰<b>8</b></h3><label class="bx" data-i="23"><input type="checkbox"><span class="cmd">/code-review</span><span class="tt">effort 선택 + GitHub PR 인라인 코멘트</span><span class="dt">5.21</span></label>
+<label class="bx" data-i="24"><input type="checkbox"><span class="cmd">/code-review ultra</span><span class="tt">비로그인 시에도 ultra 옵션 표시 — claude.ai 계정 필요 안내</span><span class="dt">6.10</span></label>
+<label class="bx" data-i="25"><input type="checkbox"><span class="cmd">attribution.sessionUrl</span><span class="tt">커밋·PR에서 claude.ai 세션 링크 제거 (web·Remote Control)</span><span class="dt">6.19</span></label>
+<label class="bx" data-i="26"><input type="checkbox"><span class="cmd">/review</span><span class="tt">/review는 단일패스 복귀 — 멀티에이전트 리뷰는 /code-review &lt;level&gt; 사용</span><span class="dt">7.6</span></label>
+<label class="bx" data-i="27"><input type="checkbox"><span class="cmd">/commit-push-pr</span><span class="tt">설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원</span><span class="dt">7.10</span></label>
+<label class="bx" data-i="28"><input type="checkbox"><span class="cmd">/verify · /code-review</span><span class="tt">자동 실행 제거 — 필요 시 /verify·/code-review 직접 호출</span><span class="dt">7.19</span></label>
+<label class="bx" data-i="29"><input type="checkbox"><span class="cmd">/code-review bg</span><span class="tt">/code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음</span><span class="dt">7.22</span></label>
+<label class="bx" data-i="30"><input type="checkbox"><span class="cmd">/review</span><span class="tt">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 레벨 재사용</span><span class="dt">8.6</span></label></section>
+<section class="cat"><h3>비용·토큰 추적<b>6</b></h3><label class="bx" data-i="31"><input type="checkbox"><span class="cmd">/usage</span><span class="tt">skills·subagents·plugins·MCP별 비용 분석</span><span class="dt">5.22</span></label>
+<label class="bx" data-i="32"><input type="checkbox"><span class="cmd">/usage</span><span class="tt">레이트 제한 시 최종 사용량 바 유지 표시 — 에러 화면 없음</span><span class="dt">7.14</span></label>
+<label class="bx" data-i="33"><input type="checkbox"><span class="cmd">CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</span><span class="tt">세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</span><span class="dt">7.17</span></label>
+<label class="bx" data-i="34"><input type="checkbox"><span class="cmd">/context 초과 경고</span><span class="tt">컨텍스트 초과 시 명시적 경고 — /compact 실패도 에러로 표시 (무응답 없음)</span><span class="dt">7.20</span></label>
+<label class="bx" data-i="35"><input type="checkbox"><span class="cmd">CLAUDE_CODE_DISABLE_1M_CONTEXT</span><span class="tt">네이티브 1M 창 모든 모델에 적용 확대 — auto-compact로 200K 유지; 미유지 시 시작 경고</span><span class="dt">8.6</span></label>
+<label class="bx" data-i="36"><input type="checkbox"><span class="cmd">gateway spend-limit</span><span class="tt">한도 도달 시 gateway 지출 한도명·리셋 시간·운영자 메시지를 경고에 표시 (gateway 2.1.225+ 필요)</span><span class="dt">8.8</span></label></section>
+<section class="cat"><h3>일상 UI · 네비<b>8</b></h3><label class="bx" data-i="37"><input type="checkbox"><span class="cmd">/scroll-speed</span><span class="tt">마우스 휠 속도 조절</span><span class="dt">5.11</span></label>
+<label class="bx" data-i="38"><input type="checkbox"><span class="cmd">/config key=value</span><span class="tt">프롬프트에서 바로 설정값 오버라이드</span><span class="dt">6.17</span></label>
+<label class="bx" data-i="39"><input type="checkbox"><span class="cmd">/config --help</span><span class="tt">모든 /config key=value 단축키 목록 표시</span><span class="dt">6.19</span></label>
+<label class="bx" data-i="40"><input type="checkbox"><span class="cmd">/doctor</span><span class="tt">설정·환경 전체 진단·자동 수정 — /checkup 별칭</span><span class="dt">7.8</span></label>
+<label class="bx" data-i="41"><input type="checkbox"><span class="cmd">vimInsertModeRemaps</span><span class="tt">vim 삽입 모드 키 시퀀스 리맵 (예: jj → Escape)</span><span class="dt">7.14</span></label>
+<label class="bx" data-i="42"><input type="checkbox"><span class="cmd">vim s / S</span><span class="tt">vim NORMAL 모드에서 s/S(substitute)가 실제 vim처럼 동작</span><span class="dt">7.15</span></label>
+<label class="bx" data-i="43"><input type="checkbox"><span class="cmd">Ctrl+Alt+F</span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시)</span><span class="dt">8.4</span></label>
+<label class="bx" data-i="44"><input type="checkbox"><span class="cmd">claude --teleport &lt;id&gt;</span><span class="tt">클라우드 세션에서 로컬 계속 방법 힌트 자동 표시 — claude --teleport &lt;session id&gt;</span><span class="dt">8.6</span></label></section>
+<section class="cat"><h3>Plugin · MCP · Extend<b>10</b></h3><label class="bx" data-i="45"><input type="checkbox"><span class="cmd">/plugin Discover</span><span class="tt">설치 전 commands·skills·MCP 미리보기</span><span class="dt">5.19</span></label>
+<label class="bx" data-i="46"><input type="checkbox"><span class="cmd">PREFER_HTTPS</span><span class="tt">SSH 키 없는 환경 — HTTPS로 클론</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="47"><input type="checkbox"><span class="cmd">/plugin 검색바</span><span class="tt">/plugin 마켓플레이스 탐색 시 플러그인 검색바 제공</span><span class="dt">6.10</span></label>
+<label class="bx" data-i="48"><input type="checkbox"><span class="cmd">/plugin list</span><span class="tt">설치된 플러그인 목록, --enabled/--disabled 필터</span><span class="dt">6.4</span></label>
+<label class="bx" data-i="49"><input type="checkbox"><span class="cmd">.claude/skills</span><span class="tt">여기 둔 플러그인 자동 로드 — 마켓플레이스 불필요</span><span class="dt">5.29</span></label>
+<label class="bx" data-i="50"><input type="checkbox"><span class="cmd">claude mcp login</span><span class="tt">CLI에서 MCP 서버 인증 — /mcp 없이 가능, SSH는 --no-browser</span><span class="dt">6.22</span></label>
+<label class="bx" data-i="51"><input type="checkbox"><span class="cmd">/skill-a /skill-b</span><span class="tt">슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행</span><span class="dt">7.2</span></label>
+<label class="bx" data-i="52"><input type="checkbox"><span class="cmd">claude mcp list · /mcp</span><span class="tt">MCP 서버 연결 실패 시 HTTP 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고</span><span class="dt">7.22</span></label>
+<label class="bx" data-i="53"><input type="checkbox"><span class="cmd">/plugin install 즉시 활성화</span><span class="tt">/plugin으로 설치한 플러그인이 안전하면 즉시 활성화 — /reload-plugins 불필요</span><span class="dt">8.4</span></label>
+<label class="bx" data-i="54"><input type="checkbox"><span class="cmd">archive plugin source</span><span class="tt">git·npm 없이 HTTPS zip으로 플러그인 설치 — SHA-256 핀닝 옵션 지원</span><span class="dt">8.7</span></label></section>
+<section class="cat"><h3>Hook · 모니터링<b>11</b></h3><label class="bx" data-i="55"><input type="checkbox"><span class="cmd">hook args</span><span class="tt">exec form (셸 없이 직접 실행)</span><span class="dt">5.11</span></label>
+<label class="bx" data-i="56"><input type="checkbox"><span class="cmd">terminalSequence</span><span class="tt">알림·창 제목·벨 출력</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="57"><input type="checkbox"><span class="cmd">OTEL agent_id</span><span class="tt">subagent spans 중첩 추적</span><span class="dt">5.19</span></label>
+<label class="bx" data-i="58"><input type="checkbox"><span class="cmd">model attr OTEL</span><span class="tt">lines_of_code.count OTEL 메트릭에 model 속성 추가</span><span class="dt">6.10</span></label>
+<label class="bx" data-i="59"><input type="checkbox"><span class="cmd">CLAUDE_CLIENT_PRESENCE_FILE</span><span class="tt">마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제</span><span class="dt">6.17</span></label>
+<label class="bx" data-i="60"><input type="checkbox"><span class="cmd">OTEL assistant_response</span><span class="tt">모델 응답 텍스트 OTEL 로그 이벤트 — OTEL_LOG_ASSISTANT_RESPONSES=1로 활성화</span><span class="dt">6.25</span></label>
+<label class="bx" data-i="61"><input type="checkbox"><span class="cmd">Notification hook</span><span class="tt">agent_needs_input / agent_completed 이벤트에 Notification hook 발화</span><span class="dt">7.1</span></label>
+<label class="bx" data-i="62"><input type="checkbox"><span class="cmd">workflow OTEL</span><span class="tt">workflow 에이전트 OTel 스팬에 run_id·name 속성 추가 — 런 재구성 가능</span><span class="dt">7.6</span></label>
+<label class="bx" data-i="63"><input type="checkbox"><span class="cmd">--forward-subagent-text</span><span class="tt">stream-json 출력에 서브에이전트 텍스트·thinking 포함 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT도 지원</span><span class="dt">7.15</span></label>
+<label class="bx" data-i="64"><input type="checkbox"><span class="cmd">dir/** hook if:</span><span class="tt">hook if:의 dir/**은 &lt;cwd&gt;/dir만 매칭 — 재귀 매칭은 **/dir/** 사용</span><span class="dt">7.18</span></label>
+<label class="bx" data-i="65"><input type="checkbox"><span class="cmd">DirectoryAdded hook</span><span class="tt">/add-dir 또는 SDK register_repo_root로 새 작업 디렉터리 등록 시 발화</span><span class="dt">7.24</span></label></section>
+<section class="cat"><h3>모델 · Enterprise · IAM<b>15</b></h3><label class="bx" data-i="66"><input type="checkbox"><span class="cmd">Fable 5</span><span class="tt">공개 Mythos급 모델, 고위험 주제는 Opus 4.8 폴백</span><span class="dt">6.9</span></label>
+<label class="bx" data-i="67"><input type="checkbox"><span class="cmd">/model</span><span class="tt">현재 세션만 모델 변경 (d로 기본 고정)</span><span class="dt">5.19</span></label>
+<label class="bx" data-i="68"><input type="checkbox"><span class="cmd">Fast mode</span><span class="tt">Opus 4.6 → 4.7 기본</span><span class="dt">5.14</span></label>
+<label class="bx" data-i="69"><input type="checkbox"><span class="cmd">WORKSPACE_ID</span><span class="tt">워크로드 ID 페더레이션</span><span class="dt">5.13</span></label>
+<label class="bx" data-i="70"><input type="checkbox"><span class="cmd">fallbackModel</span><span class="tt">기본 모델 과부하 시 최대 3개 폴백</span><span class="dt">6.6</span></label>
+<label class="bx" data-i="71"><input type="checkbox"><span class="cmd">--safe-mode</span><span class="tt">CLAUDE.md·plugins·skills·hooks·MCP 끄고 기동</span><span class="dt">6.8</span></label>
+<label class="bx" data-i="72"><input type="checkbox"><span class="cmd">sandbox.credentials</span><span class="tt">샌드박스 도구가 자격증명·시크릿 env 읽기 차단</span><span class="dt">6.23</span></label>
+<label class="bx" data-i="73"><input type="checkbox"><span class="cmd">Sonnet 5</span><span class="tt">Claude Code 기본 모델 — 1M 토큰 컨텍스트, 8/31까지 프로모 요금</span><span class="dt">6.30</span></label>
+<label class="bx" data-i="74"><input type="checkbox"><span class="cmd">sandbox.filesystem.disabled</span><span class="tt">파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지</span><span class="dt">7.20</span></label>
+<label class="bx" data-i="75"><input type="checkbox"><span class="cmd">claude-opus-5</span><span class="tt">새 Opus 기본 모델 — 1M 컨텍스트, fast mode, $10/$50 per Mtok</span><span class="dt">7.24</span></label>
+<label class="bx" data-i="76"><input type="checkbox"><span class="cmd">sandbox.network.strictAllowlist</span><span class="tt">샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단</span><span class="dt">7.24</span></label>
+<label class="bx" data-i="77"><input type="checkbox"><span class="cmd">sandbox mode:&quot;mask&quot;</span><span class="tt">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span><span class="dt">8.4</span></label>
+<label class="bx" data-i="78"><input type="checkbox"><span class="cmd">Remote Control auto-start</span><span class="tt">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — /config로 사용자 범위에서 설정</span><span class="dt">8.4</span></label>
+<label class="bx" data-i="79"><input type="checkbox"><span class="cmd">&quot;owner/*&quot;</span><span class="tt">strictKnownMarketplaces·blockedMarketplaces에 &quot;owner/*&quot; 와일드카드 추가 — GitHub org 전체 허용·차단</span><span class="dt">8.6</span></label>
+<label class="bx" data-i="80"><input type="checkbox"><span class="cmd">claude self-hosted-runner</span><span class="tt">내 서버·컨테이너를 Claude Code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (Team/Enterprise)</span><span class="dt">8.7</span></label></section></div></div>
+</div>
+<div class="mock" id="m6">
+  <div class="top"><div class="tin">
+    <div class="brand"><i>&gt;_</i> Agent Edge</div>
+    <div class="nav"><a class="on">Claude Code</a><a>Codex</a><a>Manus</a></div>
+    <div class="stamp">2026-08-10 05:50</div>
+  </div></div>
+  <div class="wrap">
+    <h1>찾기</h1>
+    <p class="meta">명령어 · 설명 · 묶음 이름</p>
+    <p class="idea">목록을 훑는 게 아니라 아는 걸 바로 꺼낸다. 화면의 주인공은 입력칸.</p>
+    <input class="q" id="q" placeholder="hook, /code-review, 비용 …" autocomplete="off">
+    <p class="qmeta" id="qmeta">81개 전부</p>
+    <div class="list" id="srList"><a class="row sr" data-q="/goal 완료 조건 후 자율 진행, 오버레이 표시 긴 작업을 맡길 때"><span class="mk"></span><span class="cmd">/goal</span><span class="tt">완료 조건 후 자율 진행, 오버레이 표시</span><span class="src">긴 작업을 맡길 때</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="ctrl+t 백그라운드 세션 고정 (유휴 시에도 유지) 긴 작업을 맡길 때"><span class="mk"></span><span class="cmd">Ctrl+T</span><span class="tt">백그라운드 세션 고정 (유휴 시에도 유지)</span><span class="src">긴 작업을 맡길 때</span><span class="dt">5.21</span></a>
+<a class="row sr" data-q="terminalsequence stop hook으로 데스크톱 알림 긴 작업을 맡길 때"><span class="mk"></span><span class="cmd">terminalSequence</span><span class="tt">stop hook으로 데스크톱 알림</span><span class="src">긴 작업을 맡길 때</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="ultracode 동적 워크플로 — bg서 수십~수백 에이전트 오케스트레이션 긴 작업을 맡길 때"><span class="mk"></span><span class="cmd">ultracode</span><span class="tt">동적 워크플로 — bg서 수십~수백 에이전트 오케스트레이션</span><span class="src">긴 작업을 맡길 때</span><span class="dt">5.28</span></a>
+<a class="row sr" data-q="/config workflow size 동적 워크플로 에이전트 수 가이드라인 — small/medium/large 선택 긴 작업을 맡길 때"><span class="mk"></span><span class="cmd">/config workflow size</span><span class="tt">동적 워크플로 에이전트 수 가이드라인 — small/medium/large 선택</span><span class="src">긴 작업을 맡길 때</span><span class="dt">7.6</span></a>
+<a class="row sr" data-q="agent view 전체 세션 한 화면 (실행·대기·완료) subagent · 멀티 세션"><span class="mk"></span><span class="cmd">Agent View</span><span class="tt">전체 세션 한 화면 (실행·대기·완료)</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="/resume bg 마크 세션도 목록에 표시 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/resume</span><span class="tt">bg 마크 세션도 목록에 표시</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.19</span></a>
+<a class="row sr" data-q="agents --json 스크립팅용 세션 목록 출력 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">agents --json</span><span class="tt">스크립팅용 세션 목록 출력</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.19</span></a>
+<a class="row sr" data-q="agents --cwd 특정 디렉토리 범위 세션 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">agents --cwd</span><span class="tt">특정 디렉토리 범위 세션</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="agents flags --model --effort --mcp-config 등 전달 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">agents flags</span><span class="tt">--model --effort --mcp-config 등 전달</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.14</span></a>
+<a class="row sr" data-q="bgisolation:&quot;none&quot; bg 세션이 worktree 없이 직접 편집 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">bgIsolation:&quot;none&quot;</span><span class="tt">bg 세션이 worktree 없이 직접 편집</span><span class="src">Subagent · 멀티 세션</span><span class="dt">5.15</span></a>
+<a class="row sr" data-q="/cd 세션 도중 작업 폴더 이동 — 프롬프트 캐시 유지 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/cd</span><span class="tt">세션 도중 작업 폴더 이동 — 프롬프트 캐시 유지</span><span class="src">Subagent · 멀티 세션</span><span class="dt">6.8</span></a>
+<a class="row sr" data-q="/rewind /clear 이전 시점으로 대화 복원 후 재개 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/rewind</span><span class="tt">/clear 이전 시점으로 대화 복원 후 재개</span><span class="src">Subagent · 멀티 세션</span><span class="dt">6.24</span></a>
+<a class="row sr" data-q="ctrl+x 에이전트 뷰에서 완료 세션 영구 삭제 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">Ctrl+X</span><span class="tt">에이전트 뷰에서 완료 세션 영구 삭제</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.10</span></a>
+<a class="row sr" data-q="/fork → bg · /subtask /fork는 대화 복사해 bg 세션 분기, 인세션 서브에이전트 실행은 /subtask subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/fork → bg · /subtask</span><span class="tt">/fork는 대화 복사해 bg 세션 분기, 인세션 서브에이전트 실행은 /subtask</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.17</span></a>
+<a class="row sr" data-q="/resume 에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/resume</span><span class="tt">에이전트 뷰에서 삭제된 세션 포함 과거 세션 선택 → bg 세션으로 재개</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.17</span></a>
+<a class="row sr" data-q="subagentstatusline effort subagentstatusline 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">subagentStatusLine effort</span><span class="tt">subagentStatusLine 페이로드에 reasoning effort 포함 — 커스텀 에이전트 행에서 모델·effort 표시 가능</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.18</span></a>
+<a class="row sr" data-q="/mcp · /install-github-app bg bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/mcp · /install-github-app bg</span><span class="tt">bg 세션에서 클라이언트 없을 때 &quot;needs input&quot; 요청을 에이전트 뷰에 표시</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.20</span></a>
+<a class="row sr" data-q="claude_code_max_concurrent_subagents 동시 서브에이전트 상한 (기본 20) — 한 메시지의 무한 fan-out 방지 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</span><span class="tt">동시 서브에이전트 상한 (기본 20) — 한 메시지의 무한 fan-out 방지</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.21</span></a>
+<a class="row sr" data-q="claude_code_max_subagent_spawn_depth v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 =1 설정 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</span><span class="tt">v2.1.219부터 중첩 spawn 기본 활성 (depth 3) — 기존 동작 복원은 =1 설정</span><span class="src">Subagent · 멀티 세션</span><span class="dt">7.24</span></a>
+<a class="row sr" data-q="/fork → own worktree /fork가 원본 체크아웃 대신 자체 워크트리를 새로 생성 subagent · 멀티 세션"><span class="mk"></span><span class="cmd">/fork → own worktree</span><span class="tt">/fork가 원본 체크아웃 대신 자체 워크트리를 새로 생성</span><span class="src">Subagent · 멀티 세션</span><span class="dt">8.4</span></a>
+<a class="row sr" data-q="sendmessage · listagents listagents로 세션 탐색, sendmessage로 어느 머신의 세션에든 메시지 전송 (macos·linux) subagent · 멀티 세션"><span class="mk"></span><span class="cmd">SendMessage · ListAgents</span><span class="tt">ListAgents로 세션 탐색, SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux)</span><span class="src">Subagent · 멀티 세션</span><span class="dt">8.7</span></a>
+<a class="row sr" data-q="sendmessage rc 이름 지정 listagents에 표시된 이름으로 다른 머신의 remote control 세션에 직접 대화 시작 (답장 대기 불필요) subagent · 멀티 세션"><span class="mk"></span><span class="cmd">SendMessage RC 이름 지정</span><span class="tt">ListAgents에 표시된 이름으로 다른 머신의 Remote Control 세션에 직접 대화 시작 (답장 대기 불필요)</span><span class="src">Subagent · 멀티 세션</span><span class="dt">8.8</span></a>
+<a class="row sr" data-q="/code-review effort 선택 + github pr 인라인 코멘트 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/code-review</span><span class="tt">effort 선택 + GitHub PR 인라인 코멘트</span><span class="src">PR / 코드 리뷰</span><span class="dt">5.21</span></a>
+<a class="row sr" data-q="/code-review ultra 비로그인 시에도 ultra 옵션 표시 — claude.ai 계정 필요 안내 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/code-review ultra</span><span class="tt">비로그인 시에도 ultra 옵션 표시 — claude.ai 계정 필요 안내</span><span class="src">PR / 코드 리뷰</span><span class="dt">6.10</span></a>
+<a class="row sr" data-q="attribution.sessionurl 커밋·pr에서 claude.ai 세션 링크 제거 (web·remote control) pr / 코드 리뷰"><span class="mk"></span><span class="cmd">attribution.sessionUrl</span><span class="tt">커밋·PR에서 claude.ai 세션 링크 제거 (web·Remote Control)</span><span class="src">PR / 코드 리뷰</span><span class="dt">6.19</span></a>
+<a class="row sr" data-q="/review /review는 단일패스 복귀 — 멀티에이전트 리뷰는 /code-review &lt;level&gt; 사용 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/review</span><span class="tt">/review는 단일패스 복귀 — 멀티에이전트 리뷰는 /code-review &lt;level&gt; 사용</span><span class="src">PR / 코드 리뷰</span><span class="dt">7.6</span></a>
+<a class="row sr" data-q="/commit-push-pr 설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/commit-push-pr</span><span class="tt">설정된 push remote에 git push 자동 허용 — origin 외 remote도 지원</span><span class="src">PR / 코드 리뷰</span><span class="dt">7.10</span></a>
+<a class="row sr" data-q="/verify · /code-review 자동 실행 제거 — 필요 시 /verify·/code-review 직접 호출 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/verify · /code-review</span><span class="tt">자동 실행 제거 — 필요 시 /verify·/code-review 직접 호출</span><span class="src">PR / 코드 리뷰</span><span class="dt">7.19</span></a>
+<a class="row sr" data-q="/code-review bg /code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/code-review bg</span><span class="tt">/code-review가 백그라운드 서브에이전트로 실행 — 대화를 채우지 않음</span><span class="src">PR / 코드 리뷰</span><span class="dt">7.22</span></a>
+<a class="row sr" data-q="/review /review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 레벨 재사용 pr / 코드 리뷰"><span class="mk"></span><span class="cmd">/review</span><span class="tt">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 레벨 재사용</span><span class="src">PR / 코드 리뷰</span><span class="dt">8.6</span></a>
+<a class="row sr" data-q="/usage skills·subagents·plugins·mcp별 비용 분석 비용·토큰 추적"><span class="mk"></span><span class="cmd">/usage</span><span class="tt">skills·subagents·plugins·MCP별 비용 분석</span><span class="src">비용·토큰 추적</span><span class="dt">5.22</span></a>
+<a class="row sr" data-q="/usage 레이트 제한 시 최종 사용량 바 유지 표시 — 에러 화면 없음 비용·토큰 추적"><span class="mk"></span><span class="cmd">/usage</span><span class="tt">레이트 제한 시 최종 사용량 바 유지 표시 — 에러 화면 없음</span><span class="src">비용·토큰 추적</span><span class="dt">7.14</span></a>
+<a class="row sr" data-q="claude_code_max_subagents_per_session 세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 claude_code_max_web_searches_per_session 비용·토큰 추적"><span class="mk"></span><span class="cmd">CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION</span><span class="tt">세션당 서브에이전트 spawn 상한 (기본 200); /clear로 리셋; 웹검색 상한은 CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION</span><span class="src">비용·토큰 추적</span><span class="dt">7.17</span></a>
+<a class="row sr" data-q="/context 초과 경고 컨텍스트 초과 시 명시적 경고 — /compact 실패도 에러로 표시 (무응답 없음) 비용·토큰 추적"><span class="mk"></span><span class="cmd">/context 초과 경고</span><span class="tt">컨텍스트 초과 시 명시적 경고 — /compact 실패도 에러로 표시 (무응답 없음)</span><span class="src">비용·토큰 추적</span><span class="dt">7.20</span></a>
+<a class="row sr" data-q="claude_code_disable_1m_context 네이티브 1m 창 모든 모델에 적용 확대 — auto-compact로 200k 유지; 미유지 시 시작 경고 비용·토큰 추적"><span class="mk"></span><span class="cmd">CLAUDE_CODE_DISABLE_1M_CONTEXT</span><span class="tt">네이티브 1M 창 모든 모델에 적용 확대 — auto-compact로 200K 유지; 미유지 시 시작 경고</span><span class="src">비용·토큰 추적</span><span class="dt">8.6</span></a>
+<a class="row sr" data-q="gateway spend-limit 한도 도달 시 gateway 지출 한도명·리셋 시간·운영자 메시지를 경고에 표시 (gateway 2.1.225+ 필요) 비용·토큰 추적"><span class="mk"></span><span class="cmd">gateway spend-limit</span><span class="tt">한도 도달 시 gateway 지출 한도명·리셋 시간·운영자 메시지를 경고에 표시 (gateway 2.1.225+ 필요)</span><span class="src">비용·토큰 추적</span><span class="dt">8.8</span></a>
+<a class="row sr" data-q="/scroll-speed 마우스 휠 속도 조절 일상 ui · 네비"><span class="mk"></span><span class="cmd">/scroll-speed</span><span class="tt">마우스 휠 속도 조절</span><span class="src">일상 UI · 네비</span><span class="dt">5.11</span></a>
+<a class="row sr" data-q="/config key=value 프롬프트에서 바로 설정값 오버라이드 일상 ui · 네비"><span class="mk"></span><span class="cmd">/config key=value</span><span class="tt">프롬프트에서 바로 설정값 오버라이드</span><span class="src">일상 UI · 네비</span><span class="dt">6.17</span></a>
+<a class="row sr" data-q="/config --help 모든 /config key=value 단축키 목록 표시 일상 ui · 네비"><span class="mk"></span><span class="cmd">/config --help</span><span class="tt">모든 /config key=value 단축키 목록 표시</span><span class="src">일상 UI · 네비</span><span class="dt">6.19</span></a>
+<a class="row sr" data-q="/doctor 설정·환경 전체 진단·자동 수정 — /checkup 별칭 일상 ui · 네비"><span class="mk"></span><span class="cmd">/doctor</span><span class="tt">설정·환경 전체 진단·자동 수정 — /checkup 별칭</span><span class="src">일상 UI · 네비</span><span class="dt">7.8</span></a>
+<a class="row sr" data-q="viminsertmoderemaps vim 삽입 모드 키 시퀀스 리맵 (예: jj → escape) 일상 ui · 네비"><span class="mk"></span><span class="cmd">vimInsertModeRemaps</span><span class="tt">vim 삽입 모드 키 시퀀스 리맵 (예: jj → Escape)</span><span class="src">일상 UI · 네비</span><span class="dt">7.14</span></a>
+<a class="row sr" data-q="vim s / s vim normal 모드에서 s/s(substitute)가 실제 vim처럼 동작 일상 ui · 네비"><span class="mk"></span><span class="cmd">vim s / S</span><span class="tt">vim NORMAL 모드에서 s/S(substitute)가 실제 vim처럼 동작</span><span class="src">일상 UI · 네비</span><span class="dt">7.15</span></a>
+<a class="row sr" data-q="ctrl+alt+f [vscode] focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시) 일상 ui · 네비"><span class="mk"></span><span class="cmd">Ctrl+Alt+F</span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김 (실행 도구 live 표시)</span><span class="src">일상 UI · 네비</span><span class="dt">8.4</span></a>
+<a class="row sr" data-q="claude --teleport &lt;id&gt; 클라우드 세션에서 로컬 계속 방법 힌트 자동 표시 — claude --teleport &lt;session id&gt; 일상 ui · 네비"><span class="mk"></span><span class="cmd">claude --teleport &lt;id&gt;</span><span class="tt">클라우드 세션에서 로컬 계속 방법 힌트 자동 표시 — claude --teleport &lt;session id&gt;</span><span class="src">일상 UI · 네비</span><span class="dt">8.6</span></a>
+<a class="row sr" data-q="/plugin discover 설치 전 commands·skills·mcp 미리보기 plugin · mcp · extend"><span class="mk"></span><span class="cmd">/plugin Discover</span><span class="tt">설치 전 commands·skills·MCP 미리보기</span><span class="src">Plugin · MCP · Extend</span><span class="dt">5.19</span></a>
+<a class="row sr" data-q="prefer_https ssh 키 없는 환경 — https로 클론 plugin · mcp · extend"><span class="mk"></span><span class="cmd">PREFER_HTTPS</span><span class="tt">SSH 키 없는 환경 — HTTPS로 클론</span><span class="src">Plugin · MCP · Extend</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="/plugin 검색바 /plugin 마켓플레이스 탐색 시 플러그인 검색바 제공 plugin · mcp · extend"><span class="mk"></span><span class="cmd">/plugin 검색바</span><span class="tt">/plugin 마켓플레이스 탐색 시 플러그인 검색바 제공</span><span class="src">Plugin · MCP · Extend</span><span class="dt">6.10</span></a>
+<a class="row sr" data-q="/plugin list 설치된 플러그인 목록, --enabled/--disabled 필터 plugin · mcp · extend"><span class="mk"></span><span class="cmd">/plugin list</span><span class="tt">설치된 플러그인 목록, --enabled/--disabled 필터</span><span class="src">Plugin · MCP · Extend</span><span class="dt">6.4</span></a>
+<a class="row sr" data-q=".claude/skills 여기 둔 플러그인 자동 로드 — 마켓플레이스 불필요 plugin · mcp · extend"><span class="mk"></span><span class="cmd">.claude/skills</span><span class="tt">여기 둔 플러그인 자동 로드 — 마켓플레이스 불필요</span><span class="src">Plugin · MCP · Extend</span><span class="dt">5.29</span></a>
+<a class="row sr" data-q="claude mcp login cli에서 mcp 서버 인증 — /mcp 없이 가능, ssh는 --no-browser plugin · mcp · extend"><span class="mk"></span><span class="cmd">claude mcp login</span><span class="tt">CLI에서 MCP 서버 인증 — /mcp 없이 가능, SSH는 --no-browser</span><span class="src">Plugin · MCP · Extend</span><span class="dt">6.22</span></a>
+<a class="row sr" data-q="/skill-a /skill-b 슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행 plugin · mcp · extend"><span class="mk"></span><span class="cmd">/skill-a /skill-b</span><span class="tt">슬래시 스킬 최대 5개 한 줄로 — 순서대로 모두 로드 후 실행</span><span class="src">Plugin · MCP · Extend</span><span class="dt">7.2</span></a>
+<a class="row sr" data-q="claude mcp list · /mcp mcp 서버 연결 실패 시 http 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고 plugin · mcp · extend"><span class="mk"></span><span class="cmd">claude mcp list · /mcp</span><span class="tt">MCP 서버 연결 실패 시 HTTP 상태·에러 텍스트 표시; 공백 숨겨진 설정값 경고</span><span class="src">Plugin · MCP · Extend</span><span class="dt">7.22</span></a>
+<a class="row sr" data-q="/plugin install 즉시 활성화 /plugin으로 설치한 플러그인이 안전하면 즉시 활성화 — /reload-plugins 불필요 plugin · mcp · extend"><span class="mk"></span><span class="cmd">/plugin install 즉시 활성화</span><span class="tt">/plugin으로 설치한 플러그인이 안전하면 즉시 활성화 — /reload-plugins 불필요</span><span class="src">Plugin · MCP · Extend</span><span class="dt">8.4</span></a>
+<a class="row sr" data-q="archive plugin source git·npm 없이 https zip으로 플러그인 설치 — sha-256 핀닝 옵션 지원 plugin · mcp · extend"><span class="mk"></span><span class="cmd">archive plugin source</span><span class="tt">git·npm 없이 HTTPS zip으로 플러그인 설치 — SHA-256 핀닝 옵션 지원</span><span class="src">Plugin · MCP · Extend</span><span class="dt">8.7</span></a>
+<a class="row sr" data-q="hook args exec form (셸 없이 직접 실행) hook · 모니터링"><span class="mk"></span><span class="cmd">hook args</span><span class="tt">exec form (셸 없이 직접 실행)</span><span class="src">Hook · 모니터링</span><span class="dt">5.11</span></a>
+<a class="row sr" data-q="terminalsequence 알림·창 제목·벨 출력 hook · 모니터링"><span class="mk"></span><span class="cmd">terminalSequence</span><span class="tt">알림·창 제목·벨 출력</span><span class="src">Hook · 모니터링</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="otel agent_id subagent spans 중첩 추적 hook · 모니터링"><span class="mk"></span><span class="cmd">OTEL agent_id</span><span class="tt">subagent spans 중첩 추적</span><span class="src">Hook · 모니터링</span><span class="dt">5.19</span></a>
+<a class="row sr" data-q="model attr otel lines_of_code.count otel 메트릭에 model 속성 추가 hook · 모니터링"><span class="mk"></span><span class="cmd">model attr OTEL</span><span class="tt">lines_of_code.count OTEL 메트릭에 model 속성 추가</span><span class="src">Hook · 모니터링</span><span class="dt">6.10</span></a>
+<a class="row sr" data-q="claude_client_presence_file 마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제 hook · 모니터링"><span class="mk"></span><span class="cmd">CLAUDE_CLIENT_PRESENCE_FILE</span><span class="tt">마커 파일 지정 → 자리에 있을 때 모바일 푸시 자동 억제</span><span class="src">Hook · 모니터링</span><span class="dt">6.17</span></a>
+<a class="row sr" data-q="otel assistant_response 모델 응답 텍스트 otel 로그 이벤트 — otel_log_assistant_responses=1로 활성화 hook · 모니터링"><span class="mk"></span><span class="cmd">OTEL assistant_response</span><span class="tt">모델 응답 텍스트 OTEL 로그 이벤트 — OTEL_LOG_ASSISTANT_RESPONSES=1로 활성화</span><span class="src">Hook · 모니터링</span><span class="dt">6.25</span></a>
+<a class="row sr" data-q="notification hook agent_needs_input / agent_completed 이벤트에 notification hook 발화 hook · 모니터링"><span class="mk"></span><span class="cmd">Notification hook</span><span class="tt">agent_needs_input / agent_completed 이벤트에 Notification hook 발화</span><span class="src">Hook · 모니터링</span><span class="dt">7.1</span></a>
+<a class="row sr" data-q="workflow otel workflow 에이전트 otel 스팬에 run_id·name 속성 추가 — 런 재구성 가능 hook · 모니터링"><span class="mk"></span><span class="cmd">workflow OTEL</span><span class="tt">workflow 에이전트 OTel 스팬에 run_id·name 속성 추가 — 런 재구성 가능</span><span class="src">Hook · 모니터링</span><span class="dt">7.6</span></a>
+<a class="row sr" data-q="--forward-subagent-text stream-json 출력에 서브에이전트 텍스트·thinking 포함 — claude_code_forward_subagent_text도 지원 hook · 모니터링"><span class="mk"></span><span class="cmd">--forward-subagent-text</span><span class="tt">stream-json 출력에 서브에이전트 텍스트·thinking 포함 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT도 지원</span><span class="src">Hook · 모니터링</span><span class="dt">7.15</span></a>
+<a class="row sr" data-q="dir/** hook if: hook if:의 dir/**은 &lt;cwd&gt;/dir만 매칭 — 재귀 매칭은 **/dir/** 사용 hook · 모니터링"><span class="mk"></span><span class="cmd">dir/** hook if:</span><span class="tt">hook if:의 dir/**은 &lt;cwd&gt;/dir만 매칭 — 재귀 매칭은 **/dir/** 사용</span><span class="src">Hook · 모니터링</span><span class="dt">7.18</span></a>
+<a class="row sr" data-q="directoryadded hook /add-dir 또는 sdk register_repo_root로 새 작업 디렉터리 등록 시 발화 hook · 모니터링"><span class="mk"></span><span class="cmd">DirectoryAdded hook</span><span class="tt">/add-dir 또는 SDK register_repo_root로 새 작업 디렉터리 등록 시 발화</span><span class="src">Hook · 모니터링</span><span class="dt">7.24</span></a>
+<a class="row sr" data-q="fable 5 공개 mythos급 모델, 고위험 주제는 opus 4.8 폴백 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">Fable 5</span><span class="tt">공개 Mythos급 모델, 고위험 주제는 Opus 4.8 폴백</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">6.9</span></a>
+<a class="row sr" data-q="/model 현재 세션만 모델 변경 (d로 기본 고정) 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">/model</span><span class="tt">현재 세션만 모델 변경 (d로 기본 고정)</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">5.19</span></a>
+<a class="row sr" data-q="fast mode opus 4.6 → 4.7 기본 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">Fast mode</span><span class="tt">Opus 4.6 → 4.7 기본</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">5.14</span></a>
+<a class="row sr" data-q="workspace_id 워크로드 id 페더레이션 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">WORKSPACE_ID</span><span class="tt">워크로드 ID 페더레이션</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">5.13</span></a>
+<a class="row sr" data-q="fallbackmodel 기본 모델 과부하 시 최대 3개 폴백 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">fallbackModel</span><span class="tt">기본 모델 과부하 시 최대 3개 폴백</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">6.6</span></a>
+<a class="row sr" data-q="--safe-mode claude.md·plugins·skills·hooks·mcp 끄고 기동 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">--safe-mode</span><span class="tt">CLAUDE.md·plugins·skills·hooks·MCP 끄고 기동</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">6.8</span></a>
+<a class="row sr" data-q="sandbox.credentials 샌드박스 도구가 자격증명·시크릿 env 읽기 차단 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">sandbox.credentials</span><span class="tt">샌드박스 도구가 자격증명·시크릿 env 읽기 차단</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">6.23</span></a>
+<a class="row sr" data-q="sonnet 5 claude code 기본 모델 — 1m 토큰 컨텍스트, 8/31까지 프로모 요금 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">Sonnet 5</span><span class="tt">Claude Code 기본 모델 — 1M 토큰 컨텍스트, 8/31까지 프로모 요금</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">6.30</span></a>
+<a class="row sr" data-q="sandbox.filesystem.disabled 파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">sandbox.filesystem.disabled</span><span class="tt">파일시스템 격리 건너뜀 — 네트워크 이그레스 제어는 유지</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">7.20</span></a>
+<a class="row sr" data-q="claude-opus-5 새 opus 기본 모델 — 1m 컨텍스트, fast mode, $10/$50 per mtok 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">claude-opus-5</span><span class="tt">새 Opus 기본 모델 — 1M 컨텍스트, fast mode, $10/$50 per Mtok</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">7.24</span></a>
+<a class="row sr" data-q="sandbox.network.strictallowlist 샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">sandbox.network.strictAllowlist</span><span class="tt">샌드박스 명령의 비허용 호스트 접근을 프롬프트 없이 즉시 차단</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">7.24</span></a>
+<a class="row sr" data-q="sandbox mode:&quot;mask&quot; linux/wsl: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">sandbox mode:&quot;mask&quot;</span><span class="tt">Linux/WSL: 샌드박스 명령이 자격증명 복사본 읽기 — 이그레스 시 실제 값으로 치환</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">8.4</span></a>
+<a class="row sr" data-q="remote control auto-start 리포 로컬 설정으로 remote control 자동 시작 활성화 불가 — /config로 사용자 범위에서 설정 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">Remote Control auto-start</span><span class="tt">리포 로컬 설정으로 Remote Control 자동 시작 활성화 불가 — /config로 사용자 범위에서 설정</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">8.4</span></a>
+<a class="row sr" data-q="&quot;owner/*&quot; strictknownmarketplaces·blockedmarketplaces에 &quot;owner/*&quot; 와일드카드 추가 — github org 전체 허용·차단 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">&quot;owner/*&quot;</span><span class="tt">strictKnownMarketplaces·blockedMarketplaces에 &quot;owner/*&quot; 와일드카드 추가 — GitHub org 전체 허용·차단</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">8.6</span></a>
+<a class="row sr" data-q="claude self-hosted-runner 내 서버·컨테이너를 claude code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (team/enterprise) 모델 · enterprise · iam"><span class="mk"></span><span class="cmd">claude self-hosted-runner</span><span class="tt">내 서버·컨테이너를 Claude Code 실행 환경으로 — 웹·모바일·데스크톱 세션 지원 (Team/Enterprise)</span><span class="src">모델 · Enterprise · IAM</span><span class="dt">8.7</span></a></div></div>
+</div>
+<div class="mock" id="m7">
+  <div class="top"><div class="tin">
+    <div class="brand"><i>&gt;_</i> Agent Edge</div>
+    <div class="nav"><a class="on">전체</a><a>Claude Code</a><a>Codex</a><a>Manus</a></div>
+    <div class="stamp">2026-08-10 05:50</div>
+  </div></div>
+  <div class="wrap narrow">
+    <div class="one">
+      <p class="meta">오늘 써볼 것 하나</p>
+      <span class="cmdbig" id="oneCmd">claude self-hosted-runner</span>
+      <h2 id="oneTitle">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</h2>
+      <p class="lead" id="oneDesc">웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p>
+      <dl>
+        <dt>왜</dt><dd id="oneWhy">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</dd>
+        <dt>확인할 것</dt><dd id="oneLearn">claude self-hosted-runner 명령, 지원 플랜·설정 절차</dd>
+      </dl>
+      <div class="acts"><button class="go">써봤다</button><button id="oneNext">다른 것</button></div>
+      <p class="rest">나머지 164개는 목록에서 · 새로 생긴 것 10개</p>
+      <p class="idea" style="margin-top:22px">고르는 일까지 대신한다. 매일 하나면 한 달에 서른 개를 써본다.</p>
+    </div></div>
 </div>
 
 <script>
 document.querySelectorAll('.picker button').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.picker button').forEach(x => x.setAttribute('aria-pressed', x === b));
   document.querySelectorAll('.mock').forEach(m => m.classList.toggle('on', m.id === b.dataset.m));
+  window.scrollTo(0, 0);
 }));
+
+/* 받은 기능 — 처리하면 사라진다 */
+(function () {
+  const list = document.getElementById('ibxList');
+  function sync() {
+    const left = list.querySelectorAll('.ibx:not(.gone)').length;
+    document.getElementById('ibxN').textContent = left + '개 남음';
+    document.getElementById('ibxEmpty').style.display = left ? 'none' : '';
+  }
+  list.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (b) { b.closest('.ibx').classList.add('gone'); sync(); }
+  });
+  document.getElementById('ibxAll').addEventListener('click', () => {
+    list.querySelectorAll('.ibx').forEach(x => x.classList.add('gone')); sync();
+  });
+})();
+
+/* 내 버전 — 고른 버전 이후 것만 */
+(function () {
+  const sel = document.getElementById('myver'), list = document.getElementById('verList');
+  function apply() {
+    const d = sel.value; let n = 0;
+    list.querySelectorAll('[data-d]').forEach(el => {
+      const on = el.dataset.d > d;
+      el.style.display = on ? '' : 'none';
+      if (on) n++;
+    });
+    document.getElementById('verN').textContent = n + '개';
+    document.getElementById('verNote').textContent = '를 아직 못 쓰고 있다';
+  }
+  sel.addEventListener('change', apply); apply();
+})();
+
+/* 도구함 — 체크 상태를 브라우저에 저장 */
+(function () {
+  const KEY = 'ae-box', list = document.getElementById('boxList');
+  const saved = new Set(JSON.parse(localStorage.getItem(KEY) || '[]'));
+  const rows = [...list.querySelectorAll('.bx')];
+  function sync() {
+    const n = rows.filter(r => r.classList.contains('done')).length;
+    document.getElementById('boxN').textContent = n + ' / ' + rows.length + ' 써봄';
+    document.getElementById('boxFill').style.width = (n / rows.length * 100) + '%';
+    const only = document.getElementById('onlyTodo').checked;
+    rows.forEach(r => r.style.display = (only && r.classList.contains('done')) ? 'none' : '');
+    localStorage.setItem(KEY, JSON.stringify(rows.filter(r => r.classList.contains('done')).map(r => r.dataset.i)));
+  }
+  rows.forEach(r => {
+    if (saved.has(r.dataset.i)) { r.classList.add('done'); r.querySelector('input').checked = true; }
+    r.querySelector('input').addEventListener('change', e => {
+      r.classList.toggle('done', e.target.checked); sync();
+    });
+  });
+  document.getElementById('onlyTodo').addEventListener('change', sync);
+  sync();
+})();
+
+/* 찾기 */
+(function () {
+  const q = document.getElementById('q'), rows = [...document.querySelectorAll('#srList .sr')];
+  q.addEventListener('input', () => {
+    const v = q.value.trim().toLowerCase();
+    let n = 0;
+    rows.forEach(r => {
+      const on = !v || r.dataset.q.includes(v);
+      r.classList.toggle('hide', !on); if (on) n++;
+    });
+    document.getElementById('qmeta').textContent = v ? (n + '개 맞음') : (rows.length + '개 전부');
+  });
+})();
+
+/* 오늘 하나 */
+(function () {
+  const Q = [{"cmd": "claude self-hosted-runner", "title": "셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로", "desc": "웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.", "why": "코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)", "learn": "claude self-hosted-runner 명령, 지원 플랜·설정 절차", "date": "2026-08-07", "tool": "cc"}, {"cmd": "SendMessage · ListAgents", "title": "세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송", "desc": "ListAgents로 세션 탐색 후 SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux).", "why": "멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율", "learn": "ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원", "date": "2026-08-07", "tool": "cc"}, {"cmd": "/review · /code-review", "title": "/review = /code-review 별칭 통합 — effort 레벨 자동 기억", "desc": "/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 설정 재사용.", "why": "/review medium 123처럼 effort·PR 번호 지정 가능 — /code-review와 완전 동일", "learn": "/review <level> <pr#> 사용법; 딥 리뷰는 /code-review ultra", "date": "2026-08-06", "tool": "cc"}, {"cmd": "Ctrl+Alt+F (VSCode)", "title": "[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김", "desc": "도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.", "why": "긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인", "learn": "Ctrl+Alt+F 또는 \"Claude Code: Toggle Focus view\" 명령으로 전환", "date": "2026-08-04", "tool": "cc"}, {"cmd": "bg → commit · push", "title": "bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만", "desc": "bg 세션 완료 시 커밋·푸시로 보존, draft PR은 작업이 요구할 때만, CLAUDE.md git 지침 준수.", "why": "기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지", "learn": "CLAUDE.md에 git 지침 정의 방법; draft PR 열리는 조건", "date": "2026-08-04", "tool": "cc"}, {"cmd": "claude-opus-5", "title": "Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원", "desc": "Claude Code Opus 기본 모델 교체 — 1M 토큰 컨텍스트 · fast mode 지원.", "why": "Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택", "learn": "요금 ($10/$50 per Mtok); /fast 토글; Opus 5 vs Sonnet 5 선택 기준", "date": "2026-07-24", "tool": "cc"}]; let i = 0;
+  document.getElementById('oneNext').addEventListener('click', () => {
+    i = (i + 1) % Q.length; const o = Q[i];
+    document.getElementById('oneCmd').textContent = o.cmd || '—';
+    document.getElementById('oneTitle').textContent = o.title;
+    document.getElementById('oneDesc').textContent = o.desc;
+    document.getElementById('oneWhy').textContent = o.why;
+    document.getElementById('oneLearn').textContent = o.learn;
+  });
+})();
 </script>
