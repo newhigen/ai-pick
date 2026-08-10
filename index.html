@@ -156,10 +156,11 @@
     .pick-card h3{font-size:1rem;font-weight:700;letter-spacing:-.015em;margin-bottom:4px;line-height:1.3;color:var(--text)}
     .pick-card p{font-size:.86rem;color:var(--muted);line-height:1.45;margin-bottom:10px}
     .pick-meta{border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:7px}
-    .pick-why,.pick-check{font-size:.79rem;line-height:1.5;color:var(--muted)}
-    .pick-why strong,.pick-check strong{font-weight:700;font-size:.74rem;margin-right:5px}
+    .pick-why,.pick-check,.pick-try{font-size:.79rem;line-height:1.5;color:var(--muted)}
+    .pick-why strong,.pick-check strong,.pick-try strong{font-weight:700;font-size:.74rem;margin-right:5px}
     .pick-why strong{color:var(--feature)}
     .pick-check strong{color:var(--improve)}
+    .pick-try strong{color:var(--pick)}
     /* 호버 가능 기기(데스크톱): 왜·학습은 카드 위로 뜨는 호버창(팝오버) — 카드 높이 고정, 레이아웃 안 밀림. 터치 기기는 인라인 항상 노출 */
     @media (hover:hover){
       .pick-grid .pick-card .pick-meta{position:absolute;left:-1px;right:-1px;top:calc(100% - 8px);z-index:30;background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:13px 15px;margin-top:0;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .14s ease,transform .14s ease,visibility .14s;pointer-events:none}
