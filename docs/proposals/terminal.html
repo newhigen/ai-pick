@@ -22,7 +22,7 @@
 html{color-scheme:light}
 /* 스크롤바 자리를 늘 비워 둔다 — 목록이 짧아져 스크롤바가 사라지면 지면이 옆으로 밀린다 */
 html{scrollbar-gutter:stable}
-:root{--boxw:24px;--boxwG:14px}
+:root{--boxw:34px;--boxwG:22px}
 /* 체크 감추기 — 칸과 취소선을 통째로 걷어 그냥 목록으로 읽히게 한다. 표시만 끄고 상태는 남는다. */
 :root[data-check="off"]{--boxw:0px;--boxwG:0px}
 /* display:none 은 격자 항목을 통째로 빼서 뒤 칸이 한 칸씩 앞으로 밀린다 — 자리는 두고 감춘다 */
@@ -119,8 +119,8 @@ dialog::backdrop{background:rgba(34,32,28,.34)}
 /* 공통 행 문법 */
 .it{position:relative}
 .it .row{cursor:pointer}
-.it .box{font:inherit;background:none;border:0;padding:0 3px;cursor:pointer;border-radius:3px;
-         white-space:nowrap}
+.it .box{font:inherit;background:none;border:0;padding:4px 8px;margin:-4px 0;cursor:pointer;
+         border-radius:3px;white-space:nowrap;line-height:1.35}
 /* 올려두면 눌렀을 때 들어갈 표시를 옅게 — 어디를 눌러야 하는지가 그 자리에서 보인다 */
 .it .box.ghost{opacity:.42}
 /* 자세히는 줄을 밀지 않고 위에 뜬다 — 훑는 중에 목록이 출렁이지 않도록 */
