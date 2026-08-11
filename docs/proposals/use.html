@@ -55,6 +55,14 @@ body{background:#faf9f5;color:#22201c;font-family:var(--sans);font-size:14px;lin
 .psrc a{color:#8a8578;text-decoration:none;border-bottom:1px dotted #cfc9ba;display:none}
 .psrc a.on{display:inline}
 .psrc a:hover{color:#c2703a;border-bottom-color:currentColor}
+/* 지금 보고 있는 도구의 원본으로 나가는 길. 도구 스위치 바로 뒤라야 무엇의 원본인지 보인다.
+   도구 버튼처럼 보이면 안 되므로 채움 없이 밑줄과 ↗ 로만 세운다. */
+.ptop{padding-left:14px;border-left:1px solid #e3ddcd}
+.ptop a{font-size:12.5px;color:#6b665c;text-decoration:none;display:none;white-space:nowrap;
+        border-bottom:1px solid #d5cfc0;padding-bottom:1px}
+.ptop a.on{display:inline}
+.ptop a i{font-style:normal;font-size:11px;margin-left:1px}
+.ptop a:hover{color:#c2703a;border-bottom-color:currentColor}
 .pstamp{font-family:var(--mono);font-size:11px;color:#b3ae9f;white-space:nowrap;
         padding-left:14px;border-left:1px solid #e3ddcd}
 
@@ -194,6 +202,7 @@ a.cv:hover{color:#8a8578;border-bottom:1px dotted currentColor}
   <span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span>
   <span class="ptabs"><a href="terminal.html"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a class="on"><span class="lb" data-label="용도별">용도별</span></a></span>
   <span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span>
+  <span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span>
   <span class="pstamp">2026-08-10 05:50</span>
 </div>
@@ -289,7 +298,8 @@ document.querySelectorAll('.ptools a').forEach(b => b.addEventListener('click', 
   const t = b.dataset.t;
   document.querySelectorAll('.ptools a').forEach(x => x.classList.toggle('on', x.dataset.t === t));
   document.querySelectorAll('.tw').forEach(w => w.classList.toggle('on', w.classList.contains('t-' + t)));
-  document.querySelectorAll('.psrc a').forEach(a => a.classList.toggle('on', a.classList.contains('s-' + t)));
+  document.querySelectorAll('.psrc a, .ptop a').forEach(a =>
+    a.classList.toggle('on', a.classList.contains('s-' + t)));
   countTop();
 }));
 
