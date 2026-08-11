@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>일로 찾기</title>
+<title>오늘 뭐 써볼까 · 용도별</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5 9h9M5 16h9M5 23h5' stroke='%23141414' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M19 9h8M19 16h8M19 23h6' stroke='%232563eb' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -19,8 +19,8 @@ body{background:#faf9f5;color:#22201c;font-family:var(--sans);font-size:14px;lin
 /* 제품 상단바 — 해볼 것 화면과 같은 것 */
 .pbar{display:flex;align-items:center;gap:18px;padding-bottom:11px;margin-bottom:18px;
       border-bottom:1px solid #e3ddcd}
-.pbrand{font-family:var(--mono);font-size:13px;white-space:nowrap;color:#22201c}
-.pbrand i{font-style:normal;color:#c2703a}
+.pbrand{font-family:var(--sans);font-weight:600;font-size:13.5px;white-space:nowrap;color:#22201c}
+.pbrand i{font-style:normal;font-family:var(--mono);font-weight:400;color:#c2703a}
 .ptabs{display:flex;gap:10px}
 .ptabs a{font-size:12.5px;color:#8a8578;text-decoration:none;padding:1px 8px;border-radius:3px}
 .ptabs a:hover{color:#22201c}
@@ -172,7 +172,7 @@ a.cv:hover{color:#8a8578;border-bottom:1px dotted currentColor}
 
 <div class="wrap">
 <div class="pbar">
-  <span class="pbrand"><i>&gt;_</i> Agent Edge</span>
+  <span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span>
   <span class="ptabs"><a href="terminal.html">해볼 것</a><a class="on">용도별</a></span>
   <span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span>
   <span class="pdone"><b class="doneAll">0</b> 해봄<button class="clrb btn">모두 해제</button></span>
