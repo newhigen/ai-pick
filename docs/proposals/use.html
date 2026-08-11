@@ -164,12 +164,19 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .box:hover{background:#e8e3d6;color:#22201c}
 /* 올려두면 눌렀을 때 들어갈 x 를 옅게 — 어디를 눌러야 하는지가 그 자리에서 보인다 */
 .box.ghost{color:#b9b09c}
-.ci.done .cd{color:#b8b2a5;text-decoration:line-through}
-.ci.done .cmd,.ci.done .cmd a{color:#b8b2a5;text-decoration:line-through;font-weight:400}
-.ci.done .box{color:#4f7a3c}
+/* 해본 줄은 통째로 물러난다 — 명령어·설명·버전·체크 칸까지 한 색으로 */
+.ci.done .cd,.ci.done .cmd,.ci.done .cmd a{color:#bdb7a9;text-decoration:line-through;
+      font-weight:400}
+.ci.done .cv,.ci.done a.cv,.ci.done .box{color:#cdc7b9}
+.ci.done a.cv{border-bottom-color:transparent}
 :root[data-check="off"] .ci.done .cd,
 :root[data-check="off"] .ci.done .cmd,
 :root[data-check="off"] .ci.done .cmd a{text-decoration:none;color:inherit}
+:root[data-check="off"] .ci.done .cd{color:#3a352e}
+:root[data-check="off"] .ci.done .cmd,
+:root[data-check="off"] .ci.done .cmd a{color:#4a7a56}
+:root[data-check="off"] .ci.done .cv,
+:root[data-check="off"] .ci.done a.cv{color:#b3ae9f}
 .cd{font-family:var(--sans);font-size:13px;color:#3a352e;min-width:0}
 .cv{font-size:10.5px;color:#b3ae9f;text-align:right;white-space:nowrap;text-decoration:none}
 a.cv:hover{color:#8a8578;border-bottom:1px dotted currentColor}

@@ -31,6 +31,22 @@ html{scrollbar-gutter:stable}
 :root[data-check="off"] .it.done .cmd,
 :root[data-check="off"] .it.done .cmd a,
 :root[data-check="off"] .it.done .m-tt{text-decoration:none;color:inherit;font-weight:inherit}
+
+/* 해본 줄은 통째로 물러난다 — 등급·명령어·좋은 점·날짜·체크 칸까지 한 색으로.
+   결마다 있는 등급색(.vP .t3 .sev 등)보다 한 겹 더 잡아야 이긴다.
+   체크 칸을 감춘 상태에선 이 규칙이 아예 안 걸려 원래 색이 돌아온다. */
+:root:not([data-check="off"]) .v .it.done .sev,
+:root:not([data-check="off"]) .v .it.done .cmd,
+:root:not([data-check="off"]) .v .it.done .cmd a,
+:root:not([data-check="off"]) .v .it.done .ds,
+:root:not([data-check="off"]) .v .it.done .dt,
+:root:not([data-check="off"]) .v .it.done .star,
+:root:not([data-check="off"]) .v .it.done .bar,
+:root:not([data-check="off"]) .v .it.done .box,
+:root:not([data-check="off"]) .v .it.done .m-ds{color:var(--faint);font-weight:400}
+:root:not([data-check="off"]) .v .it.done .tt,
+:root:not([data-check="off"]) .v .it.done .m-tt{color:var(--faint);font-weight:400;
+      text-decoration:line-through}
 body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
      -webkit-font-smoothing:antialiased}
 .picker{position:sticky;top:0;z-index:9;background:#fbfbfa;border-bottom:1px solid #e3e3df;
@@ -195,7 +211,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .sepdot{opacity:.5}
 
 /* ── 1 종이 ── */
-.vP{background:#faf9f5;color:#22201c;--optOff:#8a8578;--optOn:#22201c;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#22201c;--fillInkBg:#22201c;--fillInkFg:#faf9f5;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(34,32,28,.07);--hoverTool:rgba(194,112,58,.08);--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vP{background:#faf9f5;color:#22201c;--optOff:#8a8578;--optOn:#22201c;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#22201c;--fillInkBg:#22201c;--fillInkFg:#faf9f5;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(34,32,28,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
 .vP .hd .why{color:#6b665c}.vP .hd .why b{color:#22201c}
 .vP .c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
 .vP .c-day i{flex:1;border-top:1px dashed #ddd8cb}
@@ -222,7 +238,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vP .lead{color:#a09a8c;font-size:11.5px}.vP .lead b{color:#c2703a;font-weight:400}
 
 /* ── 2 콘솔(다크) ── */
-.vK{background:#0e1013;color:#cfcbc2;--optOff:#8b8578;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#262b34;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#0e1013;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
+.vK{background:#0e1013;color:#cfcbc2;--optOff:#8b8578;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#262b34;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#0e1013;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--faint:#5a564e;--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
 .vK .hd h1{color:#e8e4da}
 .vK .hd .why{color:#8b8578}.vK .hd .why b{color:#cfcbc2}
 .vK .c-day{display:flex;align-items:center;gap:9px;color:#5e5a52;margin:20px 0 5px;font-size:11.5px}
@@ -249,7 +265,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vK .lead{color:#5e5a52;font-size:11.5px}.vK .lead b{color:#e0a44a;font-weight:400}
 
 /* ── 3 TUI ── */
-.vT{background:#12141a;color:#c9c5bc;--optOff:#807a6e;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#272c37;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#12141a;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
+.vT{background:#12141a;color:#c9c5bc;--optOff:#807a6e;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#272c37;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#12141a;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--faint:#5a564e;--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
 .vT .hd h1{color:#e8e4da}
 .vT .hd .why{color:#807a6e}.vT .hd .why b{color:#c9c5bc}
 .vT .frame{border:1px solid #343842;border-radius:3px;padding:0 0 6px}
@@ -283,7 +299,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vT .done .box{color:#7fbf6a}
 
 /* ── 4 git log ── */
-.vG{background:#fbfaf7;color:#26241f;--optOff:#8a8578;--optOn:#26241f;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#26241f;--fillInkBg:#26241f;--fillInkFg:#fbfaf7;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(38,36,31,.07);--hoverTool:rgba(194,112,58,.08);--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vG{background:#fbfaf7;color:#26241f;--optOff:#8a8578;--optOn:#26241f;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#26241f;--fillInkBg:#26241f;--fillInkFg:#fbfaf7;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(38,36,31,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
 .vG .hd .why{color:#6b665c}.vG .hd .why b{color:#26241f}
 .vG .g-day{display:flex;align-items:baseline;gap:10px;margin:14px 0 4px;font-size:11.5px}
 .vG .gr{color:#cfc9ba}
@@ -310,7 +326,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vG .lead b{color:#c2703a;font-weight:400}
 
 /* ── 5 man page ── */
-.vM{background:#fdfcf9;color:#24221d;--optOff:#8a8578;--optOn:#24221d;--optAcc:#c2703a;--tabBg:#ece6d9;--tabFg:#24221d;--fillInkBg:#24221d;--fillInkFg:#fdfcf9;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(36,34,29,.07);--hoverTool:rgba(194,112,58,.08);--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vM{background:#fdfcf9;color:#24221d;--optOff:#8a8578;--optOn:#24221d;--optAcc:#c2703a;--tabBg:#ece6d9;--tabFg:#24221d;--fillInkBg:#24221d;--fillInkFg:#fdfcf9;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(36,34,29,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
 .vM .box0{font-size:13px;line-height:1.7;max-width:900px}
 .vM .hd{max-width:900px}
 .vM .hd .why{color:#6b665c}.vM .hd .why b{color:#24221d}
