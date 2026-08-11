@@ -40,24 +40,42 @@ body{background:#fff;color:#17171a;font-family:var(--sans);font-size:14px;line-h
 .a-tt{font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .a-tog{color:#a2a2aa;font-size:10px;align-self:center;text-align:right}
 
-/* ── B · 터미널 ── */
+/* ── B · 터미널 ── 폭을 다 쓰고, 중요도는 굵기·밝기·머리말로 */
 .stB{background:#faf9f5;color:#22201c}
-.stB .box{font-family:var(--mono);font-size:12.5px;line-height:1.7}
-.b-day{color:#8a8578;margin:18px 0 6px;font-size:11.5px}
+.stB .hd,.stB .box{max-width:1180px}
+.stB .box{font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.b-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
+.b-day i{flex:1;border-top:1px dashed #ddd8cb}
 .b-day em{font-style:normal;color:#b3ae9f}
-.b-it{display:grid;grid-template-columns:10px 28px minmax(0,1fr);gap:7px;padding:5px 0;align-items:start;
-      cursor:pointer}
-.b-it:hover{background:#f4f2ec}
-.b-new{color:#c2703a}
-.b-box{color:#8a8578;user-select:none;white-space:nowrap}
+.b-it{display:grid;grid-template-columns:10px 30px 24px 226px minmax(0,1.15fr) minmax(0,1fr) 34px;
+      gap:9px;padding:3px 4px;align-items:baseline;cursor:pointer}
+.b-it:hover{background:#f2efe6}
+.b-star{color:#c2703a}
+.b-sev{font-size:11px;letter-spacing:.02em}
+.b-box{color:#a09a8c;user-select:none;white-space:nowrap}
+.b-cmd{color:#3c6b4a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-tt{font-family:var(--sans);font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;
+      white-space:nowrap}
+.b-ds{font-family:var(--sans);font-size:12.5px;color:#9c9689;min-width:0;overflow:hidden;
+      text-overflow:ellipsis;white-space:nowrap}
+.b-it.t1 .b-ds{color:#b5afa2}
+.b-dt{font-size:11px;color:#b3ae9f;text-align:right}
+.b-it.nw .b-dt{color:#c2703a}
+/* 중요도 — 핵심은 굵고 밝게, 일반은 흐리게 (터미널의 bold/dim) */
+.b-it.t3 .b-sev{color:#c2703a}
+.b-it.t3 .b-tt{color:#1a1815;font-weight:600}
+.b-it.t2 .b-sev{color:#8a8578}
+.b-it.t2 .b-tt{color:#3a352e}
+.b-it.t1 .b-sev{color:#c3bdae}
+.b-it.t1 .b-tt{color:#8b857a}
+.b-it.t1 .b-cmd{color:#7f9a86}
 .b-it.done .b-box{color:#4f7a3c}
-.b-body{min-width:0;white-space:pre-line}
-.b-cmd{color:#3c6b4a}
-.b-tt{font-family:var(--sans);font-size:13.5px;color:#22201c;line-height:1.5}
-.b-it.done .b-tt{color:#a8a396;text-decoration:line-through}
-.b-prompt{color:#8a8578;margin-bottom:14px;font-size:11.5px}
+.b-it.done .b-tt{color:#b8b2a5;text-decoration:line-through;font-weight:400}
+.b-prompt{color:#a09a8c;margin-bottom:4px;font-size:11.5px}
 .b-prompt em{font-style:normal;color:#c2703a}
-.b-bar{font-size:11.5px;color:#8a8578;margin-top:22px}
+.b-out{color:#8a8578;font-size:11.5px;margin-bottom:14px}
+.b-out b{color:#c2703a;font-weight:400}
+.b-bar{font-size:11.5px;color:#a09a8c;margin-top:20px;border-top:1px dashed #ddd8cb;padding-top:9px}
 
 /* ── C · 수첩 ── */
 .stC{background:#fdfcfa}
@@ -127,47 +145,56 @@ body{background:#fff;color:#17171a;font-family:var(--sans);font-size:14px;line-h
 <div class="a-day"><span>7.19</span><i>22일 전</i></div>
 <div class="a-it"><input type="checkbox"><span class="a-cmd">/verify · /code-review</span><span class="a-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="a-tog">▾</span></div>
 <div class="a-day"><span>7.18</span><i>23일 전</i></div>
-<div class="a-it"><input type="checkbox"><span class="a-cmd">progress heartbeat</span><span class="a-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="a-tog">▾</span></div></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">progress heartbeat</span><span class="a-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.17</span><i>24일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">/fork → bg · /subtask</span><span class="a-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.15</span><i>26일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">--forward-subagent-text</span><span class="a-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="a-tog">▾</span></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">always allow → repo root</span><span class="a-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.14</span><i>27일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">vimInsertModeRemaps</span><span class="a-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.11</span><i>1달 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">disableAutoMode</span><span class="a-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="a-tog">▾</span></div></div>
 </div>
 
 <div class="st stB" id="sB">
   <div class="hd"><h1>터미널</h1>
-    <p class="why">다루는 물건이 <b>둘 다 CLI</b>다. 도구가 쓰는 어휘를 화면이 그대로 쓴다 —
-    <b>대괄호 체크박스</b>, 줄표 날짜 구분, 초록 명령어. 정체성을 새로 만들 필요가 없다.
-    대신 한글이 많으면 모노가 읽기 불편해서 제목만 본문체로 뺐다.</p></div>
+    <p class="why">다루는 물건이 <b>둘 다 CLI</b>라 도구가 쓰는 어휘를 그대로 쓴다 —
+    대괄호 체크박스, 줄표 날짜, 초록 명령어. 한 줄이 화면 폭을 다 쓰고, 중요도는
+    <b>머리말 한 낱말 + 글자 굵기·밝기</b>로 준다(터미널의 bold/dim). 핵심은 검고 굵게,
+    일반은 흐리게 — 별표를 세지 않아도 무게가 보인다.</p></div>
   <div class="box">
-    <p class="b-prompt">$ agent-edge try --tool claude-code<em> # 새로 들어온 것 5개</em></p>
-    <div class="b-day">── 2026-08-07 ── <em>3일 전</em></div>
-<div class="b-it"><span class="b-new">*</span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">claude self-hosted-runner</span>
-<span class="b-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span></span></div>
-<div class="b-it"><span class="b-new">*</span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">SendMessage · ListAgents</span>
-<span class="b-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span></span></div>
-<div class="b-day">── 2026-08-06 ── <em>4일 전</em></div>
-<div class="b-it"><span class="b-new">*</span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">/review · /code-review</span>
-<span class="b-tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span></span></div>
-<div class="b-day">── 2026-08-04 ── <em>6일 전</em></div>
-<div class="b-it"><span class="b-new">*</span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">Ctrl+Alt+F (VSCode)</span>
-<span class="b-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span></span></div>
-<div class="b-it"><span class="b-new">*</span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">bg → commit · push</span>
-<span class="b-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span></span></div>
-<div class="b-day">── 2026-07-24 ── <em>17일 전</em></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">claude-opus-5</span>
-<span class="b-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span></span></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">agent() → agent()</span>
-<span class="b-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span></span></div>
-<div class="b-day">── 2026-07-22 ── <em>19일 전</em></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">/code-review</span>
-<span class="b-tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span></span></div>
-<div class="b-day">── 2026-07-20 ── <em>21일 전</em></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">/context</span>
-<span class="b-tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span></span></div>
-<div class="b-day">── 2026-07-19 ── <em>22일 전</em></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">/verify · /code-review</span>
-<span class="b-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span></span></div>
-<div class="b-day">── 2026-07-18 ── <em>23일 전</em></div>
-<div class="b-it"><span class="b-new"> </span><span class="b-box">[ ]</span><span class="b-body"><span class="b-cmd">progress heartbeat</span>
-<span class="b-tt">긴 도구 호출에 주기적 진행 상황 알림</span></span></div>
-    <p class="b-bar">[###·······] 0/11 해봄</p>
+    <p class="b-prompt">$ agent-edge try --tool claude-code</p>
+    <p class="b-out">16개 · 핵심 2 · 추천 13 · 일반 1 · <b>새로 들어온 것 5개(*)</b></p>
+    <div class="b-day"><span>── 2026-08-07</span><i></i><em>3일 전</em></div>
+<div class="b-it t3 nw"><span class="b-star">*</span><span class="b-sev">핵심</span><span class="b-box">[ ]</span><span class="b-cmd">claude self-hosted-runner</span><span class="b-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="b-ds">웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</span><span class="b-dt">8.7</span></div>
+<div class="b-it t2 nw"><span class="b-star">*</span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">SendMessage · ListAgents</span><span class="b-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="b-ds">ListAgents로 세션 탐색 후 SendMessage로 어느 머신의 세션에든 메시지 전송 (macOS·Linux).</span><span class="b-dt">8.7</span></div>
+<div class="b-day"><span>── 2026-08-06</span><i></i><em>4일 전</em></div>
+<div class="b-it t1 nw"><span class="b-star">*</span><span class="b-sev">일반</span><span class="b-box">[ ]</span><span class="b-cmd">/review · /code-review</span><span class="b-tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="b-ds">/review가 /code-review의 별칭으로 통합 — effort 미지정 시 마지막 설정 재사용.</span><span class="b-dt">8.6</span></div>
+<div class="b-day"><span>── 2026-08-04</span><i></i><em>6일 전</em></div>
+<div class="b-it t2 nw"><span class="b-star">*</span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">Ctrl+Alt+F (VSCode)</span><span class="b-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="b-ds">도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</span><span class="b-dt">8.4</span></div>
+<div class="b-it t2 nw"><span class="b-star">*</span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">bg → commit · push</span><span class="b-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="b-ds">bg 세션 완료 시 커밋·푸시로 보존, draft PR은 작업이 요구할 때만, CLAUDE.md git 지침 준수.</span><span class="b-dt">8.4</span></div>
+<div class="b-day"><span>── 2026-07-24</span><i></i><em>17일 전</em></div>
+<div class="b-it t3"><span class="b-star"></span><span class="b-sev">핵심</span><span class="b-box">[ ]</span><span class="b-cmd">claude-opus-5</span><span class="b-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="b-ds">Claude Code Opus 기본 모델 교체 — 1M 토큰 컨텍스트 · fast mode 지원.</span><span class="b-dt">7.24</span></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">agent() → agent()</span><span class="b-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="b-ds">v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 비활성화.</span><span class="b-dt">7.24</span></div>
+<div class="b-day"><span>── 2026-07-22</span><i></i><em>19일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">/code-review</span><span class="b-tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="b-ds">코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</span><span class="b-dt">7.22</span></div>
+<div class="b-day"><span>── 2026-07-20</span><i></i><em>21일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">/context</span><span class="b-tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="b-ds">컨텍스트 한도 초과 시 명시적 경고 — /compact 실패는 에러로 표시.</span><span class="b-dt">7.20</span></div>
+<div class="b-day"><span>── 2026-07-19</span><i></i><em>22일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">/verify · /code-review</span><span class="b-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="b-ds">Claude가 자동으로 실행하지 않음 — 원할 때 /verify·/code-review 직접 호출.</span><span class="b-dt">7.19</span></div>
+<div class="b-day"><span>── 2026-07-18</span><i></i><em>23일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">progress heartbeat</span><span class="b-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="b-ds">오래 걸리는 도구 호출이 침묵하지 않고 주기적으로 진행 상황을 전송.</span><span class="b-dt">7.18</span></div>
+<div class="b-day"><span>── 2026-07-17</span><i></i><em>24일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">/fork → bg · /subtask</span><span class="b-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="b-ds">/fork가 현재 대화를 새 bg 세션으로 복사; 인세션 위임 실행은 /subtask로 명칭 변경.</span><span class="b-dt">7.17</span></div>
+<div class="b-day"><span>── 2026-07-15</span><i></i><em>26일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">--forward-subagent-text</span><span class="b-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="b-ds">-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</span><span class="b-dt">7.15</span></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">always allow → repo root</span><span class="b-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="b-ds">worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</span><span class="b-dt">7.15</span></div>
+<div class="b-day"><span>── 2026-07-14</span><i></i><em>27일 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">vimInsertModeRemaps</span><span class="b-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="b-ds">vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</span><span class="b-dt">7.14</span></div>
+<div class="b-day"><span>── 2026-07-11</span><i></i><em>1달 전</em></div>
+<div class="b-it t2"><span class="b-star"></span><span class="b-sev">추천</span><span class="b-box">[ ]</span><span class="b-cmd">disableAutoMode</span><span class="b-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="b-ds">Bedrock·Vertex AI·Foundry에서 Auto mode 기본 활성 — disableAutoMode 설정으로 비활성화.</span><span class="b-dt">7.11</span></div>
+    <p class="b-bar">[··········] 0/16 해봄 · 안 해본 것만 [ ] · 핵심만 [ ]</p>
   </div>
 </div>
 
@@ -197,6 +224,15 @@ body{background:#fff;color:#17171a;font-family:var(--sans);font-size:14px;line-h
 <label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="c-sub"><code>/verify · /code-review</code>Claude가 자동으로 실행하지 않음 — 원할 때 /verify·/code-review 직접 호출.</span></span></label>
 <p class="c-day">7월 18일<span>23일 전</span></p>
 <label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="c-sub"><code>progress heartbeat</code>오래 걸리는 도구 호출이 침묵하지 않고 주기적으로 진행 상황을 전송.</span></span></label>
+<p class="c-day">7월 17일<span>24일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="c-sub"><code>/fork → bg · /subtask</code>/fork가 현재 대화를 새 bg 세션으로 복사; 인세션 위임 실행은 /subtask로 명칭 변경.</span></span></label>
+<p class="c-day">7월 15일<span>26일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="c-sub"><code>--forward-subagent-text</code>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</span></span></label>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="c-sub"><code>always allow → repo root</code>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</span></span></label>
+<p class="c-day">7월 14일<span>27일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="c-sub"><code>vimInsertModeRemaps</code>vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</span></span></label>
+<p class="c-day">7월 11일<span>1달 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="c-sub"><code>disableAutoMode</code>Bedrock·Vertex AI·Foundry에서 Auto mode 기본 활성 — disableAutoMode 설정으로 비활성화.</span></span></label>
   </div>
 </div>
 
@@ -223,7 +259,16 @@ body{background:#fff;color:#17171a;font-family:var(--sans);font-size:14px;line-h
 <h2 class="d-day">7월 19일 <span>22일 전</span></h2>
 <article class="d-it"><h3>/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</h3><p class="d-desc"><code>/verify · /code-review</code>Claude가 자동으로 실행하지 않음 — 원할 때 /verify·/code-review 직접 호출.</p><p class="d-how">변경 완료 후 /code-review, 머지 전 /verify 직접 실행</p><button class="d-btn">해봤다</button></article>
 <h2 class="d-day">7월 18일 <span>23일 전</span></h2>
-<article class="d-it"><h3>긴 도구 호출에 주기적 진행 상황 알림</h3><p class="d-desc"><code>progress heartbeat</code>오래 걸리는 도구 호출이 침묵하지 않고 주기적으로 진행 상황을 전송.</p><p class="d-how">heartbeat가 붙는 도구 호출 유형, 전송 주기</p><button class="d-btn">해봤다</button></article></div>
+<article class="d-it"><h3>긴 도구 호출에 주기적 진행 상황 알림</h3><p class="d-desc"><code>progress heartbeat</code>오래 걸리는 도구 호출이 침묵하지 않고 주기적으로 진행 상황을 전송.</p><p class="d-how">heartbeat가 붙는 도구 호출 유형, 전송 주기</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 17일 <span>24일 전</span></h2>
+<article class="d-it"><h3>/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</h3><p class="d-desc"><code>/fork → bg · /subtask</code>/fork가 현재 대화를 새 bg 세션으로 복사; 인세션 위임 실행은 /subtask로 명칭 변경.</p><p class="d-how">/fork vs /subtask 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 15일 <span>26일 전</span></h2>
+<article class="d-it"><h3>stream-json에 서브에이전트 텍스트·thinking 포함</h3><p class="d-desc"><code>--forward-subagent-text</code>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p class="d-how">--stream-json 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p><button class="d-btn">해봤다</button></article>
+<article class="d-it"><h3>&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</h3><p class="d-desc"><code>always allow → repo root</code>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p class="d-how">저장 위치(저장소 루트 .claude/settings.json); 워크트리 로컬 vs 루트 규칙 우선순위</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 14일 <span>27일 전</span></h2>
+<article class="d-it"><h3>Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</h3><p class="d-desc"><code>vimInsertModeRemaps</code>vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</p><p class="d-how">settings.json의 vimInsertModeRemaps에 시퀀스→키 맵핑 추가</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 11일 <span>1달 전</span></h2>
+<article class="d-it"><h3>Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</h3><p class="d-desc"><code>disableAutoMode</code>Bedrock·Vertex AI·Foundry에서 Auto mode 기본 활성 — disableAutoMode 설정으로 비활성화.</p><p class="d-how">Bedrock·Vertex 기본 모델 Opus 4.8로 변경; 비활성화는 user settings.json의 disableAutoMode</p><button class="d-btn">해봤다</button></article></div>
 </div>
 
 <script>
