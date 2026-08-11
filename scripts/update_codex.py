@@ -104,8 +104,9 @@ def gen_block(ver, by, date):
 def main():
     html = open(HTML_PATH, encoding='utf-8').read()
 
-    cs = html.index('<div class="view hidden" data-view="codex">')
-    ce = html.index('<div class="view hidden" data-view="manus">')
+    # 자료 구간을 화면 구조가 아니라 표식으로 잡는다 — 화면이 바뀌어도 안 깨지게
+    cs = html.index('<!--CX-DATA-->')
+    ce = html.index('<!--/CX-DATA-->')
     codex = html[cs:ce]
 
     existing = set(re.findall(r'id="cx(\d+\.\d+\.\d+)"', codex))
