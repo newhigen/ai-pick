@@ -25,7 +25,8 @@ body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
 .picker b{color:#a2a2aa;font-weight:500}
 .picker button{background:none;border:0;color:#6f6f78;font:inherit;cursor:pointer;padding:2px 0}
 .picker button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
-.fsel{margin-left:auto;display:flex;gap:11px;align-items:center;padding-left:16px;
+.picker .hint{margin-left:auto;color:#a2a2aa;font-size:11.5px}
+.fsel{display:flex;gap:11px;align-items:center;padding-left:16px;
       border-left:1px solid #e3e3df}
 .fsel b{color:#a2a2aa;font-weight:500}
 .fsel button{font-size:12px;color:#8a8a92}
@@ -56,13 +57,13 @@ body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
 /* 라벨이 '무엇이 바뀌나'까지 들어가야 해서 52px 로는 접힌다 */
 .pane .pb p{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:2px 0;
       font-size:13px;line-height:1.6}
-.it.open .row{outline:1px dashed currentColor;outline-offset:-1px}
+.it.open .row{outline:1px dashed currentColor;outline-offset:0}
 .det p{display:grid;grid-template-columns:52px minmax(0,1fr);gap:11px;padding:2px 0}
 .dk{font-family:var(--mono);font-size:10.5px;padding-top:3px;white-space:nowrap}
 /* 버전 링크는 날짜 줄의 일부처럼 — 색을 따로 주지 않고 밑줄도 올렸을 때만 */
 .vl{color:inherit;text-decoration:none;opacity:.72}
 .vl:hover{opacity:1;border-bottom:1px dotted currentColor}
-.chead{font-size:10.5px;letter-spacing:.02em;padding:0 4px 4px;opacity:.55}
+.chead{font-size:10.5px;letter-spacing:.02em;padding:0 11px 4px;margin:0 -11px;opacity:.55}
 .chead span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* 날짜는 값이 오른쪽 정렬이라 이름도 오른쪽에 붙여야 같은 줄로 보인다 */
 .chead span:last-child{text-align:right}
@@ -84,7 +85,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vP .c-day i{flex:1;border-top:1px dashed #ddd8cb}
 .vP .c-day em{font-style:normal;color:#b3ae9f}
 .vP .chead,.vP .row{display:grid;grid-template-columns:10px 30px 24px 222px minmax(0,1.15fr) minmax(0,1fr) 34px;
-         gap:9px;padding:3px 4px;align-items:baseline}
+         gap:9px;padding:5px 11px;margin:0 -11px;align-items:baseline}
 .vP .row:hover{background:#f2efe6}
 .vP .star{color:#c2703a}
 .vP .box{color:#a09a8c}.vP .box:hover{background:#e8e3d6;color:#22201c}
@@ -112,7 +113,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vK .c-day i{flex:1;border-top:1px dashed #2a2c31}
 .vK .c-day em{font-style:normal;color:#4b4841}
 .vK .chead,.vK .row{display:grid;grid-template-columns:10px 30px 24px 222px minmax(0,1.15fr) minmax(0,1fr) 34px;
-         gap:9px;padding:3px 4px;align-items:baseline}
+         gap:9px;padding:5px 11px;margin:0 -11px;align-items:baseline}
 .vK .row:hover{background:#181b20}
 .vK .star{color:#e0a44a}
 .vK .box{color:#6b675f}.vK .box:hover{background:#252830;color:#e8e4da}
@@ -146,7 +147,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vT .t-day{display:flex;align-items:center;gap:0;color:#5f5a51;font-size:11.5px;margin:9px 0 3px}
 .vT .t-day i{flex:1;border-top:1px solid #2a2d35;margin:0 4px}
 .vT .chead,.vT .row{display:grid;grid-template-columns:12px 22px 30px 200px minmax(0,1.1fr) minmax(0,1fr) 34px 12px;
-         gap:9px;padding:2px 8px;align-items:baseline}
+         gap:9px;padding:4px 11px;margin:0 -3px;align-items:baseline}
 .vT .row:hover{background:#1e222b}
 .vT .bar{color:#343842}
 .vT .box{color:#6f6a5f}.vT .nw .box{color:#e0a44a}
@@ -236,6 +237,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <button data-v="vT" aria-pressed="false">TUI</button>
   <button data-v="vG" aria-pressed="false">git log</button>
   <button data-v="vM" aria-pressed="false">man page</button>
+  <span class="hint">줄=미리보기 · 누르면 고정 · 풀기는 같은 줄·빈 곳·Esc</span>
   <span class="fsel"><b>한글 고딕</b>
     <button data-f="plex" aria-pressed="true">IBM Plex KR</button>
     <button data-f="wanted" aria-pressed="false">Wanted</button>
@@ -466,5 +468,17 @@ document.querySelectorAll('.v').forEach(view => {
   view.querySelector('.box0').addEventListener('mouseleave', () => {
     if (!pinned) pane.classList.remove('on');
   });
+
+  /* 고정 풀기 — 같은 줄 다시 누르기, 빈 곳 누르기, Esc */
+  function unpin() {
+    if (!pinned) return;
+    pinned.classList.remove('open');
+    pinned = null;
+    pane.classList.remove('on');
+  }
+  view.addEventListener('click', e => {
+    if (!e.target.closest('.it') && !e.target.closest('.pane')) unpin();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') unpin(); });
 });
 </script>
