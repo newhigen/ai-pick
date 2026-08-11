@@ -50,8 +50,13 @@ body{background:#faf9f5;color:#22201c;font-family:var(--sans);font-size:14px;lin
 .pdone{margin-left:auto;display:flex;align-items:center;gap:11px;font-family:var(--mono);
        font-size:11.5px;color:#8a8578;white-space:nowrap}
 .pdone b{color:#22201c;font-weight:600}
+/* 이 화면 전체의 출처 — 줄마다 붙은 버전 링크(그 항목의 출처)와 자리가 다르다 */
+.psrc a{font-family:var(--mono);font-size:11px;color:#a09a8c;text-decoration:none;display:none;
+        white-space:nowrap}
+.psrc a.on{display:inline}
+.psrc a:hover{color:#c2703a;border-bottom:1px dotted currentColor}
 .pstamp{font-family:var(--mono);font-size:11px;color:#b3ae9f;white-space:nowrap;
-        padding-left:16px;border-left:1px solid #e3ddcd}
+        padding-left:14px;border-left:1px solid #e3ddcd}
 
 .hd{margin-bottom:14px}
 .hd h1{font-size:19px;font-weight:600;letter-spacing:-.015em}
@@ -187,9 +192,10 @@ a.cv:hover{color:#8a8578;border-bottom:1px dotted currentColor}
 <div class="wrap">
 <div class="pbar">
   <span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span>
-  <span class="ptabs"><a href="terminal.html"><span class="lb" data-label="해볼 것">해볼 것</span></a><a class="on"><span class="lb" data-label="용도별">용도별</span></a></span>
+  <span class="ptabs"><a href="terminal.html"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a class="on"><span class="lb" data-label="용도별">용도별</span></a></span>
   <span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span>
   <span class="pdone"><b class="doneAll">0</b> 해봄<button class="clrb btn">모두 해제</button></span>
+  <span class="psrc"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 패치노트 ↗</a></span>
   <span class="pstamp">2026-08-10 05:50</span>
 </div>
 
@@ -200,7 +206,7 @@ a.cv:hover{color:#8a8578;border-bottom:1px dotted currentColor}
 </dialog>
 
 <div class="hd"><h1>용도별</h1>
-  <p class="why">해볼 것이 <b>시간</b> 축이면 여기는 <b>일</b> 축이다. 지금 하려는 일로 들어가
+  <p class="why">새로 나온 것이 <b>시간</b> 축이면 여기는 <b>일</b> 축이다. 지금 하려는 일로 들어가
     그 자리에서 쓸 것만 본다. 위쪽 칸 이름을 누르면 <b>그 칸만</b> 남고 같은 걸 다시 누르면
     전체로 돌아온다. 칸마다 6개까지만 펴 두고 나머지는 접었다 —
     <b>찾기</b>에 뭔가 치면 접힌 것까지 뒤진다.</p></div>
@@ -282,6 +288,7 @@ document.querySelectorAll('.ptools a').forEach(b => b.addEventListener('click', 
   const t = b.dataset.t;
   document.querySelectorAll('.ptools a').forEach(x => x.classList.toggle('on', x.dataset.t === t));
   document.querySelectorAll('.tw').forEach(w => w.classList.toggle('on', w.classList.contains('t-' + t)));
+  document.querySelectorAll('.psrc a').forEach(a => a.classList.toggle('on', a.classList.contains('s-' + t)));
   countTop();
 }));
 
@@ -336,7 +343,7 @@ document.querySelectorAll('.clrb').forEach(b => b.addEventListener('click', () =
   const name = clrScope.classList.contains('t-cc') ? 'Claude Code' : 'Codex';
   dlg.querySelector('.dbn').innerHTML = n
     ? `${name} 에서 체크한 <b>${n}개</b>를 지운다.`
-      + `<span class="warn">되돌릴 수 없다. 해볼 것 화면의 같은 항목도 함께 풀린다.</span>`
+      + `<span class="warn">되돌릴 수 없다. 새로 나온 것 화면의 같은 항목도 함께 풀린다.</span>`
     : `${name} 에는 체크한 게 없다.`;
   dlg.querySelector('.yes').style.display = n ? '' : 'none';
   dlg.querySelector('.no').textContent = n ? '아니오' : '닫기';
