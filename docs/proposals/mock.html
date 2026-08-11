@@ -23,13 +23,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14
 .tin{max-width:1080px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:18px}
 .brand{font-family:var(--mono);font-size:13px;white-space:nowrap}
 .brand i{color:var(--accent);font-style:normal}
-.nav{display:flex;gap:15px}
-.nav a{font-size:13px;color:var(--muted);text-decoration:none;white-space:nowrap;cursor:pointer;
-       padding-bottom:1px}
-.nav a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
-.tools{display:flex;gap:13px;margin-left:4px;padding-left:15px;border-left:1px solid var(--line2)}
-.tools a{font-size:12.5px;color:var(--faint)}
-.tools a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.nav{display:flex;gap:17px;align-items:center}
+/* 탭 — 사이트 구획. 굵기와 2px 밑줄로 가장 세게. */
+.nav>a{font-size:14px;color:var(--muted);text-decoration:none;white-space:nowrap;cursor:pointer;
+       padding-bottom:2px}
+.nav>a.on{color:var(--text);font-weight:600;box-shadow:inset 0 -2px 0 var(--text)}
+/* 도구 — 무엇을 보고 있나. 색점을 달아 탭과 다른 축임을 보인다. */
+.tools{display:flex;gap:12px;margin-left:2px;padding-left:16px;border-left:1px solid var(--line2)}
+.tools a{font-size:12.5px;color:var(--faint);text-decoration:none;white-space:nowrap;cursor:pointer;
+         display:flex;align-items:center;gap:5px;padding-bottom:2px}
+.td{width:6px;height:6px;border-radius:50%;background:var(--line2);display:block}
+.tools a.on{color:var(--text);font-weight:560}
+.tools a[data-t="cc"].on{box-shadow:inset 0 -2px 0 var(--cc)}
+.tools a[data-t="cx"].on{box-shadow:inset 0 -2px 0 var(--cx)}
+.tools a[data-t="cc"].on .td{background:var(--cc)}
+.tools a[data-t="cx"].on .td{background:var(--cx)}
 .tp{display:none}.tp.on{display:block}
 h1 em{font-style:normal;color:var(--muted);font-weight:500;font-size:16px;margin-left:3px}
 .stamp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint);white-space:nowrap}
@@ -47,8 +55,30 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 .bar label{display:flex;gap:5px;align-items:center;cursor:pointer;white-space:nowrap}
 .bar .right{margin-left:auto;display:flex;gap:12px;align-items:center}
 .bar input{accent-color:var(--accent);margin:0}
-.bar .f{cursor:pointer;color:var(--muted)}
-.bar .f.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+
+/* 안 해본 것만 — 켜지면 자리 자체가 물든다 */
+.todoBtn{border:1px solid var(--line2);border-radius:5px;padding:3px 9px;background:#fff}
+.bar.filtered .todoBtn{border-color:var(--accent-line);background:var(--accent-bg);color:var(--accent)}
+.bar.filtered .cnt{color:var(--accent)}
+
+/* 종류 필터 — 이름 옆에 개수, 켜진 것은 그 종류 색 밑줄 */
+.fbar{margin-top:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+      border-bottom:1px solid var(--line2);padding-bottom:8px}
+.flabel{font-size:11.5px;color:var(--faint);margin-right:3px}
+.f{font:inherit;font-size:12.5px;background:none;border:0;color:var(--muted);cursor:pointer;
+   padding:2px 2px 4px;display:flex;align-items:baseline;gap:5px}
+.f b{font-family:var(--mono);font-size:10.5px;font-weight:400;color:var(--faint)}
+.f:hover{color:var(--text)}
+.f.on{color:var(--text);font-weight:560}
+.f.on b{color:inherit}
+.f-all.on{box-shadow:inset 0 -2px 0 var(--text)}
+.f-feature.on{box-shadow:inset 0 -2px 0 var(--feature);color:var(--feature)}
+.f-improve.on{box-shadow:inset 0 -2px 0 var(--improve);color:var(--improve)}
+.f-fix.on{box-shadow:inset 0 -2px 0 var(--fix);color:var(--fix)}
+.f-security.on{box-shadow:inset 0 -2px 0 var(--security);color:var(--security)}
+.fstate{margin-left:auto;font-size:11.5px;color:var(--faint)}
+.fbar.filtered .fstate{color:var(--accent)}
+.fstate .clear{margin-left:7px;cursor:pointer;text-decoration:underline}
 
 .band{margin-top:12px;display:flex;align-items:center;gap:8px;font-size:13px;
       border:1px solid var(--accent-line);background:var(--accent-bg);border-radius:5px;padding:6px 11px}
@@ -86,7 +116,7 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 .bd .how.none{background:#fafaf9;border-color:var(--line2);color:var(--faint)}
 .bd .how.none b{color:var(--faint)}
 .it.done .cmd,.it.done .tt{color:var(--faint);text-decoration:line-through}
-.it.hide,.vr.hide{display:none}
+.it.hide,.vr.hide,.day.hide{display:none}
 
 /* 용도별 */
 .cols{margin-top:18px;columns:2;column-gap:38px}
@@ -155,7 +185,9 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
   <div class="brand"><i>&gt;_</i> Agent Edge</div>
   <div class="nav">
     <a data-v="try" class="on">해볼 것</a><a data-v="use">용도별</a><a data-v="ver">버전별</a>
-    <span class="tools" id="tools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span>
+    <span class="tools" id="tools">
+      <a data-t="cc" class="on"><i class="td td-cc"></i>Claude Code</a>
+      <a data-t="cx"><i class="td td-cx"></i>Codex</a></span>
   </div>
   <div class="stamp">2026-08-10 05:50</div>
 </div></div>
@@ -169,7 +201,8 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     <p class="meta">새 기능이 날짜순으로 쌓인다 · 해본 것에 체크 · 전체 71개</p>
     <div class="bar"><span class="n cnt">0 / 30 해봄</span>
       <span class="track"><span class="fill"></span></span>
-      <span class="right"><label><input type="checkbox" class="onlyTodo"> 안 해본 것만</label></span></div>
+      <span class="right"><label class="todoBtn"><input type="checkbox" class="onlyTodo">
+        <span class="todoTx">안 해본 것만</span></label></span></div>
     <div class="band"><span class="d"></span><strong>새로 들어온 것 5개</strong>
       <span>지난 방문 6일 전 이후</span><button class="readAll">모두 읽음</button></div>
     <div class="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
@@ -384,7 +417,8 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     <p class="meta">새 기능이 날짜순으로 쌓인다 · 해본 것에 체크 · 전체 58개</p>
     <div class="bar"><span class="n cnt">0 / 30 해봄</span>
       <span class="track"><span class="fill"></span></span>
-      <span class="right"><label><input type="checkbox" class="onlyTodo"> 안 해본 것만</label></span></div>
+      <span class="right"><label class="todoBtn"><input type="checkbox" class="onlyTodo">
+        <span class="todoTx">안 해본 것만</span></label></span></div>
     <div class="band"><span class="d"></span><strong>새로 들어온 것 2개</strong>
       <span>지난 방문 6일 전 이후</span><button class="readAll">모두 읽음</button></div>
     <div class="tryList"><div class="day"><span>8.7</span><i>3일 전</i></div>
@@ -727,17 +761,11 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     <div class="tp t-cc on">
       <h1>버전별 <em>Claude Code</em></h1>
       <p class="meta">v2.1.226 까지 236개 · 전부 접힌 상태, 줄을 누르면 변경 내역이 펼쳐진다</p>
+      <div class="fbar" data-tool="cc">
+      <span class="flabel">종류</span><button class="f on f-all" data-t="all">전체<b>45</b></button> <button class="f f-feature" data-t="feature">기능<b>41</b></button> <button class="f f-improve" data-t="improve">개선<b>31</b></button> <button class="f f-fix" data-t="fix">수정<b>37</b></button> <button class="f f-security" data-t="security">보안<b>31</b></button>
+      <span class="fstate">전부 보는 중</span>
     </div>
-    <div class="tp t-cx">
-      <h1>버전별 <em>Codex</em></h1>
-      <p class="meta">v0.147.0 까지 83개 · stable 릴리스만</p>
-    </div>
-    <div class="bar"><span>보기</span>
-      <span class="f on" data-t="all">전체</span><span class="f" data-t="feature">기능</span>
-      <span class="f" data-t="improve">개선</span><span class="f" data-t="fix">수정</span>
-      <span class="f" data-t="security">보안</span>
-      <span class="right"><span id="vcnt">45개</span></span></div>
-    <div class="tp t-cc on"><div class="vlist"><div class="vr is-new" data-i="v0" data-t="feature">
+      <div class="vlist"><div class="vr is-new" data-i="v0" data-t="feature">
   <div class="vh"><span class="mk"></span><span class="vt s-cc">v2.1.226</span>
     <span class="vd">8.8</span><span class="va">2일 전</span>
     <span class="vc"><span class="pc p-feature">기능 ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
@@ -1207,8 +1235,16 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
     <span class="vc"><span class="pc p-security">보안 ×1</span> <span class="pc p-fix">Fix ×1</span></span><button class="tog" aria-label="펼치기">▾</button></div>
   <ul class="ve"></ul>
 </div></div>
-      <div class="more">더 보기 (191개)</div></div>
-    <div class="tp t-cx"><div class="vlist"><div class="vr is-new" data-i="v1000" data-t="feature fix">
+      <div class="more">더 보기 (191개)</div>
+    </div>
+    <div class="tp t-cx">
+      <h1>버전별 <em>Codex</em></h1>
+      <p class="meta">v0.147.0 까지 83개 · stable 릴리스만</p>
+      <div class="fbar" data-tool="cx">
+      <span class="flabel">종류</span><button class="f on f-all" data-t="all">전체<b>45</b></button> <button class="f f-feature" data-t="feature">기능<b>39</b></button> <button class="f f-improve" data-t="improve">개선<b>0</b></button> <button class="f f-fix" data-t="fix">수정<b>40</b></button> <button class="f f-security" data-t="security">보안<b>0</b></button>
+      <span class="fstate">전부 보는 중</span>
+    </div>
+      <div class="vlist"><div class="vr is-new" data-i="v1000" data-t="feature fix">
   <div class="vh"><span class="mk"></span><span class="vt s-cx">v0.147.0</span>
     <span class="vd">8.7</span><span class="va">3일 전</span>
     <span class="vc"><span class="pc p-feature">기능 ×6</span> <span class="pc p-fix">Fix ×6</span></span><button class="tog" aria-label="펼치기">▾</button></div>
@@ -1838,7 +1874,8 @@ h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
 <li class="e-fix"><span>수정</span>Hardened network proxy policy parsing by rejecting global wildcard (*) domains while preserving scoped wildcard support</li>
 <li class="e-fix"><span>수정</span>Fixed approval payload compatibility for macOS automation permissions by accepting both supported input shapes</li></ul>
 </div></div>
-      <div class="more">더 보기 (38개)</div></div>
+      <div class="more">더 보기 (38개)</div>
+    </div>
     <p class="foot">지금 사이트는 최신 5개를 펼쳐 두고 나머지를 숨긴 채 <b>전부 실어 보낸다</b>.
     접어서 내보내면 한 줄이 26px라 236개가 다 들어와도 이 화면 높이의 몇 배면 끝난다.</p>
   </div>
@@ -1868,11 +1905,31 @@ document.querySelectorAll('#v-try .tp').forEach(pane => {
   const items = [...pane.querySelectorAll('.it')];
   const done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]'));
   const only = pane.querySelector('.onlyTodo');
+  const bar = pane.querySelector('.bar');
+  const tx = pane.querySelector('.todoTx');
+
+  /* 그날 항목이 다 걸러지면 날짜 머리만 덩그러니 남는다 — 같이 접는다 */
+  function hideEmptyDays() {
+    const kids = [...pane.querySelector('.tryList').children];
+    let day = null, seen = false;
+    kids.forEach(el => {
+      if (el.classList.contains('day')) {
+        if (day) day.classList.toggle('hide', !seen);
+        day = el; seen = false;
+      } else if (el.classList.contains('it') && !el.classList.contains('hide')) {
+        seen = true;
+      }
+    });
+    if (day) day.classList.toggle('hide', !seen);
+  }
   function sync() {
     const n = items.filter(x => x.classList.contains('done')).length;
     pane.querySelector('.cnt').textContent = n + ' / ' + items.length + ' 해봄';
     pane.querySelector('.fill').style.width = (n / items.length * 100) + '%';
     items.forEach(x => x.classList.toggle('hide', only.checked && x.classList.contains('done')));
+    bar.classList.toggle('filtered', only.checked);
+    tx.textContent = only.checked ? '안 해본 것만 · ' + n + '개 숨김' : '안 해본 것만';
+    hideEmptyDays();
     localStorage.setItem(KEY, JSON.stringify(items.filter(x => x.classList.contains('done')).map(x => x.dataset.i)));
   }
   items.forEach(x => {
@@ -1892,28 +1949,36 @@ document.querySelectorAll('#v-try .tp').forEach(pane => {
   sync();
 });
 
-/* 버전별 — 펼침·종류 필터 (보이는 도구 안에서만 센다) */
+/* 버전별 — 펼침 + 종류 필터. 필터는 도구별로 따로 돈다. */
 document.querySelectorAll('#v-ver .vr').forEach(r =>
   r.querySelector('.vh').addEventListener('click', () => r.classList.toggle('open')));
 
-function applyVerFilter() {
-  const f = document.querySelector('#v-ver .f.on');
-  if (!f) return;
-  const t = f.dataset.t;
-  let n = 0;
-  document.querySelectorAll('#v-ver .tp').forEach(p => {
-    const visible = p.classList.contains('on');
-    p.querySelectorAll('.vr').forEach(r => {
+const KO = {all: '전체', feature: '기능', improve: '개선', fix: '수정', security: '보안'};
+
+document.querySelectorAll('#v-ver .tp').forEach(pane => {
+  const fbar = pane.querySelector('.fbar');
+  const state = fbar.querySelector('.fstate');
+  const rows = [...pane.querySelectorAll('.vr')];
+
+  function apply(t) {
+    fbar.querySelectorAll('.f').forEach(x => x.classList.toggle('on', x.dataset.t === t));
+    let shown = 0;
+    rows.forEach(r => {
       const on = t === 'all' || r.dataset.t.split(' ').includes(t);
       r.classList.toggle('hide', !on);
-      if (on && visible) n++;
+      if (on) shown++;
     });
-  });
-  document.getElementById('vcnt').textContent = n + '개';
-}
-document.querySelectorAll('#v-ver .f').forEach(f => f.addEventListener('click', () => {
-  document.querySelectorAll('#v-ver .f').forEach(x => x.classList.toggle('on', x === f));
-  applyVerFilter();
-}));
-applyVerFilter();
+    const hidden = rows.length - shown;
+    fbar.classList.toggle('filtered', t !== 'all');
+    state.innerHTML = t === 'all'
+      ? '전부 보는 중 · ' + rows.length + '개'
+      : KO[t] + ' 있는 버전만 · ' + shown + '개 보임, ' + hidden +
+        '개 숨김<span class="clear">해제</span>';
+    const c = state.querySelector('.clear');
+    if (c) c.addEventListener('click', () => apply('all'));
+  }
+
+  fbar.querySelectorAll('.f').forEach(f => f.addEventListener('click', () => apply(f.dataset.t)));
+  apply('all');
+});
 </script>
