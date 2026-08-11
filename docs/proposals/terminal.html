@@ -46,17 +46,12 @@ body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
 .pbrand{font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--optOn)}
 .pbrand i{font-style:normal;color:var(--optAcc)}
 .ptabs{display:flex;gap:16px}
-.ptabs a{font-size:14px;color:var(--optOff);text-decoration:none;cursor:pointer;padding-bottom:2px}
-.ptabs a.on{color:var(--optOn);font-weight:600;box-shadow:inset 0 -2px 0 var(--optOn)}
+.ptabs a{font-size:12.5px;color:var(--optOff);text-decoration:none;cursor:pointer;padding-bottom:2px}
+.ptabs a.on{color:var(--optOn);font-weight:600}
 .ptools{display:flex;gap:12px;padding-left:16px;border-left:1px solid var(--pbarLine)}
 .ptools a{font-size:12.5px;color:var(--optOff);text-decoration:none;cursor:pointer;
           display:flex;align-items:center;gap:5px;padding-bottom:2px}
-.pd{width:6px;height:6px;border-radius:50%;background:var(--pbarLine);display:block}
 .ptools a.on{color:var(--optOn);font-weight:560}
-.ptools a[data-t="cc"].on{box-shadow:inset 0 -2px 0 var(--tcc)}
-.ptools a[data-t="cx"].on{box-shadow:inset 0 -2px 0 var(--tcx)}
-.ptools a[data-t="cc"].on .pd{background:var(--tcc)}
-.ptools a[data-t="cx"].on .pd{background:var(--tcx)}
 .pstamp{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--optOff);white-space:nowrap}
 
 /* 옵션 스위치 — 테두리도 알약도 없이, 줄의 대괄호와 같은 어휘로 */
@@ -280,17 +275,26 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 
 
 /* ── 선택 표시 다섯 가지 ──
-   기본은 밑줄. 셋 다(탭·도구·옵션) 선으로 말하면 층이 안 갈리므로 대안을 둔다. */
-:root[data-sel="invert"] .ptabs a.on{box-shadow:none;background:var(--optOn);color:var(--pbarBg);
-    padding:1px 8px;border-radius:3px}
-:root[data-sel="invert"] .ptools a.on{box-shadow:none;background:var(--selBg);padding:1px 8px;
-    border-radius:3px}
+   기본은 반전. 탭은 잉크로 꽉 채우고 도구는 옅은 색으로 채워, 같은 '면' 이어도 무게가 갈린다.
+   옵션은 대괄호라 셋이 각각 다른 신호를 쓴다. */
+:root[data-sel="underline"] .ptabs a.on{box-shadow:inset 0 -2px 0 var(--optOn)}
+:root[data-sel="underline"] .ptools a[data-t="cc"].on{box-shadow:inset 0 -2px 0 var(--tcc)}
+:root[data-sel="underline"] .ptools a[data-t="cx"].on{box-shadow:inset 0 -2px 0 var(--tcx)}
 
+:root .ptabs a.on{background:var(--optOn);color:var(--pbarBg);padding:1px 8px;border-radius:3px}
+:root .ptools a.on{background:var(--selBg);padding:1px 8px;border-radius:3px}
+:root[data-sel="underline"] .ptabs a.on,
+:root[data-sel="underline"] .ptools a.on,
+:root[data-sel="caret"] .ptabs a.on,
+:root[data-sel="caret"] .ptools a.on,
+:root[data-sel="bracket"] .ptabs a.on,
+:root[data-sel="bracket"] .ptools a.on,
+:root[data-sel="plain"] .ptabs a.on,
+:root[data-sel="plain"] .ptools a.on{background:none;color:var(--optOn);padding:0 0 2px;border-radius:0}
 :root[data-sel="caret"] .ptabs a.on,
 :root[data-sel="caret"] .ptools a.on{box-shadow:none}
 :root[data-sel="caret"] .ptabs a.on::before{content:"› ";color:var(--optAcc)}
 :root[data-sel="caret"] .ptools a.on::before{content:"› ";color:var(--optAcc)}
-:root[data-sel="caret"] .ptools a .pd{display:none}
 
 :root[data-sel="bracket"] .ptabs a.on,
 :root[data-sel="bracket"] .ptools a.on{box-shadow:none}
@@ -298,12 +302,10 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 :root[data-sel="bracket"] .ptabs a.on::after{content:"]";color:var(--optAcc);margin-left:2px}
 :root[data-sel="bracket"] .ptools a.on::before{content:"[";color:var(--optAcc);margin-right:2px}
 :root[data-sel="bracket"] .ptools a.on::after{content:"]";color:var(--optAcc);margin-left:2px}
-:root[data-sel="bracket"] .ptools a .pd{display:none}
 
 :root[data-sel="plain"] .ptabs a.on,
 :root[data-sel="plain"] .ptools a.on{box-shadow:none}
 :root[data-sel="plain"] .ptabs a.on{font-weight:700;letter-spacing:.01em}
-:root[data-sel="plain"] .ptools a .pd{display:none}
 :root[data-sel="plain"] .ptools a.on{color:var(--optAcc)}
 
 @media(max-width:820px){
@@ -324,8 +326,8 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <button data-v="vM" aria-pressed="false">man page</button>
   <span class="hint">줄=미리보기 · 누르면 고정 · 풀기는 같은 줄·빈 곳·Esc</span>
   <span class="ssel"><b>선택 표시</b>
-    <button data-s2="underline" aria-pressed="true">밑줄</button>
-    <button data-s2="invert" aria-pressed="false">반전</button>
+    <button data-s2="invert" aria-pressed="true">반전</button>
+    <button data-s2="underline" aria-pressed="false">밑줄</button>
     <button data-s2="caret" aria-pressed="false">꺾쇠</button>
     <button data-s2="bracket" aria-pressed="false">대괄호</button>
     <button data-s2="plain" aria-pressed="false">밝기만</button>
@@ -345,7 +347,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>종이</h1><p class="why">지금 것. 밝은 종이 바탕에 모노 구조만 얹었다.
   <b>오래 봐도 눈이 편하고</b> 다른 화면(문서·이력서)과 같은 지면 위에 있는 느낌이 든다.
   대신 '터미널'이라는 신호는 제일 약하다.</p></div>
-  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on"><i class="pd pd-cc"></i>Claude Code</a><a data-t="cx"><i class="pd pd-cx"></i>Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
 <div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
@@ -397,7 +399,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>콘솔</h1><p class="why">터미널의 본디 자리. 같은 배치에 <b>ANSI 색</b>을 얹었다 —
   초록 명령어, 앰버 강조, dim 회색. 핵심 줄이 어둠 위에서 확 뜬다.
   코드 쓰다 넘어오면 이질감이 없지만, 낮에 밝은 화면들 사이에 두면 이것만 튄다.</p></div>
-  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on"><i class="pd pd-cc"></i>Claude Code</a><a data-t="cx"><i class="pd pd-cx"></i>Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
 <div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
@@ -449,7 +451,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>TUI</h1><p class="why">lazygit·htop 결. 박스로 화면을 가두고
   <b>아래에 키 힌트</b>를 깐다. 마름모가 체크 표시고, 이게 <b>손으로 조작하는 도구</b>라는 인상이
   제일 세다. 대신 프레임이 폭을 먹고 웹에서 키보드 조작을 실제로 다 지원해야 말이 된다.</p></div>
-  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on"><i class="pd pd-cc"></i>Claude Code</a><a data-t="cx"><i class="pd pd-cx"></i>Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="frame">
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="frame">
     <div class="ftop">┌ 해볼 것 ─ claude-code<b class="sp"><span class="t-cc">새로 들어온 것 5개</span><span class="t-cx" style="display:none">새로 들어온 것 2개</span></b>
       <span class="todo"></span></div>
     <div class="tw t-cc on"><div class="chead"><span></span><span></span><span>등급</span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span><span></span></div>
@@ -507,7 +509,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>git log</h1><p class="why">왼쪽에 <b>세로줄과 점</b>이 흐른다.
   시간순이라는 게 장식이 아니라 그림으로 보이고, 찬 점이 새로 들어온 것이다.
   <b>날짜가 커밋 자리</b>를 차지해 리듬이 생긴다. 대신 열 정렬이 느슨해 훑는 속도는 조금 준다.</p></div>
-  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on"><i class="pd pd-cc"></i>Claude Code</a><a data-t="cx"><i class="pd pd-cx"></i>Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 찬 점<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 찬 점<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="sev">핵심</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div></div>
 <div class="g-day"><span class="gr">│</span><span class="gd">2026-08-06 목 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></span></div>
@@ -558,7 +560,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <b>행간과 여백</b>을 늘렸다. 제목이 문단의 머리처럼 서고 설명이 그 아래 붙어서,
   훑기보다 <b>한 항목을 제대로 읽기</b>에 맞다. 한 화면에 들어오는 개수는 절반으로 준다.
   여기만 자세히가 아래 판이 아니라 <b>본문에 그대로 흐른다</b> — 읽는 판이라 감출 이유가 없다.</p></div>
-  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on"><i class="pd pd-cc"></i>Claude Code</a><a data-t="cx"><i class="pd pd-cx"></i>Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b><span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></h2>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> Agent Edge</span><span class="ptabs"><a class="on">해볼 것</a><a>용도별</a><a>버전별</a></span><span class="ptools"><a data-t="cc" class="on">Claude Code</a><a data-t="cx">Codex</a></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b><span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></h2>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="sev">핵심</span></div><p class="m-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</p><p class="m-ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="sev">추천</span></div><p class="m-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</p><p class="m-ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
 <h2 class="m-day">2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></h2>
@@ -616,7 +618,7 @@ document.querySelectorAll('.ssel button').forEach(b => b.addEventListener('click
   document.querySelectorAll('.ssel button').forEach(x => x.setAttribute('aria-pressed', x === b));
   document.documentElement.dataset.sel = b.dataset.s2;
 }));
-document.documentElement.dataset.sel = 'underline';
+document.documentElement.dataset.sel = 'invert';
 
 document.querySelectorAll('.fsel button').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('.fsel button').forEach(x => x.setAttribute('aria-pressed', x === b));
