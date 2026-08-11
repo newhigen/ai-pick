@@ -38,8 +38,17 @@ body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
 .picker button{background:none;border:0;color:#6f6f78;font:inherit;cursor:pointer;padding:2px 0}
 .picker button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
 .picker .hint{margin-left:auto;color:#a2a2aa;font-size:11.5px}
-.csel button{font-size:12px;color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
-.csel button[aria-pressed="false"]{color:#8a8a92;font-weight:400;box-shadow:none}
+
+/* 옵션 스위치 — 테두리도 알약도 없이, 줄의 대괄호와 같은 어휘로 */
+.opts{float:right;display:flex;gap:15px}
+/* 요약 줄 색을 물려받으면 너무 흐려 안 읽힌다 — 결마다 따로 준다 */
+.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12px;
+     color:var(--optOff)}
+.opt i{font-family:var(--mono);font-style:normal;font-size:11.5px;margin-right:3px}
+.opt:hover{color:var(--optOn)}
+.opt.on{color:var(--optOn);font-weight:560}
+.opt.on i{color:var(--optAcc)}
+.it.hide{display:none}
 .fsel{display:flex;gap:11px;align-items:center;padding-left:16px;
       border-left:1px solid #e3e3df}
 .fsel b{color:#a2a2aa;font-weight:500}
@@ -96,7 +105,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .sepdot{opacity:.5}
 
 /* ── 1 종이 ── */
-.vP{background:#faf9f5;color:#22201c}
+.vP{background:#faf9f5;color:#22201c;--optOff:#8a8578;--optOn:#22201c;--optAcc:#c2703a}
 .vP .hd .why{color:#6b665c}.vP .hd .why b{color:#22201c}
 .vP .c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
 .vP .c-day i{flex:1;border-top:1px dashed #ddd8cb}
@@ -123,7 +132,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vP .lead{color:#a09a8c;font-size:11.5px}.vP .lead b{color:#c2703a;font-weight:400}
 
 /* ── 2 콘솔(다크) ── */
-.vK{background:#0e1013;color:#cfcbc2}
+.vK{background:#0e1013;color:#cfcbc2;--optOff:#8b8578;--optOn:#e8e4da;--optAcc:#e0a44a}
 .vK .hd h1{color:#e8e4da}
 .vK .hd .why{color:#8b8578}.vK .hd .why b{color:#cfcbc2}
 .vK .c-day{display:flex;align-items:center;gap:9px;color:#5e5a52;margin:20px 0 5px;font-size:11.5px}
@@ -150,7 +159,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vK .lead{color:#5e5a52;font-size:11.5px}.vK .lead b{color:#e0a44a;font-weight:400}
 
 /* ── 3 TUI ── */
-.vT{background:#12141a;color:#c9c5bc}
+.vT{background:#12141a;color:#c9c5bc;--optOff:#807a6e;--optOn:#e8e4da;--optAcc:#e0a44a}
 .vT .hd h1{color:#e8e4da}
 .vT .hd .why{color:#807a6e}.vT .hd .why b{color:#c9c5bc}
 .vT .frame{border:1px solid #343842;border-radius:3px;padding:0 0 6px}
@@ -183,7 +192,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vT .done .box{color:#7fbf6a}
 
 /* ── 4 git log ── */
-.vG{background:#fbfaf7;color:#26241f}
+.vG{background:#fbfaf7;color:#26241f;--optOff:#8a8578;--optOn:#26241f;--optAcc:#c2703a}
 .vG .hd .why{color:#6b665c}.vG .hd .why b{color:#26241f}
 .vG .g-day{display:flex;align-items:baseline;gap:10px;margin:14px 0 4px;font-size:11.5px}
 .vG .gr{color:#cfc9ba}
@@ -210,7 +219,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .vG .lead b{color:#c2703a;font-weight:400}
 
 /* ── 5 man page ── */
-.vM{background:#fdfcf9;color:#24221d}
+.vM{background:#fdfcf9;color:#24221d;--optOff:#8a8578;--optOn:#24221d;--optAcc:#c2703a}
 .vM .box0{font-size:13px;line-height:1.7;max-width:900px}
 .vM .hd{max-width:900px}
 .vM .hd .why{color:#6b665c}.vM .hd .why b{color:#24221d}
@@ -258,7 +267,6 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <button data-v="vG" aria-pressed="false">git log</button>
   <button data-v="vM" aria-pressed="false">man page</button>
   <span class="hint">줄=미리보기 · 누르면 고정 · 풀기는 같은 줄·빈 곳·Esc</span>
-  <span class="csel"><button id="ckToggle" aria-pressed="true">체크 칸 보임</button></span>
   <span class="fsel"><b>한글 고딕</b>
     <button data-f="plex" aria-pressed="true">Plex KR</button>
     <button data-f="plexinter" aria-pressed="false">Plex+Inter</button>
@@ -274,7 +282,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>종이</h1><p class="why">지금 것. 밝은 종이 바탕에 모노 구조만 얹었다.
   <b>오래 봐도 눈이 편하고</b> 다른 화면(문서·이력서)과 같은 지면 위에 있는 느낌이 든다.
   대신 '터미널'이라는 신호는 제일 약하다.</p></div>
-  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
 <div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
@@ -298,14 +306,14 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 <div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</span><span class="dt">7.17</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
 <div class="c-day"><span>── 2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></span><i></i></div>
 <div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
-<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄 · 안 해본 것만 [ ] · 핵심만 [ ]</p></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div>
   <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
 </div>
 <div class="v vK" id="vK">
   <div class="hd"><h1>콘솔</h1><p class="why">터미널의 본디 자리. 같은 배치에 <b>ANSI 색</b>을 얹었다 —
   초록 명령어, 앰버 강조, dim 회색. 핵심 줄이 어둠 위에서 확 뜬다.
   코드 쓰다 넘어오면 이질감이 없지만, 낮에 밝은 화면들 사이에 두면 이것만 튄다.</p></div>
-  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
 <div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
@@ -329,7 +337,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 <div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</span><span class="dt">7.17</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
 <div class="c-day"><span>── 2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></span><i></i></div>
 <div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
-<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄 · 안 해본 것만 [ ] · 핵심만 [ ]</p></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div>
   <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
 </div>
 <div class="v vT" id="vT">
@@ -365,7 +373,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 <div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
 <div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div>
     <div class="fbot"><kbd>space</kbd> 체크<kbd>enter</kbd> 펼침<kbd>/</kbd> 찾기
-      <kbd>f</kbd> 안 해본 것만<span class="sp"><span class="doneN">0</span>/14 해봄</span></div>
+      <kbd>f</kbd> 안 해본 것만<kbd>c</kbd> 체크 칸<span class="sp"><span class="doneN">0</span>/14 해봄</span></div>
   </div></div>
   <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
 </div>
@@ -373,7 +381,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <div class="hd"><h1>git log</h1><p class="why">왼쪽에 <b>세로줄과 점</b>이 흐른다.
   시간순이라는 게 장식이 아니라 그림으로 보이고, 찬 점이 새로 들어온 것이다.
   <b>날짜가 커밋 자리</b>를 차지해 리듬이 생긴다. 대신 열 정렬이 느슨해 훑는 속도는 조금 준다.</p></div>
-  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 찬 점<span class="todo"></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span></div>
+  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b> — 찬 점<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span></div>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="sev">핵심</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div></div>
 <div class="g-day"><span class="gr">│</span><span class="gd">2026-08-06 목 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></span></div>
@@ -404,7 +412,7 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <b>행간과 여백</b>을 늘렸다. 제목이 문단의 머리처럼 서고 설명이 그 아래 붙어서,
   훑기보다 <b>한 항목을 제대로 읽기</b>에 맞다. 한 화면에 들어오는 개수는 절반으로 준다.
   여기만 자세히가 아래 판이 아니라 <b>본문에 그대로 흐른다</b> — 읽는 판이라 감출 이유가 없다.</p></div>
-  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b><span class="todo"></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></h2>
+  <div class="box0"><p class="lead"><b>새로 들어온 것 5개</b><span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></h2>
 <div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="sev">핵심</span></div><p class="m-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</p><p class="m-ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
 <div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="sev">추천</span></div><p class="m-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</p><p class="m-ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
 <h2 class="m-day">2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></h2>
@@ -444,14 +452,34 @@ document.querySelectorAll('.fsel button').forEach(b => b.addEventListener('click
 }));
 document.documentElement.dataset.font = 'plex';
 
-/* 체크 칸 보임/숨김 — 표시만 끄고 체크 상태는 그대로 남는다 */
-const ck = document.getElementById('ckToggle');
-ck.addEventListener('click', () => {
-  const off = document.documentElement.dataset.check === 'off';
-  document.documentElement.dataset.check = off ? 'on' : 'off';
-  ck.setAttribute('aria-pressed', off ? 'true' : 'false');
-  ck.textContent = off ? '체크 칸 보임' : '체크 칸 숨김';
-});
+/* 옵션 스위치 — 체크 칸은 표시만 끄고 상태는 남긴다. 나머지 둘은 목록을 거른다. */
+function applyOpts(view) {
+  const on = o => view.querySelector(`.opt[data-o="${o}"]`).classList.contains('on');
+  const todo = on('todo'), core = on('core');
+  view.querySelectorAll('.it').forEach(it => {
+    const hide = (todo && it.classList.contains('done')) || (core && !it.classList.contains('t3'));
+    it.classList.toggle('hide', hide);
+  });
+  // 그날 줄이 다 걸러지면 날짜 머리만 남는다 — 같이 접는다
+  view.querySelectorAll('.c-day,.t-day,.g-day,.m-day').forEach(day => {
+    let seen = false;
+    for (let el = day.nextElementSibling; el && !el.matches('.c-day,.t-day,.g-day,.m-day'); el = el.nextElementSibling)
+      if (el.classList.contains('it') && !el.classList.contains('hide')) { seen = true; break; }
+    day.classList.toggle('hide', !seen);
+  });
+}
+
+document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+  const view = b.closest('.v');
+  b.classList.toggle('on');
+  b.querySelector('i').textContent = b.classList.contains('on') ? '[x]' : '[ ]';
+  if (b.dataset.o === 'check') {
+    document.documentElement.dataset.check = b.classList.contains('on') ? 'on' : 'off';
+  } else {
+    applyOpts(view);
+    countDone(view);
+  }
+}));
 
 function countDone(view) {
   const its = [...view.querySelectorAll('.it')];
@@ -474,7 +502,9 @@ document.querySelectorAll('.it').forEach(it => {
     e.stopPropagation();
     it.classList.toggle('done');
     box.textContent = it.classList.contains('done') ? off : on;
-    countDone(it.closest('.v'));
+    const view = it.closest('.v');
+    applyOpts(view);
+    countDone(view);
   });
 });
 
