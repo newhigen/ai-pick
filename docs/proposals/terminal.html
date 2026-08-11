@@ -7,9 +7,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&family=Gothic+A1:wght@400;500;600&display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-/* 한글 고딕 고르기 — 같은 화면을 폰트만 갈아끼워 본다 */
-:root{--sans:"Inter Tight","IBM Plex Sans KR",-apple-system,system-ui,sans-serif;
+/* 한글 고딕 고르기 — 같은 화면을 폰트만 갈아끼워 본다.
+   IBM Plex Sans KR 은 라틴(latin·latin-ext)과 한글을 한 집안에서 다 낸다.
+   앞에 Inter Tight 를 세우면 영문만 딴 집 글자가 되므로 Plex 하나로 둔다. */
+:root{--sans:"IBM Plex Sans KR",-apple-system,system-ui,sans-serif;
       --mono:"IBM Plex Mono","Google Sans Code",ui-monospace,"SF Mono",Menlo,monospace}
+:root[data-font="plexinter"]{--sans:"Inter Tight","IBM Plex Sans KR",-apple-system,system-ui,sans-serif}
 :root[data-font="pretendard"]{--sans:"Inter Tight",Pretendard,-apple-system,system-ui,sans-serif;
       --mono:"Google Sans Code",ui-monospace,Menlo,monospace}
 :root[data-font="wanted"]{--sans:"Wanted Sans Variable","Wanted Sans",-apple-system,system-ui,sans-serif}
@@ -242,7 +245,8 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
   <button data-v="vM" aria-pressed="false">man page</button>
   <span class="hint">줄=미리보기 · 누르면 고정 · 풀기는 같은 줄·빈 곳·Esc</span>
   <span class="fsel"><b>한글 고딕</b>
-    <button data-f="plex" aria-pressed="true">IBM Plex KR</button>
+    <button data-f="plex" aria-pressed="true">Plex KR</button>
+    <button data-f="plexinter" aria-pressed="false">Plex+Inter</button>
     <button data-f="wanted" aria-pressed="false">Wanted</button>
     <button data-f="pretendard" aria-pressed="false">Pretendard</button>
     <button data-f="noto" aria-pressed="false">Noto</button>
