@@ -93,8 +93,9 @@ body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
 /* 자세히는 줄을 밀지 않고 위에 뜬다 — 훑는 중에 목록이 출렁이지 않도록 */
 .it .det{display:none}
 /* 자세히는 커서 옆에 뜨는 팝업. 화면 끝에 닿으면 JS가 위·왼쪽으로 뒤집는다. */
+/* 커서를 따라다니므로 팝업이 마우스를 먹으면 줄에서 벗어난 것으로 처리돼 깜빡인다 */
 .pane{position:fixed;z-index:40;width:min(560px,86vw);padding:10px 13px 11px;border-radius:6px;
-      opacity:0;visibility:hidden;transition:opacity .1s ease}
+      opacity:0;visibility:hidden;transition:opacity .1s ease;pointer-events:none}
 .pane.on{opacity:1;visibility:visible}
 .pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12.5px;margin-bottom:6px;
       padding-bottom:5px}
@@ -740,6 +741,9 @@ document.querySelectorAll('.v').forEach(view => {
     // 명령어·버전 링크는 바깥 문서로 나가는 길이라 줄 고정과 겹치지 않게 한다
     it.querySelectorAll('.cmd a, a.vl').forEach(a => a.addEventListener('click', e => e.stopPropagation()));
     it.addEventListener('mouseenter', e => { if (!pinned) show(it, e); });
+    // 줄을 벗어나면 바로 닫는다. 목록 전체(.box0)를 벗어날 때만 닫으면
+    // 줄 사이·날짜 줄·머리글 위에서 옛 내용이 그대로 떠 있는다.
+    it.addEventListener('mouseleave', () => { if (!pinned) pane.classList.remove('on'); });
     it.addEventListener('mousemove', e => { if (!pinned) place(e); });
     it.querySelector('.row').addEventListener('click', e => {
       if (pinned === it) {
