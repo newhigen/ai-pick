@@ -39,7 +39,15 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 ## 1) 새로 나온 것 — Claude Code (new-features.json)
 `<div class="tab on" id="new">` 안 `<div class="tw t-cc on">` 의 `.box0`.
 
-- **날짜 줄이 먼저다.** 그 날짜의 `<div class="c-day">` 가 이미 있으면 그 아래에 줄을 넣고, 없으면 위쪽 날짜 줄을 복사해 새로 만든다(날짜·요일·`<em>` 상대주·버전 링크 교체). **최신 날짜가 위**다.
+- **날짜 줄이 먼저다.** 그 날짜의 `<div class="c-day">` 가 이미 있으면 그 아래에 줄을 넣고,
+  없으면 위쪽 날짜 줄을 복사해 새로 만든다. **최신 날짜가 위**다. 꼴은 이렇다.
+
+```
+<div class="c-day"><span>── 2026-08-13 목 · <a class="vl" href="…">v2.1.230</a></span><i></i><em>지난주</em></div>
+```
+
+  `<i>` 는 점선이 늘어나는 자리다. **상대주(`<em>`)는 `<i>` 뒤 — 줄 맨 오른쪽**에 둔다.
+  이번 주면 `<em>` 을 아예 뺀다. 날짜는 여기에만 있고 기능 줄에는 없다.
 - 줄은 이 꼴이다. 기존 `.it` 하나를 복사해 값만 갈아라.
 
 ```
@@ -47,12 +55,12 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 <span class="star">*</span><span class="sev">추천</span>
 <button class="box" data-off="[x]">[ ]</button>
 <span class="cmd">/foo</span>
-<span class="tt">제목</span><span class="ds">좋은 점</span><span class="dt">8.9</span></div>
+<span class="tt">제목</span><span class="ds">좋은 점</span></div>
 <div class="det">…자세히…</div></div>
 ```
 
 - `t3`=핵심 `t2`=추천 `t1`=일반, `.sev` 글자도 같이 맞춘다. `nw` 는 새로 들어온 것 표시(`.star` 의 `*` 와 짝).
-- `.dt` 는 `월.일`, `data-t` 는 `.tt` 와 같은 글.
+- `data-t` 는 `.tt` 와 같은 글. **줄에 날짜 칸은 없다** — 날짜는 위 날짜 줄이 맡는다.
 - **`.ds` 는 왜 쓸모 있나 한 줄**이다. 자세히에는 이 문장이 없으니 여기서 제 몫을 해야 한다 —
   제목을 딴 말로 되풀이하지 말고, 제목이 안 말한 이득을 적는다.
 - ⚠ **명령어에 링크를 걸지 마라.** `<span class="cmd">/foo</span>` — 글자만 둔다.
