@@ -145,9 +145,10 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12px;margin-bottom:6px;
       padding-bottom:5px;border-bottom:1px dashed var(--line2)}
 .pane .ph b{font-weight:600;color:var(--ink)}
-.pane .pb p{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:2px 0;
-      font-size:12.5px;line-height:1.6}
-.dk{font-family:var(--mono);font-size:10.5px;padding-top:3px;white-space:nowrap;color:#a09a8c}
+/* 라벨은 내어쓰기로 — 격자로 짜면 본문 속 <code> 가 저마다 칸을 차지해 글이 조각난다 */
+.pane .pb p{padding:2px 0 2px 96px;text-indent:-96px;font-size:12.5px;line-height:1.6}
+.dk{display:inline-block;width:84px;margin-right:12px;text-indent:0;
+    font-family:var(--mono);font-size:10.5px;white-space:nowrap;color:#a09a8c}
 .dn{color:#b5afa2}
 .it.open .row{outline:1px dashed currentColor}
 
@@ -224,14 +225,80 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
 .df .yes{border-color:var(--acc);color:#8a4a22;font-weight:600;background:rgba(194,112,58,.16)}
 .df .yes:hover{background:rgba(194,112,58,.28)}
 
+/* ── 좁은 화면: 두 칸을 한 칸으로 ── */
 @media(max-width:1080px){
-  .cols{grid-template-columns:1fr}
-  .cols .uhead:last-of-type{display:none}
-  .cols .cl{grid-row:auto}
+  /* 격자를 풀어 위아래로 쌓는다. 칸을 1개로 줄이면 grid-row:1 로 묶인 머리글 둘이
+     보이지 않는 칸을 새로 만들어 도로 2단이 됐다 */
+  .cols{display:block}
+  .cols .uhead + .uhead{display:none}
   .uhead,.ci{grid-template-columns:var(--boxw) 150px minmax(0,1fr) 60px}
   .chead,.row{grid-template-columns:10px 26px var(--boxw) 150px minmax(0,1.1fr) 0 30px}
   .ds{display:none}
   .pbar{flex-wrap:wrap;gap:10px}
+}
+
+/* ── 손 안에서: 한 줄을 두 줄로 풀고 글씨를 한 단 더 줄인다 ──
+   폰 폭에선 명령어·제목·설명을 한 줄에 세울 수 없다. 억지로 세우면 설명 칸이
+   0px 로 찌그러지고 제목이 40px 만 남아 거의 다 잘렸다. 위아래로 나눈다. */
+@media(max-width:640px){
+  body{font-size:11.5px;padding:0 13px}
+  .wrap{padding:16px 0 60px}
+
+  /* 상단바 — 1줄: 이름·해봄  2줄: 화면·도구·원본·시각 */
+  .pbar{flex-wrap:wrap;gap:7px 11px;margin-bottom:12px;padding-bottom:9px}
+  .pbrand{order:1}
+  .pdone{order:2;margin-left:auto;gap:9px}
+  .pbar::after{content:"";order:3;flex-basis:100%;height:0}
+  .ptabs{order:4;gap:5px}
+  .ptools{order:5;gap:7px;padding-left:9px}
+  .ptop{order:6;padding-left:9px}
+  .pstamp{order:7;padding-left:9px}
+  .ptabs a,.ptools a{padding:3px 7px}
+  .ptop a{padding-bottom:2px}
+
+  /* 새로 나온 것 — 제목을 아랫줄로 내려 폭을 통째로 준다 */
+  .chead{display:none}
+  .row{grid-template-columns:11px var(--boxw) minmax(0,1fr) auto auto;
+       grid-template-areas:"star box cmd sev dt" "star box tt tt tt";
+       gap:1px 8px;padding:6px 9px;margin:0 -9px}
+  .star{grid-area:star}.sev{grid-area:sev}.dt{grid-area:dt}
+  .row .box{grid-area:box}.row .cmd{grid-area:cmd}.tt{grid-area:tt}
+  .tt{white-space:normal;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;
+      -webkit-box-orient:vertical}
+  .lead{font-size:10.5px;overflow:visible;margin-bottom:7px}
+  .opts{float:none;display:flex;flex-wrap:wrap;gap:13px;margin-top:5px}
+  .opt{padding:3px 0}
+  .c-day{margin:15px 0 4px}
+
+  /* 용도별 — 카테고리 줄과 도구 줄을 위아래로, 항목도 두 줄로 */
+  .navwrap{display:block;margin-bottom:10px;padding-bottom:8px}
+  /* 막대를 항목 뒤가 아니라 앞에 세운다 — 뒤에 두면 줄 끝마다 혼자 매달린다 */
+  .catnav{gap:6px 11px}
+  .catnav a{padding:2px 0 2px 11px;border-left:1px solid var(--line2)}
+  .catnav a:first-child{padding-left:0;border-left:0}
+  .catnav a:not(:last-child)::after{content:none}
+  .navwrap .tools{margin-top:8px;gap:13px;flex-wrap:wrap;white-space:normal}
+  .find input{width:104px}
+  .uhead{display:none}
+  .ci{grid-template-columns:var(--boxw) minmax(0,1fr) auto;
+      grid-template-areas:"box cmd cv" "box cd cd";
+      gap:1px 8px;padding:5px 9px;margin:0 -9px}
+  .ci .box{grid-area:box}.ci .cmd{grid-area:cmd}.ci .cv{grid-area:cv}.cd{grid-area:cd}
+  .cd{white-space:normal;line-height:1.45}
+  .cat{margin-bottom:16px}
+  .more{padding:5px 9px;margin:0 -9px}
+
+  /* 명령어는 잘라 감추지 말고 접어서 다 보인다 */
+  .cmd{white-space:normal;overflow:visible;overflow-wrap:anywhere;text-overflow:clip}
+  .box{padding:6px 8px;margin:-6px 0}
+
+  /* 자세히 팝업 — 화면을 넘기지 않게 */
+  /* 폰에선 내어쓸 자리가 없어 라벨을 윗줄로 올린다 */
+  .pane{width:min(560px,92vw);max-height:64vh;overflow:auto;padding:9px 11px 10px}
+  .pane .pb p{padding:3px 0;text-indent:0}
+  .pane .dk{display:block;width:auto;margin:0 0 1px}
+  .pane code,.pb{overflow-wrap:anywhere}
+  dialog{width:min(420px,92vw)}
 }
 </style>
 </head>
