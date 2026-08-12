@@ -1,59 +1,108 @@
-Agent Edge 사이트(`index.html`, repo: ai-pick) 큐레이션 갱신. 토큰 절약 — 꼭 필요한 최소 편집만. 확신 없으면 아무것도 바꾸지 말 것.
+「오늘 뭐 써볼까」(`index.html`, ai.sungd.uk) 큐레이션 갱신. 토큰 절약 — 꼭 필요한 최소 편집만. 확신 없으면 아무것도 바꾸지 말 것.
 
 너는 GitHub Actions 러너에서 헤드리스(`claude -p`)로 도는 중이다. **`index.html`을 워킹트리에서 직접 Edit 해라.** 커밋·푸시 금지(워크플로가 처리). 작업 끝나면 그냥 종료.
+
+## 화면은 둘뿐이다
+
+| 화면 | 축 | 어디 |
+|---|---|---|
+| 새로 나온 것 | 시간 — 언제 나왔나 | `<div class="tab on" id="new">` 안 `.t-cc` / `.t-cx` |
+| 용도별 | 일 — 무슨 일 할 때 | `<div class="tab" id="use">` 안 `.t-cc` / `.t-cx` |
+
+Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무 데도 넣지 마라.
+
+`<div id="data">` 는 화면에 안 나오는 자료칸이다. 버전블록·명령어 문서표가 들어 있고 **여기는 절대 손대지 마라** — 버전블록은 스크립트(추가)와 전용 번역 스텝이 다룬다.
 
 ## 입력 (repo 루트, Read로 읽어라 — 없거나 `[]`면 그 단계 건너뜀)
 - `new-features.json` — 새 Claude Code feature (version, date, text).
 - `new-codex-features.json` — 새 Codex feature (version=v0.x, date, text).
-- `new_blog.json` — 새 blog/news 글 (url, title, src=Anthropic/OpenAI/Manus).
+- `new_blog.json` — 새 blog/news 글. **화면에 올리지 않는다.** 철회·중단 감지(§4)에만 쓴다.
 
 ## 공통 원칙
-- **각 영역마다 "그 그리드 안의 기존 항목 1개를 그대로 복사 → 값만 교체"** 한다. 마크업 구조·클래스·속성 순서를 절대 바꾸지 말 것.
-- 이중 언어: 새/교체 항목엔 영어 `data-en`도 반드시 함께. data-en 안 큰따옴표는 `&quot;`. (`.version-block` 패치노트는 영어 원문이라 data-en 불필요.)
+- **기존 줄 하나를 그대로 복사해 값만 교체한다.** 마크업 구조·클래스·속성 순서를 절대 바꾸지 말 것.
 - 한국어 간결한 톤(~함/~음). 영문 직역 금지 — 핵심만 의역. 과장·추측 금지, **검증된 사실만**.
-- 효과성 등급: `.pick-tier`에 `t3`(핵심)·`t2`(추천)·`t1`(일반) 클래스를 **반드시** 정확히 부여. **표시는 페이지 JS가 tier별 그룹 헤더(핵심/추천/일반)로 자동 처리** — 별(★) 글리프는 CSS로 숨김. 즉 너는 tier 클래스만 맞추면 되고, 정렬·그룹핑·순서는 sortPicks가 한다(수동 정렬 불필요).
 - 편집할 게 없으면 그 영역은 그대로 둔다.
+- `data-en` 은 더 이상 쓰지 않는다(영어 전환 기능을 뺐다). 새 줄에 넣지 마라.
 
-## 1) Claude Code 써볼·용도별 (new-features.json)
-- 써볼: `<div class="pick-grid period-grid" data-section="pick" data-period="recent">` 안. "정말 당장 써볼 만한" 게 있을 때만 **기존 카드 1~2개를 복사해 값 교체**(cmd·제목·설명·왜·학습·해보기·vtag·data-date·tier). 없으면 그대로.
-  - **설명(`<p>`)은 "이게 뭔지" 1줄(≤90자, 2줄 금지)** — 날짜·가격·폴백·세부 조건은 `<p>`에 넣지 말고 왜/학습 또는 클릭 모달로. 날짜는 `data-date`(heatmap)가 이미 표시. cmd 칩에 든 키워드를 설명 끝에 반복 금지.
-  - **해보기 줄을 반드시 넣는다.** `.pick-meta` 안 `.pick-check` 다음에 `<div class="pick-try" data-en="<strong>Try</strong> …"><strong>해보기</strong> …</div>` 형태로. 세 조건을 모두 만족해야 한다 — ① **동사로 끝난다**(…해본다/…돌려본다/…센다) ② **한 번에 끝난다**(한 세션·한 명령 분량) ③ **끝났는지 스스로 판단된다**(무엇을 보면 됐는지가 문장 안에 있다). 명령·플래그는 `<code>`로 verbatim.
-    - 좋음: `<code>codex --approve-for-me</code> 로 다음 작업을 한 번 돌리고, 승인 클릭이 몇 번 줄었는지 센다.`
-    - 나쁨: `요금, /fast 토글, Opus 5 vs Sonnet 5 선택 기준` — 이건 할 일이 아니라 목차다(그런 내용은 학습 줄에 둔다).
-    - 무엇을 해볼지 정말 모르겠으면 그 항목은 픽에서 빼라. 해볼 수 없는 것은 "써볼 기능"이 아니다.
-- 용도별: `<div class="cat-grid period-grid" data-section="cat" data-period="recent">` 안. 새 feature를 적합 카테고리 `<ul class="cat-items">`에 기존 `<li class="cat-item">` 복사해 추가(카테고리당 5개 내외, 과밀 금지). **`.cat-desc`는 한국어 의역(+`data-en` 영어 원문 보존)** — `<code>`·명령어 verbatim.
-- 카테고리: 🚀 긴 작업 / 🤖 Subagent·세션 / 📝 PR·리뷰 / 💰 비용·컨텍스트 / 🎨 UI·네비 / 🧩 Plugin·MCP·확장 / 🪝 Hook·모니터링 / 🔒 모델·Enterprise
-- 새 슬래시 명령은 `docsMap`(`<script>` 내부)에 경로 추가(모르면 생략 → /commands 폴백).
+## 체크 키 — 두 화면을 잇는 끈 ★
+줄마다 `data-k="도구:명령어첫낱말@버전"` 이 있다. 이 키가 같아야 **새로 나온 것에서 체크한 게 용도별에도 뜬다.**
 
-## 2) Codex 써볼 (new-codex-features.json)
-- `<div class="pick-grid period-grid" data-section="codex-pick" data-period="recent">` 안 (CC 탭 아님, **Codex 탭** `data-view="codex"`).
-- new-codex-features 중 당장 써볼 만한 게 있을 때만 **기존 codex-pick 카드 1~2개를 복사해 값 교체**. vtag는 `v0.139.0` 형식. 없으면 그대로.
-- Codex 명령은 `codex ...`/슬래시. docsMap에 Codex docs 경로 모르면 생략.
+- 도구는 `cc` 또는 `cx`, 버전은 `v` 없이 (`cc:/context@2.1.216`).
+- **명령어의 첫 낱말만** 쓴다 — `/context 초과 경고` 도 `/context` 다. 공백·`·`·`→`·`,` 앞에서 끊는다.
+- 같은 기능을 두 화면에 넣을 땐 **키가 반드시 같아야 한다.** 이름을 다르게 적어도 키는 같게.
+- 한 화면 안에서 키가 겹치면(서로 다른 기능인데 첫 낱말·버전이 같음) 그때만 명령어를 통째로 쓴다.
 
-## 3) Manus 카드 (new_blog.json 중 src=Manus, 제품 출시·기능만)
-- `<div class="view hidden" data-view="manus">` 안 `<div class="news-grid">`에 **기존 `<a class="news-card feat-card">` 복사해 값 교체**(href·tier·h3·p·data-date). 고객사례·채용·법률 글 제외.
-- **커넥터 글**(slug에 `connector` 포함, 예 `deep-dive-canva-connector`)은 카드 대신 **커넥터 가이드** `<div class="conn-list">`에 기존 `<a class="conn-item">` 복사해 추가(라벨=커넥터 이름, 예 "Canva"). 이미 있으면 생략.
-- 모달 분석을 주려면 `const ANALYSIS={` 바로 뒤에 그 회사 기존 항목 복사해 추가(co·ico SVG 그대로·tier·date·lead/scn/prin/ctx ko·en·src). 확신 없으면 ANALYSIS 생략하고 카드만 — 카드 href에 ANALYSIS 없으면 그냥 원문 링크로 열림(정상).
+## 1) 새로 나온 것 — Claude Code (new-features.json)
+`<div class="tab on" id="new">` 안 `<div class="tw t-cc on">` 의 `.box0`.
 
-## 4) 뉴스 (new_blog.json 중 동향 = 펀딩·인수·파트너십·밸류·벤치마크)
-- `<div class="view hidden" data-view="news">` 안 `<div class="news-feed">`에 **기존 `<a class="feed-item">` 복사해 값 교체**: feed-date(KO)+data-en(EN 짧은 날짜), feed-ago `data-date`, src 클래스(`src-anthropic`/`src-openai`/`src-manus`)+이름, feed-title, feed-desc(ko+data-en en), feed-tier.
-- **제품 기능 출시는 뉴스 아님** — 그건 위 블로그/Manus/써볼로. 뉴스는 회사 차원 동향만.
+- **날짜 줄이 먼저다.** 그 날짜의 `<div class="c-day">` 가 이미 있으면 그 아래에 줄을 넣고, 없으면 위쪽 날짜 줄을 복사해 새로 만든다(날짜·요일·`<em>` 상대주·버전 링크 교체). **최신 날짜가 위**다.
+- 줄은 이 꼴이다. 기존 `.it` 하나를 복사해 값만 갈아라.
 
-## 5) Blog 사이드바 (new_blog.json 중 Anthropic 제품 글)
-- 해당 회사 `aside.tool-side`의 `<div class="side-sec">`(h3 "blog") 안에 기존 `<a class="side-feat">` 복사해 추가(href·sf-title·sf-desc). 풍부한 모달 원하면 ANALYSIS 항목도(2번 Manus와 동일 방식). 정렬은 페이지 JS가 date순 자동.
+```
+<div class="it t2 nw" data-t="제목" data-k="cc:/foo@2.1.230"><div class="row">
+<span class="star">*</span><span class="sev">추천</span>
+<button class="box" data-off="[x]">[ ]</button>
+<span class="cmd"><a href="…" target="_blank" rel="noopener noreferrer" title="/foo 공식 문서">/foo</a></span>
+<span class="tt">제목</span><span class="ds">좋은 점</span><span class="dt">8.9</span></div>
+<div class="det">…자세히…</div></div>
+```
 
-## 6) 철회·중단 감지 (회수된 픽 정리) ★ 중요
-새 입력(new_blog.json 뉴스·changelog 텍스트)이 **이전에 픽/모달로 올린 기능·모델의 철회·중단·접근차단·deprecated·superseded·이름변경**을 알릴 때, 그 맥락을 반영한다. (예: "Fable 5 미국 수출통제로 접근 중단" → 기존 Fable 5 ★★★ 픽은 더 이상 "당장 써볼" 대상이 아님.)
+- `t3`=핵심 `t2`=추천 `t1`=일반, `.sev` 글자도 같이 맞춘다. `nw` 는 새로 들어온 것 표시(`.star` 의 `*` 와 짝).
+- `.dt` 는 `월.일`, `data-t` 는 `.tt` 와 같은 글.
+- **`.ds` 는 좋은 점을 그대로 옮긴 것**이다 — 자세히의 「좋은 점」과 같은 문장을 쓴다.
+- 명령어 링크 주소는 `<div id="data">` 안 `<script type="application/json" id="docsmap">` 를 보고 정한다. 없는 명령이면 표에 한 줄 추가하고, 슬래시 명령은 `/commands`, 나머지는 `/overview` 로 건다.
 
-- **신호**: 중단/철회/접근 차단/withdrawn/suspended/discontinued/deprecated/sunset/superseded/롤백/이름변경(rename) 등.
-- **조치**: 해당하는 기존 `data-section="pick"`/`codex-pick` 카드를 ① **삭제**(완전 불가) 또는 ② tier를 낮추고(`t3`→`t1`) 제목/설명에 상태 표기(예: 제목 끝 "— 중단"). 동시에 그 사건은 **뉴스(§4)** 에 동향으로 올린다.
-- **랜드마크**: 중단된 게 현재 랜드마크 배너 대상이면, 페이지 JS가 자동 처리하므로 배너 마크업은 건드리지 말 것. (중단 표시용 `#landmarkBanner.halt` 상태 CSS는 이미 있음 — 랜드마크 감지 로직이 향후 활용.)
-- 확신 없으면(정말 회수인지 모호하면) 픽은 그대로 두고 뉴스만 추가.
+### 자세히(`.det`) — 네 줄, 순서 고정
+```
+<p><span class="dk">무엇이 바뀌나</span>…</p>
+<p><span class="dk">좋은 점</span>…</p>
+<p><span class="dk">해보기</span>…</p>
+<p><span class="dk">학습</span>…</p>
+```
+- **무엇이 바뀌나**: 이게 뭔지 한 줄(≤90자). 날짜·가격·조건은 여기 말고 아래로.
+- **좋은 점**: 왜 쓸모 있나. 제목을 딴 말로 되풀이하지 마라.
+- **해보기 — 반드시 넣는다.** 세 조건을 모두 만족해야 한다.
+  ① **동사로 끝난다**(…해본다/…돌려본다/…센다) ② **한 번에 끝난다**(한 세션·한 명령 분량) ③ **끝났는지 스스로 판단된다**(무엇을 보면 됐는지가 문장 안에 있다).
+  - 좋음: `codex --approve-for-me 로 다음 작업을 한 번 돌리고, 승인 클릭이 몇 번 줄었는지 센다.`
+  - 나쁨: `요금, /fast 토글, Opus 5 vs Sonnet 5 선택 기준` — 이건 할 일이 아니라 목차다.
+  - 무엇을 해볼지 정말 모르겠으면 **그 항목은 픽에서 빼라.** 해볼 수 없는 것은 「새로 나온 것」이 아니다.
+- **학습**: 곁들여 알아둘 것. 없으면 그 `<p>` 를 통째로 뺀다.
+- 명령·플래그는 `<code>` 로 verbatim.
 
-## 7) 패치노트 기능(feature) 번역 — 별도 스텝이 처리 (여기선 손대지 마라)
-버전블록(`.version-block`) 안 feature 번역은 **워크플로의 전용 스텝(`translate_features.md`)이 처리**한다. curate는 `.version-block`을 **절대 건드리지 말 것**(picks/cats/news/manus/blog/철회만 담당).
+## 2) 새로 나온 것 — Codex (new-codex-features.json)
+`<div class="tw t-cx">` 안. 마크업·규칙은 §1과 같고 이것만 다르다.
+
+- 키는 `cx:…@0.148.0` (`v` 없이).
+- 버전 링크는 `https://github.com/openai/codex/releases/tag/rust-v0.148.0`.
+- 명령어 링크는 `https://developers.openai.com/codex/`.
+- **Codex 픽에도 자세히 네 줄을 다 채운다.** 예전엔 한 줄짜리였는데 이제 Claude Code 와 같은 대접이다.
+
+## 3) 용도별 (두 도구 모두)
+`<div class="tab" id="use">` 안, 여덟 칸 중 맞는 `<div class="cat" id="u-cc-N">` 에 넣는다.
+
+칸: 긴 작업 맡기기 / Subagent · 멀티 세션 / PR · 코드 리뷰 / 비용 · 토큰 / 일상 UI · 네비 / Plugin · MCP · 확장 / Hook · 모니터링 / 모델 · Enterprise
+
+```
+<div class="ci" data-k="cc:/foo@2.1.230"><button class="box" data-off="[x]">[ ]</button>
+<span class="cmd"><a href="…" …>/foo</a></span>
+<span class="cd">무엇을 하나</span>
+<a class="cv" href="https://code.claude.com/docs/en/changelog#2-1-230" …>v2.1.230</a></div>
+```
+
+- 칸 머리(`.cathead`)의 개수 `<b>N</b>` 과 위쪽 칸 목록(`.catnav`)의 `<span class="n">N</span>` 을 **같이 올려라.** 안 맞으면 눈에 띈다.
+- 일곱 번째부터는 접히므로 새 줄에 `over` 클래스를 붙인다 — `<div class="ci over" …>`. 칸의 앞 여섯 개만 `over` 가 없다.
+- 한 칸에 너무 몰리지 않게(칸당 25개 안쪽).
+- **§1·§2 에서 넣은 것과 같은 기능이면 `data-k` 를 똑같이 맞춰라.**
+
+## 4) 철회·중단 감지 ★
+새 입력이 **이전에 올린 기능·모델의 철회·중단·접근차단·deprecated·superseded·이름변경**을 알리면 반영한다.
+
+- **신호**: 중단/철회/접근 차단/withdrawn/suspended/discontinued/deprecated/sunset/superseded/롤백/이름변경.
+- **조치**: 해당 줄을 ① **삭제** 또는 ② 등급을 낮추고(`t3`→`t1`, `.sev` 도) 제목 끝에 상태 표기(예: "— 중단").
+- 확신 없으면(정말 회수인지 모호하면) 그대로 둔다.
 
 ## 절대 금지
-- `.version-block`(패치노트)·월별 그리드(data-period가 recent 아닌 것)·랜드마크 배너·디자인/CSS는 건드리지 마라. 버전 블록은 스크립트(추가)·전용 번역 스텝(feature 한국어화)·페이지 JS(랜드마크·접기)가 자동 처리한다 — curate는 `.version-block`을 **일절 건드리지 마라**.
-- **명백한 플레이스홀더·테스트 엔트리만 건너뛴다** ("Bug fixes and reliability improvements", "Internal infrastructure improvements" 등). 과장된 홍보문구(새 모델 출시 등)는 실제 메이저 발표일 수 있으니 임의로 빼지 말 것 — 새 모델/플래그십 출시는 최우선 t3 픽 후보다.
-- 각 영역의 기존 마크업 형식을 절대 깨지 말 것. ANALYSIS의 JS 객체 문법(따옴표·콤마)을 절대 깨지 말 것. 확신 없으면 그 항목은 건너뛴다.
+- `<div id="data">` 안(버전블록·문서표) 은 **일절 건드리지 마라.**
+- 상단바·CSS·`<script>` 는 건드리지 마라.
+- **명백한 플레이스홀더만 건너뛴다** ("Bug fixes and reliability improvements", "Internal infrastructure improvements" 등). 새 모델·플래그십 출시는 임의로 빼지 말 것 — 최우선 `t3` 후보다.
+- 마크업 형식을 깨지 말 것. 확신 없으면 그 항목은 건너뛴다.

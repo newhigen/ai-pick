@@ -51,7 +51,7 @@ jobs:
           git commit -m "chore(codex): ${{ steps.codex.outputs.cx_added_versions }} 자동 추가"
           git push
 
-      # ── blog/news 수집 (Anthropic·OpenAI·Manus) ──
+      # ── blog/news 수집 — 화면엔 안 올리고 철회·중단 감지에만 쓴다 ──
       - name: Detect new blog/news posts
         id: blog
         run: python scripts/collect_blog.py || echo '[]' > new_blog.json
@@ -61,7 +61,7 @@ jobs:
         id: gate
         run: echo "go=${{ steps.update.outputs.has_features == 'true' || steps.codex.outputs.cx_has_features == 'true' || steps.blog.outputs.has_blog == 'true' }}" >> "$GITHUB_OUTPUT"
 
-      # ── stage-2: 헤드리스 claude -p 가 워킹트리 index.html을 직접 Edit (CC·Codex·Manus·뉴스) ──
+      # ── stage-2: 헤드리스 claude -p 가 워킹트리 index.html을 직접 Edit (새로 나온 것·용도별) ──
       # (구 claude-code-action@v1 은 PR/브랜치 모드라 워킹트리를 안 고쳐 매번 noop → 헤드리스로 교체)
       - name: Install Claude Code CLI
         if: steps.gate.outputs.go == 'true'
@@ -107,7 +107,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet index.html; then
             git add index.html
-            git commit -m "chore: 큐레이션 갱신 — 써볼·용도별·Codex·Manus·뉴스 (Claude)"
+            git commit -m "chore: 큐레이션 갱신 — 새로 나온 것·용도별 (Claude)"
             git push
           else
             echo "큐레이션 변경 없음"

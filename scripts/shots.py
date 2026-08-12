@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""주요 화면(5탭 + blog 분석 모달)을 PC/모바일로 캡처 → docs/screenshots/.
+"""두 화면(새로 나온 것·용도별) × 두 도구를 PC/모바일로 캡처 → docs/screenshots/.
 사용: python3 scripts/shots.py   (로컬 맥 + 시스템 Chrome 기준)
 주요 UI 변경 후 실행해 스크린샷을 최신화한다."""
 import os
@@ -8,20 +8,18 @@ ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 URL='file://'+os.path.join(ROOT,'index.html')
 D=os.path.join(ROOT,'docs','screenshots')+os.sep
 os.makedirs(D, exist_ok=True)
-VIEWS=['home','cc','codex','manus','news']
+VIEWS=['new','use']
+TOOLS=['cc','cx']
 def launch(p):
     try: return p.chromium.launch(channel='chrome')
     except Exception: return p.chromium.launch()
 def shoot(pg, suffix):
     for v in VIEWS:
-        pg.evaluate(f"switchView('{v}')"); pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(500)
-        pg.screenshot(path=f'{D}{v}_{suffix}.png')
-    # 분석 모달 (cc 사이드바 Managed Agents)
-    pg.evaluate("switchView('cc')"); pg.wait_for_timeout(300)
-    try:
-        pg.click("a.side-feat:has-text('Managed Agents')", force=True); pg.wait_for_timeout(500)
-        pg.screenshot(path=f'{D}modal_{suffix}.png'); pg.evaluate("closeSheet&&closeSheet()")
-    except Exception as e: print('modal skip:', e)
+        pg.evaluate(f"goTab('{v}')")
+        for t in TOOLS:
+            pg.evaluate(f"document.querySelector('.ptools a[data-t=\"{t}\"]').click()")
+            pg.evaluate("window.scrollTo(0,0)"); pg.wait_for_timeout(400)
+            pg.screenshot(path=f'{D}{v}_{t}_{suffix}.png')
 with sync_playwright() as p:
     b=launch(p)
     ctx=b.new_context(viewport={'width':1280,'height':900}, device_scale_factor=2)
