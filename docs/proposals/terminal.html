@@ -1,0 +1,937 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오늘 뭐 써볼까 · 결 고르기</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M5.5 7.5 L14.5 16 L5.5 24.5' fill='none' stroke='%234a7a56' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='18' y='21.2' width='9.5' height='3.3' rx='1.65' fill='%23c2703a'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@v1.0.3/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600&family=Gothic+A1:wght@400;500;600&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* 한글 고딕 고르기 — 같은 화면을 폰트만 갈아끼워 본다.
+   IBM Plex Sans KR 은 라틴(latin·latin-ext)과 한글을 한 집안에서 다 낸다.
+   앞에 Inter Tight 를 세우면 영문만 딴 집 글자가 되므로 Plex 하나로 둔다. */
+:root{--sans:"IBM Plex Sans KR",-apple-system,system-ui,sans-serif;
+      --mono:"IBM Plex Mono","Google Sans Code",ui-monospace,"SF Mono",Menlo,monospace}
+:root[data-font="plexinter"]{--sans:"Inter Tight","IBM Plex Sans KR",-apple-system,system-ui,sans-serif}
+:root[data-font="pretendard"]{--sans:"Inter Tight",Pretendard,-apple-system,system-ui,sans-serif;
+      --mono:"Google Sans Code",ui-monospace,Menlo,monospace}
+:root[data-font="wanted"]{--sans:"Wanted Sans Variable","Wanted Sans",-apple-system,system-ui,sans-serif}
+:root[data-font="noto"]{--sans:"Inter Tight","Noto Sans KR",-apple-system,system-ui,sans-serif}
+:root[data-font="gothica1"]{--sans:"Inter Tight","Gothic A1",-apple-system,system-ui,sans-serif}
+:root[data-font="apple"]{--sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}
+html{color-scheme:light}
+/* 스크롤바 자리를 늘 비워 둔다 — 목록이 짧아져 스크롤바가 사라지면 지면이 옆으로 밀린다 */
+html{scrollbar-gutter:stable}
+:root{--boxw:34px;--boxwG:22px}
+/* 체크 감추기 — 칸과 취소선을 통째로 걷어 그냥 목록으로 읽히게 한다. 표시만 끄고 상태는 남는다. */
+:root[data-check="off"]{--boxw:0px;--boxwG:0px}
+/* display:none 은 격자 항목을 통째로 빼서 뒤 칸이 한 칸씩 앞으로 밀린다 — 자리는 두고 감춘다 */
+:root[data-check="off"] .box{visibility:hidden;width:0;padding:0;overflow:hidden}
+:root[data-check="off"] .it.done .tt,
+:root[data-check="off"] .it.done .cmd,
+:root[data-check="off"] .it.done .cmd a,
+:root[data-check="off"] .it.done .m-tt{text-decoration:none;color:inherit;font-weight:inherit}
+
+/* 해본 줄은 통째로 물러난다 — 등급·명령어·좋은 점·날짜·체크 칸까지 한 색으로.
+   결마다 있는 등급색(.vP .t3 .sev 등)보다 한 겹 더 잡아야 이긴다.
+   체크 칸을 감춘 상태에선 이 규칙이 아예 안 걸려 원래 색이 돌아온다. */
+:root:not([data-check="off"]) .v .it.done .sev,
+:root:not([data-check="off"]) .v .it.done .cmd,
+:root:not([data-check="off"]) .v .it.done .cmd a,
+:root:not([data-check="off"]) .v .it.done .ds,
+:root:not([data-check="off"]) .v .it.done .dt,
+:root:not([data-check="off"]) .v .it.done .star,
+:root:not([data-check="off"]) .v .it.done .bar,
+:root:not([data-check="off"]) .v .it.done .box,
+:root:not([data-check="off"]) .v .it.done .m-ds{color:var(--faint);font-weight:400}
+:root:not([data-check="off"]) .v .it.done .tt,
+:root:not([data-check="off"]) .v .it.done .m-tt{color:var(--faint);font-weight:400;
+      text-decoration:line-through}
+body{background:#fff;font-family:var(--sans);font-size:14px;line-height:1.55;
+     -webkit-font-smoothing:antialiased}
+.picker{position:sticky;top:0;z-index:9;background:#fbfbfa;border-bottom:1px solid #e3e3df;
+        padding:8px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12.5px;
+        color:#6f6f78}
+.picker b{color:#a2a2aa;font-weight:500}
+.picker button{background:none;border:0;color:#6f6f78;font:inherit;cursor:pointer;padding:2px 0}
+.picker button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
+.picker .hint{margin-left:auto;color:#a2a2aa;font-size:11.5px}
+.tw{display:none}.tw.on{display:block}
+
+/* 제품 상단바 — 탭이 바깥 축, 도구가 안쪽 축 */
+.pbar{display:flex;align-items:center;gap:18px;padding-bottom:11px;margin-bottom:4px;
+      border-bottom:1px solid var(--pbarLine)}
+.pbrand{font-family:var(--sans);font-weight:600;font-size:13.5px;white-space:nowrap;color:var(--optOn)}
+.pbrand i{font-style:normal;font-family:var(--mono);font-weight:400;color:var(--optAcc)}
+.ptabs{display:flex;gap:16px}
+/* 켜지면 굵어지는데 굵은 글자가 더 넓어 옆 것이 밀린다.
+   안 보이는 굵은 사본을 같이 넣어 폭을 처음부터 굵은 쪽으로 잡아 둔다. */
+.lb{display:inline-flex;flex-direction:column;align-items:flex-start}
+.lb::after{content:attr(data-label);font-weight:600;height:0;overflow:hidden;visibility:hidden;
+           pointer-events:none}
+.ptabs a{font-size:12.5px;color:var(--optOff);text-decoration:none;cursor:pointer;padding:1px 8px;border-radius:3px}
+.ptabs a:hover{color:var(--optOn)}
+.ptabs a:not(.on):hover{background:var(--hoverTab)}
+.ptabs a.on{color:var(--optOn);font-weight:600}
+.ptools{display:flex;gap:12px;padding-left:16px;border-left:1px solid var(--pbarLine)}
+.ptools a{font-size:12.5px;color:var(--optOff);text-decoration:none;cursor:pointer;
+          display:flex;align-items:center;gap:5px;padding:1px 8px;border-radius:3px}
+/* 도구는 각자 제 공식 색을 쓴다 — 켜진 게 어느 도구인지 색으로도 말한다.
+   Claude 주황 #D97757 · OpenAI 잉크 #141413. 탭(표면색)과 겹치지 않는다. */
+.ptools a{display:inline-flex;align-items:center;gap:6px}
+.tlogo{width:13px;height:13px;flex:none;color:var(--tc)}
+.ptools a[data-t="cc"]{--tc:#d97757;--tcBg:rgba(217,119,87,.17);--tcHov:rgba(217,119,87,.08);--tcFg:#8f4526}
+.ptools a[data-t="cx"]{--tc:#000;--tcBg:rgba(0,0,0,.09);--tcHov:rgba(0,0,0,.045);--tcFg:#000}
+.ptools a .tlogo{opacity:.45}
+.ptools a.on .tlogo{opacity:1}
+.ptools a:hover .tlogo{opacity:.8}
+/* 어두운 결에선 OpenAI 잉크가 안 보인다 — 밝은 쪽으로 뒤집는다 */
+.vK .ptools a[data-t="cx"],.vT .ptools a[data-t="cx"]{--tc:#f0ece2;
+      --tcBg:rgba(240,236,226,.13);--tcHov:rgba(240,236,226,.07);--tcFg:#f0ece2}
+.vK .ptools a[data-t="cc"],.vT .ptools a[data-t="cc"]{--tc:#e08d68;
+      --tcBg:rgba(217,119,87,.24);--tcHov:rgba(217,119,87,.12);--tcFg:#eba888}
+.ptools a:hover{color:var(--tcFg)}
+.ptools a:not(.on):hover{background:var(--tcHov)}
+.ptools a.on{color:var(--tcFg);font-weight:560}
+/* 상단바 오른쪽 = 두 화면에 걸친 것 (체크는 용도별과 한 통) */
+.pdone{margin-left:auto;display:flex;align-items:center;gap:11px;font-family:var(--mono);
+       font-size:11.5px;color:var(--optOff);white-space:nowrap}
+.pdone b{color:var(--optOn);font-weight:600}
+/* 눌러서 실행하는 것은 테두리 상자로 — 대괄호는 켜고 끄는 것(토글)에만 */
+.btn{background:none;border:1px solid var(--pbarLine);border-radius:3px;padding:2px 8px;
+     cursor:pointer;font:inherit;font-family:var(--mono);font-size:11.5px;color:var(--optOff);
+     line-height:1.4}
+.btn:hover{border-color:var(--optAcc);color:var(--optOn);background:var(--hoverTool)}
+/* 밖으로 나가는 링크는 상단바가 아니라 목록 끝에 */
+.vfoot{max-width:1400px;margin:22px auto 0;padding-top:10px;border-top:1px dashed var(--pbarLine)}
+.psrc{font-family:var(--sans);font-size:12px;color:var(--optOff)}
+.psrc a{color:var(--optOff);text-decoration:none;border-bottom:1px dotted currentColor;display:none}
+.psrc a.on{display:inline}
+.psrc a:hover{color:var(--optAcc)}
+/* 지금 보고 있는 도구의 원본으로 나가는 길. 도구 스위치 바로 뒤라야 무엇의 원본인지 보인다.
+   도구 버튼처럼 보이면 안 되므로 채움 없이 밑줄과 ↗ 로만 세운다. */
+.ptop{padding-left:14px;border-left:1px solid var(--pbarLine)}
+.ptop a{font-size:12.5px;color:var(--optOn);text-decoration:none;display:none;white-space:nowrap;
+        border-bottom:1px solid var(--pbarLine);padding-bottom:1px}
+.ptop a.on{display:inline}
+.ptop a i{font-style:normal;font-size:11px;margin-left:1px}
+.ptop a:hover{color:var(--optAcc);border-bottom-color:currentColor}
+.pstamp{font-family:var(--mono);font-size:11px;color:var(--optOff);white-space:nowrap;
+        padding-left:14px;border-left:1px solid var(--pbarLine)}
+
+/* 모두 해제 미니창 — 용도별 화면과 같은 생김새 */
+dialog{margin:auto;border:1px solid #ddd8cb;border-radius:5px;background:#fffdf7;color:#3a352e;padding:0;
+       width:min(420px,88vw);box-shadow:0 14px 40px rgba(60,50,30,.18);font-family:var(--sans)}
+dialog::backdrop{background:rgba(34,32,28,.34)}
+.dh{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
+    color:#8a8578;padding:11px 15px 0}
+.dh i{flex:1;border-top:1px dashed #ddd8cb}
+.db{padding:9px 15px 3px;font-size:13.5px;line-height:1.6}
+.db b{font-weight:600;color:#22201c}
+.db .warn{display:block;margin-top:3px;font-size:12.5px;color:#8a4a22}
+.df{display:flex;justify-content:flex-end;gap:16px;padding:11px 15px 13px;font-family:var(--mono);
+    font-size:12px}
+.df .yes{border-color:#c2703a;color:#8a4a22;font-weight:600;background:rgba(194,112,58,.16)}
+.df .yes:hover{background:rgba(194,112,58,.28)}
+
+/* 옵션 스위치 — 테두리도 알약도 없이, 줄의 대괄호와 같은 어휘로 */
+.opts{float:right;display:flex;gap:15px}
+/* 요약 줄 색을 물려받으면 너무 흐려 안 읽힌다 — 결마다 따로 준다 */
+.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12px;
+     color:var(--optOff)}
+.opt i{font-family:var(--mono);font-style:normal;font-size:11.5px;margin-right:3px}
+.opt:hover{color:var(--optOn)}
+.opt.on{color:var(--optOn);font-weight:560}
+.opt.on i{color:var(--optAcc)}
+/* 줄뿐 아니라 빈 날짜 머리도 같이 접힌다 */
+.hide{display:none}
+.fsel,.ssel{display:flex;gap:11px;align-items:center;padding-left:16px;
+      border-left:1px solid #e3e3df}
+.ssel2{display:flex;gap:11px;align-items:center;padding-left:16px;border-left:1px solid #e3e3df}
+.ssel2 b{color:#a2a2aa;font-weight:500}
+.ssel2 button{font-size:12px;color:#8a8a92}
+.ssel2 button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
+.ssel b{color:#a2a2aa;font-weight:500}
+.ssel button{font-size:12px;color:#8a8a92}
+.ssel button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
+.fsel b{color:#a2a2aa;font-weight:500}
+.fsel button{font-size:12px;color:#8a8a92}
+.fsel button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
+.v{display:none;padding:30px 22px 90px;min-height:100vh}
+.v.on{display:block}
+.hd{max-width:1400px;margin:0 auto 16px}
+.hd h1{font-size:19px;font-weight:600;letter-spacing:-.015em}
+.hd .why{margin-top:6px;font-size:13px;line-height:1.65;max-width:96ch}
+.hd .why b{font-weight:600}
+.box0{max-width:1400px;margin:0 auto;font-family:var(--mono);font-size:12.5px;line-height:1.65}
+
+/* 공통 행 문법 */
+.it{position:relative}
+.it .row{cursor:pointer}
+.it .box{font:inherit;background:none;border:0;padding:4px 8px;margin:-4px 0;cursor:pointer;
+         border-radius:3px;white-space:nowrap;line-height:1.35}
+/* 올려두면 눌렀을 때 들어갈 표시를 옅게 — 어디를 눌러야 하는지가 그 자리에서 보인다 */
+.it .box.ghost{opacity:.42}
+/* 자세히는 줄을 밀지 않고 위에 뜬다 — 훑는 중에 목록이 출렁이지 않도록 */
+.it .det{display:none}
+/* 자세히는 커서 옆에 뜨는 팝업. 화면 끝에 닿으면 JS가 위·왼쪽으로 뒤집는다. */
+/* 커서를 따라다니므로 팝업이 마우스를 먹으면 줄에서 벗어난 것으로 처리돼 깜빡인다 */
+.pane{position:fixed;z-index:40;width:min(560px,86vw);padding:10px 13px 11px;border-radius:6px;
+      opacity:0;visibility:hidden;transition:opacity .1s ease;pointer-events:none}
+.pane.on{opacity:1;visibility:visible}
+.pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12.5px;margin-bottom:6px;
+      padding-bottom:5px}
+.pane .ph b{font-weight:600}
+.pane .ph .pk{margin-left:auto;font-family:var(--mono);font-size:10.5px;white-space:nowrap}
+/* 라벨이 '무엇이 바뀌나'까지 들어가야 해서 52px 로는 접힌다 */
+.pane .pb p{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:2px 0;
+      font-size:13px;line-height:1.6}
+.it.open .row{outline:1px dashed currentColor;outline-offset:0}
+.det p{display:grid;grid-template-columns:52px minmax(0,1fr);gap:11px;padding:2px 0}
+.dk{font-family:var(--mono);font-size:10.5px;padding-top:3px;white-space:nowrap}
+/* 버전 링크는 날짜 줄의 일부처럼 — 색을 따로 주지 않고 밑줄도 올렸을 때만 */
+.vl{color:inherit;text-decoration:none;opacity:.72}
+.vl:hover{opacity:1;border-bottom:1px dotted currentColor}
+.chead{font-size:10.5px;letter-spacing:.02em;padding:0 11px 2px;margin:16px -11px 0;opacity:.55}
+.chead span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 날짜는 값이 오른쪽 정렬이라 이름도 오른쪽에 붙여야 같은 줄로 보인다 */
+.chead span:last-child{text-align:right}
+/* 결별 .c-day 규칙(.vP .c-day 등)과 같은 무게라 밀린다 — 한 단계 올려 잡는다 */
+.v .chead + .c-day,.v .chead + .t-day{margin-top:4px}
+/* 설명 속 명령어·플래그는 기계 값이라 모노로 */
+code{font-family:var(--mono);font-size:.92em;opacity:.9}
+.tt,.ds{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tt{font-family:var(--sans);font-size:13.5px}
+.ds{font-family:var(--sans);font-size:12.5px}
+.dt{font-size:11px;text-align:right}
+.sev{font-size:11px}
+.cmd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmd a{color:inherit;text-decoration:none}
+.cmd a:hover{border-bottom:1px dotted currentColor}
+.sepdot{opacity:.5}
+
+/* ── 1 종이 ── */
+.vP{background:#faf9f5;color:#22201c;--optOff:#8a8578;--optOn:#22201c;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#22201c;--fillInkBg:#22201c;--fillInkFg:#faf9f5;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(34,32,28,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--pbarBg:#faf9f5;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vP .hd .why{color:#6b665c}.vP .hd .why b{color:#22201c}
+.vP .c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
+.vP .c-day i{flex:1;border-top:1px dashed #ddd8cb}
+.vP .c-day em{font-style:normal;color:#b3ae9f}
+.vP .chead,.vP .row{display:grid;grid-template-columns:10px 30px var(--boxw) 222px minmax(0,1.15fr) minmax(0,1fr) 34px;
+         gap:9px;padding:5px 11px;margin:0 -11px;align-items:baseline}
+.vP .row:hover{background:#f2efe6}
+.vP .star{color:#c2703a}
+.vP .box{color:#a09a8c}.vP .box:hover{background:#e8e3d6;color:#22201c}
+.vP .cmd{color:#4a7a56}
+.vP .t3 .cmd{color:#2f5c3c;font-weight:500}
+.vP .t1 .cmd{color:#8aa892}
+.vP .dt{color:#b3ae9f}.vP .nw .dt{color:#c2703a}
+.vP .t3 .sev{color:#c2703a}.vP .t3 .tt{color:#1a1815;font-weight:600}
+.vP .t2 .sev{color:#8a8578}.vP .t2 .tt{color:#3a352e}
+.vP .t1 .sev{color:#c3bdae}.vP .t1 .tt{color:#8b857a}
+.vP .ds{color:#9c9689}.vP .t1 .ds{color:#b5afa2}
+.vP .pane{background:#fffdf7;border-top:1px solid #ddd8cb;color:#5f5a51;box-shadow:0 -8px 24px rgba(60,50,30,.10)}
+         font-family:var(--sans);font-size:13px;color:#5f5a51;line-height:1.65}
+.vP .dk{color:#a09a8c}.vP .dn{color:#b5afa2}
+.vP .done .tt{color:#b8b2a5;text-decoration:line-through;font-weight:400}
+.vP .done .box{color:#4f7a3c}
+.vP .foot{color:#a09a8c;font-size:11.5px;margin-top:20px;border-top:1px dashed #ddd8cb;padding-top:9px}
+.vP .lead{color:#a09a8c;font-size:11.5px}.vP .lead b{color:#c2703a;font-weight:400}
+
+/* ── 2 콘솔(다크) ── */
+.vK{background:#0e1013;color:#cfcbc2;--optOff:#8b8578;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#262b34;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#0e1013;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--faint:#5a564e;--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#0e1013;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
+.vK .hd h1{color:#e8e4da}
+.vK .hd .why{color:#8b8578}.vK .hd .why b{color:#cfcbc2}
+.vK .c-day{display:flex;align-items:center;gap:9px;color:#5e5a52;margin:20px 0 5px;font-size:11.5px}
+.vK .c-day i{flex:1;border-top:1px dashed #2a2c31}
+.vK .c-day em{font-style:normal;color:#4b4841}
+.vK .chead,.vK .row{display:grid;grid-template-columns:10px 30px var(--boxw) 222px minmax(0,1.15fr) minmax(0,1fr) 34px;
+         gap:9px;padding:5px 11px;margin:0 -11px;align-items:baseline}
+.vK .row:hover{background:#181b20}
+.vK .star{color:#e0a44a}
+.vK .box{color:#6b675f}.vK .box:hover{background:#252830;color:#e8e4da}
+.vK .cmd{color:#7fbf6a}
+.vK .t3 .cmd{color:#9ede84;font-weight:500}
+.vK .dt{color:#5e5a52}.vK .nw .dt{color:#e0a44a}
+.vK .t3 .sev{color:#e0a44a}.vK .t3 .tt{color:#f0ece2;font-weight:600}
+.vK .t2 .sev{color:#8b8578}.vK .t2 .tt{color:#cfcbc2}
+.vK .t1 .sev{color:#4b4841}.vK .t1 .tt{color:#7d786e}.vK .t1 .cmd{color:#5c8a50}
+.vK .ds{color:#7d786e}.vK .t1 .ds{color:#5e5a52}
+.vK .pane{background:#191c22;border-top:1px solid #313640;color:#a8a396;box-shadow:0 -8px 26px rgba(0,0,0,.55)}
+         font-family:var(--sans);font-size:13px;color:#a8a396;line-height:1.65}
+.vK .dk{color:#5e5a52}.vK .dn{color:#5e5a52}
+.vK .done .tt{color:#5e5a52;text-decoration:line-through;font-weight:400}
+.vK .done .box{color:#7fbf6a}
+.vK .foot{color:#5e5a52;font-size:11.5px;margin-top:20px;border-top:1px dashed #2a2c31;padding-top:9px}
+.vK .lead{color:#5e5a52;font-size:11.5px}.vK .lead b{color:#e0a44a;font-weight:400}
+
+/* ── 3 TUI ── */
+.vT{background:#12141a;color:#c9c5bc;--optOff:#807a6e;--optOn:#e8e4da;--optAcc:#e0a44a;--tabBg:#272c37;--tabFg:#f0ece2;--fillInkBg:#e8e4da;--fillInkFg:#12141a;--fillAccBg:rgba(224,164,74,.22);--fillAccFg:#f0c886;--fillSolBg:#c98a2e;--fillSolFg:#17140e;--hoverTab:rgba(232,228,218,.10);--hoverTool:rgba(224,164,74,.11);--faint:#5a564e;--pbarLine:#2a2c31;--tcc:#e0a44a;--pbarBg:#12141a;--selBg:rgba(224,164,74,.18);--tcx:#8b8578}
+.vT .hd h1{color:#e8e4da}
+.vT .hd .why{color:#807a6e}.vT .hd .why b{color:#c9c5bc}
+.vT .frame{border:1px solid #343842;border-radius:3px;padding:0 0 6px}
+.vT .ftop,.vT .fbot{display:flex;align-items:center;gap:9px;color:#6f6a5f;font-size:11.5px;
+     padding:5px 11px;background:#181b22}
+.vT .ftop{border-bottom:1px solid #343842}
+.vT .fbot{border-top:1px solid #343842;margin-top:6px}
+.vT .ftop b{color:#e8e4da;font-weight:500}
+.vT .ftop .sp,.vT .fbot .sp{margin-left:auto}
+.vT .fbot .opts{float:none;gap:13px;margin-left:6px}
+.vT .fbot kbd{font-family:var(--mono);color:#e0a44a;background:none;border:0;font-size:11.5px}
+.vT .t-day{display:flex;align-items:center;gap:0;color:#5f5a51;font-size:11.5px;margin:9px 0 3px}
+.vT .t-day i{flex:1;border-top:1px solid #2a2d35;margin:0 4px}
+.vT .chead,.vT .row{display:grid;grid-template-columns:12px var(--boxw) 30px 200px minmax(0,1.1fr) minmax(0,1fr) 34px 12px;
+         gap:9px;padding:4px 11px;margin:0 -3px;align-items:baseline}
+.vT .row:hover{background:#1e222b}
+.vT .bar{color:#343842}
+.vT .box{color:#6f6a5f}.vT .nw .box{color:#e0a44a}
+.vT .cmd{color:#6fb3d4}
+.vT .t3 .cmd{color:#8fcfea;font-weight:500}
+.vT .t1 .cmd{color:#4e7d93}
+.vT .dt{color:#5f5a51}
+.vT .t3 .sev{color:#e0a44a}.vT .t3 .tt{color:#f0ece2;font-weight:600}
+.vT .t2 .sev{color:#807a6e}.vT .t2 .tt{color:#c9c5bc}
+.vT .t1 .sev{color:#4a4740}.vT .t1 .tt{color:#78736a}
+.vT .ds{color:#78736a}.vT .t1 .ds{color:#5f5a51}
+.vT .pane{background:#1b1f27;border-top:1px solid #343842;color:#a29d92;box-shadow:0 -8px 26px rgba(0,0,0,.55)}
+         font-family:var(--sans);font-size:13px;color:#a29d92;line-height:1.65}
+.vT .dk{color:#5f5a51}.vT .dn{color:#5f5a51}
+.vT .done .tt{color:#5f5a51;text-decoration:line-through;font-weight:400}
+.vT .done .box{color:#7fbf6a}
+
+/* ── 4 git log ── */
+.vG{background:#fbfaf7;color:#26241f;--optOff:#8a8578;--optOn:#26241f;--optAcc:#c2703a;--tabBg:#eae4d6;--tabFg:#26241f;--fillInkBg:#26241f;--fillInkFg:#fbfaf7;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(38,36,31,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fbfaf7;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vG .hd .why{color:#6b665c}.vG .hd .why b{color:#26241f}
+.vG .g-day{display:flex;align-items:baseline;gap:10px;margin:14px 0 4px;font-size:11.5px}
+.vG .gr{color:#cfc9ba}
+.vG .gd{color:#8a8578}.vG .ga{color:#b3ae9f}
+.vG .it{position:relative}
+.vG .it::before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;background:#e3ddcd}
+.vG .row{display:grid;grid-template-columns:var(--boxwG) 220px minmax(0,1fr) 34px;gap:11px;
+         padding:4px 4px 4px 0;align-items:baseline}
+.vG .row:hover{background:#f4f1e8}
+.vG .box{color:#c0b9a6;position:relative;z-index:1;background:#fbfaf7}
+.vG .nw .box{color:#c2703a}
+.vG .done .box{color:#4f7a3c}
+.vG .cmd{color:#3c6b4a}
+.vG .sev{text-align:right}
+.vG .t3 .sev{color:#c2703a}.vG .t3 .tt{color:#1a1815;font-weight:600}
+.vG .t2 .sev{color:#8a8578}.vG .t2 .tt{color:#3a352e}
+.vG .t1 .sev{color:#c3bdae}.vG .t1 .tt{color:#8b857a}
+.vG .pane{background:#fffdf7;border-top:1px solid #e3ddcd;color:#5f5a51;box-shadow:0 -8px 24px rgba(60,50,30,.10)}
+
+.vG .dk{color:#a09a8c}.vG .dn{color:#b5afa2}
+.vG .done .tt{color:#b8b2a5;text-decoration:line-through;font-weight:400}
+.vG .done .box{color:#4f7a3c}
+.vG .lead{color:#a09a8c;font-size:11.5px;margin-bottom:6px}
+.vG .lead b{color:#c2703a;font-weight:400}
+
+/* ── 5 man page ── */
+.vM{background:#fdfcf9;color:#24221d;--optOff:#8a8578;--optOn:#24221d;--optAcc:#c2703a;--tabBg:#ece6d9;--tabFg:#24221d;--fillInkBg:#24221d;--fillInkFg:#fdfcf9;--fillAccBg:rgba(194,112,58,.18);--fillAccFg:#8a4a22;--fillSolBg:#c2703a;--fillSolFg:#fff8f2;--hoverTab:rgba(36,34,29,.07);--hoverTool:rgba(194,112,58,.08);--faint:#bdb7a9;--pbarLine:#e3ddcd;--tcc:#c2703a;--pbarBg:#fdfcf9;--selBg:rgba(194,112,58,.16);--tcx:#8a8578}
+.vM .box0{font-size:13px;line-height:1.7;max-width:900px}
+.vM .hd{max-width:900px}
+.vM .hd .why{color:#6b665c}.vM .hd .why b{color:#24221d}
+.vM .m-day{margin:30px 0 10px;font-family:var(--mono);font-size:12px;color:#8a8578;font-weight:400;
+      display:flex;gap:10px;align-items:baseline;border-bottom:1px solid #eae5d8;padding-bottom:5px}
+.vM .m-day span{color:#b3ae9f;font-size:11px}
+.vM .it{padding:12px 0 12px 30px;position:relative}
+.vM .row{display:flex;align-items:baseline;gap:11px;position:absolute;left:0;top:12px;width:100%}
+.vM .box{position:absolute;left:0;color:#b3ae9f;padding:0}
+.vM .box:hover{color:#24221d}
+.vM .it .cmd{position:absolute;left:26px;color:#3c6b4a;font-family:var(--mono);font-size:11.5px}
+.vM .it .sev{position:absolute;right:0;font-size:11px}
+/* 본문은 본문체로 — 모노는 명령어·머리말 같은 기계 값에만 */
+.vM .m-tt{margin-top:20px;font-family:var(--sans);font-size:14.5px;font-weight:560;line-height:1.5}
+.vM .m-ds{margin-top:3px;font-family:var(--sans);color:#7c7669;font-size:13px;line-height:1.7}
+.vM .det,.vM .det p{font-family:var(--sans)}
+.vM .t3 .sev{color:#c2703a}.vM .t3 .m-tt{color:#1a1815;font-weight:640}
+.vM .t2 .sev{color:#a09a8c}.vM .t1 .sev{color:#c9c3b4}
+.vM .t1 .m-tt{color:#7c7669;font-weight:500}
+.vM .det{position:static;display:block;padding:9px 0 0;font-size:13px;color:#5f5a51;line-height:1.7;
+         border:0;box-shadow:none;background:none}
+.vM .dk{color:#a09a8c}.vM .dn{color:#b5afa2}
+.vM .done .m-tt{color:#b8b2a5;text-decoration:line-through}
+.vM .done .box{color:#4f7a3c}
+.vM .lead{color:#8a8578;font-size:11.5px;font-family:var(--mono)}
+.vM .lead b{color:#c2703a;font-weight:400}
+
+/* 결별 행 규칙이 .chead 까지 같이 잡아 margin 을 덮는다 — 한 단계 올려 위 여백만 되돌린다 */
+.v .box0 .chead{margin-top:16px}
+
+/* 날짜 머리는 결마다 display:flex 가 걸려 있어 .hide 하나로는 못 접는다 — 뒤에서 한 번 더 */
+.v .it.hide,.v .c-day.hide,.v .t-day.hide,.v .g-day.hide,.v .m-day.hide{display:none}
+
+
+/* ── 선택 표시 다섯 가지 ──
+   기본은 반전. 탭은 잉크로 꽉 채우고 도구는 옅은 색으로 채워, 같은 '면' 이어도 무게가 갈린다.
+   옵션은 대괄호라 셋이 각각 다른 신호를 쓴다. */
+:root[data-sel="underline"] .ptabs a.on{box-shadow:inset 0 -2px 0 var(--optOn)}
+:root[data-sel="underline"] .ptools a[data-t="cc"].on{box-shadow:inset 0 -2px 0 var(--tcc)}
+:root[data-sel="underline"] .ptools a[data-t="cx"].on{box-shadow:inset 0 -2px 0 var(--tcx)}
+
+:root .ptabs a.on{background:var(--tabBg);color:var(--tabFg)}
+:root .ptools a.on{background:var(--tcBg)}
+:root[data-sel="underline"] .ptabs a.on,
+:root[data-sel="underline"] .ptools a.on,
+:root[data-sel="caret"] .ptabs a.on,
+:root[data-sel="caret"] .ptools a.on,
+:root[data-sel="bracket"] .ptabs a.on,
+:root[data-sel="bracket"] .ptools a.on,
+:root[data-sel="plain"] .ptabs a.on,
+:root[data-sel="plain"] .ptools a.on{background:none;color:var(--optOn);padding:0 0 2px;border-radius:0}
+:root[data-sel="caret"] .ptabs a.on,
+:root[data-sel="caret"] .ptools a.on{box-shadow:none}
+:root[data-sel="caret"] .ptabs a.on::before{content:"› ";color:var(--optAcc)}
+:root[data-sel="caret"] .ptools a.on::before{content:"› ";color:var(--optAcc)}
+
+:root[data-sel="bracket"] .ptabs a.on,
+:root[data-sel="bracket"] .ptools a.on{box-shadow:none}
+:root[data-sel="bracket"] .ptabs a.on::before{content:"[";color:var(--optAcc);margin-right:2px}
+:root[data-sel="bracket"] .ptabs a.on::after{content:"]";color:var(--optAcc);margin-left:2px}
+:root[data-sel="bracket"] .ptools a.on::before{content:"[";color:var(--optAcc);margin-right:2px}
+:root[data-sel="bracket"] .ptools a.on::after{content:"]";color:var(--optAcc);margin-left:2px}
+
+:root[data-sel="plain"] .ptabs a.on,
+:root[data-sel="plain"] .ptools a.on{box-shadow:none}
+:root[data-sel="plain"] .ptabs a.on{font-weight:700;letter-spacing:.01em}
+:root[data-sel="plain"] .ptools a.on{color:var(--optAcc)}
+
+
+/* ── 탭 채움 네 가지 ──
+   기본은 표면 한 단계. 잉크로 꽉 채우면 화면에서 제일 센 덩어리가 되는데,
+   탭은 가장 센 것이 아니라 지금 어디인지만 말하면 된다. */
+:root[data-fill="ink"] .ptabs a.on{background:var(--fillInkBg);color:var(--fillInkFg)}
+:root[data-fill="accent"] .ptabs a.on{background:var(--fillAccBg);color:var(--fillAccFg)}
+:root[data-fill="accentsolid"] .ptabs a.on{background:var(--fillSolBg);color:var(--fillSolFg)}
+
+@media(max-width:820px){
+  .vP .row,.vK .row{grid-template-columns:10px 28px 24px minmax(0,1fr) 34px}
+  .vP .cmd,.vK .cmd,.vP .ds,.vK .ds{display:none}
+  .vT .row{grid-template-columns:12px 22px 28px minmax(0,1fr) 34px 12px}
+  .vT .cmd,.vT .ds{display:none}
+  .vG .row{grid-template-columns:14px minmax(0,1fr) 34px}.vG .cmd{display:none}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lg-cc" viewBox="0 0 24 24"><path fill="currentColor" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></symbol><symbol id="lg-cx" viewBox="0 0 24 24"><path fill="currentColor" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></symbol></svg>
+
+<div class="picker">
+  <b>터미널 다섯 변주</b>
+  <button data-v="vP" aria-pressed="true">종이</button>
+  <button data-v="vK" aria-pressed="false">콘솔</button>
+  <button data-v="vT" aria-pressed="false">TUI</button>
+  <button data-v="vG" aria-pressed="false">git log</button>
+  <button data-v="vM" aria-pressed="false">man page</button>
+  <span class="hint">줄=미리보기 · 누르면 고정 · 풀기는 같은 줄·빈 곳·Esc</span>
+  <span class="ssel2"><b>탭 채움</b>
+    <button data-f2="surface" aria-pressed="true">표면</button>
+    <button data-f2="accent" aria-pressed="false">액센트 옅게</button>
+    <button data-f2="accentsolid" aria-pressed="false">액센트</button>
+    <button data-f2="ink" aria-pressed="false">잉크</button>
+  </span>
+  <span class="ssel"><b>선택 표시</b>
+    <button data-s2="invert" aria-pressed="true">반전</button>
+    <button data-s2="underline" aria-pressed="false">밑줄</button>
+    <button data-s2="caret" aria-pressed="false">꺾쇠</button>
+    <button data-s2="bracket" aria-pressed="false">대괄호</button>
+    <button data-s2="plain" aria-pressed="false">밝기만</button>
+  </span>
+  <span class="fsel"><b>한글 고딕</b>
+    <button data-f="plex" aria-pressed="true">Plex KR</button>
+    <button data-f="plexinter" aria-pressed="false">Plex+Inter</button>
+    <button data-f="wanted" aria-pressed="false">Wanted</button>
+    <button data-f="pretendard" aria-pressed="false">Pretendard</button>
+    <button data-f="noto" aria-pressed="false">Noto</button>
+    <button data-f="gothica1" aria-pressed="false">Gothic A1</button>
+    <button data-f="apple" aria-pressed="false">Apple SD</button>
+  </span>
+</div>
+
+<div class="v vP on" id="vP">
+  <div class="hd"><h1>종이</h1><p class="why">지금 것. 밝은 종이 바탕에 모노 구조만 얹었다.
+  <b>오래 봐도 눈이 편하고</b> 다른 화면(문서·이력서)과 같은 지면 위에 있는 느낌이 든다.
+  대신 '터미널'이라는 신호는 제일 약하다.</p></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span><span class="ptabs"><a class="on"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a href="use.html"><span class="lb" data-label="용도별">용도별</span></a></span><span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span><span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span><span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+<div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
+<div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로" data-k="cc:claude@2.1.224"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
+<div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송" data-k="cc:SendMessage@2.1.224"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
+<div class="c-day"><span>── 2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></span><i></i></div>
+<div class="it t1 nw" data-t="/review = /code-review 별칭 통합 — effort 레벨 자동 기억" data-k="cc:/review@2.1.223"><div class="row"><span class="star">*</span><span class="sev">일반</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/review 공식 문서">/review</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/review</code> = <code>/code-review</code> 별칭 통합 — effort 레벨 자동 기억</span><span class="ds"><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</span><span class="dt">8.6</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><p><span class="dk">해보기</span><code>/review</code> &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 <code>/code-review</code> ultra</p></div></div>
+<div class="c-day"><span>── 2026-08-04 화 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-222" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.222</a> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-221" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.221</a></span><i></i></div>
+<div class="it t2 nw" data-t="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김" data-k="cc:Ctrl+Alt+F@2.1.221"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="Ctrl+Alt+F (VSCode) 공식 문서">Ctrl+Alt+F (VSCode)</a></span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="ds">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</span><span class="dt">8.4</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">좋은 점</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span><code>Ctrl+Alt+F</code> 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div>
+<div class="it t2 nw" data-t="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만" data-k="cc:bg@2.1.221"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="bg → commit 공식 문서">bg → commit</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="push 공식 문서">push</a></span><span class="tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="ds">기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</span><span class="dt">8.4</span></div><div class="det"><p><span class="dk">좋은 점</span>기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span><code>CLAUDE.md</code>에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div>
+<div class="c-day"><span>── 2026-07-24 금 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-219" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.219</a></span><i></i></div>
+<div class="it t3" data-t="Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원" data-k="cc:claude-opus-5@2.1.219"><div class="row"><span class="star"></span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude-opus-5 공식 문서">claude-opus-5</a></span><span class="tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="ds">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</span><span class="dt">7.24</span></div><div class="det"><p><span class="dk">좋은 점</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div>
+<div class="it t2" data-t="서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정" data-k="cc:agent()@2.1.219"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="agent() → agent() 공식 문서">agent() → agent()</a></span><span class="tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="ds">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</span><span class="dt">7.24</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 비활성화.</p><p><span class="dk">좋은 점</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></p></div></div>
+<div class="c-day"><span>── 2026-07-22 수 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-218" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.218</a></span><i></i></div>
+<div class="it t2" data-t="/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음" data-k="cc:/code-review@2.1.218"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/code-review</code> 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="ds">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</span><span class="dt">7.22</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">좋은 점</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div>
+<div class="c-day"><span>── 2026-07-20 월 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-216" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.216</a></span><i></i></div>
+<div class="it t2" data-t="/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시" data-k="cc:/context@2.1.216"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/context 공식 문서">/context</a></span><span class="tt"><code>/context</code> 컨텍스트 초과 명시적 경고 — <code>/compact</code> 실패 시 에러 표시</span><span class="ds">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</span><span class="dt">7.20</span></div><div class="det"><p><span class="dk">좋은 점</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span><code>/context</code> 경고 발생 조건, <code>/compact</code> 실패 후 대응</p></div></div>
+<div class="c-day"><span>── 2026-07-19 일 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-215" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.215</a></span><i></i></div>
+<div class="it t2" data-t="/verify · /code-review 자동 실행 제거 — 직접 호출해야 함" data-k="cc:/verify@2.1.215"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/verify 공식 문서">/verify</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/verify</code> · <code>/code-review</code> 자동 실행 제거 — 직접 호출해야 함</span><span class="ds">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</span><span class="dt">7.19</span></div><div class="det"><p><span class="dk">좋은 점</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</p></div></div>
+<div class="c-day"><span>── 2026-07-18 토 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-214" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.214</a></span><i></i></div>
+<div class="it t2" data-t="긴 도구 호출에 주기적 진행 상황 알림" data-k="cc:progress@2.1.214"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="progress heartbeat 공식 문서">progress heartbeat</a></span><span class="tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="ds">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</span><span class="dt">7.18</span></div><div class="det"><p><span class="dk">좋은 점</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div>
+<div class="c-day"><span>── 2026-07-17 금 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-212" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.212</a></span><i></i></div>
+<div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로" data-k="cc:/fork@2.1.212"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</span><span class="dt">7.17</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
+<div class="c-day"><span>── 2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></span><i></i></div>
+<div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함" data-k="cc:--forward-subagent-text@2.1.211"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속" data-k="cc:always@2.1.211"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div><div class="tw t-cx"><p class="lead"><b>새로 들어온 것 2개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+<div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.147.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.147.0</a></span><i></i></div>
+<div class="it t2 nw" data-t="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기." data-k="cx:--approve-for-me@0.147.0"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="--approve-for-me 공식 문서">--approve-for-me</a></span><span class="tt"><code>--approve-for-me</code> 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="ds"></span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2 nw" data-t="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색." data-k="cx:#포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.@0.147.0"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="ds"></span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-29 수 <em>2주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.146.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.146.0</a></span><i></i></div>
+<div class="it t2" data-t="세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능." data-k="cx:/new@0.146.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/new 공식 문서">/new</a> <span class="sepdot">·</span> <a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/clear 공식 문서">/clear</a></span><span class="tt">세션 이름 지정(<code>/new</code>·<code>/clear</code>), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="ds"></span><span class="dt">7.29</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가." data-k="cx:#Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.@0.146.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="ds"></span><span class="dt">7.29</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-21 화 <em>3주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.145.0</a></span><i></i></div>
+<div class="it t2" data-t="멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선." data-k="cx:#멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.@0.145.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="ds"></span><span class="dt">7.21</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기." data-k="cx:/import@0.145.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/import 공식 문서">/import</a></span><span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="ds"></span><span class="dt">7.21</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-09 목 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.1</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.0</a></span><i></i></div>
+<div class="it t2" data-t="새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트." data-k="cx:#새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.@0.144.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="ds"></span><span class="dt">7.9</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능." data-k="cx:#MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.@0.144.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="ds"></span><span class="dt">7.9</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-08 수 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.143.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.143.0</a></span><i></i></div>
+<div class="it t2" data-t="원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시." data-k="cx:#원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.@0.143.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span><span class="ds"></span><span class="dt">7.8</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원." data-k="cx:#MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.@0.143.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span><span class="ds"></span><span class="dt">7.8</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-06-25 목 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.2" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.2</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.1</a></span><i></i></div>
+<div class="it t2" data-t="지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지." data-k="cx:#지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.@0.142.2"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span><span class="ds"></span><span class="dt">6.25</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-06-22 월 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.0</a></span><i></i></div>
+<div class="it t2" data-t="/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용." data-k="cx:/usage@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/usage 공식 문서">/usage</a></span><span class="tt"><code>/usage</code>에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단." data-k="cx:#롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만." data-k="cx:#인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div></div>
+  <p class="vfoot"><span class="psrc">여기까지가 골라낸 것 — 빠짐없이 보려면 <a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code 공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer">Codex 공식 릴리스 ↗</a></span></p>
+  <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
+</div>
+<div class="v vK" id="vK">
+  <div class="hd"><h1>콘솔</h1><p class="why">터미널의 본디 자리. 같은 배치에 <b>ANSI 색</b>을 얹었다 —
+  초록 명령어, 앰버 강조, dim 회색. 핵심 줄이 어둠 위에서 확 뜬다.
+  코드 쓰다 넘어오면 이질감이 없지만, 낮에 밝은 화면들 사이에 두면 이것만 튄다.</p></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span><span class="ptabs"><a class="on"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a href="use.html"><span class="lb" data-label="용도별">용도별</span></a></span><span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span><span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span><span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+<div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span><i></i></div>
+<div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로" data-k="cc:claude@2.1.224"><div class="row"><span class="star">*</span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
+<div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송" data-k="cc:SendMessage@2.1.224"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
+<div class="c-day"><span>── 2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></span><i></i></div>
+<div class="it t1 nw" data-t="/review = /code-review 별칭 통합 — effort 레벨 자동 기억" data-k="cc:/review@2.1.223"><div class="row"><span class="star">*</span><span class="sev">일반</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/review 공식 문서">/review</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/review</code> = <code>/code-review</code> 별칭 통합 — effort 레벨 자동 기억</span><span class="ds"><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</span><span class="dt">8.6</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><p><span class="dk">해보기</span><code>/review</code> &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 <code>/code-review</code> ultra</p></div></div>
+<div class="c-day"><span>── 2026-08-04 화 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-222" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.222</a> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-221" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.221</a></span><i></i></div>
+<div class="it t2 nw" data-t="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김" data-k="cc:Ctrl+Alt+F@2.1.221"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="Ctrl+Alt+F (VSCode) 공식 문서">Ctrl+Alt+F (VSCode)</a></span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="ds">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</span><span class="dt">8.4</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">좋은 점</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span><code>Ctrl+Alt+F</code> 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div>
+<div class="it t2 nw" data-t="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만" data-k="cc:bg@2.1.221"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="bg → commit 공식 문서">bg → commit</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="push 공식 문서">push</a></span><span class="tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="ds">기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</span><span class="dt">8.4</span></div><div class="det"><p><span class="dk">좋은 점</span>기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span><code>CLAUDE.md</code>에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div>
+<div class="c-day"><span>── 2026-07-24 금 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-219" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.219</a></span><i></i></div>
+<div class="it t3" data-t="Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원" data-k="cc:claude-opus-5@2.1.219"><div class="row"><span class="star"></span><span class="sev">핵심</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude-opus-5 공식 문서">claude-opus-5</a></span><span class="tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="ds">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</span><span class="dt">7.24</span></div><div class="det"><p><span class="dk">좋은 점</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div>
+<div class="it t2" data-t="서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정" data-k="cc:agent()@2.1.219"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="agent() → agent() 공식 문서">agent() → agent()</a></span><span class="tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="ds">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</span><span class="dt">7.24</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 비활성화.</p><p><span class="dk">좋은 점</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></p></div></div>
+<div class="c-day"><span>── 2026-07-22 수 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-218" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.218</a></span><i></i></div>
+<div class="it t2" data-t="/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음" data-k="cc:/code-review@2.1.218"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/code-review</code> 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="ds">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</span><span class="dt">7.22</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">좋은 점</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div>
+<div class="c-day"><span>── 2026-07-20 월 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-216" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.216</a></span><i></i></div>
+<div class="it t2" data-t="/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시" data-k="cc:/context@2.1.216"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/context 공식 문서">/context</a></span><span class="tt"><code>/context</code> 컨텍스트 초과 명시적 경고 — <code>/compact</code> 실패 시 에러 표시</span><span class="ds">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</span><span class="dt">7.20</span></div><div class="det"><p><span class="dk">좋은 점</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span><code>/context</code> 경고 발생 조건, <code>/compact</code> 실패 후 대응</p></div></div>
+<div class="c-day"><span>── 2026-07-19 일 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-215" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.215</a></span><i></i></div>
+<div class="it t2" data-t="/verify · /code-review 자동 실행 제거 — 직접 호출해야 함" data-k="cc:/verify@2.1.215"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/verify 공식 문서">/verify</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/verify</code> · <code>/code-review</code> 자동 실행 제거 — 직접 호출해야 함</span><span class="ds">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</span><span class="dt">7.19</span></div><div class="det"><p><span class="dk">좋은 점</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</p></div></div>
+<div class="c-day"><span>── 2026-07-18 토 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-214" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.214</a></span><i></i></div>
+<div class="it t2" data-t="긴 도구 호출에 주기적 진행 상황 알림" data-k="cc:progress@2.1.214"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="progress heartbeat 공식 문서">progress heartbeat</a></span><span class="tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="ds">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</span><span class="dt">7.18</span></div><div class="det"><p><span class="dk">좋은 점</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div>
+<div class="c-day"><span>── 2026-07-17 금 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-212" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.212</a></span><i></i></div>
+<div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로" data-k="cc:/fork@2.1.212"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</span><span class="dt">7.17</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
+<div class="c-day"><span>── 2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></span><i></i></div>
+<div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함" data-k="cc:--forward-subagent-text@2.1.211"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속" data-k="cc:always@2.1.211"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div><div class="tw t-cx"><p class="lead"><b>새로 들어온 것 2개</b> — 줄 앞에 *<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="chead"><span></span><span>등급</span><span></span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span></div>
+<div class="c-day"><span>── 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.147.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.147.0</a></span><i></i></div>
+<div class="it t2 nw" data-t="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기." data-k="cx:--approve-for-me@0.147.0"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="--approve-for-me 공식 문서">--approve-for-me</a></span><span class="tt"><code>--approve-for-me</code> 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="ds"></span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2 nw" data-t="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색." data-k="cx:#포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.@0.147.0"><div class="row"><span class="star">*</span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="ds"></span><span class="dt">8.7</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-29 수 <em>2주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.146.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.146.0</a></span><i></i></div>
+<div class="it t2" data-t="세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능." data-k="cx:/new@0.146.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/new 공식 문서">/new</a> <span class="sepdot">·</span> <a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/clear 공식 문서">/clear</a></span><span class="tt">세션 이름 지정(<code>/new</code>·<code>/clear</code>), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="ds"></span><span class="dt">7.29</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가." data-k="cx:#Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.@0.146.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="ds"></span><span class="dt">7.29</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-21 화 <em>3주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.145.0</a></span><i></i></div>
+<div class="it t2" data-t="멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선." data-k="cx:#멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.@0.145.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="ds"></span><span class="dt">7.21</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기." data-k="cx:/import@0.145.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/import 공식 문서">/import</a></span><span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="ds"></span><span class="dt">7.21</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-09 목 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.1</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.0</a></span><i></i></div>
+<div class="it t2" data-t="새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트." data-k="cx:#새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.@0.144.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="ds"></span><span class="dt">7.9</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능." data-k="cx:#MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.@0.144.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="ds"></span><span class="dt">7.9</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-07-08 수 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.143.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.143.0</a></span><i></i></div>
+<div class="it t2" data-t="원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시." data-k="cx:#원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.@0.143.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span><span class="ds"></span><span class="dt">7.8</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원." data-k="cx:#MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.@0.143.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span><span class="ds"></span><span class="dt">7.8</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-06-25 목 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.2" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.2</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.1</a></span><i></i></div>
+<div class="it t2" data-t="지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지." data-k="cx:#지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.@0.142.2"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span><span class="ds"></span><span class="dt">6.25</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="c-day"><span>── 2026-06-22 월 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.0</a></span><i></i></div>
+<div class="it t2" data-t="/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용." data-k="cx:/usage@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/usage 공식 문서">/usage</a></span><span class="tt"><code>/usage</code>에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단." data-k="cx:#롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만." data-k="cx:#인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.@0.142.0"><div class="row"><span class="star"></span><span class="sev">추천</span><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span><span class="ds"></span><span class="dt">6.22</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div><p class="foot"><span class="doneN">0</span>/14 해봄</p></div></div>
+  <p class="vfoot"><span class="psrc">여기까지가 골라낸 것 — 빠짐없이 보려면 <a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code 공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer">Codex 공식 릴리스 ↗</a></span></p>
+  <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
+</div>
+<div class="v vT" id="vT">
+  <div class="hd"><h1>TUI</h1><p class="why">lazygit·htop 결. 박스로 화면을 가두고
+  <b>아래에 키 힌트</b>를 깐다. 마름모가 체크 표시고, 이게 <b>손으로 조작하는 도구</b>라는 인상이
+  제일 세다. 대신 프레임이 폭을 먹고 웹에서 키보드 조작을 실제로 다 지원해야 말이 된다.</p></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span><span class="ptabs"><a class="on"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a href="use.html"><span class="lb" data-label="용도별">용도별</span></a></span><span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span><span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span><span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span><span class="pstamp">2026-08-10 05:50</span></div><div class="frame">
+    <div class="ftop">┌ 새로 나온 것 ─ claude-code<b class="sp"><span class="t-cc">새로 들어온 것 5개</span><span class="t-cx" style="display:none">새로 들어온 것 2개</span></b>
+      <span class="todo"></span></div>
+    <div class="tw t-cc on"><div class="chead"><span></span><span></span><span>등급</span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span><span></span></div>
+<div class="t-day">├─ 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a> ─<i></i>─┤</div>
+<div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로" data-k="cc:claude@2.1.224"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">핵심</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="dt">8.7</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
+<div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송" data-k="cc:SendMessage@2.1.224"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="dt">8.7</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
+<div class="t-day">├─ 2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a> ─<i></i>─┤</div>
+<div class="it t1 nw" data-t="/review = /code-review 별칭 통합 — effort 레벨 자동 기억" data-k="cc:/review@2.1.223"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">일반</span><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/review 공식 문서">/review</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/review</code> = <code>/code-review</code> 별칭 통합 — effort 레벨 자동 기억</span><span class="ds"><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</span><span class="dt">8.6</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><p><span class="dk">해보기</span><code>/review</code> &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 <code>/code-review</code> ultra</p></div></div>
+<div class="t-day">├─ 2026-08-04 화 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-222" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.222</a> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-221" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.221</a> ─<i></i>─┤</div>
+<div class="it t2 nw" data-t="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김" data-k="cc:Ctrl+Alt+F@2.1.221"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="Ctrl+Alt+F (VSCode) 공식 문서">Ctrl+Alt+F (VSCode)</a></span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="ds">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</span><span class="dt">8.4</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">좋은 점</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span><code>Ctrl+Alt+F</code> 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div>
+<div class="it t2 nw" data-t="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만" data-k="cc:bg@2.1.221"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="bg → commit 공식 문서">bg → commit</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="push 공식 문서">push</a></span><span class="tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="ds">기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</span><span class="dt">8.4</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span><code>CLAUDE.md</code>에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div>
+<div class="t-day">├─ 2026-07-24 금 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-219" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.219</a> ─<i></i>─┤</div>
+<div class="it t3" data-t="Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원" data-k="cc:claude-opus-5@2.1.219"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">핵심</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude-opus-5 공식 문서">claude-opus-5</a></span><span class="tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="ds">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</span><span class="dt">7.24</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div>
+<div class="it t2" data-t="서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정" data-k="cc:agent()@2.1.219"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="agent() → agent() 공식 문서">agent() → agent()</a></span><span class="tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="ds">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</span><span class="dt">7.24</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 비활성화.</p><p><span class="dk">좋은 점</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></p></div></div>
+<div class="t-day">├─ 2026-07-22 수 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-218" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.218</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음" data-k="cc:/code-review@2.1.218"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/code-review</code> 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="ds">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</span><span class="dt">7.22</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">좋은 점</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div>
+<div class="t-day">├─ 2026-07-20 월 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-216" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.216</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시" data-k="cc:/context@2.1.216"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/context 공식 문서">/context</a></span><span class="tt"><code>/context</code> 컨텍스트 초과 명시적 경고 — <code>/compact</code> 실패 시 에러 표시</span><span class="ds">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</span><span class="dt">7.20</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span><code>/context</code> 경고 발생 조건, <code>/compact</code> 실패 후 대응</p></div></div>
+<div class="t-day">├─ 2026-07-19 일 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-215" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.215</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="/verify · /code-review 자동 실행 제거 — 직접 호출해야 함" data-k="cc:/verify@2.1.215"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/verify 공식 문서">/verify</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/verify</code> · <code>/code-review</code> 자동 실행 제거 — 직접 호출해야 함</span><span class="ds">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</span><span class="dt">7.19</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</p></div></div>
+<div class="t-day">├─ 2026-07-18 토 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-214" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.214</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="긴 도구 호출에 주기적 진행 상황 알림" data-k="cc:progress@2.1.214"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="progress heartbeat 공식 문서">progress heartbeat</a></span><span class="tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="ds">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</span><span class="dt">7.18</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div>
+<div class="t-day">├─ 2026-07-17 금 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-212" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.212</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로" data-k="cc:/fork@2.1.212"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</span><span class="dt">7.17</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
+<div class="t-day">├─ 2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함" data-k="cc:--forward-subagent-text@2.1.211"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</span><span class="dt">7.15</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속" data-k="cc:always@2.1.211"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="dt">7.15</span><span class="bar">│</span></div><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div></div><div class="tw t-cx"><div class="chead"><span></span><span></span><span>등급</span><span>명령어</span><span>무엇이 바뀌나</span><span>좋은 점</span><span>날짜</span><span></span></div>
+<div class="t-day">├─ 2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.147.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.147.0</a> ─<i></i>─┤</div>
+<div class="it t2 nw" data-t="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기." data-k="cx:--approve-for-me@0.147.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">추천</span><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="--approve-for-me 공식 문서">--approve-for-me</a></span><span class="tt"><code>--approve-for-me</code> 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="ds"></span><span class="dt">8.7</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2 nw" data-t="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색." data-k="cx:#포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.@0.147.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◆</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="ds"></span><span class="dt">8.7</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-07-29 수 <em>2주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.146.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.146.0</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능." data-k="cx:/new@0.146.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/new 공식 문서">/new</a> <span class="sepdot">·</span> <a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/clear 공식 문서">/clear</a></span><span class="tt">세션 이름 지정(<code>/new</code>·<code>/clear</code>), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="ds"></span><span class="dt">7.29</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가." data-k="cx:#Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.@0.146.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="ds"></span><span class="dt">7.29</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-07-21 화 <em>3주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.145.0</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선." data-k="cx:#멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.@0.145.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="ds"></span><span class="dt">7.21</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기." data-k="cx:/import@0.145.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/import 공식 문서">/import</a></span><span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="ds"></span><span class="dt">7.21</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-07-09 목 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.1</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.0</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트." data-k="cx:#새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.@0.144.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="ds"></span><span class="dt">7.9</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능." data-k="cx:#MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.@0.144.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="ds"></span><span class="dt">7.9</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-07-08 수 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.143.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.143.0</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시." data-k="cx:#원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.@0.143.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span><span class="ds"></span><span class="dt">7.8</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원." data-k="cx:#MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.@0.143.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span><span class="ds"></span><span class="dt">7.8</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-06-25 목 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.2" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.2</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.1</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지." data-k="cx:#지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.@0.142.2"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span><span class="ds"></span><span class="dt">6.25</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="t-day">├─ 2026-06-22 월 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.0</a> ─<i></i>─┤</div>
+<div class="it t2" data-t="/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용." data-k="cx:/usage@0.142.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/usage 공식 문서">/usage</a></span><span class="tt"><code>/usage</code>에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="ds"></span><span class="dt">6.22</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단." data-k="cx:#롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.@0.142.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span><span class="ds"></span><span class="dt">6.22</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만." data-k="cx:#인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.@0.142.0"><div class="row"><span class="bar">│</span><button class="box" data-off="◈">◇</button><span class="sev">추천</span><span class="cmd dash">—</span><span class="tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span><span class="ds"></span><span class="dt">6.22</span><span class="bar">│</span></div><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+    <div class="fbot"><kbd>space</kbd> 체크<kbd>enter</kbd> 펼침<kbd>/</kbd> 찾기
+      <span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span><span class="sp"><span class="doneN">0</span>/14 해봄</span></div>
+  </div></div>
+  <p class="vfoot"><span class="psrc">여기까지가 골라낸 것 — 빠짐없이 보려면 <a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code 공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer">Codex 공식 릴리스 ↗</a></span></p>
+  <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
+</div>
+<div class="v vG" id="vG">
+  <div class="hd"><h1>git log</h1><p class="why">왼쪽에 <b>세로줄과 점</b>이 흐른다.
+  시간순이라는 게 장식이 아니라 그림으로 보이고, 찬 점이 새로 들어온 것이다.
+  <b>날짜가 커밋 자리</b>를 차지해 리듬이 생긴다. 대신 열 정렬이 느슨해 훑는 속도는 조금 준다.</p></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span><span class="ptabs"><a class="on"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a href="use.html"><span class="lb" data-label="용도별">용도별</span></a></span><span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span><span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span><span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b> — 찬 점<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></span></div>
+<div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로" data-k="cc:claude@2.1.224"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="sev">핵심</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div></div>
+<div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송" data-k="cc:SendMessage@2.1.224"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-08-06 목 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></span></div>
+<div class="it t1 nw" data-t="/review = /code-review 별칭 통합 — effort 레벨 자동 기억" data-k="cc:/review@2.1.223"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/review 공식 문서">/review</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/review</code> = <code>/code-review</code> 별칭 통합 — effort 레벨 자동 기억</span><span class="sev">일반</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><p><span class="dk">해보기</span><code>/review</code> &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 <code>/code-review</code> ultra</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-08-04 화 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-222" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.222</a> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-221" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.221</a></span></div>
+<div class="it t2 nw" data-t="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김" data-k="cc:Ctrl+Alt+F@2.1.221"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="Ctrl+Alt+F (VSCode) 공식 문서">Ctrl+Alt+F (VSCode)</a></span><span class="tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">좋은 점</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span><code>Ctrl+Alt+F</code> 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div></div>
+<div class="it t2 nw" data-t="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만" data-k="cc:bg@2.1.221"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="bg → commit 공식 문서">bg → commit</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="push 공식 문서">push</a></span><span class="tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span><code>CLAUDE.md</code>에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-24 금 <em>3주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-219" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.219</a></span></div>
+<div class="it t3" data-t="Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원" data-k="cc:claude-opus-5@2.1.219"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude-opus-5 공식 문서">claude-opus-5</a></span><span class="tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="sev">핵심</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div></div>
+<div class="it t2" data-t="서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정" data-k="cc:agent()@2.1.219"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="agent() → agent() 공식 문서">agent() → agent()</a></span><span class="tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 비활성화.</p><p><span class="dk">좋은 점</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-22 수 <em>3주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-218" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.218</a></span></div>
+<div class="it t2" data-t="/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음" data-k="cc:/code-review@2.1.218"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/code-review</code> 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">좋은 점</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-20 월 <em>3주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-216" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.216</a></span></div>
+<div class="it t2" data-t="/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시" data-k="cc:/context@2.1.216"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/context 공식 문서">/context</a></span><span class="tt"><code>/context</code> 컨텍스트 초과 명시적 경고 — <code>/compact</code> 실패 시 에러 표시</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span><code>/context</code> 경고 발생 조건, <code>/compact</code> 실패 후 대응</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-19 일 <em>4주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-215" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.215</a></span></div>
+<div class="it t2" data-t="/verify · /code-review 자동 실행 제거 — 직접 호출해야 함" data-k="cc:/verify@2.1.215"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/verify 공식 문서">/verify</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="tt"><code>/verify</code> · <code>/code-review</code> 자동 실행 제거 — 직접 호출해야 함</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-18 토 <em>4주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-214" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.214</a></span></div>
+<div class="it t2" data-t="긴 도구 호출에 주기적 진행 상황 알림" data-k="cc:progress@2.1.214"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="progress heartbeat 공식 문서">progress heartbeat</a></span><span class="tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-17 금 <em>4주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-212" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.212</a></span></div>
+<div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로" data-k="cc:/fork@2.1.212"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-15 수 <em>4주 전</em></span><span class="gv"> <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></span></div>
+<div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함" data-k="cc:--forward-subagent-text@2.1.211"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속" data-k="cc:always@2.1.211"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div></div></div><div class="tw t-cx"><p class="lead"><b>새로 들어온 것 2개</b> — 찬 점<span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><div class="g-day"><span class="gr">│</span><span class="gd">2026-08-07 금 <em>지난주</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.147.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.147.0</a></span></div>
+<div class="it t2 nw" data-t="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기." data-k="cx:--approve-for-me@0.147.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="--approve-for-me 공식 문서">--approve-for-me</a></span><span class="tt"><code>--approve-for-me</code> 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2 nw" data-t="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색." data-k="cx:#포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.@0.147.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-29 수 <em>2주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.146.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.146.0</a></span></div>
+<div class="it t2" data-t="세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능." data-k="cx:/new@0.146.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/new 공식 문서">/new</a> <span class="sepdot">·</span> <a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/clear 공식 문서">/clear</a></span><span class="tt">세션 이름 지정(<code>/new</code>·<code>/clear</code>), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가." data-k="cx:#Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.@0.146.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-21 화 <em>3주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.145.0</a></span></div>
+<div class="it t2" data-t="멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선." data-k="cx:#멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.@0.145.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기." data-k="cx:/import@0.145.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/import 공식 문서">/import</a></span><span class="tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-09 목 <em>5주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.1</a> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.0</a></span></div>
+<div class="it t2" data-t="새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트." data-k="cx:#새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.@0.144.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능." data-k="cx:#MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.@0.144.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-07-08 수 <em>5주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.143.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.143.0</a></span></div>
+<div class="it t2" data-t="원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시." data-k="cx:#원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.@0.143.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원." data-k="cx:#MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.@0.143.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-06-25 목 <em>7주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.2" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.2</a> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.1</a></span></div>
+<div class="it t2" data-t="지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지." data-k="cx:#지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.@0.142.2"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="g-day"><span class="gr">│</span><span class="gd">2026-06-22 월 <em>7주 전</em></span><span class="gv"> <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.0</a></span></div>
+<div class="it t2" data-t="/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용." data-k="cx:/usage@0.142.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/usage 공식 문서">/usage</a></span><span class="tt"><code>/usage</code>에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단." data-k="cx:#롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.@0.142.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div>
+<div class="it t2" data-t="인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만." data-k="cx:#인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.@0.142.0"><div class="row"><button class="box" data-off="✓">●</button><span class="cmd dash">—</span><span class="tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</span><span class="sev">추천</span></div><div class="det"><span class="gr">│</span><div class="dbox"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div></div></div>
+  <p class="vfoot"><span class="psrc">여기까지가 골라낸 것 — 빠짐없이 보려면 <a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code 공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer">Codex 공식 릴리스 ↗</a></span></p>
+  <div class="pane"><div class="ph"><b class="pt"></b></div><div class="pb"></div></div>
+</div>
+<div class="v vM" id="vM">
+  <div class="hd"><h1>man page</h1><p class="why">읽는 쪽으로 기운 결. 폭을 900으로 좁히고
+  <b>행간과 여백</b>을 늘렸다. 제목이 문단의 머리처럼 서고 설명이 그 아래 붙어서,
+  훑기보다 <b>한 항목을 제대로 읽기</b>에 맞다. 한 화면에 들어오는 개수는 절반으로 준다.
+  여기만 자세히가 아래 판이 아니라 <b>본문에 그대로 흐른다</b> — 읽는 판이라 감출 이유가 없다.</p></div>
+  <div class="box0"><div class="pbar"><span class="pbrand"><i>&gt;_</i> 오늘 뭐 써볼까</span><span class="ptabs"><a class="on"><span class="lb" data-label="새로 나온 것">새로 나온 것</span></a><a href="use.html"><span class="lb" data-label="용도별">용도별</span></a></span><span class="ptools"><a data-t="cc" class="on"><svg class="tlogo" aria-hidden="true"><use href="#lg-cc"/></svg><span class="lb" data-label="Claude Code">Claude Code</span></a><a data-t="cx"><svg class="tlogo" aria-hidden="true"><use href="#lg-cx"/></svg><span class="lb" data-label="Codex">Codex</span></a></span><span class="ptop"><a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer" title="Claude Code 공식 패치노트 전체">공식 패치노트 <i>↗</i></a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer" title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span><span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span><button class="clrb btn">모두 해제</button></span><span class="pstamp">2026-08-10 05:50</span></div><div class="tw t-cc on"><p class="lead"><b>새로 들어온 것 5개</b><span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-224" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.224</a></h2>
+<div class="it t3 nw" data-t="셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로" data-k="cc:claude@2.1.224"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude self-hosted-runner 공식 문서">claude self-hosted-runner</a></span><span class="sev">핵심</span></div><p class="m-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</p><p class="m-ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">좋은 점</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
+<div class="it t2 nw" data-t="세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송" data-k="cc:SendMessage@2.1.224"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="SendMessage 공식 문서">SendMessage</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="ListAgents 공식 문서">ListAgents</a></span><span class="sev">추천</span></div><p class="m-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</p><p class="m-ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><div class="det"><p><span class="dk">좋은 점</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
+<h2 class="m-day">2026-08-06 목 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-223" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.223</a></h2>
+<div class="it t1 nw" data-t="/review = /code-review 별칭 통합 — effort 레벨 자동 기억" data-k="cc:/review@2.1.223"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/review 공식 문서">/review</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="sev">일반</span></div><p class="m-tt"><code>/review</code> = <code>/code-review</code> 별칭 통합 — effort 레벨 자동 기억</p><p class="m-ds"><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><div class="det"><p><span class="dk">좋은 점</span><code>/review</code> medium 123처럼 effort·PR 번호 지정 가능 — <code>/code-review</code>와 완전 동일</p><p><span class="dk">해보기</span><code>/review</code> &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 <code>/code-review</code> ultra</p></div></div>
+<h2 class="m-day">2026-08-04 화 <em>지난주</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-222" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.222</a> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-221" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.221</a></h2>
+<div class="it t2 nw" data-t="[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김" data-k="cc:Ctrl+Alt+F@2.1.221"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="Ctrl+Alt+F (VSCode) 공식 문서">Ctrl+Alt+F (VSCode)</a></span><span class="sev">추천</span></div><p class="m-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</p><p class="m-ds">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">좋은 점</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span><code>Ctrl+Alt+F</code> 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div>
+<div class="it t2 nw" data-t="bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만" data-k="cc:bg@2.1.221"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="bg → commit 공식 문서">bg → commit</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="push 공식 문서">push</a></span><span class="sev">추천</span></div><p class="m-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</p><p class="m-ds">기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><div class="det"><p><span class="dk">좋은 점</span>기존엔 항상 draft PR 오픈 — 이제 <code>CLAUDE.md</code> git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span><code>CLAUDE.md</code>에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div>
+<h2 class="m-day">2026-07-24 금 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-219" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.219</a></h2>
+<div class="it t3" data-t="Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원" data-k="cc:claude-opus-5@2.1.219"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="claude-opus-5 공식 문서">claude-opus-5</a></span><span class="sev">핵심</span></div><p class="m-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</p><p class="m-ds">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><div class="det"><p><span class="dk">좋은 점</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); <code>/fast</code> 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div>
+<div class="it t2" data-t="서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정" data-k="cc:agent()@2.1.219"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="agent() → agent() 공식 문서">agent() → agent()</a></span><span class="sev">추천</span></div><p class="m-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</p><p class="m-ds">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 비활성화.</p><p><span class="dk">좋은 점</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; <code>CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code>=1로 기존 동작 복원; 동시성 상한 <code>CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</code></p></div></div>
+<h2 class="m-day">2026-07-22 수 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-218" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.218</a></h2>
+<div class="it t2" data-t="/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음" data-k="cc:/code-review@2.1.218"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="sev">추천</span></div><p class="m-tt"><code>/code-review</code> 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</p><p class="m-ds">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">좋은 점</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div>
+<h2 class="m-day">2026-07-20 월 <em>3주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-216" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.216</a></h2>
+<div class="it t2" data-t="/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시" data-k="cc:/context@2.1.216"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/context 공식 문서">/context</a></span><span class="sev">추천</span></div><p class="m-tt"><code>/context</code> 컨텍스트 초과 명시적 경고 — <code>/compact</code> 실패 시 에러 표시</p><p class="m-ds">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><div class="det"><p><span class="dk">좋은 점</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span><code>/context</code> 경고 발생 조건, <code>/compact</code> 실패 후 대응</p></div></div>
+<h2 class="m-day">2026-07-19 일 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-215" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.215</a></h2>
+<div class="it t2" data-t="/verify · /code-review 자동 실행 제거 — 직접 호출해야 함" data-k="cc:/verify@2.1.215"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/verify 공식 문서">/verify</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/code-review" target="_blank" rel="noopener noreferrer" title="/code-review 공식 문서">/code-review</a></span><span class="sev">추천</span></div><p class="m-tt"><code>/verify</code> · <code>/code-review</code> 자동 실행 제거 — 직접 호출해야 함</p><p class="m-ds">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><div class="det"><p><span class="dk">좋은 점</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 <code>/code-review</code>, 머지 전 <code>/verify</code> 직접 실행</p></div></div>
+<h2 class="m-day">2026-07-18 토 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-214" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.214</a></h2>
+<div class="it t2" data-t="긴 도구 호출에 주기적 진행 상황 알림" data-k="cc:progress@2.1.214"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="progress heartbeat 공식 문서">progress heartbeat</a></span><span class="sev">추천</span></div><p class="m-tt">긴 도구 호출에 주기적 진행 상황 알림</p><p class="m-ds">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><div class="det"><p><span class="dk">좋은 점</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div>
+<h2 class="m-day">2026-07-17 금 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-212" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.212</a></h2>
+<div class="it t2" data-t="/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로" data-k="cc:/fork@2.1.212"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/fork → bg 공식 문서">/fork → bg</a> <span class="sepdot">·</span> <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noopener noreferrer" title="/subtask 공식 문서">/subtask</a></span><span class="sev">추천</span></div><p class="m-tt"><code>/fork</code>는 bg 세션 복사 — 인세션 서브에이전트 실행은 <code>/subtask</code>로</p><p class="m-ds"><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><div class="det"><p><span class="dk">좋은 점</span><code>/fork</code>가 항상 bg 세션 분기로 동작 — 인세션 위임은 <code>/subtask</code>로 전환 필요</p><p><span class="dk">해보기</span><code>/fork</code> vs <code>/subtask</code> 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
+<h2 class="m-day">2026-07-15 수 <em>4주 전</em> · <a class="vl" href="https://code.claude.com/docs/en/changelog#2-1-211" target="_blank" rel="noopener noreferrer" title="공식 changelog 에서 보기">v2.1.211</a></h2>
+<div class="it t2" data-t="stream-json에 서브에이전트 텍스트·thinking 포함" data-k="cc:--forward-subagent-text@2.1.211"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="--forward-subagent-text 공식 문서">--forward-subagent-text</a></span><span class="sev">추천</span></div><p class="m-tt">stream-json에 서브에이전트 텍스트·thinking 포함</p><p class="m-ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">좋은 점</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — <code>CLAUDE_CODE_FORWARD_SUBAGENT_TEXT</code> 환경변수도 지원</p><p><span class="dk">해보기</span><code>--stream-json</code> 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
+<div class="it t2" data-t="&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속" data-k="cc:always@2.1.211"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener noreferrer" title="always allow → repo root 공식 문서">always allow → repo root</a></span><span class="sev">추천</span></div><p class="m-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</p><p class="m-ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><div class="det"><p><span class="dk">무엇이 바뀌나</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">좋은 점</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude<code>/settings.json</code>); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div></div><div class="tw t-cx"><p class="lead"><b>새로 들어온 것 2개</b><span class="todo"></span><span class="opts"><button class="opt on" data-o="check"><i>[x]</i> 체크 칸</button><button class="opt" data-o="todo"><i>[ ]</i> 안 해본 것만</button><button class="opt" data-o="core"><i>[ ]</i> 핵심만</button></span></p><h2 class="m-day">2026-08-07 금 <em>지난주</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.147.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.147.0</a></h2>
+<div class="it t2 nw" data-t="--approve-for-me 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기." data-k="cx:--approve-for-me@0.147.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="--approve-for-me 공식 문서">--approve-for-me</a></span><span class="sev">추천</span></div><p class="m-tt"><code>--approve-for-me</code> 플래그로 자동 검토 승인 활성화 — 반복 확인 줄이기.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2 nw" data-t="포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색." data-k="cx:#포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.@0.147.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">포터블 Agent 플러그인 설치 및 로컬·개인·워크스페이스·원격 카탈로그 전체 검색.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-07-29 수 <em>2주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.146.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.146.0</a></h2>
+<div class="it t2" data-t="세션 이름 지정(/new·/clear), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능." data-k="cx:/new@0.146.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/new 공식 문서">/new</a> <span class="sepdot">·</span> <a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/clear 공식 문서">/clear</a></span><span class="sev">추천</span></div><p class="m-tt">세션 이름 지정(<code>/new</code>·<code>/clear</code>), 중요 스레드 핀, 닫지 않고 사이드 대화 전환 가능.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가." data-k="cx:#Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.@0.146.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">Agent Plugin 매니페스트·워크스페이스 발행 지원 — Amazon Bedrock·Claude Code 마켓플레이스 추가.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-07-21 화 <em>3주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.145.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.145.0</a></h2>
+<div class="it t2" data-t="멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선." data-k="cx:#멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.@0.145.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">멀티에이전트 V2 정식화 — 서브에이전트 모델·reasoning·동시성·역할 설정 가능, 에이전트 네비게이션 개선.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기." data-k="cx:/import@0.145.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/import 공식 문서">/import</a></span><span class="sev">추천</span></div><p class="m-tt">Cursor·Claude Code 설정·MCP·플러그인·세션·명령·메모리를 한 번에 가져오기.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-07-09 목 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.1</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.144.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.144.0</a></h2>
+<div class="it t2" data-t="새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트." data-k="cx:#새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.@0.144.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">새 writes 승인 모드 — 선언된 읽기 전용 액션 자동 허용, 쓰기만 프롬프트.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능." data-k="cx:#MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.@0.144.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">MCP 도구가 실험적 옵트인 없이 대화형 인증 요청 가능.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-07-08 수 <em>5주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.143.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.143.0</a></h2>
+<div class="it t2" data-t="원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시." data-k="cx:#원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.@0.143.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">원격 플러그인 기본 활성화 — 풍부한 카탈로그·npm 마켓플레이스·원격/로컬 버전 표시.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원." data-k="cx:#MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.@0.143.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">MCP 도구 tool search 기본 적용 + ChatGPT 호스팅 MCP 서버에서 세션 인증 지원.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-06-25 목 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.2" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.2</a> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.1" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.1</a></h2>
+<div class="it t2" data-t="지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지." data-k="cx:#지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.@0.142.2"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">지원 시 MCP 도구가 tool search를 기본 사용 — 도구 발견성 향상, 구형 모델·프로바이더 호환성 유지.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<h2 class="m-day">2026-06-22 월 <em>7주 전</em> · <a class="vl" href="https://github.com/openai/codex/releases/tag/rust-v0.142.0" target="_blank" rel="noopener noreferrer" title="GitHub 릴리스에서 보기">v0.142.0</a></h2>
+<div class="it t2" data-t="/usage에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용." data-k="cx:/usage@0.142.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd"><a href="https://developers.openai.com/codex/" target="_blank" rel="noopener noreferrer" title="/usage 공식 문서">/usage</a></span><span class="sev">추천</span></div><p class="m-tt"><code>/usage</code>에서 획득한 사용 한도 리셋 크레딧 조회·차감 가능 — 확인 후 적용.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단." data-k="cx:#롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.@0.142.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">롤아웃 토큰 예산으로 에이전트 스레드 전체 사용량 추적·잔여 알림·소진 시 자동 중단.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div>
+<div class="it t2" data-t="인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만." data-k="cx:#인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.@0.142.0"><div class="row"><button class="box" data-off="[x]">[ ]</button><span class="cmd dash">—</span><span class="sev">추천</span></div><p class="m-tt">인덱싱 웹 검색 모드 — 실시간 검색 허용, 직접 페이지 접근은 서버 승인 URL만.</p><p class="m-ds"></p><div class="det"><p><span class="dk">좋은 점</span><span class="dn">아직 없음 — 큐레이션이 채워야 한다</span></p><p><span class="dk">해보기</span><span class="dn">아직 안 채워진 줄 — 큐레이션이 채워야 한다</span></p></div></div></div></div>
+  <p class="vfoot"><span class="psrc">여기까지가 골라낸 것 — 빠짐없이 보려면 <a class="s-cc on" href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener noreferrer">Claude Code 공식 패치노트 ↗</a><a class="s-cx" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener noreferrer">Codex 공식 릴리스 ↗</a></span></p>
+  
+</div>
+
+<dialog id="clrdlg">
+  <div class="dh">── 모두 해제<i></i></div>
+  <div class="db"><span class="dbn"></span></div>
+  <div class="df"><button class="no btn">아니오</button><button class="yes btn">예, 지운다</button></div>
+</dialog>
+
+<script>
+document.querySelectorAll('.picker button[data-v]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.picker button[data-v]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.querySelectorAll('.v').forEach(v => v.classList.toggle('on', v.id === b.dataset.v));
+  window.scrollTo(0, 0);
+}));
+
+document.querySelectorAll('.ssel2 button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.ssel2 button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.documentElement.dataset.fill = b.dataset.f2;
+}));
+document.documentElement.dataset.fill = 'surface';
+
+document.querySelectorAll('.ssel button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.ssel button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.documentElement.dataset.sel = b.dataset.s2;
+}));
+document.documentElement.dataset.sel = 'invert';
+
+document.querySelectorAll('.fsel button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.fsel button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.documentElement.dataset.font = b.dataset.f;
+}));
+document.documentElement.dataset.font = 'plex';
+
+/* 옵션 스위치 — 체크 칸은 표시만 끄고 상태는 남긴다. 나머지 둘은 목록을 거른다. */
+function applyOpts(view) {
+  const on = o => view.querySelector(`.opt[data-o="${o}"]`).classList.contains('on');
+  const todo = on('todo'), core = on('core');
+  view.querySelectorAll('.it').forEach(it => {
+    const hide = (todo && it.classList.contains('done')) || (core && !it.classList.contains('t3'));
+    it.classList.toggle('hide', hide);
+  });
+  // 그날 줄이 다 걸러지면 날짜 머리만 남는다 — 같이 접는다
+  view.querySelectorAll('.c-day,.t-day,.g-day,.m-day').forEach(day => {
+    let seen = false;
+    for (let el = day.nextElementSibling; el && !el.matches('.c-day,.t-day,.g-day,.m-day'); el = el.nextElementSibling)
+      if (el.classList.contains('it') && !el.classList.contains('hide')) { seen = true; break; }
+    day.classList.toggle('hide', !seen);
+  });
+}
+
+/* 도구 바꾸기 — 다섯 결이 함께 움직인다 */
+document.querySelectorAll('.ptools a').forEach(b => b.addEventListener('click', () => {
+  const t = b.dataset.t;
+  document.querySelectorAll('.ptools a').forEach(x => x.classList.toggle('on', x.dataset.t === t));
+  document.querySelectorAll('.tw').forEach(w => w.classList.toggle('on', w.classList.contains('t-' + t)));
+  document.querySelectorAll('.ftop .t-cc,.ftop .t-cx').forEach(x =>
+    x.style.display = x.classList.contains('t-' + t) ? '' : 'none');
+  document.querySelectorAll('.psrc a, .ptop a').forEach(a =>
+    a.classList.toggle('on', a.classList.contains('s-' + t)));
+}));
+
+document.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+  const view = b.closest('.v');
+  b.classList.toggle('on');
+  b.querySelector('i').textContent = b.classList.contains('on') ? '[x]' : '[ ]';
+  if (b.dataset.o === 'check') {
+    document.documentElement.dataset.check = b.classList.contains('on') ? 'on' : 'off';
+  } else {
+    applyOpts(view);
+    countDone(view);
+  }
+}));
+
+function countDone(view) {
+  const its = [...view.querySelectorAll('.it')];
+  const done = its.filter(x => x.classList.contains('done'));
+  const n = view.querySelector('.doneN');
+  if (n) n.textContent = done.length;
+  const todo = view.querySelector('.todo');
+  if (todo) {
+    const left = its.filter(x => x.classList.contains('nw') && !x.classList.contains('done')).length;
+    const all = its.filter(x => x.classList.contains('nw')).length;
+    todo.textContent = left === all ? '' : ` · 그중 안 해본 것 ${left}개`;
+  }
+}
+
+/* 해본 것은 브라우저에 남긴다 — 용도별 화면과 같은 통(ae-done)을 쓴다.
+   같은 항목이 다섯 결에 한 줄씩 있으므로 키로 전부 함께 움직인다. */
+const STORE = 'ae-done';
+const load = () => { try { return new Set(JSON.parse(localStorage.getItem(STORE)) || []); }
+                     catch (e) { return new Set(); } };
+const save = s => localStorage.setItem(STORE, JSON.stringify([...s]));
+
+function paint(it, done) {
+  const box = it.querySelector('.box');
+  it.classList.toggle('done', done);
+  box.textContent = done ? box.dataset.off : box.dataset.on;
+  box.classList.remove('ghost');      /* 미리보기 흔적이 남지 않게 */
+}
+
+const done = load();
+document.querySelectorAll('.it').forEach(it => {
+  const box = it.querySelector('.box');
+  box.dataset.on = box.textContent.trim();
+  if (done.has(it.dataset.k)) paint(it, true);
+  box.addEventListener('mouseenter', () => {
+    if (!it.classList.contains('done')) {
+      box.textContent = box.dataset.off; box.classList.add('ghost');
+    }
+  });
+  box.addEventListener('mouseleave', () => {
+    if (!it.classList.contains('done')) {
+      box.textContent = box.dataset.on; box.classList.remove('ghost');
+    }
+  });
+  box.addEventListener('click', e => {
+    e.stopPropagation();
+    const k = it.dataset.k, now = !it.classList.contains('done');
+    now ? done.add(k) : done.delete(k);
+    save(done);
+    /* 키에 따옴표가 들어갈 수 있어 선택자 대신 값을 비교한다 */
+    document.querySelectorAll('.it').forEach(x => { if (x.dataset.k === k) paint(x, now); });
+    document.querySelectorAll('.v').forEach(v => { applyOpts(v); countDone(v); });
+    countTop();
+  });
+});
+document.querySelectorAll('.v').forEach(v => { applyOpts(v); countDone(v); });
+
+/* 상단바 숫자·모두 해제 — 지금 보고 있는 결·도구의 줄만 센다.
+   결이 다섯이라 같은 항목이 다섯 줄로 있으므로 키로 추린다. */
+function keysOn() {
+  const w = document.querySelector('.v.on .tw.on') || document.querySelector('.v.on');
+  return new Set([...w.querySelectorAll('.it.done')].map(x => x.dataset.k));
+}
+function countTop() {
+  const w = document.querySelector('.v.on .tw.on') || document.querySelector('.v.on');
+  document.querySelectorAll('.doneAll').forEach(el => el.textContent = keysOn().size);
+  const tot = new Set([...w.querySelectorAll('.it')].map(x => x.dataset.k)).size;
+  document.querySelectorAll('.totAll').forEach(el => el.textContent = tot);
+}
+const dlg = document.getElementById('clrdlg');
+document.querySelectorAll('.clrb').forEach(b => b.addEventListener('click', () => {
+  const n = keysOn().size;
+  const cx = document.querySelector('.ptools a.on').dataset.t === 'cx';
+  const name = cx ? 'Codex' : 'Claude Code';
+  dlg.querySelector('.dbn').innerHTML = n
+    ? `${name} 에서 체크한 <b>${n}개</b>를 지운다.`
+      + `<span class="warn">되돌릴 수 없다. 용도별 화면의 같은 항목도 함께 풀린다.</span>`
+    : `${name} 에는 체크한 게 없다.`;
+  dlg.querySelector('.yes').style.display = n ? '' : 'none';
+  dlg.querySelector('.no').textContent = n ? '아니오' : '닫기';
+  dlg.showModal();
+}));
+dlg.querySelector('.no').addEventListener('click', () => dlg.close());
+dlg.querySelector('.yes').addEventListener('click', () => {
+  const ks = keysOn();
+  ks.forEach(k => done.delete(k));
+  save(done);
+  document.querySelectorAll('.it').forEach(x => { if (ks.has(x.dataset.k)) paint(x, false); });
+  document.querySelectorAll('.v').forEach(v => { applyOpts(v); countDone(v); });
+  countTop();
+  dlg.close();
+});
+document.querySelectorAll('.ptools a').forEach(a => a.addEventListener('click', countTop));
+document.querySelectorAll('.picker button[data-v]').forEach(b => b.addEventListener('click', countTop));
+countTop();
+
+/* 아래 판 — 호버로 미리보고, 누르면 고정된다. 목록은 절대 안 가린다. */
+document.querySelectorAll('.v').forEach(view => {
+  const pane = view.querySelector('.pane');
+  if (!pane) return;
+  const pt = pane.querySelector('.pt'), pb = pane.querySelector('.pb');
+  let pinned = null;
+
+  function place(ev) {
+    const w = pane.offsetWidth, hgt = pane.offsetHeight, pad = 14;
+    let x = ev.clientX + 18, y = ev.clientY + 16;
+    if (x + w + pad > innerWidth) x = ev.clientX - w - 18;
+    if (y + hgt + pad > innerHeight) y = ev.clientY - hgt - 16;
+    pane.style.left = Math.max(pad, x) + 'px';
+    pane.style.top = Math.max(pad, y) + 'px';
+  }
+  function show(it, ev) {
+    pt.textContent = it.dataset.t;
+    pb.innerHTML = it.querySelector('.det').innerHTML;
+    pane.classList.add('on');
+    if (ev) place(ev);
+  }
+  view.querySelectorAll('.it').forEach(it => {
+    // 명령어·버전 링크는 바깥 문서로 나가는 길이라 줄 고정과 겹치지 않게 한다
+    it.querySelectorAll('.cmd a, a.vl').forEach(a => a.addEventListener('click', e => e.stopPropagation()));
+    it.addEventListener('mouseenter', e => { if (!pinned) show(it, e); });
+    // 줄을 벗어나면 바로 닫는다. 목록 전체(.box0)를 벗어날 때만 닫으면
+    // 줄 사이·날짜 줄·머리글 위에서 옛 내용이 그대로 떠 있는다.
+    it.addEventListener('mouseleave', () => { if (!pinned) pane.classList.remove('on'); });
+    it.addEventListener('mousemove', e => { if (!pinned) place(e); });
+    it.querySelector('.row').addEventListener('click', e => {
+      if (pinned === it) {
+        pinned = null; it.classList.remove('open'); pane.classList.remove('on');
+      } else {
+        view.querySelectorAll('.it.open').forEach(x => x.classList.remove('open'));
+        pinned = it; it.classList.add('open'); show(it, e);
+      }
+    });
+  });
+  view.querySelector('.box0').addEventListener('mouseleave', () => {
+    if (!pinned) pane.classList.remove('on');
+  });
+
+  /* 고정 풀기 — 같은 줄 다시 누르기, 빈 곳 누르기, Esc */
+  function unpin() {
+    if (!pinned) return;
+    pinned.classList.remove('open');
+    pinned = null;
+    pane.classList.remove('on');
+  }
+  view.addEventListener('click', e => {
+    if (!e.target.closest('.it') && !e.target.closest('.pane')) unpin();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') unpin(); });
+});
+</script>

@@ -1,0 +1,312 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>네 가지 결</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='6' width='22' height='4' rx='1' fill='%2317171a'/%3E%3Crect x='5' y='14' width='22' height='4' rx='1' fill='%23c2703a'/%3E%3Crect x='5' y='22' width='22' height='4' rx='1' fill='%234f46c5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;500&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sans:"Inter Tight",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --mono:"Google Sans Code",ui-monospace,"SF Mono",Menlo,monospace;
+}
+html{color-scheme:light}
+body{background:#fff;color:#17171a;font-family:var(--sans);font-size:14px;line-height:1.55;
+     -webkit-font-smoothing:antialiased}
+
+.picker{position:sticky;top:0;z-index:9;background:#fbfbfa;border-bottom:1px solid #e3e3df;
+        padding:8px 18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.picker b{color:#a2a2aa;font-weight:500}
+.picker button{background:none;border:0;color:#6f6f78;font:inherit;cursor:pointer;padding:2px 0}
+.picker button[aria-pressed="true"]{color:#17171a;font-weight:600;box-shadow:inset 0 -2px 0 #17171a}
+.st{display:none;padding:34px 20px 90px}
+.st.on{display:block}
+.hd{max-width:760px;margin:0 auto 22px}
+.hd h1{font-size:20px;font-weight:600;letter-spacing:-.015em}
+.hd .why{margin-top:7px;font-size:13px;color:#6f6f78;line-height:1.65}
+.hd .why b{color:#17171a;font-weight:560}
+.box{max-width:760px;margin:0 auto}
+
+/* ── A · 지금 것 ── */
+.stA{background:#fff}
+.a-day{display:flex;gap:7px;align-items:baseline;margin-top:15px;padding-bottom:3px;
+       border-bottom:1px solid #e3e3df}
+.a-day span{font-family:var(--mono);font-size:11.5px}
+.a-day i{font-style:normal;font-size:11px;color:#a2a2aa}
+.a-it{display:grid;grid-template-columns:16px 150px minmax(0,1fr) 16px;gap:10px;align-items:baseline;
+      padding:6px 0;border-bottom:1px solid #f0f0ed}
+.a-it input{accent-color:#4f46c5;align-self:center;margin:0}
+.a-cmd{font-family:var(--mono);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.a-tt{font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.a-tog{color:#a2a2aa;font-size:10px;align-self:center;text-align:right}
+
+/* ── B · 터미널 ── 폭을 다 쓰고, 중요도는 굵기·밝기·머리말로 */
+.stB{background:#faf9f5;color:#22201c}
+.stB .hd,.stB .box{max-width:1180px}
+.stB .box{font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.b-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
+.b-day i{flex:1;border-top:1px dashed #ddd8cb}
+.b-day em{font-style:normal;color:#b3ae9f}
+.b-row{display:grid;grid-template-columns:10px 30px 24px 226px minmax(0,1.15fr) minmax(0,1fr) 34px;
+      gap:9px;padding:3px 4px;align-items:baseline;cursor:pointer}
+.b-row:hover{background:#f2efe6}
+/* 펼친 속 — 대괄호 자리와 줄을 맞춰 어디에 딸린 내용인지 보이게 */
+.b-det{display:none;padding:4px 4px 12px 83px;font-family:var(--sans);font-size:13px;
+       color:#5f5a51;line-height:1.65;max-width:900px}
+.b-it.open .b-det{display:block}
+.b-det p{display:grid;grid-template-columns:44px minmax(0,1fr);gap:11px;padding:2px 0}
+.dk{font-family:var(--mono);font-size:10.5px;color:#a09a8c;padding-top:3px}
+.dn{color:#b5afa2}
+.b-star{color:#c2703a}
+.b-sev{font-size:11px;letter-spacing:.02em}
+.b-box{font:inherit;background:none;border:0;padding:0 3px;color:#a09a8c;user-select:none;
+       white-space:nowrap;cursor:pointer;border-radius:3px}
+.b-box:hover{background:#e8e3d6;color:#22201c}
+.b-cmd{color:#3c6b4a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.b-tt{font-family:var(--sans);font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;
+      white-space:nowrap}
+.b-ds{font-family:var(--sans);font-size:12.5px;color:#9c9689;min-width:0;overflow:hidden;
+      text-overflow:ellipsis;white-space:nowrap}
+.b-it.t1 .b-ds{color:#b5afa2}
+/* 펼치면 그 글이 아래에 온전히 나오므로 잘린 판은 감춘다 (자리는 유지) */
+.b-it.open .b-ds{visibility:hidden}
+.b-it.done .b-ds{color:#c5bfb2}
+.b-dt{font-size:11px;color:#b3ae9f;text-align:right}
+.b-it.nw .b-dt{color:#c2703a}
+/* 중요도 — 핵심은 굵고 밝게, 일반은 흐리게 (터미널의 bold/dim) */
+.b-it.t3 .b-sev{color:#c2703a}
+.b-it.t3 .b-tt{color:#1a1815;font-weight:600}
+.b-it.t2 .b-sev{color:#8a8578}
+.b-it.t2 .b-tt{color:#3a352e}
+.b-it.t1 .b-sev{color:#c3bdae}
+.b-it.t1 .b-tt{color:#8b857a}
+.b-it.t1 .b-cmd{color:#7f9a86}
+.b-it.done .b-box{color:#4f7a3c}
+.b-it.done .b-tt{color:#b8b2a5;text-decoration:line-through;font-weight:400}
+.b-prompt{color:#a09a8c;margin-bottom:4px;font-size:11.5px}
+.b-prompt em{font-style:normal;color:#c2703a}
+.b-out{color:#8a8578;font-size:11.5px;margin-bottom:14px}
+.b-out b{color:#c2703a;font-weight:400}
+.b-bar{font-size:11.5px;color:#a09a8c;margin-top:20px;border-top:1px dashed #ddd8cb;padding-top:9px}
+
+/* ── C · 수첩 ── */
+.stC{background:#fdfcfa}
+.c-day{margin:26px 0 8px;font-size:12px;color:#a09a90;display:flex;gap:8px;align-items:baseline}
+.c-day span{color:#c5bfb4}
+.c-it{display:grid;grid-template-columns:22px minmax(0,1fr);gap:13px;padding:11px 0;cursor:pointer;
+      align-items:start;border-bottom:1px solid #f2efe9}
+.c-it input{width:17px;height:17px;accent-color:#c2703a;margin:1px 0 0;cursor:pointer}
+.c-tt{display:block;font-size:15.5px;line-height:1.45;font-weight:500;color:#2a2724}
+.c-sub{display:block;margin-top:3px;font-size:13px;color:#8b857c}
+.c-sub code{font-family:var(--mono);font-size:11.5px;color:#a8703f;margin-right:7px}
+.c-it.nw .c-tt::after{content:"새로 들어옴";font-size:10.5px;color:#c2703a;font-weight:400;
+      margin-left:8px;vertical-align:2px}
+.c-it.done .c-tt{color:#bdb7ad;text-decoration:line-through}
+.c-it.done .c-sub{color:#cdc7bd}
+.c-top{font-size:13px;color:#8b857c;margin-bottom:6px}
+.c-top b{color:#c2703a;font-weight:560}
+
+/* ── D · 릴리스 노트 ── */
+.stD{background:#fff}
+.d-day{margin:34px 0 14px;font-size:15px;font-weight:640;letter-spacing:-.01em;
+       display:flex;gap:9px;align-items:baseline;padding-bottom:7px;border-bottom:2px solid #17171a}
+.d-day span{font-size:11.5px;color:#a2a2aa;font-weight:400}
+.d-it{padding:16px 0;border-bottom:1px solid #f0f0ed;position:relative}
+.d-it h3{font-size:16px;font-weight:600;line-height:1.4;letter-spacing:-.01em;padding-right:80px}
+.d-desc{margin-top:6px;font-size:14px;color:#55555e;line-height:1.65}
+.d-desc code{font-family:var(--mono);font-size:12px;color:#4f46c5;margin-right:7px}
+.d-how{margin-top:9px;font-size:13px;color:#6f6f78;border-left:2px solid #dad7f8;padding-left:11px;
+       line-height:1.6}
+.d-btn{position:absolute;right:0;top:16px;font:inherit;font-size:12px;padding:3px 11px;
+       border:1px solid #e3e3df;border-radius:5px;background:#fff;color:#6f6f78;cursor:pointer}
+.d-it.done .d-btn{border-color:#dad7f8;background:#f2f1fd;color:#4f46c5}
+.d-it.done h3{color:#a2a2aa}
+.d-it.nw h3::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+       background:#4f46c5;vertical-align:middle;margin-right:8px}
+</style>
+
+<div class="picker">
+  <b>같은 내용, 네 가지 결</b>
+  <button data-s="A" aria-pressed="true">지금 것</button>
+  <button data-s="B" aria-pressed="false">터미널</button>
+  <button data-s="C" aria-pressed="false">수첩</button>
+  <button data-s="D" aria-pressed="false">릴리스 노트</button>
+  <span style="margin-left:auto;color:#a2a2aa">해볼 것 · Claude Code · 실제 항목 11개</span>
+</div>
+
+<div class="st stA on" id="sA">
+  <div class="hd"><h1>지금 것 — 표</h1>
+    <p class="why">한 줄이 <b>네 칸으로 나뉜 레코드</b>다. 체크·명령어·제목·펼침이 각자 열을 차지하고
+    행마다 실선이 깔린다. 값이 정렬돼 있으니 눈이 <b>세로로 훑으며 비교</b>하게 되고, 그래서 할 일이
+    아니라 데이터로 읽힌다. 개수 배지와 모노 숫자가 그 인상을 굳힌다.</p></div>
+  <div class="box"><div class="a-day"><span>8.7</span><i>3일 전</i></div>
+<div class="a-it nw"><input type="checkbox"><span class="a-cmd">claude self-hosted-runner</span><span class="a-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="a-tog">▾</span></div>
+<div class="a-it nw"><input type="checkbox"><span class="a-cmd">SendMessage · ListAgents</span><span class="a-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>8.6</span><i>4일 전</i></div>
+<div class="a-it nw"><input type="checkbox"><span class="a-cmd">/review · /code-review</span><span class="a-tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>8.4</span><i>6일 전</i></div>
+<div class="a-it nw"><input type="checkbox"><span class="a-cmd">Ctrl+Alt+F (VSCode)</span><span class="a-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="a-tog">▾</span></div>
+<div class="a-it nw"><input type="checkbox"><span class="a-cmd">bg → commit · push</span><span class="a-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.24</span><i>17일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">claude-opus-5</span><span class="a-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="a-tog">▾</span></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">agent() → agent()</span><span class="a-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.22</span><i>19일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">/code-review</span><span class="a-tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.20</span><i>21일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">/context</span><span class="a-tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.19</span><i>22일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">/verify · /code-review</span><span class="a-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.18</span><i>23일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">progress heartbeat</span><span class="a-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.17</span><i>24일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">/fork → bg · /subtask</span><span class="a-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.15</span><i>26일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">--forward-subagent-text</span><span class="a-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="a-tog">▾</span></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">always allow → repo root</span><span class="a-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.14</span><i>27일 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">vimInsertModeRemaps</span><span class="a-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="a-tog">▾</span></div>
+<div class="a-day"><span>7.11</span><i>1달 전</i></div>
+<div class="a-it"><input type="checkbox"><span class="a-cmd">disableAutoMode</span><span class="a-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="a-tog">▾</span></div></div>
+</div>
+
+<div class="st stB" id="sB">
+  <div class="hd"><h1>터미널</h1>
+    <p class="why">다루는 물건이 <b>둘 다 CLI</b>라 도구가 쓰는 어휘를 그대로 쓴다 —
+    대괄호 체크박스, 줄표 날짜, 초록 명령어. 한 줄이 화면 폭을 다 쓰고, 중요도는
+    <b>머리말 한 낱말 + 글자 굵기·밝기</b>로 준다(터미널의 bold/dim). 핵심은 검고 굵게,
+    일반은 흐리게 — 별표를 세지 않아도 무게가 보인다.<br>
+    <b>대괄호를 누르면 체크</b>, 그 밖을 누르면 무엇·왜·해보기가 펼쳐진다.
+    오른쪽 흐린 글은 제목이 안 하는 말만 — 제목을 되풀이하던 설명 21개는
+    버렸다(전체 71개 중).</p></div>
+  <div class="box">
+    <p class="b-prompt">$ agent-edge try --tool claude-code</p>
+    <p class="b-out">16개 · 핵심 2 · 추천 13 · 일반 1 · <b>새로 들어온 것 5개(*)</b></p>
+    <div class="b-day"><span>── 2026-08-07</span><i></i><em>3일 전</em></div>
+<div class="b-it t3 nw"><div class="b-row"><span class="b-star">*</span><span class="b-sev">핵심</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">claude self-hosted-runner</span><span class="b-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="b-ds">코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</span><span class="b-dt">8.7</span></div><div class="b-det"><p><span class="dk">무엇</span>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p><span class="dk">왜</span>코드·컴퓨팅을 직접 통제 — 내부 인프라에서 Claude Code 실행 (Team/Enterprise)</p><p><span class="dk">해보기</span>claude self-hosted-runner 명령, 지원 플랜·설정 절차</p></div></div>
+<div class="b-it t2 nw"><div class="b-row"><span class="b-star">*</span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">SendMessage · ListAgents</span><span class="b-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="b-ds">멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</span><span class="b-dt">8.7</span></div><div class="b-det"><p><span class="dk">왜</span>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p><span class="dk">해보기</span>ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p></div></div>
+<div class="b-day"><span>── 2026-08-06</span><i></i><em>4일 전</em></div>
+<div class="b-it t1 nw"><div class="b-row"><span class="b-star">*</span><span class="b-sev">일반</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">/review · /code-review</span><span class="b-tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="b-ds">/review medium 123처럼 effort·PR 번호 지정 가능 — /code-review와 완전 동일</span><span class="b-dt">8.6</span></div><div class="b-det"><p><span class="dk">왜</span>/review medium 123처럼 effort·PR 번호 지정 가능 — /code-review와 완전 동일</p><p><span class="dk">해보기</span>/review &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 /code-review ultra</p></div></div>
+<div class="b-day"><span>── 2026-08-04</span><i></i><em>6일 전</em></div>
+<div class="b-it t2 nw"><div class="b-row"><span class="b-star">*</span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">Ctrl+Alt+F (VSCode)</span><span class="b-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="b-ds">긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</span><span class="b-dt">8.4</span></div><div class="b-det"><p><span class="dk">무엇</span>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p><span class="dk">왜</span>긴 도구 출력이 대화를 가리는 문제 해소 — 필요할 때만 펼쳐서 확인</p><p><span class="dk">해보기</span>Ctrl+Alt+F 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p></div></div>
+<div class="b-it t2 nw"><div class="b-row"><span class="b-star">*</span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">bg → commit · push</span><span class="b-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="b-ds">기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지</span><span class="b-dt">8.4</span></div><div class="b-det"><p><span class="dk">왜</span>기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지</p><p><span class="dk">해보기</span>CLAUDE.md에 git 지침 정의 방법; draft PR 열리는 조건</p></div></div>
+<div class="b-day"><span>── 2026-07-24</span><i></i><em>17일 전</em></div>
+<div class="b-it t3"><div class="b-row"><span class="b-star"></span><span class="b-sev">핵심</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">claude-opus-5</span><span class="b-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="b-ds">Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</span><span class="b-dt">7.24</span></div><div class="b-det"><p><span class="dk">왜</span>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p><span class="dk">해보기</span>요금 ($10/$50 per Mtok); /fast 토글; Opus 5 vs Sonnet 5 선택 기준</p></div></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">agent() → agent()</span><span class="b-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="b-ds">재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</span><span class="b-dt">7.24</span></div><div class="b-det"><p><span class="dk">무엇</span>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 비활성화.</p><p><span class="dk">왜</span>재귀 에이전트 트리가 기본으로 동작 — depth 2+ 서브에이전트가 자동으로 하위 에이전트 생성</p><p><span class="dk">해보기</span>기본 depth 3; CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 기존 동작 복원; 동시성 상한 CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</p></div></div>
+<div class="b-day"><span>── 2026-07-22</span><i></i><em>19일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">/code-review</span><span class="b-tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="b-ds">리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</span><span class="b-dt">7.22</span></div><div class="b-det"><p><span class="dk">무엇</span>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p><span class="dk">왜</span>리뷰 작업이 대화를 채우지 않음 — 메인 세션 컨텍스트 절약</p><p><span class="dk">해보기</span>bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p></div></div>
+<div class="b-day"><span>── 2026-07-20</span><i></i><em>21일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">/context</span><span class="b-tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="b-ds">컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</span><span class="b-dt">7.20</span></div><div class="b-det"><p><span class="dk">왜</span>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p><span class="dk">해보기</span>/context 경고 발생 조건, /compact 실패 후 대응</p></div></div>
+<div class="b-day"><span>── 2026-07-19</span><i></i><em>22일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">/verify · /code-review</span><span class="b-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="b-ds">의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</span><span class="b-dt">7.19</span></div><div class="b-det"><p><span class="dk">왜</span>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p><span class="dk">해보기</span>변경 완료 후 /code-review, 머지 전 /verify 직접 실행</p></div></div>
+<div class="b-day"><span>── 2026-07-18</span><i></i><em>23일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">progress heartbeat</span><span class="b-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="b-ds">빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</span><span class="b-dt">7.18</span></div><div class="b-det"><p><span class="dk">왜</span>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p><span class="dk">해보기</span>heartbeat가 붙는 도구 호출 유형, 전송 주기</p></div></div>
+<div class="b-day"><span>── 2026-07-17</span><i></i><em>24일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">/fork → bg · /subtask</span><span class="b-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="b-ds">/fork가 항상 bg 세션 분기로 동작 — 인세션 위임은 /subtask로 전환 필요</span><span class="b-dt">7.17</span></div><div class="b-det"><p><span class="dk">왜</span>/fork가 항상 bg 세션 분기로 동작 — 인세션 위임은 /subtask로 전환 필요</p><p><span class="dk">해보기</span>/fork vs /subtask 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p></div></div>
+<div class="b-day"><span>── 2026-07-15</span><i></i><em>26일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">--forward-subagent-text</span><span class="b-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="b-ds">CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT 환경변수도 지원</span><span class="b-dt">7.15</span></div><div class="b-det"><p><span class="dk">무엇</span>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p><span class="dk">왜</span>CI에서 서브에이전트 응답이 조용히 사라지던 문제 해결 — CLAUDE_CODE_FORWARD_SUBAGENT_TEXT 환경변수도 지원</p><p><span class="dk">해보기</span>--stream-json 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p></div></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">always allow → repo root</span><span class="b-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="b-ds">워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</span><span class="b-dt">7.15</span></div><div class="b-det"><p><span class="dk">무엇</span>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p><span class="dk">왜</span>워크트리 세션마다 권한 재승인 반복 해소 — 한 번 허용하면 모든 워크트리에 지속</p><p><span class="dk">해보기</span>저장 위치(저장소 루트 .claude/settings.json); 워크트리 로컬 vs 루트 규칙 우선순위</p></div></div>
+<div class="b-day"><span>── 2026-07-14</span><i></i><em>27일 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">vimInsertModeRemaps</span><span class="b-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="b-ds">에디터에서 손에 밴 키 조합 그대로 vim 모드에서 사용</span><span class="b-dt">7.14</span></div><div class="b-det"><p><span class="dk">무엇</span>vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</p><p><span class="dk">왜</span>에디터에서 손에 밴 키 조합 그대로 vim 모드에서 사용</p><p><span class="dk">해보기</span>settings.json의 vimInsertModeRemaps에 시퀀스→키 맵핑 추가</p></div></div>
+<div class="b-day"><span>── 2026-07-11</span><i></i><em>1달 전</em></div>
+<div class="b-it t2"><div class="b-row"><span class="b-star"></span><span class="b-sev">추천</span><button class="b-box" aria-label="해봤음 표시">[ ]</button><span class="b-cmd">disableAutoMode</span><span class="b-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="b-ds">CLAUDE_CODE_ENABLE_AUTO_MODE 환경변수 불필요 — 클라우드 플랫폼에서 기본 활성</span><span class="b-dt">7.11</span></div><div class="b-det"><p><span class="dk">왜</span>CLAUDE_CODE_ENABLE_AUTO_MODE 환경변수 불필요 — 클라우드 플랫폼에서 기본 활성</p><p><span class="dk">해보기</span>Bedrock·Vertex 기본 모델 Opus 4.8로 변경; 비활성화는 user settings.json의 disableAutoMode</p></div></div>
+    <p class="b-bar">[··········] 0/16 해봄 · 안 해본 것만 [ ] · 핵심만 [ ]</p>
+  </div>
+</div>
+
+<div class="st stC" id="sC">
+  <div class="hd"><h1>수첩</h1>
+    <p class="why">이건 표가 아니라 <b>할 일 목록</b>이다. 열을 없애고 제목을 키웠다.
+    명령어는 칸이 아니라 <b>설명 앞에 붙는 꼬리표</b>로 내려가고, 날짜는 목록 밖으로 물러난다.
+    체크박스가 화면에서 제일 큰 조작 대상이고, 체크하면 줄이 눈에 띄게 죽는다.</p></div>
+  <div class="box">
+    <p class="c-top"><b>새로 들어온 것 5개</b> · 지난 방문 6일 전 이후</p>
+    <p class="c-day">8월 7일<span>3일 전</span></p>
+<label class="c-it nw"><input type="checkbox"><span class="c-body"><span class="c-tt">셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</span><span class="c-sub"><code>claude self-hosted-runner</code>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</span></span></label>
+<label class="c-it nw"><input type="checkbox"><span class="c-body"><span class="c-tt">세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</span><span class="c-sub"><code>SendMessage · ListAgents</code></span></span></label>
+<p class="c-day">8월 6일<span>4일 전</span></p>
+<label class="c-it nw"><input type="checkbox"><span class="c-body"><span class="c-tt">/review = /code-review 별칭 통합 — effort 레벨 자동 기억</span><span class="c-sub"><code>/review · /code-review</code></span></span></label>
+<p class="c-day">8월 4일<span>6일 전</span></p>
+<label class="c-it nw"><input type="checkbox"><span class="c-body"><span class="c-tt">[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</span><span class="c-sub"><code>Ctrl+Alt+F (VSCode)</code>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</span></span></label>
+<label class="c-it nw"><input type="checkbox"><span class="c-body"><span class="c-tt">bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</span><span class="c-sub"><code>bg → commit · push</code></span></span></label>
+<p class="c-day">7월 24일<span>17일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</span><span class="c-sub"><code>claude-opus-5</code></span></span></label>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</span><span class="c-sub"><code>agent() → agent()</code>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 비활성화.</span></span></label>
+<p class="c-day">7월 22일<span>19일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</span><span class="c-sub"><code>/code-review</code>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</span></span></label>
+<p class="c-day">7월 20일<span>21일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</span><span class="c-sub"><code>/context</code></span></span></label>
+<p class="c-day">7월 19일<span>22일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</span><span class="c-sub"><code>/verify · /code-review</code></span></span></label>
+<p class="c-day">7월 18일<span>23일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">긴 도구 호출에 주기적 진행 상황 알림</span><span class="c-sub"><code>progress heartbeat</code></span></span></label>
+<p class="c-day">7월 17일<span>24일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</span><span class="c-sub"><code>/fork → bg · /subtask</code></span></span></label>
+<p class="c-day">7월 15일<span>26일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">stream-json에 서브에이전트 텍스트·thinking 포함</span><span class="c-sub"><code>--forward-subagent-text</code>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</span></span></label>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</span><span class="c-sub"><code>always allow → repo root</code>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</span></span></label>
+<p class="c-day">7월 14일<span>27일 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</span><span class="c-sub"><code>vimInsertModeRemaps</code>vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</span></span></label>
+<p class="c-day">7월 11일<span>1달 전</span></p>
+<label class="c-it"><input type="checkbox"><span class="c-body"><span class="c-tt">Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</span><span class="c-sub"><code>disableAutoMode</code></span></span></label>
+  </div>
+</div>
+
+<div class="st stD" id="sD">
+  <div class="hd"><h1>릴리스 노트</h1>
+    <p class="why">훑는 게 아니라 <b>읽는 물건</b>으로 본다. 날짜가 굵은 머리글이 되고 항목마다
+    제목·설명·해보기가 문단으로 선다. 무엇을 왜 해보는지가 화면에 남아서 <b>판단이 화면 안에서</b>
+    끝난다. 대신 한 화면에 들어오는 개수가 확 줄어든다.</p></div>
+  <div class="box"><h2 class="d-day">8월 7일 <span>3일 전</span></h2>
+<article class="d-it nw"><h3>셀프 호스팅 러너 — 직접 보유한 서버·컨테이너를 Claude Code 실행 환경으로</h3><p class="d-desc"><code>claude self-hosted-runner</code>웹·모바일·데스크톱 세션을 내 서버나 컨테이너에서 직접 실행.</p><p class="d-how">claude self-hosted-runner 명령, 지원 플랜·설정 절차</p><button class="d-btn">해봤다</button></article>
+<article class="d-it nw"><h3>세션 간 SendMessage — 다른 머신의 Claude Code 세션에 직접 메시지 전송</h3><p class="d-desc"><code>SendMessage · ListAgents</code>멀티 머신 에이전트 워크플로를 수동 핸드오프 없이 조율</p><p class="d-how">ListAgents로 세션 탐색, SendMessage 사용법 — macOS·Linux 지원</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">8월 6일 <span>4일 전</span></h2>
+<article class="d-it nw"><h3>/review = /code-review 별칭 통합 — effort 레벨 자동 기억</h3><p class="d-desc"><code>/review · /code-review</code>/review medium 123처럼 effort·PR 번호 지정 가능 — /code-review와 완전 동일</p><p class="d-how">/review &lt;level&gt; &lt;pr#&gt; 사용법; 딥 리뷰는 /code-review ultra</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">8월 4일 <span>6일 전</span></h2>
+<article class="d-it nw"><h3>[VSCode] Focus view — 도구 활동을 턴별 접힘 요약으로 숨김</h3><p class="d-desc"><code>Ctrl+Alt+F (VSCode)</code>도구 활동을 접힌 요약으로 숨기고 실행 중 도구만 표시하는 채팅 뷰 토글.</p><p class="d-how">Ctrl+Alt+F 또는 &quot;Claude Code: Toggle Focus view&quot; 명령으로 전환</p><button class="d-btn">해봤다</button></article>
+<article class="d-it nw"><h3>bg 세션 완료 시 항상 커밋·푸시 보존 — draft PR은 필요할 때만</h3><p class="d-desc"><code>bg → commit · push</code>기존엔 항상 draft PR 오픈 — 이제 CLAUDE.md git 지침 준수 + 불필요 PR 방지</p><p class="d-how">CLAUDE.md에 git 지침 정의 방법; draft PR 열리는 조건</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 24일 <span>17일 전</span></h2>
+<article class="d-it"><h3>Claude Opus 5 — Opus 기본 모델 교체, 1M 컨텍스트, fast mode 지원</h3><p class="d-desc"><code>claude-opus-5</code>Opus급 추론 + 1M 컨텍스트 + fast mode — Sonnet으로 부족한 깊이 있는 작업에 선택</p><p class="d-how">요금 ($10/$50 per Mtok); /fast 토글; Opus 5 vs Sonnet 5 선택 기준</p><button class="d-btn">해봤다</button></article>
+<article class="d-it"><h3>서브에이전트 중첩 spawn 기본 활성 (depth 3) — 비활성은 =1 설정</h3><p class="d-desc"><code>agent() → agent()</code>v2.1.219부터 중첩 spawn 기본 활성(최대 depth 3) — CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 비활성화.</p><p class="d-how">기본 depth 3; CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH=1로 기존 동작 복원; 동시성 상한 CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 22일 <span>19일 전</span></h2>
+<article class="d-it"><h3>/code-review 백그라운드 서브에이전트 실행 — 대화 컨텍스트를 채우지 않음</h3><p class="d-desc"><code>/code-review</code>코드 리뷰가 백그라운드에서 실행 — 스택된 슬래시 명령도 리뷰 대상 유지.</p><p class="d-how">bg 서브에이전트 리뷰 동작 방식, 스택 슬래시 명령 리뷰 대상 지정</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 20일 <span>21일 전</span></h2>
+<article class="d-it"><h3>/context 컨텍스트 초과 명시적 경고 — /compact 실패 시 에러 표시</h3><p class="d-desc"><code>/context</code>컨텍스트가 꽉 찼을 때 즉시 인지 — 오동작 전에 조치 가능</p><p class="d-how">/context 경고 발생 조건, /compact 실패 후 대응</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 19일 <span>22일 전</span></h2>
+<article class="d-it"><h3>/verify · /code-review 자동 실행 제거 — 직접 호출해야 함</h3><p class="d-desc"><code>/verify · /code-review</code>의도치 않은 자동 실행 제거 — 리뷰·검증 타이밍을 직접 제어</p><p class="d-how">변경 완료 후 /code-review, 머지 전 /verify 직접 실행</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 18일 <span>23일 전</span></h2>
+<article class="d-it"><h3>긴 도구 호출에 주기적 진행 상황 알림</h3><p class="d-desc"><code>progress heartbeat</code>빌드·테스트·스캔 중 작업이 중단됐는지 실행 중인지 확인 가능</p><p class="d-how">heartbeat가 붙는 도구 호출 유형, 전송 주기</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 17일 <span>24일 전</span></h2>
+<article class="d-it"><h3>/fork는 bg 세션 복사 — 인세션 서브에이전트 실행은 /subtask로</h3><p class="d-desc"><code>/fork → bg · /subtask</code>/fork가 항상 bg 세션 분기로 동작 — 인세션 위임은 /subtask로 전환 필요</p><p class="d-how">/fork vs /subtask 적용 범위; 포크 세션이 claude agents 목록에 표시되는 방식</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 15일 <span>26일 전</span></h2>
+<article class="d-it"><h3>stream-json에 서브에이전트 텍스트·thinking 포함</h3><p class="d-desc"><code>--forward-subagent-text</code>-p 모드 stream-json 파이프라인에서 서브에이전트 출력까지 캡처하는 플래그·환경변수.</p><p class="d-how">--stream-json 이벤트 구조; 서브에이전트 이벤트 필터링 방법</p><button class="d-btn">해봤다</button></article>
+<article class="d-it"><h3>&quot;허용 항상&quot; 규칙이 저장소 루트에 저장 — 워크트리 간 지속</h3><p class="d-desc"><code>always allow → repo root</code>worktree에서 승인한 권한이 저장소 루트에 저장 — 세션·워크트리 전체에 자동 적용.</p><p class="d-how">저장 위치(저장소 루트 .claude/settings.json); 워크트리 로컬 vs 루트 규칙 우선순위</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 14일 <span>27일 전</span></h2>
+<article class="d-it"><h3>Vim 삽입 모드 리맵 — jj → Escape 등 두 키 시퀀스 커스터마이즈</h3><p class="d-desc"><code>vimInsertModeRemaps</code>vim 모드 삽입 상태에서 두 키 시퀀스를 원하는 키로 리맵.</p><p class="d-how">settings.json의 vimInsertModeRemaps에 시퀀스→키 맵핑 추가</p><button class="d-btn">해봤다</button></article>
+<h2 class="d-day">7월 11일 <span>1달 전</span></h2>
+<article class="d-it"><h3>Bedrock·Vertex·Foundry Auto mode — opt-in 불필요</h3><p class="d-desc"><code>disableAutoMode</code>CLAUDE_CODE_ENABLE_AUTO_MODE 환경변수 불필요 — 클라우드 플랫폼에서 기본 활성</p><p class="d-how">Bedrock·Vertex 기본 모델 Opus 4.8로 변경; 비활성화는 user settings.json의 disableAutoMode</p><button class="d-btn">해봤다</button></article></div>
+</div>
+
+<script>
+document.querySelectorAll('.picker button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.picker button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  document.querySelectorAll('.st').forEach(s => s.classList.toggle('on', s.id === 's' + b.dataset.s));
+  window.scrollTo(0, 0);
+}));
+/* 터미널 판 — 대괄호는 체크, 나머지 줄은 펼치기 */
+document.querySelectorAll('#sB .b-it').forEach(it => {
+  const box = it.querySelector('.b-box');
+  box.addEventListener('click', e => {
+    e.stopPropagation();
+    it.classList.toggle('done');
+    box.textContent = it.classList.contains('done') ? '[x]' : '[ ]';
+  });
+  it.querySelector('.b-row').addEventListener('click', () => it.classList.toggle('open'));
+});
+document.querySelectorAll('#sC .c-it input').forEach(i => i.addEventListener('change', () =>
+  i.closest('.c-it').classList.toggle('done', i.checked)));
+document.querySelectorAll('#sD .d-btn').forEach(b => b.addEventListener('click', () => {
+  const it = b.closest('.d-it');
+  it.classList.toggle('done');
+  b.textContent = it.classList.contains('done') ? '해봤음' : '해봤다';
+}));
+</script>

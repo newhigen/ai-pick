@@ -1,0 +1,298 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>네 겹짜리 한 장</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='7' width='22' height='4' rx='1' fill='%23141414'/%3E%3Crect x='5' y='14' width='22' height='4' rx='1' fill='%23141414'/%3E%3Crect x='5' y='21.2' width='22' height='4' rx='1' fill='none' stroke='%232563eb' stroke-width='1.9'/%3E%3C/svg%3E">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#141414; --ink2:#3d3d3a; --muted:#6a6a66; --faint:#9b9b96;
+    --rule:#e3e3e0; --hair:#f0f0ee; --accent:#2563eb;
+    --sans:"Inter Tight",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    --mono:"Google Sans Code",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  html{color-scheme:light}
+  body{background:#fff;color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.62;
+       -webkit-font-smoothing:antialiased;padding:56px 32px 96px}
+  .page{max-width:1240px;margin:0 auto}
+
+  h1{font-size:30px;line-height:1.2;letter-spacing:-.02em;font-weight:650}
+  .sub{color:var(--muted);margin-top:10px;max-width:78ch}
+  h2{font-size:17px;font-weight:620;letter-spacing:-.01em;margin:0 0 4px}
+  .note{color:var(--muted);font-size:14px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  .band-head{margin-top:44px;padding-top:14px;border-top:1px solid var(--rule)}
+
+  /* ── 비교 열 ── */
+  .compare{margin-top:22px;overflow-x:auto;padding-bottom:6px}
+  .strip{display:grid;grid-template-columns:repeat(5,232px);gap:18px;min-width:min-content}
+  .opt{}
+  .opt-head{display:flex;align-items:baseline;gap:7px;margin-bottom:3px}
+  .opt-name{font-size:15px;font-weight:640;letter-spacing:-.01em}
+  .opt-tag{font-size:11px;color:var(--faint);font-family:var(--mono)}
+  .opt-line{font-size:12.5px;color:var(--muted);line-height:1.5;min-height:4.5em;margin-bottom:9px}
+  .opt-foot{margin-top:9px;font-size:12.5px;color:var(--ink2);line-height:1.55}
+  .opt-foot .lose{color:var(--muted)}
+  .weight{margin-top:7px;font-family:var(--mono);font-size:12px;color:var(--ink)}
+  .weight .cut{color:var(--accent)}
+
+  /* ── 와이어프레임 ── */
+  .wf{border:1px solid var(--rule);border-radius:5px;padding:8px;background:#fff}
+  .wf .lab{font-size:8.5px;color:var(--faint);margin:7px 0 3px;letter-spacing:.01em}
+  .wf .lab:first-child{margin-top:0}
+  .topbar{height:13px;border-radius:2px;background:#f4f4f2;display:flex;align-items:center;gap:3px;padding:0 4px}
+  .topbar i{height:5px;border-radius:1px;background:#dedeDA;display:block}
+  .topbar i.b{width:26px;background:#cfcfc9}
+  .topbar i.t{width:19px}
+  .topbar i.on{background:#a9a9a2}
+  .hero{margin-top:7px;height:9px;width:76px;border-radius:2px;background:#e6e6e2}
+  .hero2{margin-top:4px;height:6px;width:118px;border-radius:2px;background:#f0f0ee}
+  .band{margin-top:8px;border:1px solid var(--accent);background:#eef3fd;border-radius:3px;
+        padding:3px 5px;font-size:8.5px;color:var(--accent);display:flex;justify-content:space-between}
+  .rows{display:grid;gap:3px}
+  .r{height:7px;border-radius:1px;background:#f2f2f0}
+  .r.new{background:#e4ecfb}
+  .cols{display:grid;grid-template-columns:1fr 62px;gap:7px}
+  .side .r{background:#f5f5f3}
+  .grid8{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+  .box{height:24px;border:1px solid #eeeeeb;border-radius:2px;background:#fafaf9}
+  .vb{height:19px;border-radius:2px;background:#f2f2f0;margin-bottom:4px}
+  .more{font-size:8px;color:var(--faint);text-align:center;border:1px dashed var(--rule);
+        border-radius:2px;padding:2px;margin-top:4px}
+  .fold{font-size:8.5px;color:var(--muted);border:1px solid var(--hair);border-radius:2px;
+        padding:4px 5px;margin-top:8px;background:#fbfbfa}
+  .subtabs{display:flex;gap:10px;margin-top:9px;border-bottom:1px solid var(--hair);padding-bottom:4px}
+  .subtabs span{font-size:8.5px;color:var(--faint)}
+  .subtabs span.on{color:var(--ink);border-bottom:1.5px solid var(--ink);padding-bottom:3px;margin-bottom:-5px}
+  .daymark{font-size:8px;color:var(--faint);font-family:var(--mono);margin:7px 0 3px}
+  .tl{display:grid;grid-template-columns:9px 1fr;gap:4px;align-items:center;margin-bottom:3px}
+  .dot{width:5px;height:5px;border-radius:50%;background:#c9c9c3;margin-left:2px}
+  .dot.a{background:#a0a099}.dot.b{background:#c9c9c3}.dot.c{background:#e0e0da}
+  .gone{position:relative}
+  .gone::after{content:"";position:absolute;inset:0;background:
+    repeating-linear-gradient(45deg,transparent 0 5px,rgba(20,20,20,.05) 5px 6px)}
+
+  /* ── 표 ── */
+  table{border-collapse:collapse;width:100%;margin-top:18px;font-size:14px}
+  th,td{text-align:left;padding:9px 14px 9px 0;vertical-align:top;border-bottom:1px solid var(--hair)}
+  th{font-weight:600;color:var(--ink);border-bottom:1px solid var(--rule);font-size:13px}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  tbody tr td:first-child{font-weight:600;white-space:nowrap}
+  .fn{margin-top:26px;color:var(--muted);font-size:13.5px;max-width:80ch}
+  .fn p+p{margin-top:8px}
+</style>
+
+<div class="page">
+
+  <h1>네 겹짜리 한 장</h1>
+  <p class="sub">Claude Code 탭 하나에 써볼 기능 40행, 오른쪽 사이드바, 용도별 8칸, 버전 블록이 세로로 쌓여 있다.
+  어디까지 덜어낼지 네 가지 모양으로 그렸다. 파란 띠는 네 가지 모두에 공통으로 들어가는 “지난 방문 이후 새 항목”이다.</p>
+  <p class="sub" style="margin-top:6px">이후 방향이 “뉴스 말고 쓸 기능”으로 좁혀졌다. 실제 항목으로 채운 최신 목업은
+  <a href="mock.html" style="color:var(--accent)">mock.html</a> — 밝은 바탕, 별점 없음, 뉴스 제외.</p>
+
+  <div class="compare">
+    <div class="strip">
+
+      <!-- ── 지금 ── -->
+      <div class="opt">
+        <div class="opt-head"><span class="opt-name">지금</span><span class="opt-tag">as-is</span></div>
+        <p class="opt-line">네 덩어리가 한 화면에 다 있다. 써볼 기능과 용도별은 같은 데이터를 다르게 배치한 것이다.</p>
+        <div class="wf">
+          <div class="topbar"><i class="b"></i><i class="t on"></i><i class="t"></i><i class="t"></i><i class="t"></i><i class="t"></i></div>
+          <div class="hero"></div><div class="hero2"></div>
+          <div class="lab">써볼 기능 40행</div>
+          <div class="cols">
+            <div class="rows">
+              <div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+              <div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+              <div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+            </div>
+            <div class="side">
+              <div class="lab" style="margin-top:0">blog · 뉴스</div>
+              <div class="rows">
+                <div class="r"></div><div class="r"></div><div class="r"></div>
+                <div class="r"></div><div class="r"></div><div class="r"></div>
+                <div class="r"></div><div class="r"></div>
+              </div>
+            </div>
+          </div>
+          <div class="lab">용도별 보기 8칸</div>
+          <div class="grid8">
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+          </div>
+          <div class="lab">버전별</div>
+          <div class="vb"></div><div class="vb"></div><div class="vb"></div>
+          <div class="more">이전 232개 더 보기</div>
+        </div>
+        <p class="opt-foot">덜어낸 것 없음.</p>
+        <p class="weight">1.6MB</p>
+      </div>
+
+      <!-- ── 1안 무게만 ── -->
+      <div class="opt">
+        <div class="opt-head"><span class="opt-name">무게만</span><span class="opt-tag">1안</span></div>
+        <p class="opt-line">보이는 건 지금 그대로 두고, 안 보이는데 실려 나가는 버전 블록만 밖으로 뺀다.</p>
+        <div class="wf">
+          <div class="topbar"><i class="b"></i><i class="t on"></i><i class="t"></i><i class="t"></i><i class="t"></i><i class="t"></i></div>
+          <div class="hero"></div><div class="hero2"></div>
+          <div class="band"><span>새 항목 12개</span><span>모두 읽음</span></div>
+          <div class="lab">써볼 기능 40행</div>
+          <div class="cols">
+            <div class="rows">
+              <div class="r new"></div><div class="r new"></div><div class="r"></div><div class="r"></div>
+              <div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+              <div class="r"></div><div class="r"></div><div class="r"></div>
+            </div>
+            <div class="side">
+              <div class="lab" style="margin-top:0">blog · 뉴스</div>
+              <div class="rows">
+                <div class="r"></div><div class="r"></div><div class="r"></div>
+                <div class="r"></div><div class="r"></div><div class="r"></div>
+                <div class="r"></div><div class="r"></div>
+              </div>
+            </div>
+          </div>
+          <div class="lab">용도별 보기 8칸</div>
+          <div class="grid8">
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+          </div>
+          <div class="lab">버전별 — 최신만 싣고 나머지는 누를 때 받아옴</div>
+          <div class="vb"></div><div class="vb"></div><div class="vb"></div>
+          <div class="more">이전 232개 더 보기 · 별도 파일</div>
+        </div>
+        <p class="opt-foot">화면은 안 바뀐다. <span class="lose">한 장에 네 겹이라는 건 그대로.</span></p>
+        <p class="weight"><span class="cut">약 0.45MB</span></p>
+      </div>
+
+      <!-- ── 2안 두 덩어리 ── -->
+      <div class="opt">
+        <div class="opt-head"><span class="opt-name">두 덩어리</span><span class="opt-tag">2안</span></div>
+        <p class="opt-line">본문을 써볼 기능과 버전별 둘로 줄인다. 사이드바는 뉴스 탭으로 보내고 용도별은 접어둔다.</p>
+        <div class="wf">
+          <div class="topbar"><i class="b"></i><i class="t on"></i><i class="t"></i><i class="t"></i><i class="t"></i><i class="t"></i></div>
+          <div class="hero"></div><div class="hero2"></div>
+          <div class="band"><span>새 항목 12개</span><span>모두 읽음</span></div>
+          <div class="lab">써볼 기능 — 핵심 6개</div>
+          <div class="rows">
+            <div class="r new"></div><div class="r new"></div><div class="r"></div>
+            <div class="r"></div><div class="r"></div><div class="r"></div>
+          </div>
+          <div class="more">나머지 34개 더 보기</div>
+          <div class="fold">▸ 용도별로 보기 (8)</div>
+          <div class="lab">버전별</div>
+          <div class="vb"></div><div class="vb"></div><div class="vb"></div><div class="vb"></div>
+          <div class="more">이전 232개 더 보기 · 별도 파일</div>
+        </div>
+        <p class="opt-foot">한 화면에 두 겹. <span class="lose">blog 분석 모달은 뉴스 탭으로 한 번 더 들어가야 한다.</span></p>
+        <p class="weight"><span class="cut">약 0.34MB</span></p>
+      </div>
+
+      <!-- ── 3안 한 목록 ── -->
+      <div class="opt">
+        <div class="opt-head"><span class="opt-name">한 목록</span><span class="opt-tag">3안</span></div>
+        <p class="opt-line">한 화면에 한 가지 시각만. 용도별과 버전별은 하위 탭으로 내려 눌러야 나온다.</p>
+        <div class="wf">
+          <div class="topbar"><i class="b"></i><i class="t on"></i><i class="t"></i><i class="t"></i><i class="t"></i><i class="t"></i></div>
+          <div class="hero"></div><div class="hero2"></div>
+          <div class="subtabs"><span class="on">써볼 기능</span><span>용도별</span><span>버전별</span></div>
+          <div class="band"><span>새 항목 12개</span><span>모두 읽음</span></div>
+          <div class="lab">한 줄 목록 · 효과성순</div>
+          <div class="rows">
+            <div class="r new"></div><div class="r new"></div><div class="r"></div><div class="r"></div>
+            <div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div>
+            <div class="r"></div><div class="r"></div>
+          </div>
+          <div class="more">더 보기</div>
+        </div>
+        <p class="opt-foot">한 화면에 한 겹. <span class="lose">버전별을 보려면 탭을 한 번 눌러야 하고, 스크롤로 우연히 만나는 일은 없어진다.</span></p>
+        <p class="weight"><span class="cut">약 0.20MB</span></p>
+      </div>
+
+      <!-- ── 4안 한 타임라인 ── -->
+      <div class="opt">
+        <div class="opt-head"><span class="opt-name">한 타임라인</span><span class="opt-tag">4안</span></div>
+        <p class="opt-line">도구별 탭도 없앤다. Claude Code·Codex·Manus·뉴스를 날짜순 한 줄기로 섞고 점으로 출처를 표시한다.</p>
+        <div class="wf">
+          <div class="topbar"><i class="b"></i><i class="t on"></i><i class="t"></i></div>
+          <div class="hero"></div>
+          <div class="band"><span>새 항목 12개</span><span>모두 읽음</span></div>
+          <div class="daymark">8월 8일</div>
+          <div class="tl"><span class="dot a"></span><div class="r new"></div></div>
+          <div class="tl"><span class="dot b"></span><div class="r new"></div></div>
+          <div class="daymark">8월 7일</div>
+          <div class="tl"><span class="dot a"></span><div class="r new"></div></div>
+          <div class="tl"><span class="dot c"></span><div class="r new"></div></div>
+          <div class="tl"><span class="dot b"></span><div class="r"></div></div>
+          <div class="daymark">8월 4일</div>
+          <div class="tl"><span class="dot a"></span><div class="r"></div></div>
+          <div class="tl"><span class="dot a"></span><div class="r"></div></div>
+          <div class="tl"><span class="dot c"></span><div class="r"></div></div>
+          <div class="daymark">7월 29일</div>
+          <div class="tl"><span class="dot b"></span><div class="r"></div></div>
+          <div class="tl"><span class="dot a"></span><div class="r"></div></div>
+          <div class="more">더 보기</div>
+        </div>
+        <p class="opt-foot">화면이 하나로 준다. <span class="lose">도구끼리 나란히 비교하는 지금의 성격은 사라진다.</span></p>
+        <p class="weight"><span class="cut">약 0.15MB</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="band-head">
+    <h2>무엇이 남고 무엇이 빠지나</h2>
+    <p class="note">네 가지 모두 “지난 방문 이후 새 항목” 띠와 배지는 들어간다.</p>
+
+    <table>
+      <thead>
+        <tr><th style="width:9ch"></th><th>남는 것</th><th>빠지거나 내려가는 것</th><th style="width:11ch">첫 로딩</th><th>대가</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>지금</td>
+          <td>써볼 40행 · 사이드바 · 용도별 8칸 · 버전 블록</td>
+          <td>—</td>
+          <td class="num">1.6MB</td>
+          <td>매달 60KB씩 는다</td>
+        </tr>
+        <tr>
+          <td>무게만</td>
+          <td>지금과 같음</td>
+          <td>숨어 있던 버전 232개가 별도 파일로</td>
+          <td class="num">약 0.45MB</td>
+          <td>보이는 복잡함은 그대로</td>
+        </tr>
+        <tr>
+          <td>두 덩어리</td>
+          <td>써볼 핵심 6개 · 버전 블록</td>
+          <td>사이드바는 뉴스 탭으로 · 용도별은 접힘 · 써볼 34개는 더 보기</td>
+          <td class="num">약 0.34MB</td>
+          <td>blog 분석이 한 단계 멀어진다</td>
+        </tr>
+        <tr>
+          <td>한 목록</td>
+          <td>써볼 기능 한 줄 목록</td>
+          <td>용도별·버전별이 하위 탭으로 · 사이드바 제거</td>
+          <td class="num">약 0.20MB</td>
+          <td>스크롤하다 우연히 만나는 경로가 없어진다</td>
+        </tr>
+        <tr>
+          <td>한 타임라인</td>
+          <td>날짜순 한 줄기</td>
+          <td>도구별 탭 · 용도별 · 버전 블록 · 사이드바</td>
+          <td class="num">약 0.15MB</td>
+          <td>도구를 나란히 비교하는 성격이 사라진다</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fn">
+    <p>첫 로딩은 어림이다. 지금 파일 1.6MB 중 버전 블록이 72%(약 1.15MB)를 차지하고, 사이드바 전부가 40KB, 용도별 전부가 74KB다.
+    전송량은 압축이 걸려 지금도 333KB지만, 브라우저가 해석하는 양은 압축 전 크기 그대로다.</p>
+    <p>4안은 도구별 탭을 없애는 안이라 되돌리기가 가장 비싸다. 1·2·3안은 서로 겹쳐 쌓을 수 있다 — 1안을 먼저 하고 나중에 2안이나 3안으로 더 줄여도 된다.</p>
+  </div>
+
+</div>
