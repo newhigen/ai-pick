@@ -37,8 +37,8 @@ CNAME · sitemap.xml · robots.txt
 1. **버전 수집** (순수 스크립트) — `update_changelog.py`(Claude Code)·`update_codex.py`(Codex stable)
 2. **글 수집** — `collect_blog.py` 가 Anthropic·OpenAI 신규 글을 `new_blog.json` 으로
    (화면엔 안 올린다 — 기능이 철회됐는지 알아채는 데만 쓴다)
-3. **큐레이션** (새 feature·새 글 있을 때만) — 헤드리스 `claude -p` 가 `curate_prompt.md` 를 따라
-   `index.html` 을 직접 고친다
+3. **큐레이션** (새 feature 있는 날만) — 헤드리스 `claude -p` 가 `curate_prompt.md` 를 따라
+   `index.html` 을 직접 고친다. 끝나면 JS 무결성·링크 점검이 뒤따른다
 
 ⚠ 3단계가 `index.html` 을 직접 편집한다. 편집 뒤 JS 무결성 검사에 실패하면 자동으로 되돌린다.
 
