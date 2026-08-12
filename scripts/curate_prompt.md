@@ -46,7 +46,7 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 <div class="it t2 nw" data-t="제목" data-k="cc:/foo@2.1.230"><div class="row">
 <span class="star">*</span><span class="sev">추천</span>
 <button class="box" data-off="[x]">[ ]</button>
-<span class="cmd"><a href="…" target="_blank" rel="noopener noreferrer" title="/foo 공식 문서">/foo</a></span>
+<span class="cmd">/foo</span>
 <span class="tt">제목</span><span class="ds">좋은 점</span><span class="dt">8.9</span></div>
 <div class="det">…자세히…</div></div>
 ```
@@ -55,21 +55,19 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 - `.dt` 는 `월.일`, `data-t` 는 `.tt` 와 같은 글.
 - **`.ds` 는 왜 쓸모 있나 한 줄**이다. 자세히에는 이 문장이 없으니 여기서 제 몫을 해야 한다 —
   제목을 딴 말로 되풀이하지 말고, 제목이 안 말한 이득을 적는다.
-- **명령어 링크는 그 기능이 적힌 자리로 보낸다.** 순서대로 따진다.
-  1. `<div id="data">` 안 `<script type="application/json" id="docsmap">` 에 그 명령의 전용 문서 경로가 있으면 그걸 쓴다.
-  2. 없으면 **버전 앵커 + 그 줄** 겹으로 — `https://code.claude.com/docs/en/changelog#2-1-230:~:text=<영어 원문 앞 6~9낱말을 percent-encode>`.
-     원문은 그 버전의 `.version-block` 안 `.e-desc` 의 `data-en`(없으면 본문)에 있다.
-     **앵커를 반드시 앞에 둔다** — 글자 조각은 브라우저가 못 찾으면 맨 위에 머문다.
-     앵커가 있으면 조각이 빗나가도 그 버전 자리로는 내려간다.
-     ⚠ **활자 따옴표(’)·`<code>` 태그가 섞이면 안 걸린다** — 태그를 벗기고, ASCII 아닌 글자가 나오면 그 앞에서 끊는다.
-  3. 조각을 못 만들겠으면 앵커만(`changelog#2-1-230`).
-  `/overview`·`/commands` 같은 일반 페이지로 보내지 마라 — 그 기능 설명이 아니다.
-- **명령어가 없는 항목**(플러그인 발행 지원처럼 사용자가 칠 명령이 없는 변경)도 링크를 뺀 채 두지 마라.
-  `<a class="cmd dash" href="…" target="_blank" rel="noopener noreferrer" title="공식 패치노트에서 이 줄 보기">—</a>`
-  로 두어 그 줄에서도 원문에 닿게 한다. **줄마다 밖으로 나가는 길이 하나는 있어야 한다.**
-- ⚠ **글자 조각 앞엔 반드시 `#` 이 있어야 한다.** `…/tag/rust-v0.148.0#:~:text=…` — `#` 을 빠뜨리면
-  조각이 주소 경로로 붙어 404 가 난다(2026-08-12 에 44개가 그랬다).
-  다 고친 뒤 `python3 scripts/check_links.py` 로 한 번 훑을 수 있다.
+- ⚠ **명령어에 링크를 걸지 마라.** `<span class="cmd">/foo</span>` — 글자만 둔다.
+  줄 아무 데나(명령어 자리 포함) 누르면 자세히가 뜨는 게 이 화면의 규칙이라,
+  명령어에 링크가 있으면 그 자리만 딴 데로 튄다.
+- **밖으로 나가는 길은 버전 링크 하나로 모은다.** 명령어마다 걸던 글자 조각
+  (`#:~:text=…`)은 브라우저가 강조만 하고 그 줄로 안 내려가는 일이 잦아 2026-08-13 에 걷어냈다.
+  - **새로 나온 것**: 날짜 줄의 `<a class="vl">`. 그 날짜에 버전이 둘이면 ` · ` 로 잇는다.
+    `https://code.claude.com/docs/en/changelog#2-1-230` · Codex 는
+    `https://github.com/openai/codex/releases/tag/rust-v0.148.0`.
+    **날짜 줄을 새로 만들 때 버전 링크를 빠뜨리지 마라** — 그 아래 줄들이 통째로 원문에 닿을
+    길을 잃는다(예전 날짜 줄 14개가 그랬다).
+  - **용도별**: 줄 오른쪽 끝 `<a class="cv">`. **줄마다 하나씩 반드시** 있어야 한다.
+- 명령어가 없는 항목은 `<span class="cmd dash">—</span>` 로 둔다. 링크 자리가 아니다.
+- 다 고친 뒤 `python3 scripts/check_links.py` 로 한 번 훑을 수 있다.
 
 ### 자세히(`.det`) — 두 줄, 순서 고정
 ```
@@ -100,8 +98,6 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 
 - 키는 `cx:…@0.148.0` (`v` 없이).
 - 버전 링크는 `https://github.com/openai/codex/releases/tag/rust-v0.148.0`.
-- 명령어 링크도 그 릴리스의 그 줄로 — `…/tag/rust-v0.148.0#:~:text=<영어 원문 앞 낱말>`.
-  Codex 는 주소 자체가 그 릴리스라 앵커를 따로 안 붙여도 된다.
   `https://developers.openai.com/codex/` 같은 첫 페이지로 보내지 마라.
 - **Codex 픽도 자세히를 채운다.** 예전엔 한 줄짜리였는데 이제 Claude Code 와 같은 대접이다.
 
@@ -112,7 +108,7 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 
 ```
 <div class="ci" data-k="cc:/foo@2.1.230"><button class="box" data-off="[x]">[ ]</button>
-<span class="cmd"><a href="…" …>/foo</a></span>
+<span class="cmd">/foo</span>
 <span class="cd">무엇을 하나</span>
 <a class="cv" href="https://code.claude.com/docs/en/changelog#2-1-230" …>v2.1.230</a></div>
 ```
