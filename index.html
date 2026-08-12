@@ -17,7 +17,7 @@
       --bg:#faf9f5;--ink:#22201c;--dim:#8a8578;--faint:#bdb7a9;--line:#e3ddcd;--line2:#ddd8cb;
       --acc:#c2703a;--green:#4a7a56;--boxw:34px}
 html{color-scheme:light;scrollbar-gutter:stable}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;
      line-height:1.55;-webkit-font-smoothing:antialiased;padding:0 22px}
 .wrap{max-width:1400px;margin:0 auto;padding:30px 0 90px}
 #data{display:none}
@@ -26,19 +26,19 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 /* ── 제품 상단바 ── */
 .pbar{display:flex;align-items:center;gap:18px;padding-bottom:11px;margin-bottom:16px;
       border-bottom:1px solid var(--line)}
-.pbrand{font-family:var(--sans);font-weight:600;font-size:13.5px;white-space:nowrap;color:var(--ink)}
+.pbrand{font-family:var(--sans);font-weight:600;font-size:12.5px;white-space:nowrap;color:var(--ink)}
 .pbrand i{font-style:normal;font-family:var(--mono);font-weight:400;color:var(--acc)}
 .lb{display:inline-flex;flex-direction:column;align-items:flex-start}
 .lb::after{content:attr(data-label);font-weight:600;height:0;overflow:hidden;visibility:hidden;
            pointer-events:none}
 .ptabs{display:flex;gap:10px}
-.ptabs a{font-size:12.5px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
+.ptabs a{font-size:12px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
          border-radius:3px}
 .ptabs a:hover{color:var(--ink)}
 .ptabs a:not(.on):hover{background:rgba(34,32,28,.07)}
 .ptabs a.on{background:#eae4d6;color:var(--ink);font-weight:600}
 .ptools{display:flex;gap:12px;padding-left:16px;border-left:1px solid var(--line)}
-.ptools a{font-size:12.5px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
+.ptools a{font-size:12px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
           border-radius:3px;display:inline-flex;align-items:center;gap:6px}
 .tlogo{width:13px;height:13px;flex:none;color:var(--tc)}
 .ptools a[data-t="cc"]{--tc:#d97757;--tcBg:rgba(217,119,87,.17);--tcHov:rgba(217,119,87,.08);--tcFg:#8f4526}
@@ -51,41 +51,41 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .ptools a.on{background:var(--tcBg);color:var(--tcFg);font-weight:560}
 /* 지금 보고 있는 도구의 원본 — 도구 스위치 바로 뒤라야 무엇의 원본인지 보인다 */
 .ptop{padding-left:14px;border-left:1px solid var(--line)}
-.ptop a{font-size:12.5px;color:#6b665c;text-decoration:none;display:none;white-space:nowrap;
+.ptop a{font-size:12px;color:#6b665c;text-decoration:none;display:none;white-space:nowrap;
         border-bottom:1px solid #d5cfc0;padding-bottom:1px}
 .ptop a.on{display:inline}
-.ptop a i{font-style:normal;font-size:11px;margin-left:1px}
+.ptop a i{font-style:normal;font-size:10.5px;margin-left:1px}
 .ptop a:hover{color:var(--acc);border-bottom-color:currentColor}
 /* 오른쪽 = 내 상태와 그 상태를 지우는 행동 */
 .pdone{margin-left:auto;display:flex;align-items:center;gap:11px;font-family:var(--mono);
-       font-size:11.5px;color:var(--dim);white-space:nowrap}
+       font-size:11px;color:var(--dim);white-space:nowrap}
 .pdone b{color:var(--ink);font-weight:600}
-.pstamp{font-family:var(--mono);font-size:11px;color:#b3ae9f;white-space:nowrap;
+.pstamp{font-family:var(--mono);font-size:10.5px;color:#b3ae9f;white-space:nowrap;
         padding-left:14px;border-left:1px solid var(--line)}
 /* 눌러서 실행하는 것은 테두리 상자로 — 대괄호는 켜고 끄는 것에만 */
 .btn{background:none;border:1px solid var(--line2);border-radius:3px;padding:2px 8px;cursor:pointer;
-     font:inherit;font-family:var(--mono);font-size:11.5px;color:var(--dim);line-height:1.4}
+     font:inherit;font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.4}
 .btn:hover{border-color:var(--acc);color:var(--ink);background:rgba(194,112,58,.07)}
 
 .tab{display:none}.tab.on{display:block}
 .tw{display:none}.tw.on{display:block}
 .opts{float:right;display:flex;gap:15px}
-.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12px;color:var(--dim)}
-.opt i{font-family:var(--mono);font-style:normal;font-size:11.5px;margin-right:3px}
+.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:11.5px;color:var(--dim)}
+.opt i{font-family:var(--mono);font-style:normal;font-size:11px;margin-right:3px}
 .opt:hover{color:var(--ink)}
 .opt.on{color:var(--ink);font-weight:560}
 .opt.on i{color:var(--acc)}
-.lead{color:#a09a8c;font-size:11.5px;font-family:var(--mono);margin-bottom:4px;overflow:hidden}
+.lead{color:#a09a8c;font-size:11px;font-family:var(--mono);margin-bottom:4px;overflow:hidden}
 .lead b{color:var(--acc);font-weight:400}
 .hide{display:none}
 
 /* ── 새로 나온 것 ── */
-.box0{font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.box0{font-family:var(--mono);font-size:12px;line-height:1.65}
 .chead{font-size:10.5px;letter-spacing:.02em;padding:0 11px 2px;margin:16px -11px 0;opacity:.55}
 .chead span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chead span:last-child{text-align:right}
 .chead + .c-day{margin-top:4px}
-.c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
+.c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11px}
 /* .hide 보다 뒤에 오는 규칙이라 한 겹 더 잡아야 접힌다 */
 .c-day.hide,.it.hide,.ci.hide,.cat.hide{display:none}
 .c-day i{flex:1;border-top:1px dashed var(--line2)}
@@ -111,16 +111,16 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .t3 .cmd{color:#2f5c3c;font-weight:500}
 .t1 .cmd{color:#8aa892}
 .tt,.ds{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--sans)}
-.tt{font-size:13.5px}.ds{font-size:12.5px;color:#9c9689}
-.dt{font-size:11px;text-align:right;color:#b3ae9f}
+.tt{font-size:12.5px}.ds{font-size:12px;color:#9c9689}
+.dt{font-size:10.5px;text-align:right;color:#b3ae9f}
 .nw .dt{color:var(--acc)}
-.sev{font-size:11px}
+.sev{font-size:10.5px}
 .t3 .sev{color:var(--acc)}.t3 .tt{color:#1a1815;font-weight:600}
 .t2 .sev{color:var(--dim)}.t2 .tt{color:#3a352e}
 .t1 .sev{color:#c3bdae}.t1 .tt{color:#8b857a}.t1 .ds{color:#b5afa2}
 .vl{color:inherit;text-decoration:none;opacity:.72}
 .vl:hover{opacity:1;border-bottom:1px dotted currentColor}
-.foot{color:#a09a8c;font-size:11.5px;margin-top:24px;border-top:1px dashed var(--line2);
+.foot{color:#a09a8c;font-size:11px;margin-top:24px;border-top:1px dashed var(--line2);
       padding-top:10px}
 
 /* 해본 줄은 통째로 물러난다 — 체크 칸을 감추면 규칙이 안 걸려 원래 색이 돌아온다 */
@@ -142,19 +142,20 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
       background:#fffdf7;border:1px solid var(--line2);color:#5f5a51;
       box-shadow:0 10px 30px rgba(60,50,30,.16)}
 .pane.on{opacity:1;visibility:visible}
-.pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12.5px;margin-bottom:6px;
+.pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12px;margin-bottom:6px;
       padding-bottom:5px;border-bottom:1px dashed var(--line2)}
 .pane .ph b{font-weight:600;color:var(--ink)}
-.pane .pb p{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:2px 0;
-      font-size:13px;line-height:1.6}
-.dk{font-family:var(--mono);font-size:10.5px;padding-top:3px;white-space:nowrap;color:#a09a8c}
+/* 라벨은 내어쓰기로 — 격자로 짜면 본문 속 <code> 가 저마다 칸을 차지해 글이 조각난다 */
+.pane .pb p{padding:2px 0 2px 96px;text-indent:-96px;font-size:12.5px;line-height:1.6}
+.dk{display:inline-block;width:84px;margin-right:12px;text-indent:0;
+    font-family:var(--mono);font-size:10.5px;white-space:nowrap;color:#a09a8c}
 .dn{color:#b5afa2}
 .it.open .row{outline:1px dashed currentColor}
 
 /* ── 용도별 ── */
 .navwrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;
          column-gap:24px;margin-bottom:12px;padding-bottom:9px;border-bottom:1px dashed var(--line)}
-.catnav{font-family:var(--mono);font-size:11.5px;display:flex;flex-wrap:wrap;gap:14px;
+.catnav{font-family:var(--mono);font-size:11px;display:flex;flex-wrap:wrap;gap:14px;
         align-items:center}
 .catnav a{color:var(--dim);text-decoration:none;display:inline-flex;gap:5px;align-items:baseline}
 .catnav a:not(:last-child)::after{content:"│";color:var(--line2);margin-left:9px}
@@ -168,7 +169,7 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .find{display:flex;align-items:baseline;gap:5px}
 .find i{font-style:normal;color:var(--acc)}
 .find input{border:0;border-bottom:1px dashed var(--line2);background:none;font:inherit;
-            font-family:var(--mono);font-size:12px;color:var(--ink);width:150px;padding:1px 2px}
+            font-family:var(--mono);font-size:11.5px;color:var(--ink);width:150px;padding:1px 2px}
 .find input:focus{outline:none;border-bottom-color:var(--acc)}
 .cols{display:grid;grid-template-columns:1fr 1fr;column-gap:38px}
 .cols .uhead{grid-row:1}.cols .cl{grid-row:2}
@@ -176,20 +177,20 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .tw.only .cols .uhead + .uhead{display:none}
 .cat{margin-bottom:22px;scroll-margin-top:14px}
 .cat.hide{display:none}
-.cathead{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;
+.cathead{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
          color:var(--ink);margin-bottom:2px}
 .cathead i{flex:1;border-top:1px dashed var(--line2)}
-.cathead b{font-weight:400;color:#a09a8c;font-size:11px}
+.cathead b{font-weight:400;color:#a09a8c;font-size:10.5px}
 .cathead b.none{color:#cfc9ba}
-.none-l{font-size:12px;color:#b5afa2;padding:4px 11px}
+.none-l{font-size:11.5px;color:#b5afa2;padding:4px 11px}
 .uhead,.ci{display:grid;grid-template-columns:var(--boxw) 170px minmax(0,1fr) 66px;gap:9px;
-      padding:4px 11px;margin:0 -11px;align-items:baseline;font-family:var(--mono);font-size:12.5px}
+      padding:4px 11px;margin:0 -11px;align-items:baseline;font-family:var(--mono);font-size:12px}
 .uhead{font-size:10.5px;color:#b3ae9f;letter-spacing:.02em;padding-bottom:3px;margin-bottom:6px;
        border-bottom:1px solid var(--line)}
 .uhead span:last-child{text-align:right}
 .ci:hover{background:#f2efe6}
 .ci.hide{display:none}
-.cd{font-family:var(--sans);font-size:13px;color:#3a352e;min-width:0}
+.cd{font-family:var(--sans);font-size:12.5px;color:#3a352e;min-width:0}
 .cv{font-size:10.5px;color:#b3ae9f;text-align:right;white-space:nowrap;text-decoration:none}
 a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 .ci.done .cd,.ci.done .cmd,.ci.done .cmd a{color:var(--faint);text-decoration:line-through;
@@ -202,9 +203,9 @@ a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 :root[data-check="off"] .ci.done .cv,:root[data-check="off"] .ci.done a.cv{color:#b3ae9f}
 .cat:not(.open) .ci.over{display:none}
 .more{background:none;border:0;padding:3px 11px;margin:0 -11px;cursor:pointer;font:inherit;
-      font-family:var(--mono);font-size:11.5px;color:#a09a8c}
+      font-family:var(--mono);font-size:11px;color:#a09a8c}
 .more:hover{color:var(--acc)}
-.psrc{font-family:var(--sans);font-size:12px;color:#a09a8c}
+.psrc{font-family:var(--sans);font-size:11.5px;color:#a09a8c}
 .psrc a{color:var(--dim);text-decoration:none;border-bottom:1px dotted #cfc9ba;display:none}
 .psrc a.on{display:inline}
 .psrc a:hover{color:var(--acc);border-bottom-color:currentColor}
@@ -213,25 +214,91 @@ a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 dialog{margin:auto;border:1px solid var(--line2);border-radius:5px;background:#fffdf7;
        color:#3a352e;padding:0;width:min(420px,88vw);box-shadow:0 14px 40px rgba(60,50,30,.18)}
 dialog::backdrop{background:rgba(34,32,28,.30)}
-.dh{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
+.dh{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;
     color:var(--dim);padding:11px 15px 0}
 .dh i{flex:1;border-top:1px dashed var(--line2)}
-.db{padding:9px 15px 3px;font-size:13.5px;line-height:1.6}
+.db{padding:9px 15px 3px;font-size:12.5px;line-height:1.6}
 .db b{font-weight:600;color:var(--ink)}
-.db .warn{display:block;margin-top:3px;font-size:12.5px;color:#8a4a22}
+.db .warn{display:block;margin-top:3px;font-size:12px;color:#8a4a22}
 .df{display:flex;justify-content:flex-end;gap:16px;padding:11px 15px 13px;font-family:var(--mono);
-    font-size:12px}
+    font-size:11.5px}
 .df .yes{border-color:var(--acc);color:#8a4a22;font-weight:600;background:rgba(194,112,58,.16)}
 .df .yes:hover{background:rgba(194,112,58,.28)}
 
+/* ── 좁은 화면: 두 칸을 한 칸으로 ── */
 @media(max-width:1080px){
-  .cols{grid-template-columns:1fr}
-  .cols .uhead:last-of-type{display:none}
-  .cols .cl{grid-row:auto}
+  /* 격자를 풀어 위아래로 쌓는다. 칸을 1개로 줄이면 grid-row:1 로 묶인 머리글 둘이
+     보이지 않는 칸을 새로 만들어 도로 2단이 됐다 */
+  .cols{display:block}
+  .cols .uhead + .uhead{display:none}
   .uhead,.ci{grid-template-columns:var(--boxw) 150px minmax(0,1fr) 60px}
   .chead,.row{grid-template-columns:10px 26px var(--boxw) 150px minmax(0,1.1fr) 0 30px}
   .ds{display:none}
   .pbar{flex-wrap:wrap;gap:10px}
+}
+
+/* ── 손 안에서: 한 줄을 두 줄로 풀고 글씨를 한 단 더 줄인다 ──
+   폰 폭에선 명령어·제목·설명을 한 줄에 세울 수 없다. 억지로 세우면 설명 칸이
+   0px 로 찌그러지고 제목이 40px 만 남아 거의 다 잘렸다. 위아래로 나눈다. */
+@media(max-width:640px){
+  body{font-size:11.5px;padding:0 13px}
+  .wrap{padding:16px 0 60px}
+
+  /* 상단바 — 1줄: 이름·해봄  2줄: 화면·도구·원본·시각 */
+  .pbar{flex-wrap:wrap;gap:7px 11px;margin-bottom:12px;padding-bottom:9px}
+  .pbrand{order:1}
+  .pdone{order:2;margin-left:auto;gap:9px}
+  .pbar::after{content:"";order:3;flex-basis:100%;height:0}
+  .ptabs{order:4;gap:5px}
+  .ptools{order:5;gap:7px;padding-left:9px}
+  .ptop{order:6;padding-left:9px}
+  .pstamp{order:7;padding-left:9px}
+  .ptabs a,.ptools a{padding:3px 7px}
+  .ptop a{padding-bottom:2px}
+
+  /* 새로 나온 것 — 제목을 아랫줄로 내려 폭을 통째로 준다 */
+  .chead{display:none}
+  .row{grid-template-columns:11px var(--boxw) minmax(0,1fr) auto auto;
+       grid-template-areas:"star box cmd sev dt" "star box tt tt tt";
+       gap:1px 8px;padding:6px 9px;margin:0 -9px}
+  .star{grid-area:star}.sev{grid-area:sev}.dt{grid-area:dt}
+  .row .box{grid-area:box}.row .cmd{grid-area:cmd}.tt{grid-area:tt}
+  .tt{white-space:normal;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;
+      -webkit-box-orient:vertical}
+  .lead{font-size:10.5px;overflow:visible;margin-bottom:7px}
+  .opts{float:none;display:flex;flex-wrap:wrap;gap:13px;margin-top:5px}
+  .opt{padding:3px 0}
+  .c-day{margin:15px 0 4px}
+
+  /* 용도별 — 카테고리 줄과 도구 줄을 위아래로, 항목도 두 줄로 */
+  .navwrap{display:block;margin-bottom:10px;padding-bottom:8px}
+  /* 막대를 항목 뒤가 아니라 앞에 세운다 — 뒤에 두면 줄 끝마다 혼자 매달린다 */
+  .catnav{gap:6px 11px}
+  .catnav a{padding:2px 0 2px 11px;border-left:1px solid var(--line2)}
+  .catnav a:first-child{padding-left:0;border-left:0}
+  .catnav a:not(:last-child)::after{content:none}
+  .navwrap .tools{margin-top:8px;gap:13px;flex-wrap:wrap;white-space:normal}
+  .find input{width:104px}
+  .uhead{display:none}
+  .ci{grid-template-columns:var(--boxw) minmax(0,1fr) auto;
+      grid-template-areas:"box cmd cv" "box cd cd";
+      gap:1px 8px;padding:5px 9px;margin:0 -9px}
+  .ci .box{grid-area:box}.ci .cmd{grid-area:cmd}.ci .cv{grid-area:cv}.cd{grid-area:cd}
+  .cd{white-space:normal;line-height:1.45}
+  .cat{margin-bottom:16px}
+  .more{padding:5px 9px;margin:0 -9px}
+
+  /* 명령어는 잘라 감추지 말고 접어서 다 보인다 */
+  .cmd{white-space:normal;overflow:visible;overflow-wrap:anywhere;text-overflow:clip}
+  .box{padding:6px 8px;margin:-6px 0}
+
+  /* 자세히 팝업 — 화면을 넘기지 않게 */
+  /* 폰에선 내어쓸 자리가 없어 라벨을 윗줄로 올린다 */
+  .pane{width:min(560px,92vw);max-height:64vh;overflow:auto;padding:9px 11px 10px}
+  .pane .pb p{padding:3px 0;text-indent:0}
+  .pane .dk{display:block;width:auto;margin:0 0 1px}
+  .pane code,.pb{overflow-wrap:anywhere}
+  dialog{width:min(420px,92vw)}
 }
 </style>
 </head>
