@@ -100,6 +100,11 @@ jobs:
           node -e "const fs=require('fs');const s=fs.readFileSync('index.html','utf8');const i=s.lastIndexOf('<script>'),j=s.lastIndexOf('</script>');fs.writeFileSync('/tmp/c.js',s.slice(i+8,j))"
           if ! node --check /tmp/c.js; then echo '::error::JS broken by curation — reverting index.html'; git checkout index.html; fi
 
+      # ── 링크 점검 (경고만) — 이 사이트는 값의 대부분이 링크다 ──
+      - name: Check links
+        if: steps.gate.outputs.go == 'true'
+        run: python3 scripts/check_links.py || echo "::warning::링크 점검에 걸린 게 있다 — 화면은 그대로 나가지만 확인할 것"
+
       - name: Commit curation changes
         if: steps.gate.outputs.go == 'true'
         run: |
