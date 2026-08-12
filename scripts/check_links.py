@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """화면의 바깥 링크가 성한지 본다. 매일 큐레이션 뒤에 돌린다(경고만, 막지는 않음).
 
-이 사이트는 값의 대부분이 링크다 — 명령어는 공식 문서로, 버전은 패치노트로.
-그래서 링크가 조용히 썩으면 화면은 멀쩡한데 쓸모가 없다. 두 가지를 본다.
+밖으로 나가는 길은 버전 링크 하나로 모았다 — 새로 나온 것은 날짜줄의 `.vl`,
+용도별은 줄 오른쪽 끝의 `.cv`. 명령어는 링크가 아니라 글자다(2026-08-13).
+그 길이 조용히 빠지면 화면은 멀쩡한데 원문에 닿을 수가 없다.
 
 ① 글자 조각 앞에 `#` 이 있나 — 빠지면 조각이 주소 경로가 되어 404 다(2026-08-12 실제로 44개).
-② 줄마다 밖으로 나가는 길이 하나는 있나 — 명령어 없는 항목이 링크 없이 남던 적이 있다.
+② 날짜줄마다 버전 링크가 있나 · 용도별 줄마다 `.cv` 가 있나.
 ③ (--net 일 때만) 주소가 정말 열리나.
 """
 import re, sys, subprocess, collections, concurrent.futures as cf
@@ -23,20 +24,31 @@ if no_hash:
     for u in no_hash[:5]:
         print('   ', u[:110])
 
-# ② 줄마다 나가는 길
+# ② 밖으로 나가는 길
 ROW = re.compile(r'<div class="(?:it |ci)[^"]*"[^>]*>.*?'
                  r'(?=<div class="(?:it |ci)|<div class="c-day|<p class="foot"'
                  r'|</div><div class="cl">|<div class="cat" |$)', re.S)
 rows = ROW.findall(V)
-orphan = [r for r in rows if '<a ' not in r]
-if orphan:
-    bad += len(orphan)
-    print(f'★ 밖으로 나가는 길이 없는 줄 {len(orphan)}개')
-    for r in orphan[:3]:
-        t = re.search(r'<span class="(?:tt|cd)">(.*?)</span>', r, re.S)
+
+days = re.findall(r'<div class="c-day"[^>]*>.*?</div>', V, re.S)
+dumb = [d for d in days if 'class="vl"' not in d]
+if dumb:
+    bad += len(dumb)
+    print(f'★ 버전 링크가 없는 날짜줄 {len(dumb)}개 — 그 아래 줄들은 원문에 닿을 길이 없다')
+    for d in dumb[:3]:
+        print('   ', re.sub(r'<[^>]+>', ' ', d).strip()[:60])
+
+ci = [r for r in rows if r.startswith('<div class="ci')]
+noc = [r for r in ci if 'class="cv"' not in r]
+if noc:
+    bad += len(noc)
+    print(f'★ 버전 링크가 없는 용도별 줄 {len(noc)}개')
+    for r in noc[:3]:
+        t = re.search(r'<span class="cd">(.*?)</span>', r, re.S)
         print('   ', re.sub(r'<[^>]+>', '', t.group(1))[:70] if t else '?')
 
-print(f'줄 {len(rows)}개 · 링크 {len(re.findall(chr(104)+"ref=", V))}개 · 걸린 것 {bad}개')
+print(f'줄 {len(rows)}개 · 날짜줄 {len(days)}개 · 링크 {len(re.findall(chr(104)+"ref=", V))}개'
+      f' · 걸린 것 {bad}개')
 
 # ③ 실제로 열리나
 if '--net' in sys.argv:
