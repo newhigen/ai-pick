@@ -50,7 +50,13 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 - `t3`=핵심 `t2`=추천 `t1`=일반, `.sev` 글자도 같이 맞춘다. `nw` 는 새로 들어온 것 표시(`.star` 의 `*` 와 짝).
 - `.dt` 는 `월.일`, `data-t` 는 `.tt` 와 같은 글.
 - **`.ds` 는 좋은 점을 그대로 옮긴 것**이다 — 자세히의 「좋은 점」과 같은 문장을 쓴다.
-- 명령어 링크 주소는 `<div id="data">` 안 `<script type="application/json" id="docsmap">` 를 보고 정한다. 없는 명령이면 표에 한 줄 추가하고, 슬래시 명령은 `/commands`, 나머지는 `/overview` 로 건다.
+- **명령어 링크는 그 기능이 적힌 자리로 보낸다.** 순서대로 따진다.
+  1. `<div id="data">` 안 `<script type="application/json" id="docsmap">` 에 그 명령의 전용 문서 경로가 있으면 그걸 쓴다.
+  2. 없으면 **공식 패치노트의 그 줄**로 — `https://code.claude.com/docs/en/changelog#:~:text=<영어 원문 앞 6~9낱말을 percent-encode>`.
+     원문은 그 버전의 `.version-block` 안 `.e-desc` 의 `data-en`(없으면 본문)에 있다.
+     ⚠ **활자 따옴표(’)·`<code>` 태그가 섞이면 안 걸린다** — 태그를 벗기고, ASCII 아닌 글자가 나오면 그 앞에서 끊는다.
+  3. 조각을 못 만들겠으면 그 버전 앵커(`changelog#2-1-230`)로 물러선다.
+  `/overview`·`/commands` 같은 일반 페이지로 보내지 마라 — 그 기능 설명이 아니다.
 
 ### 자세히(`.det`) — 네 줄, 순서 고정
 ```
@@ -74,7 +80,8 @@ Manus·뉴스·블로그 화면은 **없앴다**. 그런 내용은 이제 아무
 
 - 키는 `cx:…@0.148.0` (`v` 없이).
 - 버전 링크는 `https://github.com/openai/codex/releases/tag/rust-v0.148.0`.
-- 명령어 링크는 `https://developers.openai.com/codex/`.
+- 명령어 링크도 그 릴리스의 그 줄로 — `…/tag/rust-v0.148.0#:~:text=<영어 원문 앞 낱말>`.
+  `https://developers.openai.com/codex/` 같은 첫 페이지로 보내지 마라.
 - **Codex 픽에도 자세히 네 줄을 다 채운다.** 예전엔 한 줄짜리였는데 이제 Claude Code 와 같은 대접이다.
 
 ## 3) 용도별 (두 도구 모두)
