@@ -17,7 +17,7 @@
       --bg:#faf9f5;--ink:#22201c;--dim:#8a8578;--faint:#bdb7a9;--line:#e3ddcd;--line2:#ddd8cb;
       --acc:#c2703a;--green:#4a7a56;--boxw:34px}
 html{color-scheme:light;scrollbar-gutter:stable}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;
      line-height:1.55;-webkit-font-smoothing:antialiased;padding:0 22px}
 .wrap{max-width:1400px;margin:0 auto;padding:30px 0 90px}
 #data{display:none}
@@ -26,19 +26,19 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 /* ── 제품 상단바 ── */
 .pbar{display:flex;align-items:center;gap:18px;padding-bottom:11px;margin-bottom:16px;
       border-bottom:1px solid var(--line)}
-.pbrand{font-family:var(--sans);font-weight:600;font-size:13.5px;white-space:nowrap;color:var(--ink)}
+.pbrand{font-family:var(--sans);font-weight:600;font-size:12.5px;white-space:nowrap;color:var(--ink)}
 .pbrand i{font-style:normal;font-family:var(--mono);font-weight:400;color:var(--acc)}
 .lb{display:inline-flex;flex-direction:column;align-items:flex-start}
 .lb::after{content:attr(data-label);font-weight:600;height:0;overflow:hidden;visibility:hidden;
            pointer-events:none}
 .ptabs{display:flex;gap:10px}
-.ptabs a{font-size:12.5px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
+.ptabs a{font-size:12px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
          border-radius:3px}
 .ptabs a:hover{color:var(--ink)}
 .ptabs a:not(.on):hover{background:rgba(34,32,28,.07)}
 .ptabs a.on{background:#eae4d6;color:var(--ink);font-weight:600}
 .ptools{display:flex;gap:12px;padding-left:16px;border-left:1px solid var(--line)}
-.ptools a{font-size:12.5px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
+.ptools a{font-size:12px;color:var(--dim);text-decoration:none;cursor:pointer;padding:1px 8px;
           border-radius:3px;display:inline-flex;align-items:center;gap:6px}
 .tlogo{width:13px;height:13px;flex:none;color:var(--tc)}
 .ptools a[data-t="cc"]{--tc:#d97757;--tcBg:rgba(217,119,87,.17);--tcHov:rgba(217,119,87,.08);--tcFg:#8f4526}
@@ -51,41 +51,41 @@ code{font-family:var(--mono);font-size:.92em;opacity:.9}
 .ptools a.on{background:var(--tcBg);color:var(--tcFg);font-weight:560}
 /* 지금 보고 있는 도구의 원본 — 도구 스위치 바로 뒤라야 무엇의 원본인지 보인다 */
 .ptop{padding-left:14px;border-left:1px solid var(--line)}
-.ptop a{font-size:12.5px;color:#6b665c;text-decoration:none;display:none;white-space:nowrap;
+.ptop a{font-size:12px;color:#6b665c;text-decoration:none;display:none;white-space:nowrap;
         border-bottom:1px solid #d5cfc0;padding-bottom:1px}
 .ptop a.on{display:inline}
-.ptop a i{font-style:normal;font-size:11px;margin-left:1px}
+.ptop a i{font-style:normal;font-size:10.5px;margin-left:1px}
 .ptop a:hover{color:var(--acc);border-bottom-color:currentColor}
 /* 오른쪽 = 내 상태와 그 상태를 지우는 행동 */
 .pdone{margin-left:auto;display:flex;align-items:center;gap:11px;font-family:var(--mono);
-       font-size:11.5px;color:var(--dim);white-space:nowrap}
+       font-size:11px;color:var(--dim);white-space:nowrap}
 .pdone b{color:var(--ink);font-weight:600}
-.pstamp{font-family:var(--mono);font-size:11px;color:#b3ae9f;white-space:nowrap;
+.pstamp{font-family:var(--mono);font-size:10.5px;color:#b3ae9f;white-space:nowrap;
         padding-left:14px;border-left:1px solid var(--line)}
 /* 눌러서 실행하는 것은 테두리 상자로 — 대괄호는 켜고 끄는 것에만 */
 .btn{background:none;border:1px solid var(--line2);border-radius:3px;padding:2px 8px;cursor:pointer;
-     font:inherit;font-family:var(--mono);font-size:11.5px;color:var(--dim);line-height:1.4}
+     font:inherit;font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.4}
 .btn:hover{border-color:var(--acc);color:var(--ink);background:rgba(194,112,58,.07)}
 
 .tab{display:none}.tab.on{display:block}
 .tw{display:none}.tw.on{display:block}
 .opts{float:right;display:flex;gap:15px}
-.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:12px;color:var(--dim)}
-.opt i{font-family:var(--mono);font-style:normal;font-size:11.5px;margin-right:3px}
+.opt{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-size:11.5px;color:var(--dim)}
+.opt i{font-family:var(--mono);font-style:normal;font-size:11px;margin-right:3px}
 .opt:hover{color:var(--ink)}
 .opt.on{color:var(--ink);font-weight:560}
 .opt.on i{color:var(--acc)}
-.lead{color:#a09a8c;font-size:11.5px;font-family:var(--mono);margin-bottom:4px;overflow:hidden}
+.lead{color:#a09a8c;font-size:11px;font-family:var(--mono);margin-bottom:4px;overflow:hidden}
 .lead b{color:var(--acc);font-weight:400}
 .hide{display:none}
 
 /* ── 새로 나온 것 ── */
-.box0{font-family:var(--mono);font-size:12.5px;line-height:1.65}
+.box0{font-family:var(--mono);font-size:12px;line-height:1.65}
 .chead{font-size:10.5px;letter-spacing:.02em;padding:0 11px 2px;margin:16px -11px 0;opacity:.55}
 .chead span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .chead span:last-child{text-align:right}
 .chead + .c-day{margin-top:4px}
-.c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11.5px}
+.c-day{display:flex;align-items:center;gap:9px;color:#a09a8c;margin:20px 0 5px;font-size:11px}
 /* .hide 보다 뒤에 오는 규칙이라 한 겹 더 잡아야 접힌다 */
 .c-day.hide,.it.hide,.ci.hide,.cat.hide{display:none}
 .c-day i{flex:1;border-top:1px dashed var(--line2)}
@@ -111,16 +111,16 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .t3 .cmd{color:#2f5c3c;font-weight:500}
 .t1 .cmd{color:#8aa892}
 .tt,.ds{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--sans)}
-.tt{font-size:13.5px}.ds{font-size:12.5px;color:#9c9689}
-.dt{font-size:11px;text-align:right;color:#b3ae9f}
+.tt{font-size:12.5px}.ds{font-size:12px;color:#9c9689}
+.dt{font-size:10.5px;text-align:right;color:#b3ae9f}
 .nw .dt{color:var(--acc)}
-.sev{font-size:11px}
+.sev{font-size:10.5px}
 .t3 .sev{color:var(--acc)}.t3 .tt{color:#1a1815;font-weight:600}
 .t2 .sev{color:var(--dim)}.t2 .tt{color:#3a352e}
 .t1 .sev{color:#c3bdae}.t1 .tt{color:#8b857a}.t1 .ds{color:#b5afa2}
 .vl{color:inherit;text-decoration:none;opacity:.72}
 .vl:hover{opacity:1;border-bottom:1px dotted currentColor}
-.foot{color:#a09a8c;font-size:11.5px;margin-top:24px;border-top:1px dashed var(--line2);
+.foot{color:#a09a8c;font-size:11px;margin-top:24px;border-top:1px dashed var(--line2);
       padding-top:10px}
 
 /* 해본 줄은 통째로 물러난다 — 체크 칸을 감추면 규칙이 안 걸려 원래 색이 돌아온다 */
@@ -142,11 +142,11 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
       background:#fffdf7;border:1px solid var(--line2);color:#5f5a51;
       box-shadow:0 10px 30px rgba(60,50,30,.16)}
 .pane.on{opacity:1;visibility:visible}
-.pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12.5px;margin-bottom:6px;
+.pane .ph{display:flex;align-items:baseline;gap:10px;font-size:12px;margin-bottom:6px;
       padding-bottom:5px;border-bottom:1px dashed var(--line2)}
 .pane .ph b{font-weight:600;color:var(--ink)}
 .pane .pb p{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;padding:2px 0;
-      font-size:13px;line-height:1.6}
+      font-size:12.5px;line-height:1.6}
 .dk{font-family:var(--mono);font-size:10.5px;padding-top:3px;white-space:nowrap;color:#a09a8c}
 .dn{color:#b5afa2}
 .it.open .row{outline:1px dashed currentColor}
@@ -154,7 +154,7 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 /* ── 용도별 ── */
 .navwrap{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;
          column-gap:24px;margin-bottom:12px;padding-bottom:9px;border-bottom:1px dashed var(--line)}
-.catnav{font-family:var(--mono);font-size:11.5px;display:flex;flex-wrap:wrap;gap:14px;
+.catnav{font-family:var(--mono);font-size:11px;display:flex;flex-wrap:wrap;gap:14px;
         align-items:center}
 .catnav a{color:var(--dim);text-decoration:none;display:inline-flex;gap:5px;align-items:baseline}
 .catnav a:not(:last-child)::after{content:"│";color:var(--line2);margin-left:9px}
@@ -168,7 +168,7 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .find{display:flex;align-items:baseline;gap:5px}
 .find i{font-style:normal;color:var(--acc)}
 .find input{border:0;border-bottom:1px dashed var(--line2);background:none;font:inherit;
-            font-family:var(--mono);font-size:12px;color:var(--ink);width:150px;padding:1px 2px}
+            font-family:var(--mono);font-size:11.5px;color:var(--ink);width:150px;padding:1px 2px}
 .find input:focus{outline:none;border-bottom-color:var(--acc)}
 .cols{display:grid;grid-template-columns:1fr 1fr;column-gap:38px}
 .cols .uhead{grid-row:1}.cols .cl{grid-row:2}
@@ -176,20 +176,20 @@ a.cmd.dash:hover{color:var(--acc);border-bottom:1px dotted currentColor}
 .tw.only .cols .uhead + .uhead{display:none}
 .cat{margin-bottom:22px;scroll-margin-top:14px}
 .cat.hide{display:none}
-.cathead{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;
+.cathead{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
          color:var(--ink);margin-bottom:2px}
 .cathead i{flex:1;border-top:1px dashed var(--line2)}
-.cathead b{font-weight:400;color:#a09a8c;font-size:11px}
+.cathead b{font-weight:400;color:#a09a8c;font-size:10.5px}
 .cathead b.none{color:#cfc9ba}
-.none-l{font-size:12px;color:#b5afa2;padding:4px 11px}
+.none-l{font-size:11.5px;color:#b5afa2;padding:4px 11px}
 .uhead,.ci{display:grid;grid-template-columns:var(--boxw) 170px minmax(0,1fr) 66px;gap:9px;
-      padding:4px 11px;margin:0 -11px;align-items:baseline;font-family:var(--mono);font-size:12.5px}
+      padding:4px 11px;margin:0 -11px;align-items:baseline;font-family:var(--mono);font-size:12px}
 .uhead{font-size:10.5px;color:#b3ae9f;letter-spacing:.02em;padding-bottom:3px;margin-bottom:6px;
        border-bottom:1px solid var(--line)}
 .uhead span:last-child{text-align:right}
 .ci:hover{background:#f2efe6}
 .ci.hide{display:none}
-.cd{font-family:var(--sans);font-size:13px;color:#3a352e;min-width:0}
+.cd{font-family:var(--sans);font-size:12.5px;color:#3a352e;min-width:0}
 .cv{font-size:10.5px;color:#b3ae9f;text-align:right;white-space:nowrap;text-decoration:none}
 a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 .ci.done .cd,.ci.done .cmd,.ci.done .cmd a{color:var(--faint);text-decoration:line-through;
@@ -202,9 +202,9 @@ a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 :root[data-check="off"] .ci.done .cv,:root[data-check="off"] .ci.done a.cv{color:#b3ae9f}
 .cat:not(.open) .ci.over{display:none}
 .more{background:none;border:0;padding:3px 11px;margin:0 -11px;cursor:pointer;font:inherit;
-      font-family:var(--mono);font-size:11.5px;color:#a09a8c}
+      font-family:var(--mono);font-size:11px;color:#a09a8c}
 .more:hover{color:var(--acc)}
-.psrc{font-family:var(--sans);font-size:12px;color:#a09a8c}
+.psrc{font-family:var(--sans);font-size:11.5px;color:#a09a8c}
 .psrc a{color:var(--dim);text-decoration:none;border-bottom:1px dotted #cfc9ba;display:none}
 .psrc a.on{display:inline}
 .psrc a:hover{color:var(--acc);border-bottom-color:currentColor}
@@ -213,14 +213,14 @@ a.cv:hover{color:var(--dim);border-bottom:1px dotted currentColor}
 dialog{margin:auto;border:1px solid var(--line2);border-radius:5px;background:#fffdf7;
        color:#3a352e;padding:0;width:min(420px,88vw);box-shadow:0 14px 40px rgba(60,50,30,.18)}
 dialog::backdrop{background:rgba(34,32,28,.30)}
-.dh{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;
+.dh{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;
     color:var(--dim);padding:11px 15px 0}
 .dh i{flex:1;border-top:1px dashed var(--line2)}
-.db{padding:9px 15px 3px;font-size:13.5px;line-height:1.6}
+.db{padding:9px 15px 3px;font-size:12.5px;line-height:1.6}
 .db b{font-weight:600;color:var(--ink)}
-.db .warn{display:block;margin-top:3px;font-size:12.5px;color:#8a4a22}
+.db .warn{display:block;margin-top:3px;font-size:12px;color:#8a4a22}
 .df{display:flex;justify-content:flex-end;gap:16px;padding:11px 15px 13px;font-family:var(--mono);
-    font-size:12px}
+    font-size:11.5px}
 .df .yes{border-color:var(--acc);color:#8a4a22;font-weight:600;background:rgba(194,112,58,.16)}
 .df .yes:hover{background:rgba(194,112,58,.28)}
 
