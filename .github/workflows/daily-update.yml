@@ -1,8 +1,12 @@
-name: Daily changelog update
+name: Changelog watch (hourly)
 
+# 한 시간마다 패치노트를 본다. 새 버전이 없으면 스크립트가 바로 빠져나가 커밋도 토큰도 0이라,
+# 자주 봐도 드는 건 러너 1분뿐이다(공개 저장소라 무료). 새 버전이 있는 시각에만
+# 큐레이션이 돌아, 값은 하루 한 번 돌 때와 같고 화면만 한 시간 안에 따라붙는다.
+# (2026-08-13 까지는 하루 한 번 20:20 UTC = 05:20 KST 였다.)
 on:
   schedule:
-    - cron: "20 20 * * *"   # 05:20 KST (20:20 UTC) — GitHub cron 지연(최대 ~1h+) 대비 버퍼, 7시 출근 전 도착 목표
+    - cron: "5 * * * *"     # 매시 5분 — GitHub cron 은 정시에 몰려 밀리므로 5분 비켜 놓는다
   workflow_dispatch:          # 수동 실행 버튼
 
 permissions:

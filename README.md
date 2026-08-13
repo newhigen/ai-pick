@@ -21,23 +21,27 @@
 
 ```
 index.html    전부 (화면·스타일·스크립트 + <div id="data"> 안의 버전블록 321개)
-scripts/      매일 도는 갱신 자동화
+scripts/      갱신 자동화 (한 시간마다)
 CNAME · sitemap.xml · robots.txt
 ```
 
-⚠ `<div id="data">` 는 화면에 안 나오지만 **지우면 안 된다.** 매일 도는 스크립트가
+⚠ `<div id="data">` 는 화면에 안 나오지만 **지우면 안 된다.** 갱신 스크립트가
 거기에 새 버전을 꽂고 큐레이션이 거기서 원본을 읽는다. 구간 표식(`<!--CC-DATA-->`·
 `<!--CX-DATA-->`)도 스크립트가 경계로 쓰므로 그대로 둘 것.
 
-## 매일 도는 갱신
+## 한 시간마다 도는 갱신
 
-`.github/workflows/daily-update.yml` 이 05:20(KST)에 실행된다. 세 단계인데
-**대부분의 날은 1·2단계만 돌아 비용이 0이다.**
+`.github/workflows/daily-update.yml` 이 **매시 5분**에 실행된다. 세 단계인데
+**대부분의 시각은 1단계에서 바로 끝나 비용이 0이다** — 새 버전이 없으면 스크립트가
+아무것도 안 쓰고 빠져나가 커밋도 토큰도 안 든다. 공개 저장소라 러너 시간도 무료다.
+
+값이 드는 3단계는 **새 버전이 실제로 올라온 시각에만** 돈다. 그래서 하루치 비용은
+하루 한 번 돌 때와 같고, 화면만 한 시간 안에 따라붙는다.
 
 1. **버전 수집** (순수 스크립트) — `update_changelog.py`(Claude Code)·`update_codex.py`(Codex stable)
 2. **글 수집** — `collect_blog.py` 가 Anthropic·OpenAI 신규 글을 `new_blog.json` 으로
    (화면엔 안 올린다 — 기능이 철회됐는지 알아채는 데만 쓴다)
-3. **큐레이션** (새 feature 있는 날만) — 헤드리스 `claude -p` 가 `curate_prompt.md` 를 따라
+3. **큐레이션** (새 feature 가 올라온 시각에만) — 헤드리스 `claude -p` 가 `curate_prompt.md` 를 따라
    `index.html` 을 직접 고친다. 끝나면 JS 무결성·링크 점검이 뒤따른다
 
 ⚠ 3단계가 `index.html` 을 직접 편집한다. 편집 뒤 JS 무결성 검사에 실패하면 자동으로 되돌린다.
