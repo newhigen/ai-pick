@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-15</span><span class="s-t"> 07:31</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-18</span><span class="s-t"> 05:35</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -538,7 +538,156 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.233</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.14">2025.9.29 – 2026.8.14</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.234</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.17">2025.9.29 – 2026.8.17</span></p>
+  <!-- ── v2.1.234 ── -->
+  <div class="version-block" id="v2.1.234" data-types="feature improve security fix" data-date="2026-08-17">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.234</span><span class="ver-date">8월 17일 월</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×23</span><span class="pill improve">개선 ×4</span><span class="pill security">보안 ×12</span><span class="pill fix">Fix ×12</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added the optional <code>CLAUDE_CODE_PROJECT_DIR_NAME</code> environment variable: hosts that give each session its own config directory can choose a short name for the per-project transcript directory</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added the <code>selection:clear</code> keybinding action, so a key can be bound to clear an in-app text selection; also works in the agents view</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a GitLab merge request badge to the footer and statusline: repos with a GitLab remote and an authenticated glab CLI show MR !N with draft/pending/green states</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Claude Code now continues your session automatically when a claude.ai usage limit resets; turn it off in <code>/config</code> ("Continue automatically at usage limit")</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Claude is now told to use your account email only to identify you, and not to send it to unrelated services unless you ask</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Security: remote file reads, session restore, CLAUDE.md includes, workflow scripts and file uploads now reject Windows NT-namespace (<code>\??\</code>) paths, hardening the remaining pre-approval file accesses against the NTLM credential-leak vector</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Remote Control: signing this computer in to a different claude.ai account or organization now stops the running session within seconds and says why, instead of a misleading HTTP 404 hours later</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Remote Control sessions started from Claude Code Desktop or VS Code now keep phones and claude.ai/code updated on the session's permission mode (and claude.ai/code on the model) as they change</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Remote Control: effort picks made on a phone or on claude.ai/code now apply to terminal- and Desktop/VS Code-hosted sessions, and the session publishes its effort level to connected clients</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>SendMessage</code> and <code>ListAgents</code> now say when your account's session list was too long to check completely, instead of treating unseen sessions as absent</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Expired Anthropic profile credential now points you at <code>/login</code> when a claude.ai login would take precedence</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/permissions</code> can now be opened while Claude is working — rule changes apply to the rest of the current turn</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/add-dir &lt;path&gt;</code> can now be used while Claude is working; <code>/add-dir</code>, <code>/autocompact</code>, <code>/theme</code>, <code>/help</code>, <code>/config</code> and <code>/advisor</code> dialogs open mid-turn in the fullscreen TUI</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/goal</code> now clears itself with a notice when a turn dies on an unrecoverable error (e.g. revoked auth, an exhausted credit balance, or a context overflow) instead of staying armed</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/goal</code>: when background tasks keep a goal waiting for 30+ minutes, Claude now checks in on them instead of waiting indefinitely (set <code>CLAUDE_CODE_GOAL_CHECKIN_MINUTES=0</code> to opt out)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>claude setup-token</code> now rejects unexpected extra arguments instead of silently ignoring them</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed Esc in fullscreen mode to no longer clear a mouse text selection: it interrupts or dismisses as usual and the selection stays highlighted</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the redundant "Allowed by auto mode classifier" line that auto mode showed under every Agent tool call</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the "Default teammate model" setting from <code>/config</code>; agent-team teammates now use the leader's model unless the spawn names one</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Dimmed the elapsed-time counter on the running tool header so it no longer competes with the bold counts</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Background task notifications delivered between turns are now sent to the model inside <code>&lt;system-reminder&gt;</code> tags, matching mid-turn delivery</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Mantle: skip the admin-pin availability probe at startup when a main-loop model is already picked</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Windows: startup no longer stalls on repeated rename retries when <code>~/.claude.json</code> is read-only</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">4</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">12</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">12</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved the transcript: your own prompts now render markdown (highlighted code blocks, inline code, lists) the same way replies do</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved the "API returned an empty or malformed response" error to say what came back (content type, body kind, size, request ID) and why the original streaming request failed</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved auto-generated session titles to read as short, specific names (e.g. "Login button bug") rather than sentences restating your request (e.g. "Fix the login button on mobile")</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Reduced the context cost of loading the built-in <code>claude-api</code> skill from ~200k+ tokens to ~25k by loading reference docs on demand</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed auto mode in very long sessions repeatedly re-checking and denying sandboxed commands' network access after the conversation had been compacted</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed session-scoped permission answers (including denies) being dropped when answering background subagent tool permission prompts</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>strictKnownMarketplaces</code> allowlists accepting SCP-style git marketplace sources whose host differs from the one git would actually connect to</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed modal text such as the <code>/login</code> OAuth URL losing characters when copied in fullscreen</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed dialogs like <code>/permissions</code> opened while a <code>!</code> shell command was running being dismissed when the command finished</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed accepting the "Try the new fullscreen renderer?" prompt restarting the session without its permission mode (e.g. <code>--dangerously-skip-permissions</code>), tool allow/deny rules, model or effort flags</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>/tui</code> dropping launch <code>--allowed-tools</code>/<code>--disallowed-tools</code> rules when it restarts; it now declines to switch, with the reason, when the session has restrictions a restart can't carry over</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a case where an IDE diff tab closing during a permission re-prompt could answer the new prompt with the previous input</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed: after <code>/login</code> while <code>CLAUDE_CODE_OAUTH_TOKEN</code> is set, the stale-token reminder no longer leaks into Claude's automatically resumed turn — it now appears only to you</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed: permission previews now relay only to channel servers admitted by the inbound trust gate, and a server's explicit permission-capability opt-out is honored</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed: credential masking on relayed permission previews can no longer hide commands, paths, or destinations from the approver; oversized private-key blocks now redact under full-strength redaction</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed: provider API tokens that mask on permission previews now mask even when directly followed by shell delimiters</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">a crash when an API response on the…</span>
+            <span class="chip">markdown rendering becoming extremely slow for some messages…</span>
+            <span class="chip">SendMessage rejecting a recipient copied from ListAgents when…</span>
+            <span class="chip">repository detection mis-reading the host of git remotes…</span>
+            <span class="chip">MCP diagnostics printing resolved secrets: scope-conflict warnings now…</span>
+            <span class="chip">a --- horizontal rule in rendered markdown running…</span>
+            <span class="chip">consecutive shell commands splitting into multiple &quot;Ran 1…</span>
+            <span class="chip">a queued ! shell command being sent to…</span>
+            <span class="chip">queued messages reappearing in the prompt history while…</span>
+            <span class="chip">trust prompts omitting the repository-wide scope warning when…</span>
+            <span class="chip">Fixed: files sent to the user during Remote…</span>
+            <span class="chip">Claude Desktop inter-session messages being silently dropped by…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.233 ── -->
   <div class="version-block" id="v2.1.233" data-types="feature improve security fix" data-date="2026-08-14">
     <div class="version-head">
