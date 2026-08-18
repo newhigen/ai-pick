@@ -12843,7 +12843,25 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
   </div>
 <!--/CC-DATA-->
 <!--CX-DATA-->
-    <p class="range"><strong>v0.69.0</strong> → <strong>v0.147.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.7">2025.12.10 – 2026.8.7</span></p>
+    <p class="range"><strong>v0.69.0</strong> → <strong>v0.148.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.18">2025.12.10 – 2026.8.18</span></p>
+    <div class="version-block" id="cx0.148.0" data-date="2026-08-18">
+      <div class="version-head">
+        <span class="ver-badge">v0.148.0</span><span class="ver-date" data-en="Aug 18 Tue">8월 18일 화</span><span class="ver-ago"></span>
+        <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
+      </div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Export complete TUI conversations to Markdown with <code>/export</code>, either to the clipboard or a new file.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Fork sessions with <code>codex exec fork</code>, and archive or restore sessions from the TUI resume picker.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Draft prompts while the TUI initializes, with resume and fork progress shown during startup.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">View estimated thread credits or cost in <code>/status</code>, status lines, and terminal titles for eligible workspaces.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Use Amazon Bedrock Runtime as a built-in provider with AWS profile, region, and GPT-5.6 routing support.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Hooks can now run commands asynchronously and invoke MCP tools.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Model switches and settings updates no longer leave stale instructions behind or change an active turn midstream.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Resumed sessions now restore their persisted working directory and approval policy, with more accurate transcript previews.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Turns reconnect through temporary provider outages, and MCP servers recover after OAuth reauthentication without restarting Codex.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">TUI startup no longer lets buffered terminal input activate prompts accidentally, and onboarding appears when authentication is missing.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Composer and transcript rendering now handle CRLF pastes, wrapped whitespace, and long URLs correctly.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Sandbox restrictions now fail closed for denied or unreadable paths across Linux and Windows.</span></div>
+    </div>
     <div class="version-block" id="cx0.147.0" data-date="2026-08-07">
       <div class="version-head">
         <span class="ver-badge">v0.147.0</span><span class="ver-date" data-en="Aug 7 Fri">8월 7일 금</span><span class="ver-ago"></span>
