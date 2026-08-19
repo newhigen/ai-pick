@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-19</span><span class="s-t"> 06:31</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-20</span><span class="s-t"> 05:36</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -540,7 +540,103 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.235</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.18">2025.9.29 – 2026.8.18</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.236</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.19">2025.9.29 – 2026.8.19</span></p>
+  <!-- ── v2.1.236 ── -->
+  <div class="version-block" id="v2.1.236" data-types="feature improve fix" data-date="2026-08-19">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.236</span><span class="ver-date">8월 19일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×13</span><span class="pill improve">개선 ×4</span><span class="pill fix">Fix ×16</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>ANTHROPIC_DEFAULT_MODEL</code> environment variable: sets the model new sessions start on, while a <code>/model</code> pick still overrides it and persists across restarts (unlike <code>ANTHROPIC_MODEL</code>)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>notify_when_idle</code> to cross-session <code>SendMessage</code>: ask another Claude Code session on this machine to send one notice when it next goes idle — opt-in, one-shot, no polling (macOS and Linux)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Sandbox: on macOS, wildcard read-deny rules (e.g. <code>**/.env</code>) now take precedence inside allowed read regions, cover matched directories' contents, and can't be bypassed by renaming the denied file</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed the <code>/model</code> picker to highlight only the newest model's name, so the highlight marks the new release rather than an arbitrary subset of the list</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/goal</code>: an idle session whose goal is parked behind long-running background work now checks in automatically after 30 minutes (then 1h, 2h) instead of waiting for you to return</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/usage</code> now shows the usage-credits spend row for Team and Enterprise members, and shows a capped row at 0% before anything is spent</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">SIGTERM in print/SDK mode no longer records an interrupted turn or synthetic tool denials before exiting; running commands are still terminated and the process still exits with code 143</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Pressing Enter on a slash-command typo or a command unavailable in this session now reports it instead of running the closest fuzzy match; prefixes and aliases still run</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Remote Control now marks a session offline within seconds when the CLI exits or its terminal closes</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>SendMessage</code> now refuses further messages to a session up front once a rapid burst would exceed what that session's inbox accepts, instead of reporting them sent while they were dropped</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Aligned the session title chip on the prompt border with the footer's right edge</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Right-aligned footer items (goal indicator, session state, background agent status) and truncated notices now share a consistent right margin with the rest of the prompt area</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added screen reader support for the transcript: live announcements for replies, permission requests, errors, and status changes, plus per-turn heading navigation</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">4</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">16</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved startup performance: the session counter is now written in the background</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved auto mode: <code>Monitor</code> allow rules are now set aside while auto mode is active, so Monitor commands are reviewed the same way Bash commands are</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved auto mode on Bedrock, Vertex AI, and Foundry, and when telemetry is disabled: the classifier now uses the same defaults as on the Claude API, including severity-scored classification</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved auto mode: the git status check can no longer be fooled by a repo's <code>status.showUntrackedFiles=no</code> setting into reporting a clean tree</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">clipboard copy, background housekeeping, background sessions, and local…</span>
+            <span class="chip">fullscreen renderer failing permanently after a single failed…</span>
+            <span class="chip">/model picker rendering taller than the terminal: it…</span>
+            <span class="chip">SendMessage calls being rejected when a malformed closing…</span>
+            <span class="chip">unhandled promise rejections when a subprocess fails to…</span>
+            <span class="chip">fullscreen mode sometimes not showing a newly sent…</span>
+            <span class="chip">a blank band that could remain above the…</span>
+            <span class="chip">managed-settings approval prompt sometimes not appearing at startup…</span>
+            <span class="chip">terminal tab titles jumping in tmux (iTerm tmux…</span>
+            <span class="chip">an unclear error when the cloud environments list…</span>
+            <span class="chip">Fable 5 first-time usage-credits prompt auto-selecting the fallback…</span>
+            <span class="chip">spinner tips never appearing, with a repeated background…</span>
+            <span class="chip">skills hot-reload in SDK/VS Code sessions raising an…</span>
+            <span class="chip">self-hosted runner sessions released on idle, retire, or…</span>
+            <span class="chip">Clawd mascot&#x27;s eyes and feet rendering unevenly in…</span>
+            <span class="chip">occasional runaway session recaps: recap text (automatic and…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.235 ── -->
   <div class="version-block" id="v2.1.235" data-types="feature improve security fix" data-date="2026-08-18">
     <div class="version-head">
