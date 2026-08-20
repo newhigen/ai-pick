@@ -13068,7 +13068,25 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
   </div>
 <!--/CC-DATA-->
 <!--CX-DATA-->
-    <p class="range"><strong>v0.69.0</strong> → <strong>v0.148.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.18">2025.12.10 – 2026.8.18</span></p>
+    <p class="range"><strong>v0.69.0</strong> → <strong>v0.149.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.20">2025.12.10 – 2026.8.20</span></p>
+    <div class="version-block" id="cx0.149.0" data-date="2026-08-20">
+      <div class="version-head">
+        <span class="ver-badge">v0.149.0</span><span class="ver-date" data-en="Aug 20 Thu">8월 20일 목</span><span class="ver-ago"></span>
+        <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×6</span></div>
+      </div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added an interactive <code>codex agents</code> dashboard for searching, starting, opening, renaming, and stopping tasks, with configurable shortcuts.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added <code>/cd</code>, <code>/pwd</code>, and <code>/cwd</code> commands for managing the working directory in TUI sessions.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added <code>codex queue</code> for sending messages to existing local or remote sessions.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Expanded Vim editing with character replacement and more change motions such as <code>cw</code>, <code>c$</code>, and <code>cc</code>.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc"><code>codex doctor</code> now diagnoses endpoint protection, network/proxy failures, desktop app state, and update connectivity.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">SDK users can now pass exact CLI config overrides and select <code>max</code> or <code>ultra</code> reasoning effort.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Queued messages now wake idle sessions reliably, resolve duplicate session names more usefully, and preserve pasted or deferred command semantics.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Resumed and forked threads now restore their active permission profile instead of silently falling back to current defaults.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed duplicate sub-agent activity and tightened TUI routing for sub-agent notifications and approvals.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Realtime WebRTC sideband connections now reconnect after unexpected transport loss without dropping pending output.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Inline TUI history now remains available in Windows Terminal scrollback.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Inactive TUI thread replay buffers are now bounded to prevent excessive retained streamed output.</span></div>
+    </div>
     <div class="version-block" id="cx0.148.0" data-date="2026-08-18">
       <div class="version-head">
         <span class="ver-badge">v0.148.0</span><span class="ver-date" data-en="Aug 18 Tue">8월 18일 화</span><span class="ver-ago"></span>
