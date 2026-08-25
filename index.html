@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-25</span><span class="s-t"> 14:38</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-26</span><span class="s-t"> 07:35</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -540,7 +540,121 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.245</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.25">2025.9.29 – 2026.8.25</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.246</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.25">2025.9.29 – 2026.8.25</span></p>
+  <!-- ── v2.1.246 ── -->
+  <div class="version-block" id="v2.1.246" data-types="feature improve security fix" data-date="2026-08-25">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.246</span><span class="ver-date">8월 25일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×8</span><span class="pill improve">개선 ×5</span><span class="pill security">보안 ×8</span><span class="pill fix">Fix ×40</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a startup warning for Bash allow rules with a wildcard before the subcommand (e.g. <code>Bash(git * main)</code>), since they also match options inserted before the subcommand</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added an Auto mode tab to <code>/permissions</code> for viewing and editing auto mode classifier rules</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added the turn's completion time to the end-of-turn duration line, e.g. <code>✻ Sautéed for 23s · done 6:05 PM</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Windows/macOS: Fixed headless sessions not cleaning up stale entries in <code>~/.claude/sessions</code> left by sessions that exited uncleanly</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>/code-review</code> so Claude can also start it on its own on Bedrock, Vertex AI, and Foundry, through the Claude apps gateway, and when telemetry or non-essential traffic is disabled</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc"><code>/goal</code>: Changed idle sessions to start at most three check-ins on long-running background work per goal; your next message allows three more</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>claude install</code> and <code>claude update</code> to defer a pending managed-settings consent prompt to the next interactive session instead of prompting mid-command</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed OpenTelemetry plugin events for plugins synced from claude.ai: <code>plugin_id_hash</code> now reflects the plugin's real marketplace, and <code>enabled_via</code> is <code>admin-install</code> for admin-installed plugins</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">5</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">8</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">40</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/cd</code>: the new directory's project settings, hooks, <code>.mcp.json</code> servers (behind the usual approval prompt), skills, and agents now take effect right after the move instead of on <code>--resume</code></span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved Bash tool latency on bash shells by replaying snapshot functions without a base64 subshell per function</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved subagent results: a subagent that stops at its <code>maxTurns</code> limit now returns its output marked as partial, with a hint to continue it via <code>SendMessage</code>, instead of appearing finished</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved non-interactive sessions (<code>-p</code>, SDK, cloud sessions) to automatically continue a response cut off mid-stream by a server error, connection loss, or stall instead of ending with an error</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved attribution of usage telemetry to your organization for workload identity federation sessions, events sent while <code>apiKeyHelper</code> runs at startup, and after a login token expired while idle</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>curl -fsSL https://claude.ai/install.sh | bash</code> failing with "Raw mode is not supported" for some Team/Enterprise users with server-managed settings</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed sessions that ended in plan mode resuming outside plan mode in the VS Code extension, and in <code>claude -p --continue</code>/<code>--resume</code> with a permission prompt tool, when no permission mode was set</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the <code>Notification</code> hook not firing while the sandbox "Network request outside of sandbox" permission prompt is waiting</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed Bash permission checks to always require approval for malformed commands with a dangling <code>&amp;&amp;</code> or <code>||</code> operator</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed telemetry and metrics requests to Anthropic carrying the API key configured for a third-party gateway (<code>ANTHROPIC_BASE_URL</code>); a credential is now only sent to its own host</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a visible API error on the first prompt after idle when <code>apiKeyHelper</code> returns short-lived JWTs: an expired cached token is now refreshed before sending, and 401/403 auth errors retry quietly</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed MCP tools marked <code>requiresUserInteraction</code> still offering "Yes, and don't ask again" in their permission prompt; the option wrote an allow rule the tool then ignored</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the command sandbox's filesystem configuration not respecting <code>--setting-sources</code></span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">fullscreen mode showing a blank transcript after resizing…</span>
+            <span class="chip">a severe transcript slowdown when a diff contained…</span>
+            <span class="chip">erratic fullscreen scrolling when positioned at an earlier…</span>
+            <span class="chip">background sessions failing to open after 45 seconds…</span>
+            <span class="chip">background sessions failing to open with &quot;Couldn&#x27;t start…</span>
+            <span class="chip">markdown rendering being disabled for a whole message…</span>
+            <span class="chip">MCP tool calls interrupted by an incoming message…</span>
+            <span class="chip">MCP tool arguments being sent as JSON strings…</span>
+            <span class="chip">a command interrupted mid-run showing as &quot;Ran 1…</span>
+            <span class="chip">pressing ← or running /background during a dynamic…</span>
+            <span class="chip">opening a just-started session in claude agents while…</span>
+            <span class="chip">claude agents listing a backgrounded named session twice;…</span>
+            <span class="chip">background retention sweep removing git worktrees under .claude/worktrees/…</span>
+            <span class="chip">auto mode tool calls being denied as &quot;temporarily…</span>
+            <span class="chip">plugin cache creating duplicate SHA-named directories for the…</span>
+            <span class="chip">plugin skills whose frontmatter name already includes the…</span>
+            <span class="chip">claude plugin update failing for an installed plugin…</span>
+            <span class="chip">plugin installation failing when plugin.json was saved with…</span>
+            <span class="chip">/reload-plugins reporting 0 skills for plugins that define…</span>
+            <span class="chip">hook error messages showing a literal ${CLAUDE_PLUGIN_ROOT} instead…</span>
+            <span class="chip">/rename replacing the theme&#x27;s prompt border color (including…</span>
+            <span class="chip">custom theme diff colors (diffAdded/diffRemoved and their dimmed…</span>
+            <span class="chip">a keybindings.json binding with an unknown action name…</span>
+            <span class="chip">/stats activity heatmap showing each day&#x27;s activity one…</span>
+            <span class="chip">/fork from an already-forked or backgrounded session starting…</span>
+            <span class="chip">prompts beginning with /-- (e.g. Lean doc comments)…</span>
+            <span class="chip">@ file picker staying open after the typed…</span>
+            <span class="chip">status line&#x27;s cost and duration resetting to zero…</span>
+            <span class="chip">fullscreen mode moving keyboard focus onto the control…</span>
+            <span class="chip">path completion failing when the completion token or…</span>
+            <span class="chip">UI stopping with a render error on the…</span>
+            <span class="chip">Write tool reporting &quot;Out of memory&quot; or freezing…</span>
+            <span class="chip">claude plugin install &lt;name&gt; exiting silently (or hanging…</span>
+            <span class="chip">resumed sessions failing every turn with a 400…</span>
+            <span class="chip">--strict-mcp-config sessions prompting to approve .mcp.json servers they…</span>
+            <span class="chip">memory growing with session length in the fullscreen…</span>
+            <span class="chip">/ultrareview runs and cloud sessions launched at the…</span>
+            <span class="chip">task progress count (e.g. 3/5) shown for background…</span>
+            <span class="chip">Remote Control sessions keeping their placeholder name in…</span>
+            <span class="chip">self-hosted runner ending its live sessions or exiting…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.245 ── -->
   <div class="version-block" id="v2.1.245" data-types="fix" data-date="2026-08-25">
     <div class="version-head">
