@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-28</span><span class="s-t"> 14:14</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">08-29</span><span class="s-t"> 03:32</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -540,7 +540,170 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.250</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.28">2025.9.29 – 2026.8.28</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.251</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.28">2025.9.29 – 2026.8.28</span></p>
+  <!-- ── v2.1.251 ── -->
+  <div class="version-block" id="v2.1.251" data-types="feature improve security fix" data-date="2026-08-28">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.251</span><span class="ver-date">8월 28일 금</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×21</span><span class="pill improve">개선 ×10</span><span class="pill security">보안 ×5</span><span class="pill fix">Fix ×35</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>PreModelSwitch</code> and <code>PostModelSwitch</code> hook events (block, confirm, or annotate a model switch); <code>SessionStart</code> resume hooks now receive session staleness and the estimated re-cache cost</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added live streaming of a foreground subagent's tool calls and results to Remote Control clients (background subagents, the default, still show status only)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a Spend limit bar to <code>/usage</code> and a <code>rate_limits.spend_limit</code> status line field for developers behind a Claude apps gateway with spend limits</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a per-session prompt-cache line to <code>/cost</code> (hit ratio, misses, tokens re-cached, warm/cold) and a matching <code>prompt_cache</code> object for status line scripts</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>attach</code>, <code>logs</code>, <code>stop</code>, <code>respawn</code>, and <code>rm</code> to <code>claude --help</code>; the <code>--resume</code> message for a running background session now names the exact <code>claude attach &lt;id&gt;</code> command</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>/radio</code> to be available on Bedrock, Vertex AI, Foundry, and Claude Platform on AWS, and when telemetry is disabled</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed Claude in Chrome so browser actions always go through Claude Code's permission checks, including in sessions with telemetry disabled, which previously used the Chrome extension's own prompts</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>CLAUDE_CODE_SUBAGENT_MODEL</code> to set the default subagent model rather than override everything: an agent definition's <code>model:</code> and an explicit per-spawn model now take precedence over it</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed the default commit trailer to <code>Co-Authored-By: Claude Code</code> when the active model isn't a recognized Claude model (e.g. third-party models behind a custom <code>ANTHROPIC_BASE_URL</code>)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed the default model for seat-based Enterprise subscriptions to Opus 5, matching other premium plans</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>/effort</code> to save your default effort level per model, so each model keeps its own setting when you switch</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed analytics to no longer turn off before sign-in solely because managed settings force gateway login (or cannot be read); they stay off once signed in to the gateway or via <code>DISABLE_TELEMETRY</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed the footer PR badge on Bedrock, Vertex, and Foundry, and when telemetry is off, to call the GitHub API directly (via <code>gh auth token</code>, <code>GH_TOKEN</code>, or <code>GITHUB_TOKEN</code>) instead of <code>gh pr view</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed how Bash command output files are created and read back when commands run in the sandbox, so a sandboxed command cannot redirect or replace them</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed plugin/LSP install suggestions and the auto-mode default offer to wait until you've sent or cleared what you're typing, so the Enter that sends your prompt can't answer them</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed server-managed settings that terminate sandbox TLS, route sandbox traffic through your own proxy, inject credentials, or weaken sandbox isolation to require approval before they apply</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>ANTHROPIC_CUSTOM_HEADERS</code> from managed or project settings to require approval when it sets a credential, org/tenant, routing, or API-behavior header (e.g. <code>Authorization</code>, <code>Host</code>)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed project-level <code>.claude/settings.json</code> <code>env</code> to no longer set <code>CLAUDE_CONFIG_DIR</code>, <code>CLAUDE_CODE_TMPDIR</code>, or <code>TMPDIR</code>/<code>TMP</code>/<code>TEMP</code>; set them in your shell, user, or managed settings instead</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed syntax highlighting for six rarely used languages (1c, gml, isbl, mathematica, maxima, sqf); the binary is 2.5 MB smaller</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed the sign-in screen's "Bedrock, Foundry, or Vertex" button opening the docs at the top of the page instead of the third-party provider setup section</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Changed the Remote Control banner to a footer pill (shown while Remote Control is on or has failed) that opens the session on claude.ai/code; turn it on or off with <code>/remote-control</code></span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">10</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">5</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">35</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved CPU usage during turns in interactive sessions by cutting redundant UI re-renders</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved install size: the native binary is about 5 MB smaller</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved cloud sessions: when the session's network proxy drops a connection during a Bash command, the tool result now names the host and reason instead of only "connection reset"</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/schedule</code> to explain that MCP servers configured in Claude Code can't be attached to cloud routines, instead of a bare "No MCP connectors" message</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved framing of messages from your own subagents: Claude is told the sender is a worker inside this session, not an unrelated Claude session</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved the prompt placeholder to read "Message @name…" while viewing a background subagent or fork transcript opened from the subagent panel or <code>/tasks</code></span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved sanitization of MCP server names in error messages, menus, and command results</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved Amazon Bedrock session start under <code>CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST</code> (e.g. Claude Desktop): a session given a Bedrock model ID or ARN no longer waits for inference-profile discovery</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved the managed settings approval dialog to list only the settings that changed since you last approved them</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved retry when the model's tool call is malformed: the broken output is now dropped from the retry context, including on Bedrock, Vertex, and Foundry</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed file tools (Read, Write, Edit) following a symlink swapped inside the working directory after the permission check, which could read or write outside the approved location</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed project settings being able to enable detailed beta tracing or raw API body logging, and a lower-scope beta tracing endpoint bypassing an OTLP collector pinned by managed settings or a host app</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the Workflow tool reading (and quoting in errors) a <code>scriptPath</code> outside what the session may read before the permission check ran</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed Bash permission checks auto-approving commands that assign an arithmetic expression to an integer shell variable (e.g. <code>OPTIND=1/0</code>, <code>RANDOM=2+2</code>); these now prompt for approval</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed backgrounded sessions (<code>←</code>, <code>/background</code>, <code>--bg</code>) losing a Vertex/Bedrock gateway (<code>ANTHROPIC_*_BASE_URL</code> + <code>CLAUDE_CODE_SKIP_*_AUTH</code>) exported in the shell, so every request failed</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">plugin commands declared in a marketplace entry being…</span>
+            <span class="chip">Grep and Glob not applying Read(...) deny rules…</span>
+            <span class="chip">conversations getting stuck on &quot;text content blocks must…</span>
+            <span class="chip">first launch on a fresh install starting in…</span>
+            <span class="chip">Opus 5 requests failing with &quot;effort … is…</span>
+            <span class="chip">replying to a message Claude Desktop delivered from…</span>
+            <span class="chip">TUI lag with many parallel subagents: per-second progress…</span>
+            <span class="chip">agent teams: a teammate&#x27;s final answer not reaching…</span>
+            <span class="chip">background subagents being unable to reply to a…</span>
+            <span class="chip">managed-settings disableAutoMode arriving mid-session not moving an already-running…</span>
+            <span class="chip">a &quot;switch to Opus 1M for 5x more…</span>
+            <span class="chip">Claude apps gateway sessions treating a stored Anthropic…</span>
+            <span class="chip">cloud sessions telling Claude the model had changed…</span>
+            <span class="chip">Remote Control reporting a failure when an organization&#x27;s…</span>
+            <span class="chip">/mcp reconnect on Remote Control showing a generic…</span>
+            <span class="chip">--input-format stream-json: client-injected assistant tool calls sent without…</span>
+            <span class="chip">session transcripts being silently overwritten when a directory…</span>
+            <span class="chip">background sessions and their subagents being unable to…</span>
+            <span class="chip">background sessions occasionally starting without any plugin skills…</span>
+            <span class="chip">selecting text in an opened background session inside…</span>
+            <span class="chip">SDK and cloud sessions hanging indefinitely when an…</span>
+            <span class="chip">self-hosted runner leaving a stuck session&#x27;s Bash tool…</span>
+            <span class="chip">/usage-credits for Team and Enterprise members whose admin…</span>
+            <span class="chip">--worktree --tmux with a merge-request number on a…</span>
+            <span class="chip">Ctrl+G failing with &quot;Emacs quit unexpectedly&quot; in background…</span>
+            <span class="chip">an additionalDirectories entry containing a null byte crashing…</span>
+            <span class="chip">MCP server menu&#x27;s copy shortcut: it now says…</span>
+            <span class="chip">italic text (such as the session recap line)…</span>
+            <span class="chip">claude mcp add --header and claude mcp add-json…</span>
+            <span class="chip">claude ultrareview and /ultrareview waiting the full 30…</span>
+            <span class="chip">claude --bg --model fable on Max plans stopping…</span>
+            <span class="chip">one-time &quot;make auto mode your default&quot; offer appearing…</span>
+            <span class="chip">managed-settings approval prompt re-appearing after signing in again…</span>
+            <span class="chip">disabled /bug and /share reporting that /feedback was…</span>
+            <span class="chip">cloud session creation advising GitHub setup after a…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.250 ── -->
   <div class="version-block" id="v2.1.250" data-types="feature" data-date="2026-08-28">
     <div class="version-head">
