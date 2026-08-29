@@ -13904,7 +13904,22 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
   </div>
 <!--/CC-DATA-->
 <!--CX-DATA-->
-    <p class="range"><strong>v0.69.0</strong> → <strong>v0.150.1</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.27">2025.12.10 – 2026.8.27</span></p>
+    <p class="range"><strong>v0.69.0</strong> → <strong>v0.151.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.29">2025.12.10 – 2026.8.29</span></p>
+    <div class="version-block" id="cx0.151.0" data-date="2026-08-29">
+      <div class="version-head">
+        <span class="ver-badge">v0.151.0</span><span class="ver-date" data-en="Aug 29 Sat">8월 29일 토</span><span class="ver-ago"></span>
+        <div class="ver-summary"><span class="pill feature">기능 ×3</span><span class="pill fix">Fix ×6</span></div>
+      </div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Added a configurable grace period for discovering tools from optional MCP servers.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Extensions can now inspect or replace MCP tool results before they reach the model.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Plugin catalogs now combine per-repository configuration and report invalid project marketplaces without hiding valid plugins.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Preserved restored permission profiles across TUI turns and prevented <code>/cd</code> from weakening sandbox restrictions.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Kept tool availability and reasoning effort correct when switching models or falling back to another model.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Improved remote sandbox enforcement using the executor’s actual home directory, operating system, and path conventions.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Preserved structured MCP tool and resource errors in app-server responses.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Counted nested subagent token usage toward root goal budgets.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Prevented stale Guardian classifications from authorizing actions after permission state changes.</span></div>
+    </div>
     <div class="version-block" id="cx0.150.1" data-date="2026-08-27">
       <div class="version-head">
         <span class="ver-badge">v0.150.1</span><span class="ver-date" data-en="Aug 27 Thu">8월 27일 목</span><span class="ver-ago"></span>
