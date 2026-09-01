@@ -13927,7 +13927,27 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
   </div>
 <!--/CC-DATA-->
 <!--CX-DATA-->
-    <p class="range"><strong>v0.69.0</strong> → <strong>v0.151.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.8.29">2025.12.10 – 2026.8.29</span></p>
+    <p class="range"><strong>v0.69.0</strong> → <strong>v0.152.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.9.1">2025.12.10 – 2026.9.1</span></p>
+    <div class="version-block" id="cx0.152.0" data-date="2026-09-01">
+      <div class="version-head">
+        <span class="ver-badge">v0.152.0</span><span class="ver-date" data-en="Sep 1 Tue">9월 1일 화</span><span class="ver-ago"></span>
+        <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill fix">Fix ×8</span></div>
+      </div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Vim mode supports <code>/</code> and <code>?</code> searches within drafts, highlighted matches, and repeat navigation with <code>n</code> and <code>N</code>.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Rate-limit banners offer actions for checking usage, managing credits, resetting limits, and managing plans.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">The terminal UI and <code>codex exec</code> show credential-refresh progress, including Amazon Bedrock reauthentication.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">MCP server names can contain <code>:</code>, <code>@</code>, <code>/</code>, and <code>.</code>, supporting package-style names throughout CLI commands and authentication.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Individual MCP tools support an <code>output_token_limit</code> setting, with consistent truncation across session resumes.</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">App-server clients can configure <code>thread/shellCommand</code> timeouts, including deadlines longer than one hour.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Vim-enabled composers now start fresh drafts in Insert mode, including after submitting messages or dispatching slash commands.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Automatic approval reviews can retain longer messages and a larger conversation transcript.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Automatic approval reviews preserve user instructions, answers, and valid authorizations across history compaction.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Resumed threads restore their saved working directory when none is supplied, and client metadata updates preserve filesystem permissions.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">MCP tools remain available through cache refreshes and remote plugin changes; authentication retries use refreshed helper-provided headers.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Opening the model picker refreshes available models without losing the highlighted choice.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Fixed Windows sandbox execution with Microsoft Store PowerShell, subprocess hangs on terminal queries, and cursor-related display corruption in older JediTerm terminals.</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Cloud task requests reject untrusted backend URLs and disable redirects to protect saved credentials.</span></div>
+    </div>
     <div class="version-block" id="cx0.151.0" data-date="2026-08-29">
       <div class="version-head">
         <span class="ver-badge">v0.151.0</span><span class="ver-date" data-en="Aug 29 Sat">8월 29일 토</span><span class="ver-ago"></span>
