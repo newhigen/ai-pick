@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">09-01</span><span class="s-t"> 04:56</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">09-02</span><span class="s-t"> 03:21</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -540,7 +540,230 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.252</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.8.31">2025.9.29 – 2026.8.31</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.257</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.9.1">2025.9.29 – 2026.9.1</span></p>
+  <!-- ── v2.1.257 ── -->
+  <div class="version-block" id="v2.1.257" data-types="feature improve security fix" data-date="2026-09-01">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.257</span><span class="ver-date">9월 1일 화</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×30</span><span class="pill improve">개선 ×11</span><span class="pill security">보안 ×15</span><span class="pill fix">Fix ×48</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added Claude Fable 5.1 (<code>claude-fable-5-1</code>), now the default Fable model — 1M context, $10/$50 per Mtok with $0.25/Mtok cache reads</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added "Time format" (<code>timeFormat</code>) and <code>timeZone</code> settings: 12-hour, 24-hour, 24-hour UTC, or a strftime pattern for the turn-end clock and transcript-view timestamps</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a Containment Escape rule to auto mode so cloud metadata-credential fetches, egress evasion, and cross-tenant reach are no longer auto-approved unless your environment marks them expected</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>CLAUDE_CODE_SUBAGENT_MODEL_FORCE</code> to apply <code>CLAUDE_CODE_SUBAGENT_MODEL</code> (or the main model) to every subagent, ignoring per-spawn and agent-definition model overrides</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>s</code> in <code>/effort</code> to change effort for the current session only, matching <code>/model</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a <code>/doctor</code> warning for stale sandbox mask files left by a killed session</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added a one-time prompt in auto mode before the first file read outside the working directories, with the option to block such reads (<code>permissions.blockReadsOutsideWorkingDirectories</code>)</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added support for a gateway-supplied <code>description</code> on discovered <code>/model</code> picker entries (<code>CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY</code>); entries without one still read "From gateway"</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>--effort</code> to lift a new model's default-effort hold for that session only rather than permanently; an effort picked on claude.ai for a Remote Control session now applies during the hold</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed a <code>policyHelper</code> in MDM or <code>managed-settings.json</code> shadowed at launch by cached server-managed settings to run (or exit) as soon as the fetch reports them removed, not at the next launch</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>managedSourcesBehavior: "merge"</code> to take <code>sandbox.credentials.awsPairs</code> and <code>sandbox.ripgrep</code> whole from the highest managed source that sets them instead of combining the sources' values</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed gateway model discovery (<code>CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1</code>) to run even when <code>CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC</code> is set, since it only queries your gateway</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>claude --resume &lt;session-id&gt; --bg</code> to continue that session under its own ID when nothing is running it, instead of silently starting a copy; a copy is now announced</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>/btw</code> history browsing from <code>←</code>/<code>→</code> to <code>Shift+←</code>/<code>Shift+→</code> (or <code>[</code>/<code>]</code>), stepping through your recent side questions and back to the live answer</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>defaultMode: "bypassPermissions"</code> in <code>.claude/settings.json</code> or <code>.claude/settings.local.json</code> to be ignored, like <code>"auto"</code>; set it in user or managed settings, or pass <code>--permission-mode</code></span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>fable</code> and <code>best</code> in Claude apps gateway sessions to keep resolving to Fable 5 for now, since gateways not yet configured for Fable 5.1 reject it; pick Fable 5.1 in <code>/model</code> to use it</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>--add-dir</code>, <code>/add-dir</code>, and <code>additionalDirectories</code> to refuse network paths (UNC shares, <code>/net/&lt;host&gt;</code> automounts) with a message before touching them; on Windows use a mapped drive letter</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed Claude apps gateway sign-in and token refresh requests to verify the gateway's pinned TLS certificate, as the managed settings fetch already does</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed Cowork and claude.ai cloud sessions: reading an artifact that isn't yours now always asks you first, even in auto mode</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Removed the Ctrl+E command explanation on Bash and PowerShell permission prompts</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added collapsible ACCOUNT &amp; USAGE and SESSION MANAGER section headers to the session list panel, with the account email, the usage meter, and a View details link opening the usage dialog</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added a model pill to the input footer that shows the current model and opens the model picker, with an Effort row and a "More models" page</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added a collapse toggle to the Ungrouped section of the session list</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added output style selection to the command menu, including custom styles</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed third-party provider deployments (Bedrock, Vertex, and others) still showing claude.ai-only features (remote sessions, dictation, usage) and calling claude.ai with a leftover login</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed the session list panel's usage meter staying blank after the panel loads; it now shows the last known usage immediately</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed the "Enable Remote Control for all sessions" toggle so turning it on or off applies to sessions that are already open, not only to new ones</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Fixed screen reader announcements: a control character before a fence or heading no longer drops visible lines from speech, and bold markers spanning a heading are no longer mis-paired</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Changed the action menu to list slash commands in a filterable "Slash commands" dialog instead of inline; picking one runs it; the MCP servers dialog gained the same filter box</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Changed "Delete session" to "Archive session": archived sessions move to a collapsible "Archived sessions" group at the bottom of the list with an Unarchive action</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">11</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">15</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">48</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved rendering performance: less re-render work per turn in long conversations, streaming no longer slows down as the reply grows, and background-agent updates no longer re-render the whole screen</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved prompt input responsiveness by reducing per-keystroke rendering work</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved policy helper diagnostics — refresh failures now show in <code>/status</code>, declining the managed-settings dialog prints why Claude Code exited, and helper timeouts are reported as timeouts</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/code-review --comment</code> to post findings on GitLab merge requests via <code>glab mr note</code> instead of reporting the target as unsupported</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved notifications: an MCP elicitation or permission ask queued under another dialog now sends its idle desktop notification at the same delay as a visible ask</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved verbose/transcript output: async hook completion notices that arrive together now appear on one line instead of one line per hook</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>claude self-hosted-runner --configure-git</code> to also enable git push negotiation, so the first push of a new branch from a stale clone uploads only the new commits instead of the whole tree</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved liveness reporting to SDK hosts while a response is held open by gateway keep-alives, so long waits under a raised <code>CLAUDE_STREAM_IDLE_TIMEOUT_MS</code> are not mistaken for a hung session</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved MCP connection and OAuth debug/error logs so credentials carried in a server's URL or request headers are redacted</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/fork</code> to keep the original conversation's prompt cache in the new background session: its worktree briefing now arrives as a message instead of a system-prompt change</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved emoji autocomplete to accept the remaining GitHub/Slack shortcode aliases (<code>:satisfied:</code>, <code>:telephone:</code>, <code>:collision:</code>, …)</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed sessions dispatched from an agent view opened with <code>←</code> always starting in the original session's permission mode, overriding the target directory's <code>defaultMode</code> and the agent's <code>permissionMode</code></span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a doubly-listed custom <code>Authorization</code> header overriding the configured credential on Bedrock, Mantle, Vertex, and WIF, and the Vertex setup wizard picking up a leftover Anthropic profile from <code>~/.config/anthropic</code></span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed Claude apps gateway sending stray host <code>Authorization</code> or profile headers to Foundry, Vertex, and Bedrock, and Foundry Entra ID upstreams not starting when <code>ANTHROPIC_FOUNDRY_API_KEY</code> is set</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a leftover Anthropic API key or auth token being sent alongside your Foundry subscription key in API-key mode</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed telemetry (OTEL) settings pushed through server-managed settings being ignored on warm starts, including desktop-app Code sessions</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a teammate permission request being answered twice when the leader's mailbox write was briefly locked</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed sandbox network hosts written with a trailing dot (<code>example.com.</code>): a <code>deniedDomains</code> entry didn't block the host inside the sandbox, and "don't ask again" for such a host kept prompting</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>claude mcp remove</code> leaving a remote server's stored OAuth credentials behind when <code>strictPluginOnlyCustomization</code> locks MCP to plugin-only servers</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed <code>--disallowedTools</code> and session deny rules being dropped after the first settings reload when <code>allowManagedPermissionRulesOnly</code> is enabled</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed a <code>permissions.ask</code> rule being skipped in auto mode when the matching command ran inside a compound command or subshell, letting it run without the confirmation prompt</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the Edit permission prompt's diff view rendering emoji and multi-code-point characters with incorrect widths</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed sandboxed git commands in a linked worktree losing write access to the repository's common <code>.git</code> directory after <code>cd</code> into a subdirectory</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed cloud sessions losing git/GitHub credentials for the rest of the session when the session's network proxy failed to start at launch; it now retries in the background and recovers</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed Bash permission checks auto-approving certain <code>[[ ]]</code> conditionals that zsh parses differently from bash; these commands now prompt for approval</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the keyless Console sign-in ("Sign in with your Console account") not applying your organization's server-managed settings, and <code>/status</code> not showing the Organization for that sign-in</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">settings in a .claude/ folder created after startup…</span>
+            <span class="chip">keybindings.json rebinds of Ctrl+G being ignored in claude…</span>
+            <span class="chip">background sessions failing to start on macOS npm…</span>
+            <span class="chip">working spinner stopping while a response streams behind…</span>
+            <span class="chip">a background session&#x27;s state.json detail repeating its own…</span>
+            <span class="chip">claude agents keeping a background session you re-prompted…</span>
+            <span class="chip">claude --bg from a directory that was just…</span>
+            <span class="chip">Remote Control connecting mid-session re-sending the Bash tool…</span>
+            <span class="chip">/schedule routines whose prompt was saved without a…</span>
+            <span class="chip">claude agents not saying that a background session…</span>
+            <span class="chip">a prompt stashed with Ctrl+S inside an opened…</span>
+            <span class="chip">a phantom duplicate slash-command row rendering below the…</span>
+            <span class="chip">policyHelper timeoutMs and refreshIntervalMs values above the timer…</span>
+            <span class="chip">token counter freezing or crawling after switching to…</span>
+            <span class="chip">dismissing the Remote Control consent prompt (Esc, or…</span>
+            <span class="chip">/mcp reconnect and enable still connecting a settings-file…</span>
+            <span class="chip">Remote Control (claude remote-control) sessions started from the…</span>
+            <span class="chip">--resume listing a backgrounded conversation twice and --continue…</span>
+            <span class="chip">fullscreen mode not letting you click ! shell…</span>
+            <span class="chip">background sessions left running an older Claude Code…</span>
+            <span class="chip">claude agents --json briefly switching the terminal to…</span>
+            <span class="chip">Proactive output style sessions busy-looping with filler messages…</span>
+            <span class="chip">subagents stopping when a response was cut off…</span>
+            <span class="chip">← doing nothing in the /btw panel inside…</span>
+            <span class="chip">sessions with an advisor model set missing the…</span>
+            <span class="chip">claude -p exiting about 5 seconds after its…</span>
+            <span class="chip">plugins being able to read files outside their…</span>
+            <span class="chip">/add-dir rejecting a directory inside the current working…</span>
+            <span class="chip">main agent not being told when you resume…</span>
+            <span class="chip">a crash when pasting ANSI-colored text (e.g. a…</span>
+            <span class="chip">claude mcp add/remove hanging or exhausting memory when…</span>
+            <span class="chip">unbounded memory growth when non-JSONL data is piped…</span>
+            <span class="chip">backgrounding a turn (← or Ctrl+B) while a…</span>
+            <span class="chip">Bash Read()/Edit() deny rules not applying to &lt;…</span>
+            <span class="chip">resuming or messaging a subagent whose transcript had…</span>
+            <span class="chip">worktree-isolated sessions refusing Bash loops, $VAR reads, &quot;$(…)&quot;…</span>
+            <span class="chip">/model and /effort showing a prompt-cache warning after…</span>
+            <span class="chip">prompt-cache misses on every turn in long screenshot-heavy…</span>
+            <span class="chip">WebSocket MCP server connection failures being logged as…</span>
+            <span class="chip">background sessions failing to open with &quot;Couldn&#x27;t start…</span>
+            <span class="chip">background commands that detach from their shell (for…</span>
+            <span class="chip">Claude not being told when you stop a…</span>
+            <span class="chip">stopping a background subagent leaving its monitors running</span>
+            <span class="chip">Bedrock and Bedrock Mantle requests going silent during…</span>
+            <span class="chip">launching Claude Code after a Claude apps gateway…</span>
+            <span class="chip">leftover cc-daemon-* folders in the system temp directory…</span>
+            <span class="chip">managed-settings approval prompt showing the generic warning instead…</span>
+            <span class="chip">agent-team teammates in tmux/iTerm2 panes sometimes staying open…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.252 ── -->
   <div class="version-block" id="v2.1.252" data-types="fix" data-date="2026-08-31">
     <div class="version-head">
