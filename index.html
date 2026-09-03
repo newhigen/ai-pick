@@ -309,7 +309,7 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
        title="Codex 공식 릴리스 전체">공식 릴리스 <i>↗</i></a></span>
   <span class="pdone"><span class="pcount">해봄 <b class="doneAll">0</b>/<span class="totAll">0</span></span>
     <button class="clrb btn">모두 해제</button></span>
-  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">09-02</span><span class="s-t"> 08:58</span><!--/SYNC--></span>
+  <span class="pstamp"><!--SYNC--><span class="s-y">2026-</span><span class="s-md">09-03</span><span class="s-t"> 09:00</span><!--/SYNC--></span>
 </div>
 
 <div class="tab on" id="new">
@@ -541,7 +541,91 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
      지우면 update_changelog·update_codex 가 꽂을 자리를 잃는다. -->
 <div id="data">
 <!--CC-DATA-->
-    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.258</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.9.1">2025.9.29 – 2026.9.1</span></p>
+    <p class="range"><strong>v2.0.0</strong> → <strong>v2.1.259</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.9.29 – 2026.9.2">2025.9.29 – 2026.9.2</span></p>
+  <!-- ── v2.1.259 ── -->
+  <div class="version-block" id="v2.1.259" data-types="feature improve security fix" data-date="2026-09-02">
+    <div class="version-head">
+      <span class="ver-badge">v2.1.259</span><span class="ver-date">9월 2일 수</span><span class="ver-ago"></span>
+      <div class="ver-summary"><span class="pill feature">기능 ×6</span><span class="pill improve">개선 ×5</span><span class="pill security">보안 ×6</span><span class="pill fix">Fix ×20</span></div>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>managedMcpServers</code> managed setting: organizations can provide HTTP/SSE MCP servers to every user (same entry shape as <code>.mcp.json</code>); entries that name a command to run are skipped</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>--permission-prompts none</code> for unattended headless hosts: anything that would prompt is denied automatically while the active permission mode (including auto mode) keeps deciding</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added recognition of <code>glab mr create/merge/close/reopen/note/update</code> so GitLab merge requests show as <code>MR !N</code> in the collapsed tool summary and refresh the footer MR badge</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Added <code>--json</code> to <code>claude plugin validate</code> for a machine-readable validation report</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">Changed <code>allowedMcpServers</code> to govern only servers users add: a literal <code>managed-mcp.json</code> server your allowlist used to filter out now loads on upgrade; use <code>deniedMcpServers</code> to keep it off</span>
+    </div>
+    <div class="entry row-divider" data-type="feature">
+      <span class="pill feature">기능</span>
+      <span class="e-desc">[VSCode] Added an Active quick filter and a status filter menu (Needs input, Working, Completed) to the session list sidebar</span>
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-bar">
+        <div class="tab" data-tab="improve" onclick="toggleTab(this)">⚡ 개선 <span class="tab-count">5</span></div>
+        <div class="tab" data-tab="security" onclick="toggleTab(this)">🔒 보안 <span class="tab-count">6</span></div>
+        <div class="tab" data-tab="fix" onclick="toggleTab(this)">🐛 수정 <span class="tab-count">20</span></div>
+      </div>
+      <div class="tab-panels">
+        <div class="tab-panel" data-tab="improve">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Improved terminal resize and first-render performance for long responses by reusing text measurements</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/workflows</code> agent detail: JSON outcomes are pretty-printed with syntax colors and real line breaks, and long outcomes fold behind an expand toggle</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved headless/SDK session start: the first turn begins up to 50 ms sooner when MCP servers finish connecting</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved <code>/install-github-app</code> to explain it is GitHub-only and point to the GitLab CI/CD docs when run inside a GitLab repository</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Improved nested background subagent results to be saved in the parent subagent's transcript, so resumed subagents keep them and shared transcripts show the delivery</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="security">
+          <div class="coll-rows">
+            <div class="coll-item"><span class="coll-item-desc">Fixed the prompt cache being invalidated when the OAuth token refreshed in sessions with telemetry disabled</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed managed <code>forceRemoteSettingsRefresh</code> being ignored at startup when a policy helper configured by MDM or the managed settings file had already run</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed worktree isolation refusing hook-created worktrees on machines where <code>git rev-parse</code> fails with a message other than "not a git repository"</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed the file edit permission dialog sometimes showing a changed line cut short with no indication</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed managed settings silently going unenforced when the managed-settings file, a drop-in, the MDM plist, or the HKLM value cannot be parsed: Claude Code now refuses to start and names the source</span></div>
+            <div class="coll-item"><span class="coll-item-desc">Fixed remote and scheduled sessions doing nothing after a connector-tool permission prompt was approved while the session was paused</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" data-tab="fix">
+          <div class="chip-grid">
+            <span class="chip">concurrent sessions silently reverting each other&#x27;s ~/.claude.json changes…</span>
+            <span class="chip">a conversation whose thinking was rejected once being…</span>
+            <span class="chip">Bash Read() deny rules not covering files given…</span>
+            <span class="chip">fullscreen mode showing a blank conversation after a…</span>
+            <span class="chip">auto mode running a turn on a model…</span>
+            <span class="chip">CLAUDE_CODE_MAX_CONTEXT_TOKENS being ignored for Vertex-style model IDs (@YYYYMMDD…</span>
+            <span class="chip">live output preview of a running shell command…</span>
+            <span class="chip">a background GitHub connection check that ran on…</span>
+            <span class="chip">--resume failing (and --continue opening an empty conversation)…</span>
+            <span class="chip">frontmatter model: on custom commands and skills being…</span>
+            <span class="chip">Artifact publishing failing once with an &quot;unexpected parameter…</span>
+            <span class="chip">OpenTelemetry metrics and events from cloud sessions missing…</span>
+            <span class="chip">MCP servers that disconnect while their tools are…</span>
+            <span class="chip">repository detection dropping a known repo identity after…</span>
+            <span class="chip">Stop not actually stopping background agents and workflows…</span>
+            <span class="chip">resuming a workflow run while its previous stopped…</span>
+            <span class="chip">marketplace repo URLs on github.com with a trailing…</span>
+            <span class="chip">blocking Stop hooks causing the turn after a…</span>
+            <span class="chip">remote (claude.ai) sessions taking 60 seconds to start…</span>
+            <span class="chip">worktree-isolated sessions refusing common Bash loops, xargs pipelines…</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── v2.1.258 ── -->
   <div class="version-block" id="v2.1.258" data-types="security fix" data-date="2026-09-01">
     <div class="version-head">
