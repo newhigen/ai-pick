@@ -14261,7 +14261,23 @@ dialog::backdrop{background:rgba(34,32,28,.30)}
   </div>
 <!--/CC-DATA-->
 <!--CX-DATA-->
-    <p class="range"><strong>v0.69.0</strong> → <strong>v0.152.1</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.9.1">2025.12.10 – 2026.9.1</span></p>
+    <p class="range"><strong>v0.69.0</strong> → <strong>v0.153.0</strong> &nbsp;·&nbsp; <span class="range-dates" data-en="2025.12.10 – 2026.9.3">2025.12.10 – 2026.9.3</span></p>
+    <div class="version-block" id="cx0.153.0" data-date="2026-09-03">
+      <div class="version-head">
+        <span class="ver-badge">v0.153.0</span><span class="ver-date" data-en="Sep 3 Thu">9월 3일 목</span><span class="ver-ago"></span>
+        <div class="ver-summary"><span class="pill feature">기능 ×5</span><span class="pill fix">Fix ×5</span></div>
+      </div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Vim mode now supports undo with <code>u</code> and redo with <code>Ctrl+R</code>, preserving complete drafts including pasted content and attachments. (#41941, #42140)</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">The plugin CLI can list, install, and remove plugins from remote marketplaces. (#42150)</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Set <code>tui.auto_recap = false</code> to disable automatic recaps while keeping manual <code>/recap</code> available. (#42101)</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">TUI history shows complete patches, input sent to background terminals, and individual completed commands. (#41893, #42107)</span></div>
+      <div class="entry row-divider" data-type="feature"><span class="pill feature" data-en="Feature">기능</span><span class="e-desc">Plus and Team users receive an earlier warning when less than half of their allowance remains in an approximately five-hour usage window. (#42142)</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">TUI sessions reconnect after an external app-server connection drops, preserving drafts and transcripts while keeping uncertain or queued submissions paused for review. (#41911, #41916, #41918)</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Full Access skips Guardian reviews for confirmation-only actions. User approval mode skips background Guardian scoring and prewarming, while sensitive-action checks and requests for user input retain their existing handling. (#42147, #42256)</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Guardian review history survives compaction, restarts, and user-created forks while respecting rollback boundaries and isolating subagent history. (#41879, #42065)</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Remembered MCP tool approvals are scoped to the selected app account, and relative MCP executable paths start more reliably on macOS. (#42133, #42117)</span></div>
+      <div class="entry row-divider" data-type="fix"><span class="pill fix">Fix</span><span class="e-desc">Rollout compression includes shared histories, <code>codex exec resume</code> handles compressed rollouts when selecting by working directory, and thread forks work with symlinked session roots. (#42039, #42135)</span></div>
+    </div>
     <div class="version-block" id="cx0.152.1" data-date="2026-09-01">
       <div class="version-head">
         <span class="ver-badge">v0.152.1</span><span class="ver-date" data-en="Sep 1 Tue">9월 1일 화</span><span class="ver-ago"></span>
